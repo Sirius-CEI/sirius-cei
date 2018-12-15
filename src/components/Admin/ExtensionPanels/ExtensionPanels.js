@@ -37,7 +37,7 @@ class ExtensionPanels extends Component {
                 <Typography className={classes.heading}>CSV File Upload/Delete</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                    {/* <CsvExtension /> */}
+                    <CsvExtension />
                 </ExpansionPanelDetails>
             </ExpansionPanel>
             <ExpansionPanel>
@@ -45,7 +45,7 @@ class ExtensionPanels extends Component {
                 <Typography className={classes.heading}>Create New Annual Release</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                    {/* <AnnualReleaseExtension /> */}
+                    <AnnualReleaseExtension />
                 </ExpansionPanelDetails>
             </ExpansionPanel>
             <ExpansionPanel>
@@ -53,7 +53,7 @@ class ExtensionPanels extends Component {
                 <Typography className={classes.heading}>Cards</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                    {/* <CardExtension /> */}
+                    <CardExtension />
                 </ExpansionPanelDetails>
             </ExpansionPanel>
             <ExpansionPanel>
@@ -61,7 +61,7 @@ class ExtensionPanels extends Component {
                 <Typography className={classes.heading}>Edit Password</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                    {/* <EditPasswordExtension /> */}
+                    <EditPasswordExtension />
                 </ExpansionPanelDetails>
             </ExpansionPanel>
         </div>
