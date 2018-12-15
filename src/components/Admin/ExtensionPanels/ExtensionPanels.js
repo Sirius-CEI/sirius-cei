@@ -50,7 +50,7 @@ class ExtensionPanels extends Component {
             </ExpansionPanel>
             <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>Cards</Typography>
+                <Typography className={classes.heading}>What You Can Do</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <CardExtension />

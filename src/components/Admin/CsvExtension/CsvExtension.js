@@ -10,12 +10,12 @@ class CsvExtension extends Component {
 
     render() {
         return (
-            <div onload="addCsv()">
+            <div>
                 <Button id="submitCsv">
                 <input 
                     id="myFile" 
                     type="file" 
-                    onchange={this.addCsv}
+                    onChange={this.addCsv}
                     accept=".csv" 
                 />
                 </Button>
