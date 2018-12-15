@@ -46,6 +46,41 @@ class CardExtension extends Component {
         };
     }
 
+    // handle open of drop down menu
+    handleOpen = () => {
+        this.setState({
+            open: true
+        });
+    };
+    
+    // handle close of drop down menu
+    handleClose = () => {
+        this.setState({
+            open: false 
+        });  
+    };
+
+    // remove project
+    deleteCard = (id) => {
+        console.log('In delete card function', id);
+        this.props.dispatch( { type: 'DELETE_CARD', payload: id } );
+    }
+
+    // display cards on page load
+    componentDidMount() {
+        this.getCard();
+    }
+
+    // get projects from server
+    getCard() {
+        this.props.dispatch( { type: 'GET_CARD' } );
+    }
+
+    // Edit cards
+    editCard() {
+        this.props.dispatch( { type: 'EDIT_CARD' } );
+    }
+
     render() {
         const { classes } = this.props;
         return (
@@ -60,10 +95,12 @@ class CardExtension extends Component {
                 <div style={this.getModalStyle()} className={classes.paper}>
                     <Typography id="add-card_popup">
                         <h2>Add A Card</h2>
-                        <AddCard />
+                        <AddCard handleClose={this.handleClose} />
                     </Typography>
                 </div>
                 </Modal>
+                <br></br>
+                
             </div>
         );
     }
