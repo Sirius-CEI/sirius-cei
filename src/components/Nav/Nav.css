@@ -1,9 +1,7 @@
 .toolbar {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: #acacac;
   height: 200px;
 }
 

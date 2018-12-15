@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Nav.css';
 import 'typeface-lato';
+import DrawerToggleButton from './DrawerToggleButton';
 
-const Nav = () => (
+const Nav = (props) => (
   <header className="toolbar">
     <nav className="toolbar__navigation">
-      <Link to="/"><img src={`/images/CEI_Logo.png`} className="toolbar-logo" alt="CEI"/></Link>
+      <div className="toolbar__toggle-button">
+        <DrawerToggleButton click={props.drawerClickHandler} />
+      </div>
+      {/* <Link to="/"><img src={`/images/CEI_Logo.png`} className="toolbar-logo" alt="CEI"/></Link> */}
         <div className="spacer" />
         <div className="toolbar_navigation-items">
           <ul>
