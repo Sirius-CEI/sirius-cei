@@ -17,7 +17,7 @@ class AdminHome extends Component {
       return (
         <div>
           <h1 className={classes.h1} id="welcome">
-            Welcome, { this.props.user.username }!
+            Welcome, { this.props.user.username }
           </h1>
           <div className={classes.extensionPanels}>
             <ExtensionPanels />
