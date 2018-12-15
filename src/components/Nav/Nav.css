@@ -1,36 +1,73 @@
-.nav-title {
-    font-size: 24px;
-    font-weight: 700;
-    display: inline-block;
-    color: #f2f2f2;
-    padding-left: 10px;
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #acacac;
+  height: 200px;
 }
 
-.nav {
-  overflow: hidden;
-  background-color: #00acb0;
+.toolbar-logo {
+  height: 120px;
+  width: 120px;
+  margin-left: 2rem;
 }
 
-.nav-link {
-  float: left;
-  color: #f2f2f2;
-  background-color: #00acb0;
-  text-align: center;
-  padding: 24px 10px;
+.toolbar__navigation {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.toolbar_navigation-items ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.toolbar_navigation-items li {
+  padding: 0 0.5rem;
+}
+
+.toolbar_navigation-items .nav-link {
+  color: #008ab7;
   text-decoration: none;
+  letter-spacing: 1.53px;
+  text-transform: uppercase;
+  line-height: 1em;
+  font-family: Lato;
+  font-weight: 700;
+  font-style: normal;
   font-size: 15px;
-
-  /* these last two make the logout button in
-  the nav bar look like another link */
-  border:none;
-  cursor: pointer;
-  outline:0;
+  margin-left: 20px;
 }
 
-.nav-link:hover {
-  background-color: #008183;
+.toolbar_navigation-items #nav-link-at {
+  margin-right: 2rem;
 }
 
-.nav-right {
-  float: right;
+.toolbar_navigation-items .nav-link:hover,
+.toolbar_navigation-items .nav-link:active {
+  color: #ffc432;
+}
+
+.spacer {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .toolbar_navigation-items {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .toolbar__toggle-button {
+    display: none;
+  }
+
+  .toolbar__logo {
+    margin-left: 0;
+  }
 }

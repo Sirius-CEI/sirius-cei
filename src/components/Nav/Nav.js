@@ -1,43 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
+import 'typeface-lato';
 
-const Nav = (props) => (
-  <div className="nav">
-    <Link to="/home">
-      <h2 className="nav-title">Prime Solo Project</h2>
-    </Link>
-    <div className="nav-right">
-      <Link className="nav-link" to="/home">
-        {/* Show this link if they are logged in or not,
-        but call this link 'Home' if they are logged in,
-        and call this link 'Login / Register' if they are not */}
-        {props.user.id ? 'Home' : 'Login / Register'}
-      </Link>
-      {/* Show the link to the info page and the logout button if the user is logged in */}
-      {props.user.id && (
-        <>
-          <Link className="nav-link" to="/info">
-            Info Page
-          </Link>
-          <LogOutButton className="nav-link"/>
-        </>
-      )}
-      {/* Always show this link since the about page is not protected */}
-      <Link className="nav-link" to="/about">
-        About
-      </Link>
-    </div>
-  </div>
+const Nav = () => (
+  <header className="toolbar">
+    <nav className="toolbar__navigation">
+      <Link to="/"><img src={`/images/CEI_Logo.png`} className="toolbar-logo" alt="CEI"/></Link>
+        <div className="spacer" />
+        <div className="toolbar_navigation-items">
+          <ul>
+            
+            <li><Link className="nav-link" to="/">Home</Link></li>
+            <li><Link className="nav-link" to="/macro">Macro Indicators</Link></li>
+            <li><Link className="nav-link" to="/economic-development">Economic Development</Link></li>
+            <li><Link className="nav-link" to="/human-capitol">Human Capitol</Link></li>
+            <li><Link className="nav-link" id="nav-link-at" to="/access-transit">Access & Transit</Link></li>
+          </ul>
+        </div>
+    </nav>
+  </header>
 );
 
-// Instead of taking everything from state, we just want the user
-// object to determine if they are logged in
-// if they are logged in, we show them a few more links 
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({ user }) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
 });
