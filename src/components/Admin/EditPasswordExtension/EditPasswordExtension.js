@@ -25,6 +25,7 @@ const styles = theme => ({
 class PasswordExtension extends Component {
 
 state = {
+    username: this.props.user.username,
     password: '',
 }
 
@@ -43,6 +44,7 @@ onSubmit = event => {
     event.preventDefault();
     this.props.dispatch({ type: 'EDIT_PASSWORD', payload: this.state })
     this.setState({
+        username: this.props.user.username,
         password: '',
     });
 }
@@ -80,7 +82,7 @@ PasswordExtension.propTypes = {
 };
 
 const mapReduxStateToProps = reduxState => ({
-  cards: reduxState.cards,
+  user: reduxState.user,
 });
 
 export default compose(

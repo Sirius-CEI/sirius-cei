@@ -7,10 +7,13 @@ router.put('/', (req, res) => {
     console.log('password router info: ', req.body);
     const updatePassword = req.body;
     const queryText = `UPDATE person
-    SET "password" = $1
+    SET 
+    "username" = $1,
+    "password" = $2
     `;
   
     const queryValues = [
+        updatePassword.username,
         updatePassword.password
     ];
   
