@@ -23,51 +23,51 @@ const styles = theme => ({
         height: 'auto',
         backgroundColor: 'white',
     },
-  });
+});
 
 class AddCard extends Component {
 
-    state = {
+state = {
+    newCard: {
+        title: '',
+        image: '',
+        url: '',
+        category_id: '',
+    }
+}
+
+// handle changes in the form inputs
+handleChange = event => {
+    console.log('handleChange', event.target.value)
+    this.setState({
+        newCard: {
+            ...this.state.newCard,
+            [event.target.name]: event.target.value,
+        }
+    });
+}
+
+// submit project information from form
+onSubmit = event => {
+    console.log('Form adding: ', this.state);
+    event.preventDefault();
+    this.props.handleClose();
+    // this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
+    this.setState({
         newCard: {
             title: '',
             image: '',
             url: '',
             category_id: '',
         }
-    }
-
-    // handle changes in the form inputs
-    handleChange = event => {
-        console.log('handleChange', event.target.value)
-        this.setState({
-            newCard: {
-                ...this.state.newCard,
-                [event.target.name]: event.target.value,
-            }
-        });
-    }
-
-    // submit project information from form
-    onSubmit = event => {
-        console.log('Form adding: ', this.state);
-        event.preventDefault();
-        this.props.handleClose();
-        this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
-        this.setState({
-            newCard: {
-                title: '',
-                image: '',
-                url: '',
-                category_id: '',
-            }
-        });
-    }
+    });
+}
 
   render() {
     const { classes } = this.props;
     const newCard = this.state.newCard;
     return (
-        <div className={classes.div} id="form" onSubmit={this.onSubmit}>
+        <div className={classes.div} id="form">
             <form className={classes.form} id="formInputs" onSubmit={this.onSubmit}>
                 <FormControl id="formMenu">
                 <TextField 

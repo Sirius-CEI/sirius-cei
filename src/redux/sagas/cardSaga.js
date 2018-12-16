@@ -15,7 +15,7 @@ function* addCard(action) {
     console.log('Add Card saga', action);
     try {
       yield call( axios.post, '/cards', action.payload );
-      alert('Success adding a new Card!');
+      alert('Success adding Card!');
       yield put( { type: 'SET_CARDS' } );
     }
     catch(error) {
