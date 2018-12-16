@@ -51,7 +51,7 @@ class Form extends Component {
     onSubmit = event => {
         console.log('Form adding: ', this.state);
         event.preventDefault();
-        // this.props.dispatch({ type: 'ADD_RELEASE', payload: this.state.newRelease })
+        this.props.dispatch({ type: 'ADD_RELEASE', payload: this.state.newRelease })
         this.setState({
             newRelease: {
                 year: '',
