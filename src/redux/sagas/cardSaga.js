@@ -16,7 +16,7 @@ function* addCard(action) {
     try {
       yield call( axios.post, '/cards', action.payload );
       alert('Success adding Card!');
-      yield put( { type: 'SET_CARDS' } );
+      yield put( { type: 'GET_CARDS' } );
     }
     catch(error) {
       console.log('error adding Card', error);
@@ -31,7 +31,7 @@ function* addCard(action) {
 //     // axios asynch call to remove Card from server
 //     yield call(axios.delete, '/cards', {params: {id: action.payload}});
 //     alert('Deleted Card');
-//     yield put( { type: 'SET_CARDS' } );
+//     yield put( { type: 'GET_CARDS' } );
 // }
 //     catch (error) {
 //         console.log('error with delete request to /cards');
@@ -45,12 +45,12 @@ function* deleteCard(action) {
     console.log('Delete Card', action);
     try {
         yield call( axios.delete, `/cards/${action.payload}`);
-        yield put( { type: 'SET_CARDS' } );
+        alert('Successfully Deleted Card');
+        yield put( { type: 'GET_CARDS' } );
     }
     catch(error) {
         console.log('error with delete request', error);
             alert('Error Deleting Card');
-
     }
 }
   
@@ -59,7 +59,7 @@ console.log('Edit Card saga', action.payload);
 try {
     // axios asynch call to add koala to server
     yield call(axios.put, '/cards', action.payload);
-    yield put( { type: 'SET_CARDS' } );
+    yield put( { type: 'GET_CARDS' } );
 }
     catch (error) {
         console.log('error with transfer request to /api/koalas/transfer');

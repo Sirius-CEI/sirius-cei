@@ -69,20 +69,19 @@ router.post('/', (req, res) => {
 //   });
 
 // delete Card
-// router.delete('/:id', (req, res) => {
-//   const prjId = req.params.id;
-//   console.log('Delete request', prjId);
-//   const sqlText = 'DELETE FROM projects WHERE id=$1;';
-//   pool.query(sqlText, [prjId])
-//     .then((result) => {
-//       console.log('Project was deleted', result);
-//       res.sendStatus(200);
-//     })
-//     .catch((error) => {
-//       console.log(`DELETE error ${sqlText}`, error);
-//       res.sendStatus(500);
-//     })
-// })
+router.delete('/:id', (req, res) => {
+  const cardId = req.params.id;
+  const sqlText = 'DELETE FROM cards WHERE id=$1;';
+  pool.query(sqlText, [cardId])
+    .then((result) => {
+      console.log('Card deleted');
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`DELETE error ${sqlText}`, error);
+      res.sendStatus(500);
+    })
+})
 
 module.exports = router;
 

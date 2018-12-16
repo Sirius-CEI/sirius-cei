@@ -22,8 +22,9 @@ class CardItems extends Component {
         console.log('Edit Card');
     }
 
-    deleteCard = () => {
-        console.log('Delete Card');
+    deleteCard = (id) => {
+        console.log('Delete Card id: ', id);
+        this.props.dispatch( { type: 'DELETE_CARD', payload: id } );
     }
 
     render() {
@@ -64,7 +65,7 @@ class CardItems extends Component {
                             </CardContent>
                         </Card>
                         <Button onClick={this.editCard}>Edit</Button>
-                        <Button onClick={this.deleteCard}>Delete</Button>
+                        <Button onClick={() => this.deleteCard(cards.id)}>Delete</Button>
                     </div>
                 )
             })}

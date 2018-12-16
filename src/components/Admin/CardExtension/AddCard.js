@@ -52,7 +52,7 @@ onSubmit = event => {
     console.log('Form adding: ', this.state);
     event.preventDefault();
     this.props.handleClose();
-    // this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
+    this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
     this.setState({
         newCard: {
             title: '',

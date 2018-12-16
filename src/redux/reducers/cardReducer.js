@@ -1,4 +1,5 @@
 const cardReducer = (state=[], action) => {
+    console.log('card reducer state: ', state);
     switch (action.type) {
       case 'SET_CARDS':
         return action.payload;
