@@ -47,7 +47,7 @@ class Form extends Component {
         });
     }
 
-    // submit project information from form
+    // submit Release information from form
     onSubmit = event => {
         console.log('Form adding: ', this.state);
         event.preventDefault();
@@ -60,23 +60,6 @@ class Form extends Component {
                 description: '',
             }
         });
-    }
-
-    // remove project
-    removeProject = (id) => {
-        console.log('In delete project function', id);
-        this.props.dispatch( { type: 'DELETE_PROJECT', payload: id } )
-    }
-
-    // display projects on page load
-    componentDidMount() {
-        // Dispatch action to request the projects from the API
-        this.getProjectList();
-    }
-
-    // get projects from index
-    getProjectList() {
-        this.props.dispatch( { type: 'GET_PROJECTS' } )
     }
 
     // handle open of drop down menu

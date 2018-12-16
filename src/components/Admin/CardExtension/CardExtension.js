@@ -7,6 +7,7 @@ import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import CardItems from './CardItems';
 
 const styles = theme => ({
     paper: {
@@ -68,12 +69,13 @@ class CardExtension extends Component {
 
     // display cards on page load
     componentDidMount() {
-        this.getCard();
+        this.getCards();
     }
 
     // get projects from server
-    getCard() {
-        this.props.dispatch( { type: 'GET_CARD' } );
+    getCards() {
+        console.log('dispatching GET_CARDS');
+        this.props.dispatch( { type: 'GET_CARDS' } );
     }
 
     // Edit cards
@@ -100,7 +102,7 @@ class CardExtension extends Component {
                 </div>
                 </Modal>
                 <br></br>
-                
+                <CardItems />
             </div>
         );
     }
