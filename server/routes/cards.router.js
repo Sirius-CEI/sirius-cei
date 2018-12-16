@@ -36,37 +36,37 @@ router.post('/', (req, res) => {
       });
   });
 
-// // put request route to send new projects information to database
-// router.put('/', (req, res) => {
-
-//     const updatedProject = req.body;
+// PUT request to update card information
+router.put('/', (req, res) => {
+    const cardId = req.body.id;
+    console.log('card id: ', cardId);
+    const updateCard = req.body;
+    
+    const queryText = `UPDATE cards
+    SET "title" = $1, 
+    "image" = $2, 
+    "url" = $3, 
+    "category_id" = $4
+    WHERE id=${cardId}
+    `;
   
-//     const queryText = `UPDATE projects
-//     SET "name" = $1, 
-//     "description" = $2, 
-//     "thumbnail" = $3, 
-//     "website" = $4, 
-//     "github" = $5, 
-//     "date_completed" = $6, 
-//     "tag_id" = $7`;
+    const queryValues = [
+        updateCard.title,
+        updateCard.image,
+        updateCard.url,
+        updateCard.category_id
+    ];
   
-//     const queryValues = [
-//       updatedProject.name,
-//       updatedProject.description,
-//       updatedProject.thumbnail,
-//       updatedProject.website,
-//       updatedProject.github,
-//       updatedProject.date_completed,
-//       updatedProject.tag_id,
-//     ];
-  
-//     pool.query(queryText, queryValues)
-//       .then(() => { res.sendStatus(200); })
-//       .catch((error) => {
-//         console.log('Error completing SELECT projects query', error);
-//         res.sendStatus(500);
-//       });
-//   });
+    pool.query(queryText, queryValues)
+        .then(() => { 
+            console.log('success editing card');
+            res.sendStatus(200); 
+        })
+        .catch((error) => {
+            console.log('Error updating Card query', error);
+            res.sendStatus(500);
+        });
+  });
 
 // delete Card
 router.delete('/:id', (req, res) => {

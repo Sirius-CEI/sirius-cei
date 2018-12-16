@@ -7,6 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import compose from 'recompose/compose';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import EditCard from './EditCard'
 
 const styles = theme => ({
     img: {
@@ -15,16 +17,45 @@ const styles = theme => ({
         maxHeight: '150px',
         maxWidth: '200px',
     },
+    paper: {
+        position: 'absolute',
+        width: theme.spacing.unit * 50,
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing.unit * 4,
+    },
   });
 class CardItems extends Component {
-
-    editCard = () => {
-        console.log('Edit Card');
-    }
 
     deleteCard = (id) => {
         console.log('Delete Card id: ', id);
         this.props.dispatch( { type: 'DELETE_CARD', payload: id } );
+    }
+
+    state = {
+        open: false,
+    };
+
+    handleOpen = () => {
+        this.setState({ open: true });
+    };
+    
+      handleClose = () => {
+        this.setState({ open: false });
+    };
+
+    rand = () => {
+        return Math.round(Math.random() * 20) - 10;
+    }
+
+    getModalStyle = () => {
+        const top = 50 + this.rand();
+        const left = 50 + this.rand();
+        return {
+            top: `${top}%`,
+            left: `${left}%`,
+            transform: `translate(-${top}%, -${left}%)`,
+        };
     }
 
     render() {
@@ -64,7 +95,18 @@ class CardItems extends Component {
                                 <div>Showing on Page {cards.name}</div>
                             </CardContent>
                         </Card>
-                        <Button onClick={this.editCard}>Edit</Button>
+                        <Button onClick={this.handleOpen}>Edit</Button>
+                        <Modal
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                        >
+                        <div style={this.getModalStyle()} className={classes.paper}>
+                            <h2 id="add_card_popup">Edit Card</h2>
+                            <EditCard cardId={cards.id} handleClose={this.handleClose} />
+                        </div>
+                        </Modal>                        
                         <Button onClick={() => this.deleteCard(cards.id)}>Delete</Button>
                     </div>
                 )
