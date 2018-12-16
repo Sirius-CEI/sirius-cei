@@ -55,7 +55,7 @@ class Form extends Component {
         this.setState({
             newRelease: {
                 year: '',
-                graphs: '',
+                graph: '',
                 header: '',
                 description: '',
             }
