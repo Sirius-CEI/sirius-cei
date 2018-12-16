@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 
 function* getCards() {
-    console.log('in get card saga');
     try {
       const response = yield axios.get('/cards');
       console.log('get cardSaga response', response.data);
@@ -13,44 +12,65 @@ function* getCards() {
 }
 
 function* addCard(action) {
-    console.log('POST saga to add Card: ', action.payload);
+    console.log('Add Card saga', action);
     try {
-        // asynch call to add card to server
-        yield call(axios.post, '/cards', action.payload);
+      yield call( axios.post, '/cards', action.payload );
+      alert('Success adding a new Card!');
+      yield put( { type: 'SET_CARDS' } );
+    }
+    catch(error) {
+      console.log('error adding Card', error);
+      alert('Error adding Card');
+    }
+  }
+// ----------------------------------- //
+// Mongo DELETE
+// function* deleteCard(action) {
+// console.log('Delete saga to remove Card: ', action.payload);
+// try {
+//     // axios asynch call to remove Card from server
+//     yield call(axios.delete, '/cards', {params: {id: action.payload}});
+//     alert('Deleted Card');
+//     yield put( { type: 'SET_CARDS' } );
+// }
+//     catch (error) {
+//         console.log('error with delete request to /cards');
+//         alert('Error Deleting Card');
+//     }
+// }
+
+//---------------------------------------//
+// SQL DELETE
+function* deleteCard(action) {
+    console.log('Delete Card', action);
+    try {
+        yield call( axios.delete, `/cards/${action.payload}`);
         yield put( { type: 'SET_CARDS' } );
     }
-    catch (error) {
-        console.log('error with POST request to /cards', error);
+    catch(error) {
+        console.log('error with delete request', error);
+            alert('Error Deleting Card');
+
     }
-  }
+}
   
-  function* deleteCard(action) {
-    console.log('in delete saga to remove card: ', action.payload);
-    try {
-        // axios asynch call to add koala to server
-        yield call(axios.delete, '/api/koalas', {params: {id: action.payload}});
-        yield put( { type: 'GET_KOALAS' } );
-    }
-    catch (error) {
-        console.log('error with delete request to /api/koalas');
-    }
-  }
-  
-  function* transferKoala(action) {
-    console.log('in saga for set ready to transfer for a koala', action.payload);
-    try {
-        // axios asynch call to add koala to server
-        yield call(axios.put, '/api/koalas/transfer', action.payload);
-        yield put( { type: 'GET_KOALAS' } );
-    }
+function* editCard(action) {
+console.log('Edit Card saga', action.payload);
+try {
+    // axios asynch call to add koala to server
+    yield call(axios.put, '/cards', action.payload);
+    yield put( { type: 'SET_CARDS' } );
+}
     catch (error) {
         console.log('error with transfer request to /api/koalas/transfer');
     }
-  }
+}
 
 function* cardSaga() {
   yield takeEvery('GET_CARDS', getCards);
-  yield takeEvery('ADD_CARD', addCard)
+  yield takeEvery('ADD_CARD', addCard);
+  yield takeEvery('DELETE_CARD', deleteCard);
+  yield takeEvery('EDIT_CARD', editCard);
 }
 
 export default cardSaga;

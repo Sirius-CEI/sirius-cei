@@ -4,7 +4,6 @@ import compose from 'recompose/compose';
 import AddCard from './AddCard';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
-import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CardItems from './CardItems';
@@ -95,10 +94,8 @@ class CardExtension extends Component {
                     onClose={this.handleClose}
                 >
                 <div style={this.getModalStyle()} className={classes.paper}>
-                    <Typography id="add-card_popup">
-                        <h2>Add A Card</h2>
-                        <AddCard handleClose={this.handleClose} />
-                    </Typography>
+                    <h2 id="add_card_popup">Add A Card</h2>
+                    <AddCard handleClose={this.handleClose} />
                 </div>
                 </Modal>
                 <br></br>

@@ -52,7 +52,7 @@ class AddCard extends Component {
         console.log('Form adding: ', this.state);
         event.preventDefault();
         this.props.handleClose();
-        // this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
+        this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
         this.setState({
             newCard: {
                 title: '',
@@ -101,7 +101,6 @@ class AddCard extends Component {
                     onChange={this.handleChange} 
                 />
                 <Select
-                    defaultValue="Category"
                     variant="outlined"
                     label="Category"
                     placeholder="None"
@@ -110,11 +109,11 @@ class AddCard extends Component {
                     onOpen={this.handleOpen}
                     value={newCard.category_id}
                     onChange={this.handleChange}
-                    name="category"
+                    name="category_id"
                     input={
                         <OutlinedInput
                             labelWidth={0}
-                            name="category"
+                            name="category_id"
                             id="category-select"
                             label="category"
                             placeholder="category"

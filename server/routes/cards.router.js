@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
     pool.query(queryText, queryValues)
       .then(() => { res.sendStatus(201); })
       .catch((error) => {
-        console.log('Error completing POST card query', error);
+        console.log('Error completing Card POST query', error);
         res.sendStatus(500);
       });
   });

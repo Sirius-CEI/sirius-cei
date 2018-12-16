@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 import compose from 'recompose/compose';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -18,43 +17,57 @@ const styles = theme => ({
     },
   });
 class CardItems extends Component {
-  render() {
-    const { classes } = this.props;
-    return (
-        <div className="projects-div">
-            {this.props.cards.map( (cards, index) => {
-                return (
-                <Card className="project-content" id="display" key={index}>
-                    <CardMedia>
-                    <img id="img" className={classes.img} src={cards.image} alt="thumbnail"/>
-                    </CardMedia>
-                    <CardContent>
-                        <Typography>
-                            <h2>{cards.title}</h2>
-                        </Typography>
-                    </CardContent>
-                    <CardContent>
-                        <Button 
-                            color="primary" 
-                            variant="contained">
-                            <a 
-                                className="project-link-button" 
-                                href={cards.url} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                            >
-                                Read More
-                            </a>
-                        </Button>
-                    </CardContent>
-                    <CardContent>
-                        <Typography>
-                            <div>Showing on Page {cards.name}</div>
-                        </Typography>
-                    </CardContent>
-                </Card>
-            )
-        })}
+
+    editCard = () => {
+        console.log('Edit Card');
+    }
+
+    deleteCard = () => {
+        console.log('Delete Card');
+    }
+
+    render() {
+        const { classes } = this.props;
+        return (
+            <div className="projects-div">
+                {this.props.cards.map( (cards, index) => {
+                    return (
+                    <div key={index}>
+                        <Card className="project-content" id="display">
+                            <CardMedia>
+                                <img 
+                                    id="img" 
+                                    alt="card-action" 
+                                    className={classes.img} 
+                                    src={cards.image}
+                                />
+                            </CardMedia>
+                            <CardContent>
+                                <h2>{cards.title}</h2>
+                            </CardContent>
+                            <CardContent>
+                                <Button 
+                                    color="primary" 
+                                    variant="contained">
+                                    <a 
+                                        className="project-link-button" 
+                                        href={cards.url} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                    >
+                                        Read More
+                                    </a>
+                                </Button>
+                            </CardContent>
+                            <CardContent>
+                                <div>Showing on Page {cards.name}</div>
+                            </CardContent>
+                        </Card>
+                        <Button onClick={this.editCard}>Edit</Button>
+                        <Button onClick={this.deleteCard}>Delete</Button>
+                    </div>
+                )
+            })}
         </div>
     );
   }

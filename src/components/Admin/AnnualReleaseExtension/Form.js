@@ -82,7 +82,6 @@ class Form extends Component {
                     <TextField id="year" type='number' label="year" name="year" margin="normal" variant="outlined"
                         value={newRelease.year} onChange={this.handleChange} />
                         <Select
-                            defaultValue="Graphs"
                             variant="outlined"
                             label="Graph"
                             placeholder="None"
