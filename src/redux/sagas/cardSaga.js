@@ -62,7 +62,7 @@ try {
     yield put( { type: 'GET_CARDS' } );
 }
     catch (error) {
-        console.log('error with transfer request to /api/koalas/transfer');
+        console.log('error with Card PUT request', error);
     }
 }
 

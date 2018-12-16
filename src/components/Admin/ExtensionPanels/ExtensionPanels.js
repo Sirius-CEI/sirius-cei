@@ -58,7 +58,7 @@ class ExtensionPanels extends Component {
             </ExpansionPanel>
             <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>Edit Password</Typography>
+                <Typography className={classes.heading}>Change Password</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <EditPasswordExtension />
