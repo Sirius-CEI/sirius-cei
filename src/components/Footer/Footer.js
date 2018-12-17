@@ -27,7 +27,6 @@ const styles = {
     paddingTop: 40,
     fontSize: 30,
     fontWeight: 700,
-    wordWrap: 'breakWord',
     fontFamily: 'Lato',
     lineHeight: '1em',
   },
@@ -39,6 +38,7 @@ const styles = {
     borderRadius: 50,
     fontSize: 15,
     fontWeight: 500,
+    textTransform: 'lowercase',
     marginTop: 45,
     backgroundColor: 'white',
     "&:hover": {
