@@ -24,7 +24,7 @@ import Footer from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 import SideDrawer from '../Nav/SideDrawer';
 import Backdrop from '../Nav/Backdrop';
-
+import AdminHome from '../Admin/AdminHome';
 import './App.css';
 
 class App extends Component {
@@ -97,8 +97,8 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/info"
-              component={InfoPage}
+              path="/home"
+              component={AdminHome}
             />
             <ProtectedRoute
               exact
