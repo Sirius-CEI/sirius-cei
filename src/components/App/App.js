@@ -9,8 +9,7 @@ import {connect} from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 //Protected Components
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import AdminHome from '../Admin/AdminHome';
 
 //Non Protected Components
 import Macro from '../Macro/Macro';
@@ -18,13 +17,13 @@ import EconomicDevelopment from '../EconomicDevelopment/EconomicDevelopment';
 import HumanCapitol from '../HumanCapitol/HumanCapitol';
 import AccessTransit from '../AccessTransit/AccessTransit';
 import AnnualRelease from '../AnnualRelease/AnnualRelease';
-import AboutPage from '../AboutPage/AboutPage';
 import Footer from '../Footer/Footer';
 
+//Nav Bar Components
 import Nav from '../Nav/Nav';
 import SideDrawer from '../Nav/SideDrawer';
 import Backdrop from '../Nav/Backdrop';
-import AdminHome from '../Admin/AdminHome';
+
 import './App.css';
 
 class App extends Component {
@@ -90,20 +89,10 @@ class App extends Component {
               path="/access-transit"
               component={AccessTransit}
             />
-            <Route
-              exact
-              path="/about"
-              component={AboutPage}
-            />
             <ProtectedRoute
               exact
-              path="/home"
+              path="/admin"
               component={AdminHome}
-            />
-            <ProtectedRoute
-              exact
-              path="/userpage"
-              component={UserPage}
             />
             <Route render={() => <h1>404</h1>} />
           </Switch>
