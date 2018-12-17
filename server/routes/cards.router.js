@@ -118,6 +118,19 @@ router.get('/', (req, res) => {
         })
 });
 
+//GET route to get a single Card from database
+router.get('/:id', (req, res) => {
+    const cardId = req.params.id;
+    Card.findById({cardId})
+        .then((results) => {
+            res.send(results);
+        })
+        .catch((error) => {
+            console.log(`Error making Card GET query`, error);
+            res.sendStatus(500);
+        })
+});
+
 
 //POST route to add Card to database
 router.post('/', (req, res) => {

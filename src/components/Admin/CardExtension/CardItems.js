@@ -62,7 +62,7 @@ class CardItems extends Component {
         const { classes } = this.props;
         return (
             <div className="projects-div">
-                {this.props.cards.map( (cards, index) => {
+                {this.props.cards.map( (card, index) => {
                     return (
                     <div key={index}>
                         <Card className="project-content" id="display">
@@ -71,11 +71,11 @@ class CardItems extends Component {
                                     id="img" 
                                     alt="card-action" 
                                     className={classes.img} 
-                                    src={cards.image}
+                                    src={card.image}
                                 />
                             </CardMedia>
                             <CardContent>
-                                <h2>{cards.title}</h2>
+                                <h2>{card.title}</h2>
                             </CardContent>
                             <CardContent>
                                 <Button 
@@ -83,7 +83,7 @@ class CardItems extends Component {
                                     variant="contained">
                                     <a 
                                         className="project-link-button" 
-                                        href={cards.url} 
+                                        href={card.url} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
                                     >
@@ -92,7 +92,7 @@ class CardItems extends Component {
                                 </Button>
                             </CardContent>
                             <CardContent>
-                                <div>Showing on Page {cards.name}</div>
+                                <div>Showing on Page {card.name}</div>
                             </CardContent>
                         </Card>
                         <Button onClick={this.handleOpen}>Edit</Button>
@@ -104,10 +104,10 @@ class CardItems extends Component {
                         >
                         <div style={this.getModalStyle()} className={classes.paper}>
                             <h2 id="add_card_popup">Edit Card</h2>
-                            <EditCard cardId={cards._id} handleClose={this.handleClose} />
+                            <EditCard card={card} cardId={card._id} handleClose={this.handleClose} />
                         </div>
                         </Modal>                        
-                        <Button onClick={() => this.deleteCard(cards._id)}>Delete</Button>
+                        <Button onClick={() => this.deleteCard(card._id)}>Delete</Button>
                     </div>
                 )
             })}

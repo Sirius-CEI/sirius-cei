@@ -30,10 +30,10 @@ class EditCard extends Component {
 state = {
     newCard: {
         _id: this.props.cardId,
-        title: '',
-        image: '',
-        url: '',
-        category_id: '',
+        title: this.props.card.title,
+        image: this.props.card.image,
+        url: this.props.card.url,
+        category_id: this.props.card.category_id,
     }
 }
 

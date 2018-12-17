@@ -38,21 +38,6 @@ try {
         alert('Error Deleting Card');
     }
 }
-
-//---------------------------------------//
-// SQL DELETE
-// function* deleteCard(action) {
-//     console.log('Delete Card', action);
-//     try {
-//         yield call( axios.delete, `/cards/${action.payload}`);
-//         alert('Successfully Deleted Card');
-//         yield put( { type: 'GET_CARDS' } );
-//     }
-//     catch(error) {
-//         console.log('error with delete request', error);
-//             alert('Error Deleting Card');
-//     }
-// }
   
 function* editCard(action) {
 console.log('Edit Card saga', action.payload);
