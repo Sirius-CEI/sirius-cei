@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Form from './Form'
+import Form from './Form';
 
 class AnnualReleaseExtension extends Component {
 
