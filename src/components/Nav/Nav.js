@@ -11,11 +11,10 @@ const Nav = (props) => (
       <div className="toolbar__toggle-button">
         <DrawerToggleButton click={props.drawerClickHandler} />
       </div>
-      {/* <Link to="/"><img src={`/images/CEI_Logo.png`} className="toolbar-logo" alt="CEI"/></Link> */}
+        <Link to="/"><img src={`/images/CEI_Logo.png`} className="toolbar-logo" alt="CEI"/></Link>
         <div className="spacer" />
         <div className="toolbar_navigation-items">
           <ul>
-            
             <li><Link className="nav-link" to="/">Home</Link></li>
             <li><Link className="nav-link" to="/macro">Macro Indicators</Link></li>
             <li><Link className="nav-link" to="/economic-development">Economic Development</Link></li>

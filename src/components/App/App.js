@@ -8,7 +8,6 @@ import {
 
 import {connect} from 'react-redux';
 
-import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
@@ -17,6 +16,10 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
+import Nav from '../Nav/Nav';
+import SideDrawer from '../Nav/SideDrawer';
+import Backdrop from '../Nav/Backdrop';
+
 import './App.css';
 
 class App extends Component {
@@ -24,11 +27,36 @@ class App extends Component {
     this.props.dispatch({type: 'FETCH_USER'})
   }
 
+  state = {
+    sideDrawerOpen: false
+  };
+
+  drawerToggleClickHandler = () => {
+    this.setState((prevState) => {
+      return {sideDrawerOpen: !prevState.sideDrawerOpen};
+    });
+  };
+
+  backdropClickHandler = () => {
+    this.setState({sideDrawerOpen: false});
+  };
+
   render() {
+
+    let backdrop;
+
+    if (this.state.sideDrawerOpen) {
+      backdrop = <Backdrop click={this.backdropClickHandler} />
+    }
+
     return (
       <Router>
         <div>
-          <Nav />
+        <div style={{height: '100%'}}>
+        <Nav drawerClickHandler={this.drawerToggleClickHandler} />
+        <SideDrawer show={this.state.sideDrawerOpen} />
+        {backdrop}
+          </div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
