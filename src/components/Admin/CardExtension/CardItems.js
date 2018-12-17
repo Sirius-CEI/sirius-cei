@@ -104,7 +104,7 @@ class CardItems extends Component {
                         >
                         <div style={this.getModalStyle()} className={classes.paper}>
                             <h2 id="add_card_popup">Edit Card</h2>
-                            <EditCard cardId={cards.id} handleClose={this.handleClose} />
+                            <EditCard cardId={cards._id} handleClose={this.handleClose} />
                         </div>
                         </Modal>                        
                         <Button onClick={() => this.deleteCard(cards.id)}>Delete</Button>
