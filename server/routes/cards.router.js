@@ -152,9 +152,9 @@ router.put('/:id', (req, res) => {
 })
 
 // Setup DELETE to remove a card
-router.delete('/', (req, res) => {
-    let reqId = req.query.id;
-    console.log('Delete card request for id', reqId);
+router.delete('/:id', (req, res) => {
+    let reqId = req.params.id;
+    console.log('Delete card request for id', req.params);
     Card.findOneAndDelete({
         _id: reqId
     })

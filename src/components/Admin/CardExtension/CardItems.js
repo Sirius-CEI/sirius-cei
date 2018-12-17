@@ -107,7 +107,7 @@ class CardItems extends Component {
                             <EditCard cardId={cards._id} handleClose={this.handleClose} />
                         </div>
                         </Modal>                        
-                        <Button onClick={() => this.deleteCard(cards.id)}>Delete</Button>
+                        <Button onClick={() => this.deleteCard(cards._id)}>Delete</Button>
                     </div>
                 )
             })}
