@@ -96,96 +96,74 @@ module.exports = router;
 
 // const Schema = mongoose.Schema;
 
-// // create a schema for an koala
-// const koalaSchema = new Schema({
-//     name: { type: String, required: true},
-//     gender: { type: String, required: true},
-//     age: { type: Number, required: true},
-//     rtt: { type: Boolean, default: false, required: true},
-//     notes: { type: String, required: true}
+// //Schema for Cards
+// const cardSchema = new Schema({
+//     title: { type: String, required: true},
+//     image: { type: String, required: true},
+//     url: { type: String, required: true},
+//     category_id: { type: Number, required: true},
 // });
 
-// const Koala = mongoose.model('Koala', koalaSchema);
+// const Card = mongoose.model('Card', cardSchema);
 
-// // Setup a GET route to get all the koalas from the database
+// //GET route to get Cards from database
 // router.get('/', (req, res) => {
-//     Koala.find({})
+//     Card.find({})
 //         .then((results) => {
 //             res.send(results);
 //         })
 //         .catch((error) => {
-//             console.log(`Error making database query`, error);
-//             res.sendStatus(500); // Good server always responds
+//             console.log(`Error making Card GET query`, error);
+//             res.sendStatus(500);
 //         })
 // });
 
 
-// // Setup a POST route to add a new koala to the database
+// //POST route to add Card to database
 // router.post('/', (req, res) => {
-//     const newKoala = req.body;
-//     console.log(newKoala);
-//     Koala.create(newKoala)
+//     const newCard = req.body;
+//     console.log('new card req.body', newCard);
+//     Card.create(newCard)
 //         .then( (results) => {
-//             console.log('POST results ',results);
-//             res.sendStatus(201)
+//             console.log('Card POST results ',results);
+//             res.sendStatus(201);
 //         })
 //         .catch( (error) => {
-//             console.log('POST error', error);
-//             res.sendStatus(500)
+//             console.log('Card POST error', error);
+//             res.sendStatus(500);
 //         })
 // });
 
-// // PUT ROUTE TO UPDATE READY TO TRANSFER FLAG
-// router.put('/transfer/', (req, res) => {
-//     let updateKoala = req.body;
-//     // set the ready to transfer flag to true
-//     updateKoala.rtt = true;
-//     console.log('ready to transfer koala:', req.body);
-
-//     Koala.findByIdAndUpdate({
-//         _id: req.body._id
-//     }, updateKoala)
+// // PUT route to edit card
+// router.put('/:id', (req, res) => {
+//     let updateCard = req.body;
+//     console.log('update card:', req.body);
+//     Card.findByIdAndUpdate({
+//         _id: req.params.id
+//     }, updateCard)
 //     .then((results) => {
-//     console.log(`Success making database UPDATE`, results);
+//     console.log(`Success updating Card`, results);
 //     res.sendStatus(200);
 //     })
 //     .catch((error) => {
 //         console.log(`Error making database UPDATE`, error);
-//         res.sendStatus(500); // Good server always responds
+//         res.sendStatus(500);
 //     })
 // })
 
-// // PUT ROUTE TO UPDATE KOALA
-// // router.put('/:id', (req, res) => {
-// //     let updateKoala = req.body;
-// //     console.log('update koala:', req.body);
-
-// //     Koala.findByIdAndUpdate({
-// //         _id: req.params.id
-// //     }, updateKoala)
-// //     .then((results) => {
-// //     console.log(`Success making database UPDATE`, results);
-// //     res.sendStatus(200);
-// //     })
-// //     .catch((error) => {
-// //         console.log(`Error making database UPDATE`, error);
-// //         res.sendStatus(500); // Good server always responds
-// //     })
-// // })
-
-// // Setup DELETE to remove a koala
+// // Setup DELETE to remove a card
 // router.delete('/', (req, res) => {
 //     let reqId = req.query.id;
-//     console.log('Delete request for id', reqId);
-//     Koala.findOneAndDelete({
+//     console.log('Delete card request for id', reqId);
+//     Card.findOneAndDelete({
 //         _id: reqId
 //     })
 //         .then( (removedDocument) => {
-//             console.log('results', removedDocument);
+//             console.log('delete results', removedDocument);
 //             res.sendStatus(200)
 //         })
 //         .catch( (error) => {
-//             console.log('error', error);
+//             console.log('delete error', error);
 //             res.sendStatus(500)
 //         })
 // }) 

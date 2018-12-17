@@ -36,53 +36,6 @@ router.post('/', (req, res) => {
       });
   });
 
-// PUT request to update card information
-router.put('/', (req, res) => {
-    const cardId = req.body.id;
-    console.log('card id: ', cardId);
-    const updateCard = req.body;
-    
-    const queryText = `UPDATE cards
-    SET "title" = $1, 
-    "image" = $2, 
-    "url" = $3, 
-    "category_id" = $4
-    WHERE id=${cardId}
-    `;
-  
-    const queryValues = [
-        updateCard.title,
-        updateCard.image,
-        updateCard.url,
-        updateCard.category_id
-    ];
-  
-    pool.query(queryText, queryValues)
-        .then(() => { 
-            console.log('success editing card');
-            res.sendStatus(200); 
-        })
-        .catch((error) => {
-            console.log('Error updating Card query', error);
-            res.sendStatus(500);
-        });
-  });
-
-// delete Card
-router.delete('/:id', (req, res) => {
-  const cardId = req.params.id;
-  const sqlText = 'DELETE FROM cards WHERE id=$1;';
-  pool.query(sqlText, [cardId])
-    .then((result) => {
-      console.log('Card deleted');
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log(`DELETE error ${sqlText}`, error);
-      res.sendStatus(500);
-    })
-})
-
 module.exports = router;
 
 // // --------------------------------------------- //
@@ -96,20 +49,19 @@ module.exports = router;
 
 // const Schema = mongoose.Schema;
 
-// // create a schema for an koala
-// const koalaSchema = new Schema({
-//     name: { type: String, required: true},
-//     gender: { type: String, required: true},
-//     age: { type: Number, required: true},
-//     rtt: { type: Boolean, default: false, required: true},
-//     notes: { type: String, required: true}
+// create a schema for an annual release
+// const releaseSchema = new Schema({
+//     year: { type: Number, required: true},
+//     graph: { type: Number, required: true},
+//     header: { type: String, required: true},
+//     description: { type: String, required: true},
 // });
 
-// const Koala = mongoose.model('Koala', koalaSchema);
+// const release = mongoose.model('release', releaseSchema);
 
-// // Setup a GET route to get all the koalas from the database
+// // // Setup a GET route to get annual releases from database
 // router.get('/', (req, res) => {
-//     Koala.find({})
+//     release.find({})
 //         .then((results) => {
 //             res.send(results);
 //         })
@@ -119,12 +71,11 @@ module.exports = router;
 //         })
 // });
 
-
-// // Setup a POST route to add a new koala to the database
+//POST route to add new release to the database
 // router.post('/', (req, res) => {
-//     const newKoala = req.body;
-//     console.log(newKoala);
-//     Koala.create(newKoala)
+//     const newRelease = req.body;
+//     console.log(newRelease);
+//     release.create(newRelease)
 //         .then( (results) => {
 //             console.log('POST results ',results);
 //             res.sendStatus(201)
@@ -134,60 +85,5 @@ module.exports = router;
 //             res.sendStatus(500)
 //         })
 // });
-
-// // PUT ROUTE TO UPDATE READY TO TRANSFER FLAG
-// router.put('/transfer/', (req, res) => {
-//     let updateKoala = req.body;
-//     // set the ready to transfer flag to true
-//     updateKoala.rtt = true;
-//     console.log('ready to transfer koala:', req.body);
-
-//     Koala.findByIdAndUpdate({
-//         _id: req.body._id
-//     }, updateKoala)
-//     .then((results) => {
-//     console.log(`Success making database UPDATE`, results);
-//     res.sendStatus(200);
-//     })
-//     .catch((error) => {
-//         console.log(`Error making database UPDATE`, error);
-//         res.sendStatus(500); // Good server always responds
-//     })
-// })
-
-// // PUT ROUTE TO UPDATE KOALA
-// // router.put('/:id', (req, res) => {
-// //     let updateKoala = req.body;
-// //     console.log('update koala:', req.body);
-
-// //     Koala.findByIdAndUpdate({
-// //         _id: req.params.id
-// //     }, updateKoala)
-// //     .then((results) => {
-// //     console.log(`Success making database UPDATE`, results);
-// //     res.sendStatus(200);
-// //     })
-// //     .catch((error) => {
-// //         console.log(`Error making database UPDATE`, error);
-// //         res.sendStatus(500); // Good server always responds
-// //     })
-// // })
-
-// // Setup DELETE to remove a koala
-// router.delete('/', (req, res) => {
-//     let reqId = req.query.id;
-//     console.log('Delete request for id', reqId);
-//     Koala.findOneAndDelete({
-//         _id: reqId
-//     })
-//         .then( (removedDocument) => {
-//             console.log('results', removedDocument);
-//             res.sendStatus(200)
-//         })
-//         .catch( (error) => {
-//             console.log('error', error);
-//             res.sendStatus(500)
-//         })
-// }) 
 
 // module.exports = router;
