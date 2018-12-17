@@ -1,0 +1,144 @@
+import React, { Component } from 'react';
+import { withStyles} from '@material-ui/core';
+import {withTheme} from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia'
+import CardHeader from '@material-ui/core/CardHeader';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid'
+import GridList from '@material-ui/core/GridList'
+import GridListTile from '@material-ui/core/GridListTile'
+
+
+
+const styles = theme => ({
+    resources : {
+        marginTop: 100,
+        display: 'flex',
+        // margin: 15,
+        backgroundColor: 'grey'
+        // flexWrap: 'wrap',
+        // justifyContent: 'space-around',
+        // overflow: 'hidden',
+    },
+    gridList: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+      },
+    card: {
+        // display: 'flex',
+        margin: 15,
+        backgroundColor: 'lightgrey',
+        
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+      }, 
+  })
+
+  class CardHolder extends Component {
+    render() {
+      const {classes} = this.props
+      return (
+        <div className={classes.resources} >
+        <Grid container spacing={24}>
+        <Grid item xs={6} sm={3}>
+        <Card className={classes.card}>
+        <CardHeader
+        title="Get Involved"
+        />
+        <CardMedia
+            className={classes.media}
+            image="public/man_eating_taco.JPG"
+            title="Man Eating a Taco"
+        />
+        <CardContent>
+        <a href="https://www.google.com" target="_blank">Go to Google</a>
+        </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Card className={classes.card}>
+          <CardHeader
+        title="Get Involved"
+        />
+        <CardMedia
+            className={classes.media}
+            image="public/man_eating_taco.JPG"
+            title="Man Eating a Taco"
+        />
+        <CardContent>
+        <a href="https://www.google.com" target="_blank">Go to Google</a>
+        </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Card className={classes.card}>
+          <CardHeader
+        title="Get Involved"
+        />
+        <CardMedia
+            className={classes.media}
+            image="public/man_eating_taco.JPG"
+            title="Man Eating a Taco"
+        />
+        <CardContent>
+        <a href="https://www.google.com" target="_blank">Go to Google</a>
+        </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Card className={classes.card}>
+          <CardHeader
+        title="Get Involved"
+        />
+        <CardMedia
+            className={classes.media}
+            image="public/man_eating_taco.JPG"
+            title="Man Eating a Taco"
+        />
+        <CardContent>
+        <a href="https://www.google.com" target="_blank">Go to Google</a>
+        </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Card className={classes.card}>
+          <CardHeader
+        title="Get Involved"
+        />
+        <CardMedia
+            className={classes.media}
+            image="public/man_eating_taco.JPG"
+            title="Man Eating a Taco"
+        />
+        <CardContent>
+        <a href="https://www.google.com" target="_blank">Go to Google</a>
+        </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Card className={classes.card}>
+          <CardHeader
+        title="Get Involved"
+        />
+        <CardMedia
+            className={classes.media}
+            image="public/man_eating_taco.JPG"
+            title="Man Eating a Taco"
+        />
+        <CardContent>
+        <a href="https://www.google.com" target="_blank">Go to Google</a>
+        </CardContent>
+          </Card>
+        </Grid>
+            </Grid>
+        </div>
+    );
+  }
+}
+
+export default withTheme()(withStyles(styles)(CardHolder));
