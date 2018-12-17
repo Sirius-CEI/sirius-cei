@@ -29,11 +29,11 @@ class EditCard extends Component {
 
 state = {
     newCard: {
-        id: this.props.cardId,
-        title: '',
-        image: '',
-        url: '',
-        category_id: '',
+        _id: this.props.cardId,
+        title: this.props.card.title,
+        image: this.props.card.image,
+        url: this.props.card.url,
+        category_id: this.props.card.category_id,
     }
 }
 
@@ -56,6 +56,7 @@ onSubmit = event => {
     this.props.dispatch({ type: 'EDIT_CARD', payload: this.state.newCard })
     this.setState({
         newCard: {
+            _id: '',
             title: '',
             image: '',
             url: '',
@@ -133,7 +134,7 @@ onSubmit = event => {
                 <br></br>
                 <br></br>
                 <Button type='submit' variant="outlined" color="primary">
-                    Add Release
+                    Edit Card
                 </Button>
             </form>
         </div>

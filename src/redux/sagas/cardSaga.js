@@ -25,40 +25,26 @@ function* addCard(action) {
   }
 // ----------------------------------- //
 // Mongo DELETE
-// function* deleteCard(action) {
-// console.log('Delete saga to remove Card: ', action.payload);
-// try {
-//     // axios asynch call to remove Card from server
-//     yield call(axios.delete, '/cards', {params: {id: action.payload}});
-//     alert('Deleted Card');
-//     yield put( { type: 'GET_CARDS' } );
-// }
-//     catch (error) {
-//         console.log('error with delete request to /cards');
-//         alert('Error Deleting Card');
-//     }
-// }
-
-//---------------------------------------//
-// SQL DELETE
 function* deleteCard(action) {
-    console.log('Delete Card', action);
-    try {
-        yield call( axios.delete, `/cards/${action.payload}`);
-        alert('Successfully Deleted Card');
-        yield put( { type: 'GET_CARDS' } );
-    }
-    catch(error) {
-        console.log('error with delete request', error);
-            alert('Error Deleting Card');
+console.log('Delete saga to remove Card: ', action.payload);
+try {
+    // axios asynch call to remove Card from server
+    yield call(axios.delete, `/cards/${action.payload}`);
+    // alert('Deleted Card');
+    yield put( { type: 'GET_CARDS' } );
+}
+    catch (error) {
+        console.log('error with delete request to /cards');
+        alert('Error Deleting Card');
     }
 }
   
 function* editCard(action) {
 console.log('Edit Card saga', action.payload);
+const cardId = action.payload._id
 try {
     // axios asynch call to add koala to server
-    yield call(axios.put, '/cards', action.payload);
+    yield call(axios.put, `/cards/${cardId}`, action.payload);
     yield put( { type: 'GET_CARDS' } );
 }
     catch (error) {
