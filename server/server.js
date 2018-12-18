@@ -12,7 +12,7 @@ const userRouter = require('./routes/user.router');
 const cardRouter = require('./routes/cards.router');
 const passwordRouter = require('./routes/password.router');
 const releaseRouter = require('./routes/release.router');
-const qwiRouter = require('./routes/qwi.router');
+const qwiRouter = require('./routes/indicators.router');
 
 // Body parser middleware
 app.use(bodyParser.json());

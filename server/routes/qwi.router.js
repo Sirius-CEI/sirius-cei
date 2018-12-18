@@ -10,7 +10,7 @@ const Schema = mongoose.Schema;
 
 //Schema for geography collection
 const geographySchema = new Schema({
-    geography: { type: String, required: true},
+    geography: { type: Number, required: true},
     label: { type: String, required: true},
     geo_level: { type: String, required: true},
     source: { type: String, default: 'https://lehd.ces.census.gov/data/schema/latest/label_geography.csv'},
