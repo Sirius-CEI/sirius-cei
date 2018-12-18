@@ -28,6 +28,7 @@ const data = {
 
 class GraphIndicator extends Component {
   render() {
+    const { classes } = this.props;
       return (
         <div>
           <Line
@@ -36,7 +37,10 @@ class GraphIndicator extends Component {
               title: false,
               maintainAspectRatio: false
         }}/>
-        <Button>Race</Button>
+          <div>
+            <Button className={classes.race}>Race</Button>
+            <Button className={classes.location}>Location</Button>
+          </div>
         </div>
       );
   }

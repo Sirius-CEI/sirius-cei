@@ -34,7 +34,7 @@ const styles = theme => ({
   card: {
     height: 500,
     position: 'relative',
-    marginBottom: 30,
+    marginBottom: '5%',
   },
   media: {
     height: '100%',
