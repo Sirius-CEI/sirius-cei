@@ -1,24 +1,30 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const encryptLib = require('../modules/encryption');
-const pool = require('../modules/pool');
+const Person = require('../models/user');
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-  pool.query('SELECT * FROM person WHERE id = $1', [id]).then((result) => {
+  Person.findById(id).then((result) => {
     // Handle Errors
-    const user = result && result.rows && result.rows[0];
+    const user = result;
 
     if (!user) {
       // user not found
       done(null, false, { message: 'Incorrect credentials.' });
     } else {
       // user found
-      delete user.password; // remove password so it doesn't get sent
-      done(null, user);
+      const userInfo = {
+        username: user.username,
+        _id: user._id,
+      };
+      
+      console.log('user info: ', userInfo);
+      
+      done(null, userInfo);
     }
   }).catch((err) => {
     console.log('query err ', err);
@@ -31,9 +37,9 @@ passport.use('local', new LocalStrategy({
   passReqToCallback: true,
   usernameField: 'username',
 }, ((req, username, password, done) => {
-    pool.query('SELECT * FROM person WHERE username = $1', [username])
+    Person.find({ username })
       .then((result) => {
-        const user = result && result.rows && result.rows[0];
+        const user = result && result[0];
         if (user && encryptLib.comparePassword(password, user.password)) {
           // all good! Passwords match!
           done(null, user);

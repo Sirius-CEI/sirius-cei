@@ -1,23 +1,11 @@
 
 const express = require('express');
 require('dotenv').config();
-const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
-
-/** ---------- MONGOOSE CONNECTION ---------- **/
-const databaseUrl = 'mongodb://localhost:27017/cei'
-mongoose.connect(databaseUrl, {useNewUrlParser: true});
-
-mongoose.connection.once('connected', () => {
-    console.log('mongoose is connected to:', databaseUrl);
-});
-
-mongoose.connection.on('error', (error) => {
-    console.log('mongoose connection error:', error);
-});
+require('./modules/database');
 
 // Route includes
 const userRouter = require('./routes/user.router');
