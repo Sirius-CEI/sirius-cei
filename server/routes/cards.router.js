@@ -5,7 +5,7 @@
 // // return all Cards
 // router.get('/', (req, res) => {
 //     console.log('in get cards router');
-//     const queryText = 'SELECT cards.*, category.name as name FROM cards JOIN category ON cards.category_id = category.id';
+//     const queryText = 'SELECT cards.*, category.name as name FROM cards JOIN category ON cards.indicator_id = category.id';
 //     pool.query(queryText)
 //         .then((result) => { 
 //             res.send(result.rows); 
@@ -20,13 +20,13 @@
 // router.post('/', (req, res) => {
 //     console.log('post card info: ', req.body);
 //     const addCard = req.body;
-//     const queryText = `INSERT INTO cards ("title", "image", "url", "category_id")
+//     const queryText = `INSERT INTO cards ("title", "image", "url", "indicator_id")
 //                     VALUES ($1, $2, $3, $4)`;
 //     const queryValues = [
 //         addCard.title,
 //         addCard.image,
 //         addCard.url,
-//         addCard.category_id,
+//         addCard.indicator_id,
 //     ];
 //     pool.query(queryText, queryValues)
 //       .then(() => { res.sendStatus(201); })
@@ -46,7 +46,7 @@
 //     SET "title" = $1, 
 //     "image" = $2, 
 //     "url" = $3, 
-//     "category_id" = $4
+//     "indicator_id" = $4
 //     WHERE id=${cardId}
 //     `;
   
@@ -54,7 +54,7 @@
 //         updateCard.title,
 //         updateCard.image,
 //         updateCard.url,
-//         updateCard.category_id
+//         updateCard.indicator_id
 //     ];
   
 //     pool.query(queryText, queryValues)
@@ -101,7 +101,7 @@ const cardSchema = new Schema({
     title: { type: String, required: true},
     image: { type: String, required: true},
     url: { type: String, required: true},
-    category_id: { type: Number, required: true},
+    indicator_id: { type: Number, required: true},
 });
 
 const Card = mongoose.model('action_cards', cardSchema);
@@ -138,11 +138,11 @@ router.post('/', (req, res) => {
     console.log('new card req.body', newCard);
     Card.create(newCard)
         .then( (results) => {
-            console.log('Card POST results ',results);
+            // console.log('Card POST results ',results);
             res.sendStatus(201);
         })
         .catch( (error) => {
-            console.log('Card POST error', error);
+            console.log('Error making Card DELTE query', error);
             res.sendStatus(500);
         })
 });
@@ -150,12 +150,12 @@ router.post('/', (req, res) => {
 // PUT route to edit card
 router.put('/:id', (req, res) => {
     let updateCard = req.body;
-    console.log('update card:', req.body);
+    // console.log('update card:', req.body);
     Card.findByIdAndUpdate({
         _id: req.params.id
     }, updateCard)
     .then((results) => {
-    console.log(`Success updating Card`, results);
+    // console.log(`Success updating Card`, results);
     res.sendStatus(200);
     })
     .catch((error) => {
@@ -164,15 +164,15 @@ router.put('/:id', (req, res) => {
     })
 })
 
-// Setup DELETE to remove a card
+// DELETE route to remove a card
 router.delete('/:id', (req, res) => {
     let reqId = req.params.id;
-    console.log('Delete card request for id', req.params);
+    // console.log('Delete card request for id', req.params);
     Card.findOneAndDelete({
         _id: reqId
     })
         .then( (removedDocument) => {
-            console.log('delete results', removedDocument);
+            // console.log('delete results', removedDocument);
             res.sendStatus(200)
         })
         .catch( (error) => {

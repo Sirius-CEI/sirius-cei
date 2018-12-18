@@ -6,12 +6,24 @@ import {
   Switch,
 } from 'react-router-dom';
 import {connect} from 'react-redux';
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-import AboutPage from '../AboutPage/AboutPage';
+
+//Protected Components
 import AdminHome from '../Admin/AdminHome';
-import InfoPage from '../InfoPage/InfoPage';
+
+//Non Protected Components
+import Macro from '../Macro/Macro';
+import EconomicDevelopment from '../EconomicDevelopment/EconomicDevelopment';
+import HumanCapitol from '../HumanCapitol/HumanCapitol';
+import AccessTransit from '../AccessTransit/AccessTransit';
+import AnnualRelease from '../AnnualRelease/AnnualRelease';
+import Footer from '../Footer/Footer';
+
+//Nav Bar Components
+import Nav from '../Nav/Nav';
+import SideDrawer from '../Nav/SideDrawer';
+import Backdrop from '../Nav/Backdrop';
+
 import './App.css';
 
 class App extends Component {
@@ -19,38 +31,69 @@ class App extends Component {
     this.props.dispatch({type: 'FETCH_USER'})
   }
 
+  state = {
+    sideDrawerOpen: false
+  };
+
+  drawerToggleClickHandler = () => {
+    this.setState((prevState) => {
+      return {sideDrawerOpen: !prevState.sideDrawerOpen};
+    });
+  };
+
+  backdropClickHandler = () => {
+    this.setState({sideDrawerOpen: false});
+  };
+
   render() {
+
+    let backdrop;
+
+    if (this.state.sideDrawerOpen) {
+      backdrop = <Backdrop click={this.backdropClickHandler} />
+    }
+
     return (
       <Router>
         <div>
-          <Nav />
+        <div style={{height: '100%'}}>
+        <Nav drawerClickHandler={this.drawerToggleClickHandler} />
+        <SideDrawer show={this.state.sideDrawerOpen} />
+        {backdrop}
+          </div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
-            {/* Visiting localhost:3000/about will show the about page.
-            This is a route anyone can see, no login necessary */}
             <Route
               exact
-              path="/about"
-              component={AboutPage}
+              path="/home"
+              component={AnnualRelease}
             />
-            {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/home will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
-            Even though it seems like they are different pages, the user is always on localhost:3000/home */}
+            <Route
+              exact
+              path="/macro"
+              component={Macro}
+            />
+            <Route
+              exact
+              path="/economic-development"
+              component={EconomicDevelopment}
+            />
+            <Route
+              exact
+              path="/human-capitol"
+              component={HumanCapitol}
+            />
+            <Route
+              exact
+              path="/access-transit"
+              component={AccessTransit}
+            />
             <ProtectedRoute
               exact
-              path="/home"
+              path="/admin"
               component={AdminHome}
             />
-            {/* This works the same as the other protected route, except that if the user is logged in,
-            they will see the info page instead. */}
-            <ProtectedRoute
-              exact
-              path="/info"
-              component={InfoPage}
-            />
-            {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
           <Footer />

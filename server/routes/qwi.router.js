@@ -8,7 +8,7 @@ const path = require('path');
 
 const Schema = mongoose.Schema;
 
-//Schema for Cards
+//Schema for geography collection
 const geographySchema = new Schema({
     geography: { type: String, required: true},
     label: { type: String, required: true},
@@ -18,6 +18,7 @@ const geographySchema = new Schema({
 
 const Geography = mongoose.model('geographies', geographySchema);
 
+// Get geographies from csv files
 router.get('/geographies', (req, res) => {
     let filePath = path.join(__dirname, '../constants/geographies.csv');
     csv()
@@ -31,7 +32,7 @@ router.get('/geographies', (req, res) => {
     })
 });
 
-//POST route to add Card to database
+// POST route to add geography documents
 router.post('/geographies', (req, res) => {
     const addData = req.body;
     console.log('new data req.body', addData);
