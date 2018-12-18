@@ -5,44 +5,41 @@ import propTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import 'typeface-lato';
 import Grid from '@material-ui/core/Grid';
-import { Typography } from '@material-ui/core';
+import { Typography, CardMedia } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
 
-import GraphOne from './GraphOne';
-import GraphTwo from './GraphTwo';
+import GraphIndicator from './GraphIndicator';
+import TextIndicator from './TextIndicator';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   title: {
     textAlign: 'center',
+    padding: 'auto',
     fontSize: '45px',
-    fontWeight: 500,
-    color: '#4c2a74',
+    fontWeight: 700,
+    color: 'white',
     textTransform: 'uppercase',
     letterSpacing: '1.53px',
     lineHeight: '1em',
     fontFamily: 'Lato',
-    marginBottom: 80,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
   },
-  indicatorTitle: {
-    fontSize: '30px',
-    fontWeight: 500,
-    color: '#4c2a74',
-    textTransform: 'uppercase',
-    letterSpacing: '1.53px',
-    lineHeight: '1em',
-    fontFamily: 'Lato',
-    marginBottom: 20
+  card: {
+    height: 500,
+    position: 'relative',
+    marginBottom: 30,
   },
-  indicatorText: {
-    fontSize: '20px',
-    textAlign: 'center',
-    display: 'block',
-    margin: '3%',
-    textAlign: 'justify'
-  }
+  media: {
+    height: '100%',
+    overflow: 'hidden'
+  },
 });
 
 class EconomicDevelopment extends Component {
@@ -51,28 +48,30 @@ class EconomicDevelopment extends Component {
       return (
         <div className={classes.root}>
           <Grid container spacing={24}>
+
             <Grid item xs={12}>
-              <Typography className={classes.title}>Economic Development</Typography>
+              <Card className={classes.card}>
+                <CardMedia
+                  className={classes.media}
+                  image="images/twincitiesblue.jpg"
+                  title="title-background">
+                  <Typography className={classes.title}>Economic Development</Typography>
+                </CardMedia>
+              </Card>
+            </Grid>
+          
+            <Grid item xs={6}>
+              <GraphIndicator />
+            </Grid>
+            <Grid item xs={6}>
+              <TextIndicator />
             </Grid>
 
             <Grid item xs={6}>
-              <GraphOne />
+              <TextIndicator />
             </Grid>
             <Grid item xs={6}>
-              <Typography className={classes.indicatorTitle}>Annual Wages Title</Typography>
-              <Typography className={classes.indicatorText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat scelerisque varius morbi enim nunc faucibus a. Tincidunt augue interdum velit euismod. Tellus at urna condimentum mattis pellentesque. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Enim ut tellus elementum sagittis vitae et leo duis. Libero justo laoreet sit amet cursus. Vitae nunc sed velit dignissim sodales ut eu sem. Ut consequat semper viverra nam libero justo laoreet sit amet.
-              </Typography>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Typography className={classes.indicatorTitle}>Employment Title</Typography>
-              <Typography className={classes.indicatorText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat scelerisque varius morbi enim nunc faucibus a. Tincidunt augue interdum velit euismod. Tellus at urna condimentum mattis pellentesque. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Enim ut tellus elementum sagittis vitae et leo duis. Libero justo laoreet sit amet cursus. Vitae nunc sed velit dignissim sodales ut eu sem. Ut consequat semper viverra nam libero justo laoreet sit amet.
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <GraphTwo />
+              <GraphIndicator />
             </Grid>
           </Grid>
         </div>

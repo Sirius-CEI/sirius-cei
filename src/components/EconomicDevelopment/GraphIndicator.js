@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import propTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-
+import Button from '@material-ui/core/Button';
 import { Line } from 'react-chartjs-2';
 
 const styles = theme => ({
@@ -26,17 +26,18 @@ const data = {
     }
 };
 
-class GraphOne extends Component {
+class GraphIndicator extends Component {
   render() {
-    const { classes } = this.props;
       return (
-        <Line
-        data={data}
-        options={{
-          title: false,
-          maintainAspectRatio: false
-        }}
-      />
+        <div>
+          <Line
+            data={data}
+              options={{
+              title: false,
+              maintainAspectRatio: false
+        }}/>
+        <Button>Race</Button>
+        </div>
       );
   }
 }
@@ -45,8 +46,8 @@ const mapStateToProps = reduxState => ({
   reduxState,
 });
 
-GraphOne.propTypes = {
+GraphIndicator.propTypes = {
   classes: propTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(GraphOne));
+export default connect(mapStateToProps)(withStyles(styles)(GraphIndicator));

@@ -11,7 +11,7 @@ const styles = theme => ({
 
 class HumanCapitol extends Component {
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
       return (
         <div>
           <p>HumanCapitol Test</p>

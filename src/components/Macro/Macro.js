@@ -11,7 +11,7 @@ const styles = theme => ({
 
 class Macro extends Component {
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
       return (
         <div>
           <p>Macro Test</p>
