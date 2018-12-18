@@ -4,8 +4,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
-const sessionMiddleware = require('./modules/session-middleware');
-const passport = require('./strategies/user.strategy');
+const sessionMiddleware = require('./auth/session-middleware');
+const passport = require('./auth/passport');
 
 /** ---------- MONGOOSE CONNECTION ---------- **/
 const databaseUrl = 'mongodb://localhost:27017/cei'
@@ -20,9 +20,8 @@ mongoose.connection.on('error', (error) => {
 });
 
 // Route includes
-const userRouter = require('./routes/user.router');
+const adminRouter = require('./routes/admin.router');
 const cardRouter = require('./routes/cards.router');
-const passwordRouter = require('./routes/password.router');
 const releaseRouter = require('./routes/release.router');
 const qwiRouter = require('./routes/qwi.router');
 
@@ -38,9 +37,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Routes */
-app.use('/api/user', userRouter);
+app.use('/api/user', adminRouter);
 app.use('/cards', cardRouter);
-app.use('/password', passwordRouter);
+// app.use('/password', passwordRouter);
 app.use('/annual-release', releaseRouter);
 app.use('/qwi', qwiRouter);
 
