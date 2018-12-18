@@ -7,6 +7,9 @@ import 'typeface-lato';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 
+import GraphOne from './GraphOne';
+import GraphTwo from './GraphTwo';
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -21,7 +24,7 @@ const styles = theme => ({
     letterSpacing: '1.53px',
     lineHeight: '1em',
     fontFamily: 'Lato',
-    marginBottom: '80px',
+    marginBottom: 80,
   },
   indicatorTitle: {
     fontSize: '30px',
@@ -31,11 +34,14 @@ const styles = theme => ({
     letterSpacing: '1.53px',
     lineHeight: '1em',
     fontFamily: 'Lato',
+    marginBottom: 20
   },
   indicatorText: {
     fontSize: '20px',
     textAlign: 'center',
     display: 'block',
+    margin: '3%',
+    textAlign: 'justify'
   }
 });
 
@@ -50,23 +56,23 @@ class EconomicDevelopment extends Component {
             </Grid>
 
             <Grid item xs={6}>
-              <Typography className={classes.wageGraph}>Annual Wages Graph</Typography>
+              <GraphOne />
             </Grid>
             <Grid item xs={6}>
               <Typography className={classes.indicatorTitle}>Annual Wages Title</Typography>
               <Typography className={classes.indicatorText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat scelerisque varius morbi enim nunc faucibus a. Tincidunt augue interdum velit euismod. Tellus at urna condimentum mattis pellentesque. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Enim ut tellus elementum sagittis vitae et leo duis. Libero justo laoreet sit amet cursus. Vitae nunc sed velit dignissim sodales ut eu sem. Ut consequat semper viverra nam libero justo laoreet sit amet.
               </Typography>
             </Grid>
 
             <Grid item xs={6}>
               <Typography className={classes.indicatorTitle}>Employment Title</Typography>
               <Typography className={classes.indicatorText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat scelerisque varius morbi enim nunc faucibus a. Tincidunt augue interdum velit euismod. Tellus at urna condimentum mattis pellentesque. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Enim ut tellus elementum sagittis vitae et leo duis. Libero justo laoreet sit amet cursus. Vitae nunc sed velit dignissim sodales ut eu sem. Ut consequat semper viverra nam libero justo laoreet sit amet.
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography className={classes.employmentGraph}>Employment Graph</Typography>
+              <GraphTwo />
             </Grid>
           </Grid>
         </div>
