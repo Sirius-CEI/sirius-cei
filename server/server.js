@@ -24,6 +24,7 @@ const userRouter = require('./routes/user.router');
 const cardRouter = require('./routes/cards.router');
 const passwordRouter = require('./routes/password.router');
 const releaseRouter = require('./routes/release.router');
+const qwiRouter = require('./routes/qwi.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -41,7 +42,7 @@ app.use('/api/user', userRouter);
 app.use('/cards', cardRouter);
 app.use('/password', passwordRouter);
 app.use('/annual-release', releaseRouter);
-
+app.use('/qwi', qwiRouter);
 
 // Serve static files
 app.use(express.static('build'));

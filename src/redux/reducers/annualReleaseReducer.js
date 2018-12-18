@@ -1,5 +1,4 @@
 const releaseReducer = (state=[], action) => {
-    console.log('Release reducer state: ', state);
     switch (action.type) {
       case 'SET_RELEASE':
         return action.payload;

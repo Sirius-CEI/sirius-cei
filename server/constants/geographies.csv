@@ -1,0 +1,183 @@
+geography,label,geo_level
+00,"National (50 States + DC)",N
+27,"Minnesota",S
+55,"Wisconsin",S
+27001,"Aitkin, MN",C
+27003,"Anoka, MN",C
+27005,"Becker, MN",C
+27007,"Beltrami, MN",C
+27009,"Benton, MN",C
+27011,"Big Stone, MN",C
+27013,"Blue Earth, MN",C
+27015,"Brown, MN",C
+27017,"Carlton, MN",C
+27019,"Carver, MN",C
+27021,"Cass, MN",C
+27023,"Chippewa, MN",C
+27025,"Chisago, MN",C
+27027,"Clay, MN",C
+27029,"Clearwater, MN",C
+27031,"Cook, MN",C
+27033,"Cottonwood, MN",C
+27035,"Crow Wing, MN",C
+27037,"Dakota, MN",C
+27039,"Dodge, MN",C
+27041,"Douglas, MN",C
+27043,"Faribault, MN",C
+27045,"Fillmore, MN",C
+27047,"Freeborn, MN",C
+27049,"Goodhue, MN",C
+27051,"Grant, MN",C
+27053,"Hennepin, MN",C
+27055,"Houston, MN",C
+27057,"Hubbard, MN",C
+27059,"Isanti, MN",C
+27061,"Itasca, MN",C
+27063,"Jackson, MN",C
+27065,"Kanabec, MN",C
+27067,"Kandiyohi, MN",C
+27069,"Kittson, MN",C
+27071,"Koochiching, MN",C
+27073,"Lac qui Parle, MN",C
+27075,"Lake, MN",C
+27077,"Lake of the Woods, MN",C
+27079,"Le Sueur, MN",C
+27081,"Lincoln, MN",C
+27083,"Lyon, MN",C
+27085,"McLeod, MN",C
+27087,"Mahnomen, MN",C
+27089,"Marshall, MN",C
+27091,"Martin, MN",C
+27093,"Meeker, MN",C
+27095,"Mille Lacs, MN",C
+27097,"Morrison, MN",C
+27099,"Mower, MN",C
+27101,"Murray, MN",C
+27103,"Nicollet, MN",C
+27105,"Nobles, MN",C
+27107,"Norman, MN",C
+27109,"Olmsted, MN",C
+27111,"Otter Tail, MN",C
+27113,"Pennington, MN",C
+27115,"Pine, MN",C
+27117,"Pipestone, MN",C
+27119,"Polk, MN",C
+27121,"Pope, MN",C
+27123,"Ramsey, MN",C
+27125,"Red Lake, MN",C
+27127,"Redwood, MN",C
+27129,"Renville, MN",C
+27131,"Rice, MN",C
+27133,"Rock, MN",C
+27135,"Roseau, MN",C
+27137,"St. Louis, MN",C
+27139,"Scott, MN",C
+27141,"Sherburne, MN",C
+27143,"Sibley, MN",C
+27145,"Stearns, MN",C
+27147,"Steele, MN",C
+27149,"Stevens, MN",C
+27151,"Swift, MN",C
+27153,"Todd, MN",C
+27155,"Traverse, MN",C
+27157,"Wabasha, MN",C
+27159,"Wadena, MN",C
+27161,"Waseca, MN",C
+27163,"Washington, MN",C
+27165,"Watonwan, MN",C
+27167,"Wilkin, MN",C
+27169,"Winona, MN",C
+27171,"Wright, MN",C
+27173,"Yellow Medicine, MN",C
+2733460,"Minneapolis-St. Paul-Bloomington, MN-WI (MN part)",M
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",B
+5533460,"Minneapolis-St. Paul-Bloomington, MN-WI (WI part)",M
+55001,"Adams, WI",C
+55003,"Ashland, WI",C
+55005,"Barron, WI",C
+55007,"Bayfield, WI",C
+55009,"Brown, WI",C
+55011,"Buffalo, WI",C
+55013,"Burnett, WI",C
+55015,"Calumet, WI",C
+55017,"Chippewa, WI",C
+55019,"Clark, WI",C
+55021,"Columbia, WI",C
+55023,"Crawford, WI",C
+55025,"Dane, WI",C
+55027,"Dodge, WI",C
+55029,"Door, WI",C
+55031,"Douglas, WI",C
+55033,"Dunn, WI",C
+55035,"Eau Claire, WI",C
+55037,"Florence, WI",C
+55039,"Fond du Lac, WI",C
+55041,"Forest, WI",C
+55043,"Grant, WI",C
+55045,"Green, WI",C
+55047,"Green Lake, WI",C
+55049,"Iowa, WI",C
+55051,"Iron, WI",C
+55053,"Jackson, WI",C
+55055,"Jefferson, WI",C
+55057,"Juneau, WI",C
+55059,"Kenosha, WI",C
+55061,"Kewaunee, WI",C
+55063,"La Crosse, WI",C
+55065,"Lafayette, WI",C
+55067,"Langlade, WI",C
+55069,"Lincoln, WI",C
+55071,"Manitowoc, WI",C
+55073,"Marathon, WI",C
+55075,"Marinette, WI",C
+55077,"Marquette, WI",C
+55078,"Menominee, WI",C
+55079,"Milwaukee, WI",C
+55081,"Monroe, WI",C
+55083,"Oconto, WI",C
+55085,"Oneida, WI",C
+55087,"Outagamie, WI",C
+55089,"Ozaukee, WI",C
+55091,"Pepin, WI",C
+55093,"Pierce, WI",C
+55095,"Polk, WI",C
+55097,"Portage, WI",C
+55099,"Price, WI",C
+55101,"Racine, WI",C
+55103,"Richland, WI",C
+55105,"Rock, WI",C
+55107,"Rusk, WI",C
+55109,"St. Croix, WI",C
+55111,"Sauk, WI",C
+55113,"Sawyer, WI",C
+55115,"Shawano, WI",C
+55117,"Sheboygan, WI",C
+55119,"Taylor, WI",C
+55121,"Trempealeau, WI",C
+55123,"Vernon, WI",C
+55125,"Vilas, WI",C
+55127,"Walworth, WI",C
+55129,"Washburn, WI",C
+55131,"Washington, WI",C
+55133,"Waukesha, WI",C
+55135,"Waupaca, WI",C
+55137,"Waushara, WI",C
+55139,"Winnebago, WI",C
+55141,"Wood, WI",C
+
+27SDA010,"01 Northwest Minnesota WSA",W
+27SDA020,"02 Rural Minnesota CEP WSA",W
+27SDA030,"03 Northeast Minnesota WSA",W
+27SDA040,"04 City of Duluth WSA",W
+27SDA050,"05 Central Minnesota WSA",W
+27SDA060,"06 Southwest Minnesota WSA",W
+27SDA070,"07 South Central Minnesota WSA",W
+27SDA080,"08 Southeast Minnesota WSA",W
+27SDA090,"09 Hennepin/Carver WSA",W
+27SDA100,"10 City of Minneapolis WSA",W
+27SDA120,"12 Anoka County WSA",W
+27SDA140,"14 Dakota/Scott County WSA",W
+27SDA150,"15 Ramsey County WSA",W
+27SDA160,"16 Washington County WSA",W
+27SDA170,"17 Stearns/Benton WSA",W
+27SDA180,"18 Winona County WSA",W
