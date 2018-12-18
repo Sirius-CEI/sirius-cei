@@ -75,7 +75,6 @@ class CardExtension extends Component {
     getCards() {
         console.log('dispatching GET_CARDS');
         this.props.dispatch( { type: 'GET_CARDS' } );
-        // this.props.dispatch( { type: 'GET_QWI_DATA'} );
     }
 
     // edit card
