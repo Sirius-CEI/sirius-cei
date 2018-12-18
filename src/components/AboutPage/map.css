@@ -1,0 +1,15 @@
+.map {
+    height: 200px;
+    width: 200px;
+}
+
+
+.leaflet-container {
+    height: 400px;
+    width: 400%;
+    margin: 0 auto;
+}
+
+.map__reactleaflet {
+  flex: 1 0
+}
