@@ -1,7 +1,7 @@
 const express = require('express');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const encryptLib = require('../modules/encryption');
-const pool = require('../modules/pool');
+const Person = require('../models/user');
 const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
@@ -19,8 +19,8 @@ router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
 
-  const queryText = 'INSERT INTO person (username, password) VALUES ($1, $2) RETURNING id';
-  pool.query(queryText, [username, password])
+  const newPerson = new Person({ username, password });
+  newPerson.save()
     .then(() => { res.sendStatus(201); })
     .catch((err) => { next(err); });
 });
