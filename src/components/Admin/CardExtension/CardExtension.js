@@ -71,13 +71,14 @@ class CardExtension extends Component {
         this.getCards();
     }
 
-    // get projects from server
+    // get cards
     getCards() {
         console.log('dispatching GET_CARDS');
         this.props.dispatch( { type: 'GET_CARDS' } );
+        // this.props.dispatch( { type: 'GET_QWI_DATA'} );
     }
 
-    // Edit cards
+    // edit card
     editCard() {
         this.props.dispatch( { type: 'EDIT_CARD' } );
     }
