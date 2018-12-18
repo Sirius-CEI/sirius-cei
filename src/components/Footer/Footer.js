@@ -89,7 +89,7 @@ const Footer = (props) => {
             image="images/human-capitol.jpeg"
             title="human-capitol">
             <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-              Human Capitol
+              Human Capital
             </Typography>
             <Button className={classes.button}>
               <Link className={classes.link} to="/human-capitol">Read More</Link>
