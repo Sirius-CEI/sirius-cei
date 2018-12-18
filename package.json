@@ -10,11 +10,14 @@
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.2",
     "cookie-session": "^2.0.0-beta.3",
+    "csvtojson": "^2.0.8",
     "dotenv": "^4.0.0",
     "express": "^4.16.3",
     "mongoose": "^5.4.0",
+    "node-fs": "^0.1.7",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "pg": "^7.4.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
@@ -24,7 +27,8 @@
     "react-scripts": "^2.0.3",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "typeface-lato": "0.0.54"
   },
   "scripts": {
     "start": "node server/server.js",

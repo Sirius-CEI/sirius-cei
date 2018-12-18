@@ -43,7 +43,7 @@ function* editCard(action) {
 console.log('Edit Card saga', action.payload);
 const cardId = action.payload._id
 try {
-    // axios asynch call to add koala to server
+    // axios asynch call to add card to server
     yield call(axios.put, `/cards/${cardId}`, action.payload);
     yield put( { type: 'GET_CARDS' } );
 }

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 // import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
