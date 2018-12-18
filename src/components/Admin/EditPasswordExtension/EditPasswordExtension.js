@@ -42,7 +42,7 @@ handleChange = event => {
 onSubmit = event => {
     console.log('Changing Password to: ', this.state);
     event.preventDefault();
-    this.props.dispatch({ type: 'EDIT_PASSWORD', payload: this.state })
+    // this.props.dispatch({ type: 'EDIT_PASSWORD', payload: this.state })
     this.setState({
         username: this.props.user.username,
         password: '',
