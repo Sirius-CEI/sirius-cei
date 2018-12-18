@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const HumanCapitol = () => (
-  <div>
-    <p>
-      HumanCapitol
-    </p>
-  </div>
-);
+import propTypes from 'prop-types';
+import {withStyles} from '@material-ui/core/styles';
 
-export default HumanCapitol;
+const styles = theme => ({
+  root: {
+  },
+});
+
+class HumanCapitol extends Component {
+  render() {
+    const { classes } = this.props;
+      return (
+        <div>
+          <p>HumanCapitol Test</p>
+        </div>
+      );
+  }
+}
+
+const mapStateToProps = reduxState => ({
+  reduxState,
+});
+
+HumanCapitol.propTypes = {
+  classes: propTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(HumanCapitol));
