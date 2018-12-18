@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
 import ViewLatestCsv from './ViewLatestCsv';
+import CsvConversion from './CsvConversion';
 
 class CsvExtension extends Component {
 
@@ -11,14 +11,7 @@ class CsvExtension extends Component {
     render() {
         return (
             <div>
-                <Button id="submitCsv">
-                <input 
-                    id="myFile" 
-                    type="file" 
-                    onChange={this.addCsv}
-                    accept=".csv" 
-                />
-                </Button>
+                <CsvConversion />
                 <br></br>
                 <ViewLatestCsv />
             </div>
