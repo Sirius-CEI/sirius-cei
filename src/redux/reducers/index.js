@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   cards,
   annualRelease,
   pages, //will have the title and list of indicators for each page
-  indicators
+  indicators //will have indicator data
 });
 
 export default rootReducer;
