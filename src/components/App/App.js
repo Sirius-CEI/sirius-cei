@@ -12,10 +12,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AdminHome from '../Admin/AdminHome';
 
 //Non Protected Components
-import Macro from '../Macro/Macro';
-import EconomicDevelopment from '../EconomicDevelopment/EconomicDevelopment';
-import HumanCapital from '../HumanCapital/HumanCapital';
-import AccessTransit from '../AccessTransit/AccessTransit';
+import IndicatorPage from '../IndicatorPage/IndicatorPage';
 import AnnualRelease from '../AnnualRelease/AnnualRelease';
 import Footer from '../Footer/Footer';
 
@@ -72,22 +69,22 @@ class App extends Component {
             <Route
               exact
               path="/macro"
-              component={Macro}
+              component={IndicatorPage}
             />
             <Route
               exact
               path="/economic-development"
-              component={EconomicDevelopment}
+              component={IndicatorPage}
             />
             <Route
               exact
               path="/human-capital"
-              component={HumanCapital}
+              component={IndicatorPage}
             />
             <Route
               exact
               path="/access-transit"
-              component={AccessTransit}
+              component={IndicatorPage}
             />
             <ProtectedRoute
               exact

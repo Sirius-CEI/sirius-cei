@@ -9,9 +9,6 @@ import { Line } from 'react-chartjs-2';
 const styles = theme => ({
   root: {
    margin: theme.spacing.unit,
-   marginBottom: '10%',
-   marginLeft: '2%',
-   marginRight: '2%',
   },
   button: {
     marginTop: '3%',
