@@ -1,5 +1,29 @@
 {
-  "name": "prime-solo-project",
+	"name": "cei-dashboard",
+	"author": "",
+	"contributors": [
+    {
+      "name": "Karla Nelson",
+      "email": "karla.jean.nelson@gmail.com",
+      "url": ""
+		},
+		{
+			"name": "",
+      "email": "",
+      "url": ""
+		},
+		{
+			"name": "",
+      "email": "",
+      "url": ""
+		},
+		{
+			"name": "",
+      "email": "",
+      "url": ""
+		}
+  ],
+	"homepage": "https://cei-dashboard.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000",

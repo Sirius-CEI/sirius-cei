@@ -1,7 +1,7 @@
 const express = require('express');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const encryptLib = require('../modules/encryption');
-const Person = require('../models/user');
+const Person = require('../models/user.model');
 const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
