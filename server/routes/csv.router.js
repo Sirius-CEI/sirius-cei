@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const csv = require('csvtojson');
-const path = require('path');
 
 // MONGOOSE SCHEMA //
 
@@ -10,25 +8,16 @@ const Schema = mongoose.Schema;
 
 //Schema for geography collection
 const indicatorSchema = new Schema({
-    data: { type: String, required: true},
-    hello: { type: String, required: true},
+    geography: { type: Number, required: true},
+    year: { type: Number, required: true},
+    race: { type: String, required: true},
+    value: { type: Number, required: true},
+    upload_id: { type: Number, required: true},
+    indicator: { type: Number, required: true},
+    chard: { type: Number, required: true},
 });
 
 const IndicatorData = mongoose.model('data_indicators', indicatorSchema);
-
-// Get geographies from csv files
-// router.get('/data-indicators', (req, res) => {
-//     let filePath = path.join(__dirname, '../constants/data_indicators.csv');
-//     csv()
-//     .fromFile(filePath)
-//     .then((jsonObj) => {
-//         res.send(jsonObj);
-//     })
-//     .catch((err) => {
-//         console.log('get data_indicators err:', err);
-        
-//     })
-// });
 
 router.get('/', (req, res) => {
     console.log('in indicator get server side');

@@ -11,7 +11,7 @@ const cardSchema = new Schema({
     title: { type: String, required: true},
     image: { type: String, required: true},
     url: { type: String, required: true},
-    indicator_id: { type: Number, required: true},
+    // indicator_id: { type: Number, required: true},
 });
 
 const Card = mongoose.model('action_cards', cardSchema);
@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
             res.sendStatus(201);
         })
         .catch( (error) => {
-            console.log('Error making Card DELTE query', error);
+            console.log('Error making add Card post query', error);
             res.sendStatus(500);
         })
 });
