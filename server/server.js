@@ -3,14 +3,15 @@ const express = require('express');
 require('dotenv').config();
 const app = express();
 const bodyParser = require('body-parser');
-const sessionMiddleware = require('./modules/session-middleware');
+const sessionMiddleware = require('./auth/session-middleware');
 const passport = require('./strategies/user.strategy');
-require('./modules/database');
+require('./auth/database');
 
 // Route includes
 const adminRouter = require('./routes/admin.router');
 const cardRouter = require('./routes/cards.router');
 const releaseRouter = require('./routes/release.router');
+const csvRouter = require('./routes/csv.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', adminRouter);
 app.use('/cards', cardRouter);
 app.use('/annual-release', releaseRouter);
+app.use('/data-indicators', csvRouter);
 
 // Serve static files
 app.use(express.static('build'));

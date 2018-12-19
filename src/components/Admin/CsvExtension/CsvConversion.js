@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
+import CSVReader from 'react-csv-reader'
 
 class CsvConversion extends Component {
 
@@ -9,15 +10,15 @@ class CsvConversion extends Component {
 
    // handle changes in the form inputs
     handleChange = event => {
-        console.log('handleChange', event.target.value)
+        console.log('handleChange', event)
         this.setState({
                 ...this.state,
-                [event.target.name]: event.target.value,
+                csv: event,
         });
     }
 
     // submit project information from form
-    addCsv = event => {
+    handleSubmit = event => {
         console.log('Adding CSV: ', this.state);
         event.preventDefault();
         // this.props.dispatch({ type: 'ADD_CSV', payload: this.state })
@@ -28,23 +29,35 @@ class CsvConversion extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 {JSON.stringify(this.state)}
-                <form onSubmit={this.addCsv}>
-                    <input 
-                        id="myFile" 
-                        type="file" 
-                        // accept=".csv" 
-                        value={this.state.csv} 
-                        name="csv"
-                        onChange={this.handleChange} 
+                <form onSubmit={this.handleSubmit}>
+                    <CSVReader
+                    cssClass="react-csv-input"
+                    label="Select CSV file to upload"
+                    onFileLoaded={this.handleChange}
                     />
-                    <Button id="submitCsv" type="submit" variant="outlined" color="primary">
-                        Add CSV
-                    </Button>
+                    <br></br>
+                    <Button type="submit">Submit CSV</Button>
                 </form>
-                <img src={this.state.csv} alt="info-here" />
             </div>
+            // <div>
+                // {JSON.stringify(this.state)}
+            //     <form>
+            //         <input 
+            //             id="myFile" 
+            //             type="file" 
+            //             // accept=".csv" 
+            //             // value={this.state.csv} 
+            //             name="csv"
+            //             onChange={this.handleChange} 
+            //         />
+            //         <Button id="submitCsv" type="submit" variant="outlined" color="primary">
+            //             Add CSV
+            //         </Button>
+            //     </form>
+            //     <img src={this.state.csv} alt="info-here" />
+            // </div>
         );
     }
 }

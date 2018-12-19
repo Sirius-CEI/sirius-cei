@@ -28,7 +28,8 @@ import './App.css';
 
 class App extends Component {
   componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
+    this.props.dispatch({type: 'FETCH_USER'});
+    this.props.dispatch({type: 'FETCH_CSV'});
   }
 
   state = {
@@ -102,4 +103,8 @@ class App extends Component {
   )}
 }
 
-export default connect()(App);
+const mapReduxStateToProps = reduxState => ({
+  csv: reduxState.csv,
+});
+
+export default connect(mapReduxStateToProps)(App);

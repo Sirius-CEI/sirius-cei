@@ -1,76 +1,43 @@
-const express = require("express");
+const express = require('express');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
+const encryptLib = require('../auth/encryption');
+const Person = require('../models/user');
+const userStrategy = require('../strategies/user.strategy');
+
 const router = express.Router();
-// const User = require("../models/user.model");
 
-// Authentication Middleware
-const loggedInOnly = (req, res, next) => {
- if (req.isAuthenticated()) next();
- else res.redirect("/login");
-};
+// Handles Ajax request for user information if user is authenticated
+router.get('/', rejectUnauthenticated, (req, res) => {
+  // Send back user object from the session (previously queried from the database)
+  res.send(req.user);
+});
 
-const loggedOutOnly = (req, res, next) => {
- if (req.isUnauthenticated()) next();
- else res.redirect("/");
-};
+// Handles POST request with new user data
+// The only thing different from this and every other post we've seen
+// is that the password gets encrypted before being inserted
+router.post('/register', (req, res, next) => {  
+  const username = req.body.username;
+  const password = encryptLib.encryptPassword(req.body.password);
 
-// Route Handlers
-function authenticate(passport) {
- // Main Page
- router.get("/", loggedInOnly, (req, res) => {
-   res.render("index", { username: req.user.username });
- });
+  const newPerson = new Person({ username, password });
+  newPerson.save()
+    .then(() => { res.sendStatus(201); })
+    .catch((err) => { next(err); });
+});
 
- // Login View
- router.get("/login", loggedOutOnly, (req, res) => {
-   res.render("login");
- });
+// Handles login form authenticate/login POST
+// userStrategy.authenticate('local') is middleware that we run on this route
+// this middleware will run our POST if successful
+// this middleware will send a 404 if not successful
+router.post('/login', userStrategy.authenticate('local'), (req, res) => {
+  res.sendStatus(200);
+});
 
- // Login Handler
- router.post(
-   "/login",
-   passport.authenticate("local", {
-     successRedirect: "/",
-     failureRedirect: "/login",
-     failureFlash: true
-   })
- );
+// clear all server session information about this user
+router.post('/logout', (req, res) => {
+  // Use passport's built-in method to log out the user
+  req.logout();
+  res.sendStatus(200);
+});
 
- // Register View
- router.get("/register", loggedOutOnly, (req, res) => {
-   res.render("register");
- });
-
- // Register Handler
- router.post("/register", (req, res, next) => {
-   const { username, password } = req.body;
-   User.create({ username, password })
-     .then(user => {
-       req.login(user, err => {
-         if (err) next(err);
-         else res.redirect("/");
-       });
-     })
-     .catch(err => {
-       if (err.name === "ValidationError") {
-         req.flash("Sorry, that username is already taken.");
-         res.redirect("/register");
-       } else next(err);
-     });
- });
-
- // Logout Handler
- router.all("/logout", function(req, res) {
-   req.logout();
-   res.redirect("/login");
- });
-
- // Error Handler
- router.use((err, req, res) => {
-   console.error(err.stack);
-   res.status(500).end(err.stack);
- });
-
- return router;
-}
-
-module.exports = authenticate;
+module.exports = router;
