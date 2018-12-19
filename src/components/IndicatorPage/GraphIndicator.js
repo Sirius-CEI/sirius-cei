@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import MapIndicator from './MapIndicator';
 
 import propTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { Line } from 'react-chartjs-2';
 
 const styles = theme => ({
@@ -12,7 +14,10 @@ const styles = theme => ({
   },
   button: {
     marginTop: '3%',
-    marginBottom: '3%'
+    marginBottom: '3%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
   race: {
     marginRight: theme.spacing.unit,
@@ -39,19 +44,40 @@ const data = {
 };
 
 class GraphIndicator extends Component {
+
+  state = {
+    display: 'race',
+  };
+
+  handleDisplay = (event, display) => {
+    console.log(display);
+    
+    this.setState({ display: display});
+    console.log(this.state);
+    
+  }
+
   render() {
     const { classes } = this.props;
       return (
         <div className={classes.root}>
-          <Line
-            data={data}
-              options={{
-              title: false,
-              maintainAspectRatio: false
-        }}/>
+          {
+            this.state.display === 'location' ? (
+              <MapIndicator/>
+            ) : (
+              <Line
+              data={data}
+                options={{
+                title: false,
+                maintainAspectRatio: false
+              }}/>
+            )
+          }
           <div className={classes.button}>
-            <Button variant="outlined" size="large" color="primary" className={classes.race}>Race</Button>
-            <Button variant="outlined" size="large" color="primary" className={classes.location}>Location</Button>
+            <ToggleButtonGroup exclusive value={this.state.display} onChange={this.handleDisplay}>
+              <ToggleButton value="race">Race</ToggleButton>
+              <ToggleButton value="location">Location</ToggleButton>
+            </ToggleButtonGroup>
           </div>
         </div>
       );
