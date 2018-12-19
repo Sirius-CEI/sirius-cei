@@ -1,33 +1,42 @@
 {
-	"name": "cei-dashboard",
-	"author": "",
-	"contributors": [
+  "name": "cei-dashboard",
+  "version": "",
+  "description": "",
+  "homepage": "https://cei-dashboard.herokuapp.com/",
+  "authors": [
     {
       "name": "Karla Nelson",
       "email": "karla.jean.nelson@gmail.com",
       "url": ""
-		},
-		{
-			"name": "",
+    },
+    {
+      "name": "",
       "email": "",
       "url": ""
-		},
-		{
-			"name": "",
+    },
+    {
+      "name": "",
       "email": "",
       "url": ""
-		},
-		{
-			"name": "",
+    },
+    {
+      "name": "",
       "email": "",
       "url": ""
-		}
-  ],
-	"homepage": "https://cei-dashboard.herokuapp.com/",
-  "version": "0.1.0",
-  "private": true,
+    },
+    {
+      "name": "",
+      "email": "",
+      "url": ""
+    }
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Sirius-CEI/sirius-cei"
+	},
+  "main": "",
   "proxy": "http://localhost:5000",
-  "dependencies": {
+	"dependencies": {
     "@material-ui/core": "^3.6.2",
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.17.1",
@@ -55,7 +64,12 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
-    "typeface-lato": "0.0.54"
+    "typeface-karla": "^0.0.54",
+    "typeface-lato": "0.0.54",
+    "typeface-roboto": "^0.0.54"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
   },
   "scripts": {
     "start": "node server/server.js",
@@ -64,9 +78,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "nodemon": "^1.17.2"
   },
   "browserslist": [
     ">0.2%",
