@@ -23,7 +23,7 @@ mongoose.connection.on('error', (error) => {
 const adminRouter = require('./routes/admin.router');
 const cardRouter = require('./routes/cards.router');
 const releaseRouter = require('./routes/release.router');
-const qwiRouter = require('./routes/qwi.router');
+const qwiRouter = require('./routes/csv.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
