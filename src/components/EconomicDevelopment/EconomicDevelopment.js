@@ -7,6 +7,7 @@ import 'typeface-lato';
 import Grid from '@material-ui/core/Grid';
 import { Typography, CardMedia } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
+import 'react-chartjs-2';
 
 import GraphIndicator from './GraphIndicator';
 import TextIndicator from './TextIndicator';
@@ -40,6 +41,10 @@ const styles = theme => ({
     height: '100%',
     overflow: 'hidden'
   },
+  // indicator: {
+  //   maxWidth: 768,
+  //   maxHeight: 500,
+  // }
 });
 
 class EconomicDevelopment extends Component {
@@ -60,17 +65,17 @@ class EconomicDevelopment extends Component {
               </Card>
             </Grid>
           
-            <Grid item xs={6}>
+            <Grid className={classes.indicator} item xs={6}>
               <GraphIndicator />
             </Grid>
-            <Grid item xs={6}>
+            <Grid className={classes.indicator} item xs={6}>
               <TextIndicator />
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid className={classes.indicator} item xs={6}>
               <TextIndicator />
             </Grid>
-            <Grid item xs={6}>
+            <Grid className={classes.indicator} item xs={6}>
               <GraphIndicator />
             </Grid>
           </Grid>

@@ -14,7 +14,7 @@ import AdminHome from '../Admin/AdminHome';
 //Non Protected Components
 import Macro from '../Macro/Macro';
 import EconomicDevelopment from '../EconomicDevelopment/EconomicDevelopment';
-import HumanCapitol from '../HumanCapitol/HumanCapitol';
+import HumanCapital from '../HumanCapital/HumanCapital';
 import AccessTransit from '../AccessTransit/AccessTransit';
 import AnnualRelease from '../AnnualRelease/AnnualRelease';
 import Footer from '../Footer/Footer';
@@ -81,8 +81,8 @@ class App extends Component {
             />
             <Route
               exact
-              path="/human-capitol"
-              component={HumanCapitol}
+              path="/human-capital"
+              component={HumanCapital}
             />
             <Route
               exact

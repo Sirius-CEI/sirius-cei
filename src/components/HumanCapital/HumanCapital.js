@@ -9,7 +9,7 @@ const styles = theme => ({
   },
 });
 
-class HumanCapitol extends Component {
+class HumanCapital extends Component {
   render() {
     // const { classes } = this.props;
       return (
@@ -24,8 +24,8 @@ const mapStateToProps = reduxState => ({
   reduxState,
 });
 
-HumanCapitol.propTypes = {
+HumanCapital.propTypes = {
   classes: propTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(HumanCapitol));
+export default connect(mapStateToProps)(withStyles(styles)(HumanCapital));

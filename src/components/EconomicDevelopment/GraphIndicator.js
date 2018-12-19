@@ -8,7 +8,23 @@ import { Line } from 'react-chartjs-2';
 
 const styles = theme => ({
   root: {
+   margin: theme.spacing.unit,
+   marginBottom: '10%',
+   marginLeft: '2%',
+   marginRight: '2%',
   },
+  button: {
+    marginTop: '3%',
+    marginBottom: '3%'
+  },
+  race: {
+    marginRight: theme.spacing.unit,
+    borderRadius: 20,
+  },
+  location: {
+    marginLeft: theme.spacing.unit,
+    borderRadius: 20
+  } 
 });
 
 let newData = [40,50,60,60,80,90];
@@ -16,13 +32,12 @@ let newData = [40,50,60,60,80,90];
 const data = {
   labels: ['2014', '2015', '2016', '2017', '2018'],
   datasets: [{
-      borderWidth: 0,
       data: newData,
       fill: false,
     }],
     animation: {
-      duration: 1000,
-      easing: 'linear'
+        duration: 1000,
+        easing: 'linear'
     }
 };
 
@@ -30,16 +45,16 @@ class GraphIndicator extends Component {
   render() {
     const { classes } = this.props;
       return (
-        <div>
+        <div className={classes.root}>
           <Line
             data={data}
               options={{
               title: false,
               maintainAspectRatio: false
         }}/>
-          <div>
-            <Button className={classes.race}>Race</Button>
-            <Button className={classes.location}>Location</Button>
+          <div className={classes.button}>
+            <Button variant="outlined" size="large" color="primary" className={classes.race}>Race</Button>
+            <Button variant="outlined" size="large" color="primary" className={classes.location}>Location</Button>
           </div>
         </div>
       );
