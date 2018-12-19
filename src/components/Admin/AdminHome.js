@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ExtensionPanels from './ExtensionPanels/ExtensionPanels';
+import LogOutButton from '../LogOutButton/LogOutButton';
 
 const styles = theme => ({
   extensionPanels: {
@@ -19,6 +20,7 @@ class AdminHome extends Component {
           <h1 className={classes.h1} id="welcome">
             Welcome, { this.props.user.username }
           </h1>
+          <LogOutButton />
           <div className={classes.extensionPanels}>
             <ExtensionPanels />
           </div>
