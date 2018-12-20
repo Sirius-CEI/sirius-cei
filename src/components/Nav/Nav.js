@@ -25,6 +25,7 @@ const styles = theme => ({
     display: 'flex',
   },
   appBar: {
+    padding: '2% 0',
     background: 'transparent',
     boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
@@ -116,6 +117,7 @@ class Nav extends React.Component {
             [classes.appBarShift]: open,
           })}
         >
+        
           <Toolbar disableGutters={!open}>
             <IconButton
               color="inherit"
@@ -123,12 +125,19 @@ class Nav extends React.Component {
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
-              {/* <MediaQuery maxWidth={768}> */}
+              <MediaQuery maxWidth={768}>
                 <MenuIcon />
-              {/* </MediaQuery> */}
+              </MediaQuery>
             </IconButton>
+
+            <MediaQuery className={classes.logo} minWidth={768}>
+              <Link to="/macro">
+                <img src="/images/CEI_Logo.png" alt="logo" height="100" width="100" />
+              </Link>
+            </MediaQuery>
             
             <Typography className={classes.grow}/>
+
             <MediaQuery minWidth={768}>
               <Link className={classes.link} to="/macro">Macro</Link>
               <Link className={classes.link} to="/economic-development">Economic Development</Link>
