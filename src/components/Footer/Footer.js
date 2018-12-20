@@ -92,7 +92,7 @@ const Footer = (props) => {
               Human Capital
             </Typography>
             <Button className={classes.button}>
-              <Link className={classes.link} to="/human-capitol">Read More</Link>
+              <Link className={classes.link} to="/human-capital">Read More</Link>
             </Button>
           </CardMedia>
         </Card>
