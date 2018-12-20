@@ -20,6 +20,7 @@ const styles = theme => ({
 class AnnualReleaseExtension extends Component {
 
 	state = {
+		outcomeAreaList: [],
 		outcomeArea: {
 			title: '',
 			copy: '',
@@ -27,18 +28,7 @@ class AnnualReleaseExtension extends Component {
 			indicators: [],
 		}
 	}
-
-	// handle changes in the form inputs
-	handleChange = event => {
-		console.log('handleChange', event.target.value)
-		this.setState({
-			outcomeArea: {
-				...this.state.outcomeArea,
-				[event.target.name]: event.target.value,
-			}
-		});
-	}
-
+	
 	// handle open of drop down menu
 	handleOpen = () => {
 		this.setState({ open: true });
@@ -48,14 +38,45 @@ class AnnualReleaseExtension extends Component {
 	handleClose = () => {
 		this.setState({ open: false });
 	};
+
+	getOutcomeAreas = () => {
+		axios.get('/api/outcome-areas')
+			.then(data => JSON.stringify(data.data.data))
+			.then(res => this.setState({
+				...this.state,
+				outcomeAreaList: res
+			}))
+			.catch((err) => console.log(err));
+	}
+
+	// handle changes in the form inputs
+	handleChange = event => {
+		this.setState({
+			outcomeArea: {
+				...this.state.outcomeArea,
+				[event.target.name]: event.target.value,
+			}
+		});
+	}
 	
 	handleSubmit = event => {
 		event.preventDefault();
 		const { outcomeArea } = this.state
-		console.log(outcomeArea);
 		axios.post('/api/outcome-areas', {payload: outcomeArea})
 			.then((response) => console.log(response))
 			.catch((err) => console.log(err));
+		this.setState({
+			outcomeArea: {
+				title: '',
+				copy: '',
+				notes: '',
+				indicators: [],
+			}
+		})
+	}
+
+	componentDidMount() {
+		this.getOutcomeAreas();
 	}
 
   render() {
@@ -86,6 +107,7 @@ class AnnualReleaseExtension extends Component {
 						/>
 					<Button	type="submit" variant="outlined" color="primary">Submit</Button>
 				</form>
+				<div>Outcome Areas: {this.state.outcomeAreaList}</div>
 			</div>
 		);
   }

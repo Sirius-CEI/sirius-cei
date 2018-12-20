@@ -2,7 +2,13 @@ const express = require('express');
 const router = express.Router();
 const OutcomeArea = require('../models/outcome-areas.model');
 
-router.post("/", (req, res) => {
+router.get("/", (req, res) => {
+  OutcomeArea.find((err, data) => {
+		return err ? res.json({ success: false, error: err }) : res.json({ sucess: true, data: data })
+  });
+});
+
+router.post('/', (req, res) => {
 	console.log(`in post router`, req.body);
 	const { payload } = req.body;
 	let outcomeArea = new OutcomeArea();

@@ -24,7 +24,7 @@ const outcomeAreaSchema = new Schema({
 	title: { type: String, lowercase: true, trim: true, required: true, },
 	copy: { type: String, trim: true },
 	// route in App.js for this outcome area
-	route: { type: String, lowercase: true, trim: true, unique: true },
+	route: { type: String, lowercase: true, trim: true },
 	active: { type: Boolean, default: true },
 	notes: String,
 	indicators: [indicatorSchema],
