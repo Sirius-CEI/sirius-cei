@@ -27,7 +27,7 @@ const styles = theme => ({
       transform: 'translate(-50%, -50%)'
     },
     card: {
-      height: 500,
+      height: 350,
       position: 'relative',
       marginBottom: '5%',
     },

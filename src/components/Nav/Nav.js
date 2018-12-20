@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import 'typeface-lato';
 
-const drawerWidth = 250;
+const drawerWidth = 280;
 
 const styles = theme => ({
   root: {
@@ -58,19 +58,25 @@ const styles = theme => ({
     fontFamily: 'Lato',
     fontWeight: '700',
     fontStyle: 'normal',
-    fontSize: '12px',
+    fontSize: '13px',
     marginRight: '2%',
+    "&:hover, active": {
+      color: '#ffc432'
+    },
   },
   linkDrawer: {
     textDecoration: 'none',
     color: '#008ab7',
     textTransform: 'uppercase',
     letterSpacing: '1.53px',
-    lineHeight: '4em',
+    lineHeight: '3em',
     fontFamily: 'Lato',
     fontWeight: '700',
     fontStyle: 'normal',
     fontSize: '13px',
+    "&:hover, active": {
+      color: '#ffc432'
+    },
   },
   hide: {
     display: 'none',
@@ -164,16 +170,16 @@ class Nav extends React.Component {
           <Divider />
           <List className={classes.content}>
               <ListItem button>
-                <Link className={classes.linkDrawer} to="/macro">Macro</Link>
+                <Link className={classes.linkDrawer} to="/macro">+ Macro</Link>
               </ListItem>
               <ListItem button>
-                <Link className={classes.linkDrawer} to="/economic-development">Economic Development</Link>
+                <Link className={classes.linkDrawer} to="/economic-development">+ Economic Development</Link>
               </ListItem>
               <ListItem button>
-                <Link className={classes.linkDrawer} to="/human-capital">Human Capital</Link>
+                <Link className={classes.linkDrawer} to="/human-capital">+ Human Capital</Link>
               </ListItem>
               <ListItem button>
-                <Link className={classes.linkDrawer} to="/access-transit">Access & Transit</Link>
+                <Link className={classes.linkDrawer} to="/access-transit">+ Access & Transit</Link>
               </ListItem>
           </List>
           <Divider />

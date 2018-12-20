@@ -66,7 +66,8 @@ const styles = {
     backgroundColor: 'white',
     "&:hover": {
       backgroundColor: 'white',
-    }
+      border: '2px solid #4c2a74'
+    },
   },
   contact: {
     textAlign: 'center',
