@@ -19,6 +19,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 import 'typeface-lato';
 
 const drawerWidth = 240;
@@ -131,13 +132,18 @@ class Nav extends React.Component {
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
-              <MenuIcon />
+              <MediaQuery maxWidth={768}>
+                <MenuIcon />
+              </MediaQuery>
             </IconButton>
-            <Typography className={classes.grow}/>
-            <Link className={classes.link} to="/macro">Macro</Link>
-            <Link className={classes.link} to="/economic-development">Economic Development</Link>
-            <Link className={classes.link} to="/human-capital">Human Capital</Link>
-            <Link className={classes.link} to="/access-transit">Access & Transit</Link>
+
+            <MediaQuery minWidth={768}>
+              <Typography className={classes.grow}/>
+              <Link className={classes.link} to="/macro">Macro</Link>
+              <Link className={classes.link} to="/economic-development">Economic Development</Link>
+              <Link className={classes.link} to="/human-capital">Human Capital</Link>
+              <Link className={classes.link} to="/access-transit">Access & Transit</Link>
+            </MediaQuery>
           </Toolbar>
         </AppBar>
         
