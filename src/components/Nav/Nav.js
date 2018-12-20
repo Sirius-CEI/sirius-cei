@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
-import 'typeface-lato';
-import propTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import { Typography } from '@material-ui/core';
-import MediaQuery from 'react-responsive';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
@@ -21,16 +18,23 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { Link } from 'react-router-dom';
+import 'typeface-lato';
+
+const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
   },
   appBar: {
+    background: 'transparent',
+    boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-  }),
+    }),
+  },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
@@ -40,7 +44,7 @@ const styles = theme => ({
     }),
   },
   menuButton: {
-    marginLeft: -12,
+    marginLeft: 12,
     marginRight: 20,
     color: '#008ab7',
   },
@@ -49,14 +53,18 @@ const styles = theme => ({
   },
   link: {
     textDecoration: 'none',
-    fontFamily: 'Lato',
-    fontSize: '12px',
     color: '#008ab7',
     textTransform: 'uppercase',
     letterSpacing: '1.53px',
-    fontWeight: 700,
     lineHeight: '1em',
-    marginRight: '1.5%',
+    fontFamily: 'Lato',
+    fontWeight: '700',
+    fontStyle: 'normal',
+    fontSize: '12px',
+    marginRight: '2%',
+  },
+  hide: {
+    display: 'none',
   },
   drawer: {
     width: drawerWidth,
@@ -88,9 +96,9 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
-}});
+});
 
-class Nav extends Component {
+class Nav extends React.Component {
   state = {
     open: false,
   };
@@ -104,28 +112,36 @@ class Nav extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
     const { open } = this.state;
-      return (
-        <div className={classes.root}>
-          <AppBar className={classes.appBar} position="fixed" color="default">
-            <Toolbar>
-              <MediaQuery maxWidth={768}> 
-                <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                  <MenuIcon />
-                </IconButton>
-              </MediaQuery>
-              <Typography className={classes.grow}/>
-              <MediaQuery minWidth={768}>
-                <Link className={classes.link} to="/macro">Macro Indicator</Link>
-                <Link className={classes.link} to="/economic-development">Economic Development</Link>
-                <Link className={classes.link} to="/human-capital">Human Capital</Link>
-                <Link className={classes.link} to="/access-transit">Access Transit</Link>
-              </MediaQuery>  
-            </Toolbar>
-          </AppBar>
 
-          <Drawer
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position="static"
+          className={classNames(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar disableGutters={!open}>
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={this.handleDrawerOpen}
+              className={classNames(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography className={classes.grow}/>
+            <Link className={classes.link} to="/macro">Macro</Link>
+            <Link className={classes.link} to="/economic-development">Economic Development</Link>
+            <Link className={classes.link} to="/human-capital">Human Capital</Link>
+            <Link className={classes.link} to="/access-transit">Access & Transit</Link>
+          </Toolbar>
+        </AppBar>
+        
+        <Drawer
           className={classes.drawer}
           variant="persistent"
           anchor="left"
@@ -158,13 +174,14 @@ class Nav extends Component {
             ))}
           </List>
         </Drawer>
-        </div>
-        );
-      }
-    }
+      </div>
+    );
+  }
+}
 
 Nav.propTypes = {
-  classes: propTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default (withStyles, {}(styles)(Nav));
+export default withStyles(styles, { withTheme: true })(Nav);

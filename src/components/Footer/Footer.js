@@ -86,8 +86,8 @@ const Footer = (props) => {
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
-            image="images/human-capitol.jpeg"
-            title="human-capitol">
+            image="images/human-capital.jpeg"
+            title="human-capital">
             <Typography className={classes.title} gutterBottom variant="h5" component="h2">
               Human Capital
             </Typography>
