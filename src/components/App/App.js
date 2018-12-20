@@ -53,10 +53,10 @@ class App extends Component {
     return (
       <Router>
         <div>
-        <div style={{height: '100%'}}>
-        <Nav drawerClickHandler={this.drawerToggleClickHandler} />
-        <SideDrawer show={this.state.sideDrawerOpen} />
-        {backdrop}
+        	<div style={{height: '100%'}}>
+        		<Nav drawerClickHandler={this.drawerToggleClickHandler} />
+        		<SideDrawer show={this.state.sideDrawerOpen} />
+        		{backdrop}
           </div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}

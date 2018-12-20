@@ -4,9 +4,11 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
+import { MuiThemeProvider} from '@material-ui/core/styles';
 
 import rootReducer from './redux/reducers'; // imports ./redux/reducers/index.js
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
+import theme from './components/App/App.theme';
 
 import App from './components/App/App';
 
@@ -33,7 +35,9 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+		<MuiThemeProvider theme={theme}>
+			<App />
+		</MuiThemeProvider>
   </Provider>,
   document.getElementById('react-root'),
 );
