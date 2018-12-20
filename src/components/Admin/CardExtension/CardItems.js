@@ -92,7 +92,7 @@ class CardItems extends Component {
                                 </Button>
                             </CardContent>
                             <CardContent>
-                                <div>Showing on Page {card.name}</div>
+                                <div>Showing on Page {card.category_id}</div>
                             </CardContent>
                         </Card>
                         <Button onClick={this.handleOpen}>Edit</Button>

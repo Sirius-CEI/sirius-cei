@@ -119,8 +119,15 @@ class Form extends Component {
                                 <MenuItem value={13}>Lending</MenuItem>  
                                 <MenuItem value={14}>Renting</MenuItem>  
                             </Select>
-                    <TextField id="graph_header" type='text' label="header" name="header" margin="normal" variant="outlined"
-                        value={newRelease.header} onChange={this.handleChange} />
+                    <TextField 
+                        id="graph_header" 
+                        type='text' 
+                        label="header" 
+                        name="header" 
+                        margin="normal" 
+                        variant="outlined"
+                        value={newRelease.header} 
+                        onChange={this.handleChange} />
                     <TextField 
                         id="graph_description" 
                         multiline

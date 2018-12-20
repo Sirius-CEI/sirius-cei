@@ -21,7 +21,7 @@ class CsvConversion extends Component {
     handleSubmit = event => {
         console.log('Adding CSV: ', this.state);
         event.preventDefault();
-        // this.props.dispatch({ type: 'ADD_CSV', payload: this.state })
+        // this.props.dispatch({ type: 'ADD_CSV_DATA', payload: this.state })
         this.setState({
             csv: '',
         });
@@ -30,7 +30,6 @@ class CsvConversion extends Component {
     render() {
         return (
             <div className="container">
-                {JSON.stringify(this.state)}
                 <form onSubmit={this.handleSubmit}>
                     <CSVReader
                     cssClass="react-csv-input"
@@ -41,23 +40,6 @@ class CsvConversion extends Component {
                     <Button type="submit">Submit CSV</Button>
                 </form>
             </div>
-            // <div>
-                // {JSON.stringify(this.state)}
-            //     <form>
-            //         <input 
-            //             id="myFile" 
-            //             type="file" 
-            //             // accept=".csv" 
-            //             // value={this.state.csv} 
-            //             name="csv"
-            //             onChange={this.handleChange} 
-            //         />
-            //         <Button id="submitCsv" type="submit" variant="outlined" color="primary">
-            //             Add CSV
-            //         </Button>
-            //     </form>
-            //     <img src={this.state.csv} alt="info-here" />
-            // </div>
         );
     }
 }

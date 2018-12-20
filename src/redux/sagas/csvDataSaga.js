@@ -24,9 +24,24 @@ function* addCsv(action) {
     }
 }
 
+function* deleteCsv(action) {
+  console.log('Delete saga to remove latest csv: ', action.payload);
+  try {
+      // axios asynch call to remove Card from server
+      yield call(axios.delete, `/data-indicators/${action.payload}`);
+      // alert('Deleted Card');
+      yield put( { type: 'SET_CSV' } );
+  }
+      catch (error) {
+          console.log('error with delete request to /data-indicators');
+          alert('Error Deleting CSV');
+      }
+  }
+
 function* csvSaga() {
     yield takeEvery('ADD_CSV_DATA', addCsv);
     yield takeEvery('FETCH_CSV', getCsv);
+    yield takeEvery('DELETE_CSV', deleteCsv);
 }
 
 export default csvSaga;

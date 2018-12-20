@@ -41,7 +41,6 @@ router.get('/:id', (req, res) => {
         })
 });
 
-
 //POST route to add Card to database
 router.post('/', (req, res) => {
     const newCard = req.body;

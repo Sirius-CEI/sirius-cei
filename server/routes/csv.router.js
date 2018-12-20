@@ -46,4 +46,21 @@ router.post('/', (req, res) => {
         })
 });
 
+// DELETE route to remove a CSV file
+router.delete('/:id', (req, res) => {
+    let reqId = req.params.id;
+    console.log('Delete CSV request for id', req.params);
+    IndicatorData.findOneAndDelete({
+        _id: reqId
+    })
+        .then( (removedDocument) => {
+            console.log('delete results', removedDocument);
+            res.sendStatus(200)
+        })
+        .catch( (error) => {
+            console.log('delete error', error);
+            res.sendStatus(500)
+        })
+}) 
+
 module.exports = router;
