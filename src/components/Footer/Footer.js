@@ -1,6 +1,4 @@
 import React from 'react';
-import './Footer.css';
-
 import 'typeface-lato';
 import propTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,27 +6,52 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 
 const styles = {
-  card: {
-    maxWidth: 345,
-    margin: '20px',
-    display: 'inline-block',
+  root: {
+    textAlign: 'center'
+  },
+  footer: {
+    marginTop: '10vh',
+    marginBottom: '5vh',
+    position: 'absolute',
+    verticalAlign: 'bottom',
     width: '100%',
   },
-  media: {
-    height: 200,
+  card: {
+    height: 180,
+    maxWidth: 290,
+    margin: '1%',
+    display: 'inline-block',
+    width: '100%',
+    textAlign: 'center',
   },
-  title: {
+  media: {
+    height: '100%'
+  },
+  cardTitle: {
     color: 'white',
     textAlign: 'center',
-    paddingTop: 40,
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 700,
     fontFamily: 'Lato',
     lineHeight: '1em',
+    paddingTop: 50,
+    paddingBottom: 25,
+  },
+  footerTitle: {
+    color: '#4c2a74',
+    textTransform: 'uppercase',
+    letterSpacing: '1.53px',
+    lineHeight: '1em',
+    fontFamily: 'Lato',
+    fontWeight: '500',
+    fontStyle: 'normal',
+    fontSize: '30px',
+    textAlign: 'center',
+    paddingBottom: '1.5%'
   },
   link: {
     textDecoration: 'none',
@@ -39,12 +62,22 @@ const styles = {
     fontSize: 15,
     fontWeight: 500,
     textTransform: 'lowercase',
-    marginTop: 45,
+    marginTop: 0,
     backgroundColor: 'white',
     "&:hover": {
-      backgroundColor: "white"
+      backgroundColor: 'white',
     }
-  }
+  },
+  contact: {
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    fontFamily: 'Lato',
+    fontStyle: 'normal',
+    letterSpacing: '1.53px',
+    lineHeight: '2em',
+    marginTop: '10px',
+    fontSize: 15,
+    }
 };
 
 const Footer = (props) => {
@@ -52,15 +85,16 @@ const Footer = (props) => {
   const { classes } = props;
 
   return (
-    <footer>
-      <div className="footer-title">See the full impact</div>
-      <div className="cards">
+    <footer className={classes.footer}>
+      <div className={classes.footerTitle}>See the full impact</div>
+
+      <div className={classes.root}>
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
             image="images/macro.jpeg"
             title="macro">
-            <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+            <Typography className={classes.cardTitle} gutterBottom variant="h5" component="h2">
               Macro
             </Typography>
             <Button className={classes.button}>
@@ -74,7 +108,7 @@ const Footer = (props) => {
             className={classes.media}
             image="images/economic-development.jpeg"
             title="economic-development">
-            <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+            <Typography className={classes.cardTitle} gutterBottom variant="h5" component="h2">
               Economic Development
             </Typography>
             <Button className={classes.button}>
@@ -88,7 +122,7 @@ const Footer = (props) => {
             className={classes.media}
             image="images/human-capital.jpeg"
             title="human-capital">
-            <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+            <Typography className={classes.cardTitle} gutterBottom variant="h5" component="h2">
               Human Capital
             </Typography>
             <Button className={classes.button}>
@@ -102,7 +136,7 @@ const Footer = (props) => {
             className={classes.media}
             image="images/access-transit.jpeg"
             title="access-transit">
-            <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+            <Typography className={classes.cardTitle} gutterBottom variant="h5" component="h2">
               Access & Transit
             </Typography>
             <Button className={classes.button}>
@@ -112,10 +146,10 @@ const Footer = (props) => {
         </Card>
       </div>
 
-      <div className="contact">
-        <span className="phone">(612) 351-8200</span> 
-        <span className="email">info@centerforeconomicinclusion.org</span>
-      </div>
+      <Grid className={classes.contact}>
+        <div>(612) 351-8200</div> 
+        <div>info@centerforeconomicinclusion.org</div>
+      </Grid>
     </footer>
   )
 };

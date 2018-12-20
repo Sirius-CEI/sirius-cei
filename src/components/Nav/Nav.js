@@ -70,7 +70,7 @@ const styles = theme => ({
     fontFamily: 'Lato',
     fontWeight: '700',
     fontStyle: 'normal',
-    fontSize: '12px',
+    fontSize: '13px',
   },
   hide: {
     display: 'none',
