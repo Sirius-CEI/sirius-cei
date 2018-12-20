@@ -14,15 +14,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import 'typeface-lato';
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const styles = theme => ({
   root: {
@@ -64,6 +60,17 @@ const styles = theme => ({
     fontSize: '12px',
     marginRight: '2%',
   },
+  linkDrawer: {
+    textDecoration: 'none',
+    color: '#008ab7',
+    textTransform: 'uppercase',
+    letterSpacing: '1.53px',
+    lineHeight: '4em',
+    fontFamily: 'Lato',
+    fontWeight: '700',
+    fontStyle: 'normal',
+    fontSize: '12px',
+  },
   hide: {
     display: 'none',
   },
@@ -80,22 +87,6 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
   },
 });
 
@@ -132,13 +123,13 @@ class Nav extends React.Component {
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
-              <MediaQuery maxWidth={768}>
+              {/* <MediaQuery maxWidth={768}> */}
                 <MenuIcon />
-              </MediaQuery>
+              {/* </MediaQuery> */}
             </IconButton>
-
+            
+            <Typography className={classes.grow}/>
             <MediaQuery minWidth={768}>
-              <Typography className={classes.grow}/>
               <Link className={classes.link} to="/macro">Macro</Link>
               <Link className={classes.link} to="/economic-development">Economic Development</Link>
               <Link className={classes.link} to="/human-capital">Human Capital</Link>
@@ -162,23 +153,21 @@ class Nav extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+          <List className={classes.content}>
+              <ListItem button>
+                <Link className={classes.linkDrawer} to="/macro">Macro</Link>
               </ListItem>
-            ))}
+              <ListItem button>
+                <Link className={classes.linkDrawer} to="/economic-development">Economic Development</Link>
+              </ListItem>
+              <ListItem button>
+                <Link className={classes.linkDrawer} to="/human-capital">Human Capital</Link>
+              </ListItem>
+              <ListItem button>
+                <Link className={classes.linkDrawer} to="/access-transit">Access & Transit</Link>
+              </ListItem>
           </List>
           <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
         </Drawer>
       </div>
     );
