@@ -28,7 +28,12 @@ const outcomeAreaSchema = new Schema({
 	},
 	copy: { type: String, trim: true },
 	// route in App.js for this outcome area
-	route: String,
+	route: { type: String, trim: true, lowercase: true, required: true, index: {
+			unique: true,
+			partialFilterExpression: { active: { $eq: true } }
+		}
+	},
+	image: String,
 	active: { type: Boolean, default: false },
 	notes: String,
 	indicators: [indicatorSchema],

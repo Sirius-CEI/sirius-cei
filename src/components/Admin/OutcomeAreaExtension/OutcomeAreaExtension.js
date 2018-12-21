@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
 	root: {
-			flexGrow: 1,
+		flexGrow: 1,
 	},
 	form: {
 		flexGrow: 1,
