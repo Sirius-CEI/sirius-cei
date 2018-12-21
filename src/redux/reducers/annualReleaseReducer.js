@@ -1,4 +1,4 @@
-const releaseReducer = (state=[], action) => {
+const releaseReducer = (state = null, action) => {
     switch (action.type) {
       case 'SET_RELEASE':
         return action.payload;

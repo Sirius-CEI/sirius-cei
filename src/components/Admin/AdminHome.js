@@ -1,47 +1,64 @@
-import React, { Component } from 'react';
-import compose from 'recompose/compose';
-import { connect } from 'react-redux';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ExtensionPanels from './ExtensionPanels/ExtensionPanels';
-import LogOutButton from '../LogOutButton/LogOutButton';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+import OutcomeAreaExtension from './OutcomeAreaExtension/OutcomeAreaExtension';
+import CsvExtension from './CsvExtension/CsvExtension';
+import CardExtension from './CardExtension/CardExtension';
+import EditPasswordExtension from './EditPasswordExtension/EditPasswordExtension';
 
 const styles = theme => ({
-  extensionPanels: {
-    margin: '5px',
+  root: {
+		flexGrow: 1,
+		background: theme.palette.purple.light,
+		padding: theme.spacing.unit * 2,
   },
 });
 
-class AdminHome extends Component {
+const panels = [
+	{ title: 'Edit Outcome Areas and Indicators', component: <OutcomeAreaExtension /> },
+	{ title: 'Update Chart Data', component: <CsvExtension /> },
+	{ title: 'Manage What You Can Do Cards', component: <CardExtension /> },
+	{ title: 'Manage Users', component: <EditPasswordExtension /> },
+]
+
+class AdminHome extends React.Component {
+  state = {
+    expanded: 0,
+  };
+
+  handleChange = panel => (event, expanded) => {
+    this.setState({
+      expanded: expanded ? panel : false,
+    });
+  };
+
   render() {
-      const { classes } = this.props;   
-      return (
-        <div>
-          <h1 className={classes.h1} id="welcome">
-            Welcome, { this.props.user.username }
-          </h1>
-          <LogOutButton />
-          <div className={classes.extensionPanels}>
-            <ExtensionPanels />
-          </div>
-        </div>
-      );
+    const { classes } = this.props;
+    const { expanded } = this.state;
+
+    return (
+      <div className={classes.root}>
+				{panels.map((panel, index) => (
+					<ExpansionPanel key={index} expanded={expanded === index} onChange={this.handleChange(index)}>
+						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+							<Typography variant="h6">{panel.title}</Typography>
+						</ExpansionPanelSummary>
+						<ExpansionPanelDetails>{panel.component}</ExpansionPanelDetails>
+					</ExpansionPanel>						
+				))}
+      </div>
+    );
   }
 }
-
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
-const mapStateToProps = state => ({
-  user: state.user,
-});
-
 
 AdminHome.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(
-  connect(mapStateToProps),
-  withStyles(styles)
-)(AdminHome);
+export default withStyles(styles)(AdminHome);

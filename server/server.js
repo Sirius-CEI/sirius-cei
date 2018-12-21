@@ -11,6 +11,7 @@ require('./modules/database');
 const userRouter = require('./routes/user.router');
 const cardRouter = require('./routes/cards.router');
 const releaseRouter = require('./routes/release.router');
+const outcomeAreaRouter = require('./routes/outcomeArea.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/cards', cardRouter);
 app.use('/annual-release', releaseRouter);
+app.use('/api/outcome-areas', outcomeAreaRouter);
 
 // Serve static files
 app.use(express.static('build'));
