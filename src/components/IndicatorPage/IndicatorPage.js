@@ -15,12 +15,16 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     textAlign: 'center',
+    width: '100%'
   },
   title: {
+    marginBottom: '5vh'
   },
   graph: {
+    padding: '1%'
   },
   text: {
+    padding: '1%'
   },
 });
 
@@ -29,17 +33,17 @@ class IndicatorPage extends Component {
     const { classes } = this.props;
       return (
         <div className={classes.root}>
-          <Grid container spacing={24}>
+          <Grid container spacing={12}>
 
             <Grid className={classes.title} item xs={12}>
               <TitleIndicator />
             </Grid>
           
-            <Grid className={classes.graph} item xs={6}>
+            <Grid className={classes.graph} item md={6}>
               <GraphIndicator />
             </Grid>
 
-            <Grid className={classes.text} item xs={6}>
+            <Grid className={classes.text} item md={6}>
               <TextIndicator />
             </Grid>
 

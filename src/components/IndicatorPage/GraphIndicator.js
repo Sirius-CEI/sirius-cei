@@ -7,12 +7,8 @@ import Button from '@material-ui/core/Button';
 import { Line } from 'react-chartjs-2';
 
 const styles = theme => ({
-  root: {
-   margin: theme.spacing.unit,
-  },
   button: {
-    marginTop: '3%',
-    marginBottom: '3%'
+    margin: '3%'
   },
   race: {
     marginRight: theme.spacing.unit,

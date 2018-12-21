@@ -6,9 +6,6 @@ import {withStyles} from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
 const styles = theme => ({
-  root: {
-    margin: theme.spacing.unit,
-  },
   indicatorTitle: {
     fontSize: '30px',
     fontWeight: 500,
@@ -17,13 +14,12 @@ const styles = theme => ({
     letterSpacing: '1.53px',
     lineHeight: '1em',
     fontFamily: 'Lato',
-    marginBottom: 20
+    marginBottom: '1vh'
   },
   indicatorText: {
-    fontSize: '20px',
+    fontSize: '15px',
     display: 'block',
-    margin: '3%',
-    textAlign: 'justify'
+    textAlign: 'justify',
   }
 });
 
