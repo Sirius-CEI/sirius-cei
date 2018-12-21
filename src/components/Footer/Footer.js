@@ -14,8 +14,8 @@ const styles = {
     textAlign: 'center'
   },
   footer: {
-    marginTop: '10vh',
-    marginBottom: '5vh',
+    marginTop: '4vh',
+    marginBottom: '2vh',
     position: 'absolute',
     verticalAlign: 'bottom',
     width: '100%',

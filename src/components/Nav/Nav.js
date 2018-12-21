@@ -25,7 +25,7 @@ const styles = theme => ({
     display: 'flex',
   },
   appBar: {
-    padding: '2% 0',
+    padding: '1% 0',
     background: 'transparent',
     boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
@@ -155,7 +155,6 @@ class Nav extends React.Component {
         
         <Drawer
           className={classes.drawer}
-          variant="persistent"
           anchor="left"
           open={open}
           classes={{
@@ -167,6 +166,7 @@ class Nav extends React.Component {
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
+          
           <Divider />
           <List className={classes.content}>
               <ListItem button>
