@@ -8,12 +8,10 @@ import Card from '@material-ui/core/Card';
 
 const styles = theme => ({
     root: {
-      flexGrow: 1,
       textAlign: 'center',
     },
     title: {
       textAlign: 'center',
-      padding: 'auto',
       fontSize: '45px',
       fontWeight: 700,
       color: 'white',
@@ -27,13 +25,11 @@ const styles = theme => ({
       transform: 'translate(-50%, -50%)'
     },
     card: {
-      height: 500,
+      height: 350,
       position: 'relative',
-      marginBottom: '5%',
     },
     media: {
       height: '100%',
-      overflow: 'hidden'
     },
   });
 

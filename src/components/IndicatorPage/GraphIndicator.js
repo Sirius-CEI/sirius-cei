@@ -9,9 +9,6 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { Line } from 'react-chartjs-2';
 
 const styles = theme => ({
-  root: {
-   margin: theme.spacing.unit,
-  },
   button: {
     marginTop: '3%',
     marginBottom: '3%',
