@@ -7,7 +7,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import AnnualReleaseExtension from './AnnualReleaseExtension/AnnualReleaseExtension';
+import OutcomeAreaExtension from './OutcomeAreaExtension/OutcomeAreaExtension';
 import CsvExtension from './CsvExtension/CsvExtension';
 import CardExtension from './CardExtension/CardExtension';
 import EditPasswordExtension from './EditPasswordExtension/EditPasswordExtension';
@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 const panels = [
-	{ title: 'Outcome Areas and Indicators', component: <AnnualReleaseExtension /> },
+	{ title: 'Outcome Areas and Indicators', component: <OutcomeAreaExtension /> },
 	{ title: 'Chart Data', component: <CsvExtension /> },
 	{ title: 'What You Can Do Cards', component: <CardExtension /> },
 	{ title: 'Manage Users', component: <EditPasswordExtension /> },
@@ -29,7 +29,7 @@ const panels = [
 
 class AdminHome extends React.Component {
   state = {
-    expanded: null,
+    expanded: 0,
   };
 
   handleChange = panel => (event, expanded) => {

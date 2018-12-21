@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 
 const styles = theme => ({
 	root: {
 			flexGrow: 1,
-		}
+	},
+	form: {
+		flexGrow: 1,
+	}
   });
 
 class AnnualReleaseExtension extends Component {
@@ -25,14 +23,13 @@ class AnnualReleaseExtension extends Component {
 			title: '',
 			copy: '',
 			notes: '',
-			indicators: [],
 		}
 	}
 	
 	// handle open of drop down menu
 	handleOpen = () => {
 		this.setState({ open: true });
-	  };
+	};
 	
 	// handle close of drop down menu
 	handleClose = () => {
@@ -40,13 +37,10 @@ class AnnualReleaseExtension extends Component {
 	};
 
 	getOutcomeAreas = () => {
-		axios.get('/api/outcome-areas')
-			.then(data => JSON.stringify(data.data.data))
-			.then(res => this.setState({
-				...this.state,
-				outcomeAreaList: res
-			}))
-			.catch((err) => console.log(err));
+		console.log(`in getOutcomeAreas`);
+		this.props.dispatch({
+			type: 'GET_OUTCOME_AREAS'
+		})
 	}
 
 	// handle changes in the form inputs
@@ -62,15 +56,15 @@ class AnnualReleaseExtension extends Component {
 	handleSubmit = event => {
 		event.preventDefault();
 		const { outcomeArea } = this.state
-		axios.post('/api/outcome-areas', {payload: outcomeArea})
-			.then((response) => console.log(response))
-			.catch((err) => console.log(err));
+		this.props.dispatch({
+			type: 'POST_OUTCOME_AREA',
+			payload: outcomeArea
+		})
 		this.setState({
 			outcomeArea: {
 				title: '',
 				copy: '',
 				notes: '',
-				indicators: [],
 			}
 		})
 	}
@@ -89,8 +83,6 @@ class AnnualReleaseExtension extends Component {
 							label="Title"
 							type="text"
 							name="title"
-							margin="normal"
-							variant="outlined"
 							fullWidth
 							value={outcomeArea.title}
 							onChange={this.handleChange}
@@ -99,15 +91,12 @@ class AnnualReleaseExtension extends Component {
 							label="Copy text"
 							type="text"
 							name="copy"
-							margin="normal"
-							variant="outlined"
 							fullWidth
 							value={outcomeArea.copy}
 							onChange={this.handleChange}
 						/>
 					<Button	type="submit" variant="outlined" color="primary">Submit</Button>
 				</form>
-				<div>Outcome Areas: {this.state.outcomeAreaList}</div>
 			</div>
 		);
   }

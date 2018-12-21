@@ -4,19 +4,26 @@ const OutcomeArea = require('../models/outcome-areas.model');
 
 router.get("/", (req, res) => {
   OutcomeArea.find((err, data) => {
-		return err ? res.json({ success: false, error: err }) : res.json({ sucess: true, data: data })
+		return err ? res.json({ success: false, error: err }) : res.send(data);
   });
 });
 
 router.post('/', (req, res) => {
-	console.log(`in post router`, req.body);
-	const { payload } = req.body;
-	let outcomeArea = new OutcomeArea();
-	outcomeArea.title = payload.title;
-	outcomeArea.copy = payload.copy;
-  outcomeArea.save(err => {
-		return err ? res.json({ success: false, error: err }) : res.json({ success: true });
-  });
+	try {
+		const { payload } = req.body;
+		let outcomeArea = new OutcomeArea();
+		Object.entries(payload).forEach(
+			([key, value]) => outcomeArea[key] = value
+		);
+		outcomeArea.save((err, data) => {
+			return err ? res.json({ success: false, error: err })
+			: res.status(201).json({ success: true, objectId: data._id });
+		});
+	} catch (err) {
+		console.log(`outcome area post error`, error);
+		res.json({ success: false, error: err });
+	}
+	
 });
 
 module.exports = router;
