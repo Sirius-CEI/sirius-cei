@@ -21,9 +21,9 @@ const styles = theme => ({
 });
 
 const panels = [
-	{ title: 'Outcome Areas and Indicators', component: <OutcomeAreaExtension /> },
-	{ title: 'Chart Data', component: <CsvExtension /> },
-	{ title: 'What You Can Do Cards', component: <CardExtension /> },
+	{ title: 'Edit Outcome Areas and Indicators', component: <OutcomeAreaExtension /> },
+	{ title: 'Update Chart Data', component: <CsvExtension /> },
+	{ title: 'Manage What You Can Do Cards', component: <CardExtension /> },
 	{ title: 'Manage Users', component: <EditPasswordExtension /> },
 ]
 

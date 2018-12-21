@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const OutcomeArea = require('../models/outcome-areas.model');
 
-router.get("/", (req, res) => {
-  OutcomeArea.find((err, data) => {
+router.get('/', (req, res) => {
+  OutcomeArea.find({}).sort({ active: -1, order: 1, title: 1, _v: -1, _id: 1 }).exec((err, data) => {
 		return err ? res.json({ success: false, error: err }) : res.send(data);
   });
 });

@@ -6,6 +6,12 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+
 const styles = theme => ({
 	root: {
 		flexGrow: 1,
@@ -74,10 +80,19 @@ class AnnualReleaseExtension extends Component {
 	}
 
   render() {
-		const { classes } = this.props;
+		const { classes, outcomes } = this.props;
 		const { outcomeArea } = this.state;
+		console.log(this.props);
 		return (
 			<div className={classes.root} id="root">
+				{outcomes ? 
+				<List>
+					{outcomes.map((outcome, index) => (
+						<ListItem key={index}>
+							<ListItemText primary={outcome.title} />
+						</ListItem>
+					))}
+				</List> : null}
 				<form className={classes.form} id="form" onSubmit={this.handleSubmit}>
 						<TextField
 							label="Title"
@@ -107,7 +122,7 @@ AnnualReleaseExtension.propTypes = {
 };
 
 const mapReduxStateToProps = reduxState => ({
-  reduxState
+  outcomes: reduxState.outcomes
 });
 
 export default compose(

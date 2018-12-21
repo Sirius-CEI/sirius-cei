@@ -6,6 +6,7 @@ const chartSchema = new Schema({
 	description: { type: String, trim: true },
 	copy: { type: String, trim: true },
 	active: { type: Boolean, default: false },
+	order: { type: Number, default: 100 },
 	toggleText: { type: String, trim: true, required: true, maxlength: 255, },
 	query: { type: String, trim: true },
 	citation: { type: String, trim: true },
@@ -16,6 +17,7 @@ const indicatorSchema = new Schema({
 	title: { type: String, trim: true, required: true },
 	copy: { type: String, trim: true },
 	active: { type: Boolean, default: false },
+	order: { type: Number, default: 100 },
 	notes: String,
 	charts: [chartSchema]
 })
@@ -35,6 +37,7 @@ const outcomeAreaSchema = new Schema({
 	},
 	image: String,
 	active: { type: Boolean, default: false },
+	order: { type: Number, default: 100 },
 	notes: String,
 	indicators: [indicatorSchema],
 });
