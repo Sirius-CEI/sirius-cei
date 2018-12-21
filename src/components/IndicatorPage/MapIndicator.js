@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import { Map, TileLayer } from 'react-leaflet';
 import './map.css';
 
-const accessToken = process.env.MAPBOX_API_KEY;
+const accessToken = 'pk.eyJ1IjoibGV4Y2h1ZHppayIsImEiOiJjanBzaWx5dG8wdGppM3htaDhiZ3RwcXJ6In0.-gllVsZonwCccRMzb1DmYQ';
 const stamenTonerTiles = `https://api.tiles.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=${process.env.MAPBOX_API_KEY}`;
 const stamenTonerAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
 const mapCenter = [44.972, -93.1663];
