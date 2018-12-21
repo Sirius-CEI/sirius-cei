@@ -1,15 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ForgotPassword from './ForgotPassword';
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
+
+const styles = theme => ({
+  img: {
+      height: 'auto',
+      width: 'auto',
+      maxHeight: '150px',
+      maxWidth: '200px',
+  },
+  paper: {
+      position: 'absolute',
+      width: theme.spacing.unit * 50,
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing.unit * 4,
+  },
+});
 
 class LoginPage extends Component {
   state = {
     username: '',
     password: '',
+    open: false,
   };
 
   login = (event) => {
     event.preventDefault();
-
     if (this.state.username && this.state.password) {
       this.props.dispatch({
         type: 'LOGIN',
@@ -29,7 +51,30 @@ class LoginPage extends Component {
     });
   }
 
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  rand = () => {
+    return Math.round(Math.random() * 20) - 10;
+  }
+
+  getModalStyle = () => {
+    const top = 50 + this.rand();
+    const left = 50 + this.rand();
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
+
   render() {
+    const { classes } = this.props;
     return (
       <div>
         {this.props.errors.loginMessage && (
@@ -81,6 +126,18 @@ class LoginPage extends Component {
           >
             Register
           </button>
+          <Button onClick={this.handleOpen}>Forgot Password</Button>
+          <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={this.state.open}
+            onClose={this.handleClose}
+          >
+          <div style={this.getModalStyle()} className={classes.paper}>
+            <h2 id="reset-password">Forgot Password</h2>
+            <ForgotPassword />
+          </div>
+          </Modal>
         </center>
       </div>
     );
@@ -90,8 +147,16 @@ class LoginPage extends Component {
 // Instead of taking everything from state, we just want the error messages.
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({errors}) => ({ errors });
-const mapStateToProps = state => ({
-  errors: state.errors,
+LoginPage.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+const mapReduxStateToProps = reduxState => ({
+cards: reduxState.cards,
+errors: reduxState.errors,
 });
 
-export default connect(mapStateToProps)(LoginPage);
+export default compose(
+  connect(mapReduxStateToProps),
+  withStyles(styles)
+)(LoginPage);

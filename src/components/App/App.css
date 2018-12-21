@@ -41,7 +41,8 @@ input {
     background:none;
     color:inherit;
     border:none;
-    padding:0;
+    padding:5px;
+    margin: 5px;
     font: inherit;
     outline:0;
     border-bottom:1px solid #444; 

@@ -20,7 +20,6 @@ const indicatorSchema = new Schema({
 const IndicatorData = mongoose.model('data_indicators', indicatorSchema);
 
 router.get('/', (req, res) => {
-    console.log('in indicator get server side');
     IndicatorData.find({})
         .then((results) => {
             res.send(results);
