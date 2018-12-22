@@ -22,7 +22,8 @@ const drawerWidth = 280;
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+		display: 'flex',
+		flexGrow: 1,
   },
   appBar: {
     padding: '1% 0',

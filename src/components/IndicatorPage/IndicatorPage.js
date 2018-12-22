@@ -33,7 +33,7 @@ class IndicatorPage extends Component {
     const { classes } = this.props;
       return (
         <div className={classes.root}>
-          <Grid container spacing={12}>
+          <Grid container spacing={8}>
 
             <Grid className={classes.title} item xs={12}>
               <TitleIndicator />

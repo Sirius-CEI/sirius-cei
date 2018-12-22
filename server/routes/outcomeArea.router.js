@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
 		);
 		// set route by changing spaces to dashes and removing special characters
 		let route = payload.title.replace(/\s/g, '_');
-		route = route.replace(/\W/g, '').replace(/[_]/g, '-').toLowerCase();
+		route = route.replace(/\W/g, '').replace(/[_]/g, '-').replace('--', '-').toLowerCase();
 		outcomeArea.route = `/${route}`;
 		outcomeArea.save((err, data) => {
 			return err ? res.json({ success: false, error: err })

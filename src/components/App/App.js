@@ -6,22 +6,20 @@ import {
   Switch,
 } from 'react-router-dom';
 import {connect} from 'react-redux';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 //Protected Components
+import ProtectedRoute from './ProtectedRoute';
 import AdminHome from '../Admin/AdminHome';
 
 //Non Protected Components
 import IndicatorPage from '../IndicatorPage/IndicatorPage';
-import AnnualRelease from '../AnnualRelease/AnnualRelease';
-import Footer from '../Footer/Footer';
-
-import Nav from '../Nav/Nav';
+import Footer from '../UI/Footer';
+import Nav from '../UI/Nav';
 import './App.css';
 
 class App extends Component {
   componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
+    // this.props.dispatch({type: 'FETCH_USER'})
   }
 
   render() {
@@ -29,18 +27,13 @@ class App extends Component {
     return (
       <Router>
         <div>
-        <Nav />
+        	<Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/home" />
+            <Redirect exact from="/" to="/macro-indicators" />
             <Route
               exact
-              path="/home"
-              component={AnnualRelease}
-            />
-            <Route
-              exact
-              path="/macro"
+              path="/macro-indicators"
               component={IndicatorPage}
             />
             <Route
@@ -63,7 +56,7 @@ class App extends Component {
               path="/admin"
               component={AdminHome}
             />
-            <Route render={() => <h1>404</h1>} />
+            <Route render={() => <Redirect to="/macro-indicators" />} />
           </Switch>
           <Footer />
         </div>
