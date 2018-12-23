@@ -30,7 +30,8 @@ const styles = theme => ({
 
 class IndicatorPage extends Component {
   render() {
-    const { classes } = this.props;
+		const { classes } = this.props;
+		console.log(this.props);
       return (
         <div className={classes.root}>
           <Grid container spacing={8}>

@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Redirect,
   Switch,
 } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 //Protected Components
 import ProtectedRoute from './ProtectedRoute';
@@ -26,39 +26,22 @@ class App extends Component {
   }
 
   render() {
-
+		const { outcomes } = this.props;
     return (
       <Router>
         <div>
         	<Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/macro-indicators" />
-            <Route
-              exact
-              path="/macro-indicators"
-              component={IndicatorPage}
-            />
-            <Route
-              exact
-              path="/economic-development"
-              component={IndicatorPage}
-            />
-            <Route
-              exact
-              path="/human-capital"
-              component={IndicatorPage}
-            />
-            <Route
-              exact
-              path="/access-transit"
-              component={IndicatorPage}
-            />
+						{!outcomes ? <IndicatorPage /> : outcomes.map((item, index) => (
+							<Route key={index} path='/:id' component={IndicatorPage} />
+						))}
             <ProtectedRoute
               exact
               path="/admin"
               component={AdminHome}
             />
+            {/* <Redirect exact from="/" to="/macro-indicators" /> */}
             <Route render={() => <Redirect to="/macro-indicators" />} />
           </Switch>
           <Footer />
@@ -67,4 +50,6 @@ class App extends Component {
   )}
 }
 
-export default connect()(App);
+const mapStateToProps = state => ({ state });
+
+export default connect(mapStateToProps)(App);
