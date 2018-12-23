@@ -7,7 +7,7 @@ import logger from 'redux-logger';
 
 // styling imports
 import { MuiThemeProvider} from '@material-ui/core/styles';
-import theme from './components/App/App.theme';
+import theme from './components/App/theme';
 import 'typeface-lato';
 import 'typeface-roboto';
 

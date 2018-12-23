@@ -17,9 +17,12 @@ import Footer from '../UI/Footer';
 import Nav from '../UI/Nav';
 import './App.css';
 
+import outcomeAreas from '../../redux/outcome-areas'
+
 class App extends Component {
   componentDidMount () {
-    // this.props.dispatch({type: 'FETCH_USER'})
+		// this.props.dispatch({type: 'FETCH_USER'})
+		this.props.dispatch({ type: 'SET_OUTCOME_AREAS', payload: outcomeAreas });
   }
 
   render() {

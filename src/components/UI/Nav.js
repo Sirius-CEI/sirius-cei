@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { compose } from 'recompose';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -25,7 +26,10 @@ const styles = theme => ({
   root: {
 		display: 'flex',
 		flexGrow: 1,
-  },
+	},
+	grow: {
+		flexGrow: 1,
+	},
   appBar: {
 		boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
@@ -41,9 +45,14 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen,
 		}),
 	},
-	logoButton: {
+	logo: {
 		height: theme.mixins.toolbar.minHeight,
 		width: theme.mixins.toolbar.minHeight,
+		margin: theme.spacing.unit,
+		borderRadius: 0,
+	},
+	links: {
+		flexGrow: 1,
 		margin: theme.spacing.unit,
 	},
   menuButton: {
@@ -81,15 +90,8 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginRight: 0,
-  },
+	},
 });
-
-const menuItems = [
-	{ text: 'Macro Indicators', path: '/macro-indicators' },
-	{ text: 'Economic Development', path: '/economic-development' },
-	{ text: 'Human Capital', path: '/human-capital' },
-	{ text: `Access & Transit`, path: 'access-transit' },
-]
 
 class Nav extends React.Component {
   state = {
@@ -105,7 +107,7 @@ class Nav extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, outcomeAreas } = this.props;
     const { open } = this.state;
 
     return (
@@ -117,7 +119,7 @@ class Nav extends React.Component {
             [classes.appBarShift]: open
           })}
         >
-          <Toolbar disableGutters={!open} className={classes.grow}>
+          <Toolbar disableGutters={!open}>
 						<Hidden mdUp>
 							<IconButton
 								color="inherit"
@@ -125,19 +127,25 @@ class Nav extends React.Component {
 								onClick={this.handleDrawerOpen}
 								className={classNames(classes.menuButton, open && classes.hide)}
 							>
-								<MenuIcon />
+								<MenuIcon color="primary" />
 							</IconButton>
 						</Hidden>
 						<Hidden smDown>
 							<Button component={Link} to="/macro-indicators">
-								<img src="/images/CEI_Logo.png" alt="logo" className={classes.logoButton} />
+								<img src="/images/CEI_Logo.png" alt="logo" className={classes.logo}/>
 							</Button>
-            	<Typography className={classes.grow} />
-							{menuItems.map((item, index) => (
-								<div>
-									<Button key={index} component={Link} to={item.path}>{item.text}</Button>
-								</div>
-							))}
+            	<Typography align="right" className={classes.links}>
+								{outcomeAreas.map((item, index) => (
+										<Button
+											key={index}
+											component={Link} to={item.route}
+											color="primary"
+											className={classes.buttons}
+										>
+											{item.title}
+										</Button>
+								))}
+							</Typography>
 						</Hidden>
           </Toolbar>
         </AppBar>
@@ -156,15 +164,15 @@ class Nav extends React.Component {
           </div>
 					<Divider />
           <List className={classes.content}>
-						{menuItems.map((item, index) => (
+						{outcomeAreas.map((item, index) => (
 							<ListItem
 								button
 								key={index}
 								component={Link}
-								to={item.path}
+								to={item.route}
 								onClick={this.handleDrawerClose}
 							>
-								<ListItemText primary={item.text} />
+								<ListItemText primary={item.title} />
 							</ListItem>
 						))}
           </List>
@@ -180,7 +188,12 @@ Nav.propTypes = {
 	width: PropTypes.string.isRequired,
 };
 
+const mapStateToProps = state => ({
+  outcomeAreas: state.outcomes,
+});
+
 export default compose(
+	connect(mapStateToProps),
   withStyles(styles),
   withWidth(),
 )(Nav);

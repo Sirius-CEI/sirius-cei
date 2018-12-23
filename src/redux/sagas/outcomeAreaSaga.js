@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, call, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
 function* getOutcomeAreas() {
     try {
