@@ -1,74 +1,76 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
-import { Card, CardActionArea, CardMedia } from '@material-ui/core';
-import Chip from '@material-ui/core/Chip'
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import LoginButton from './LoginButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const styles = theme => ({
   root: {
 		flexGrow: 1,
-		margin: theme.spacing.unit * 3,
 	},
-	container: {
-		
+	grow: {
+		flexGrow: 1,
 	},
-	card: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'space-evenly',
-		height: 180,
-		width: 280,
+	bottomNav: {
+		top: 'auto',
+		bottom: 0,
+		boxShadow: 'none',
+	},
+	bottomNavText: {
+		textTransform: 'uppercase',
+	},
+	toolbar: {
+		margin: 0,
+		padding: theme.spacing.unit,
 	},
 });
 
 class Footer extends Component {
-	state = null;
-
 	render() {
-		const { classes, outcomeAreas } = this.props;
+		const { classes, user } = this.props;
 		return (
 			<footer className={classes.root}>
-				<Grid container spacing={24} className={classes.container} justify="center">
-					{outcomeAreas === null ? null : outcomeAreas.map((outcome, index) => (
-						<Grid item key={index}>
-							<Card>
-								<CardActionArea component={Link} to={outcome.route}>
-									<CardMedia
-										image={`images${outcome.route}.jpeg`}
-										title={outcome.title}
-										className={classes.card}
-									>
-										<div />
-										<Typography variant="h5" align="center">{outcome.title}</Typography>
-										<Chip
-											clickable
-											color="default"
-											label="read more"
-										/>
-									</CardMedia>
-								</CardActionArea>
-							</Card>
+				<AppBar position="static" className={classes.bottomNav}>
+					<Toolbar className={classes.toolbar}>
+						<Grid container spacing={8} justify="center" alignItems="center">
+							<Grid item>
+								<Typography variant="body1" align="center" className={classes.bottomNavText}>
+									<FontAwesomeIcon icon="phone" />{' '}(612) 351-8200
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Typography variant="body1" align="center" className={classes.bottomNavText}>
+									<FontAwesomeIcon icon="at" />{' '}info@CenterForEconomicInclusion.org
+								</Typography>
+							</Grid>
+							<Grid item xs={12}>
+								<Grid container direction="row" justify="flex-end" alignItems="center">
+									<Grid item>
+										<LoginButton {...this.props}/>
+									</Grid>
+								</Grid>
+							</Grid>
 						</Grid>
-					))}
-				</Grid>
+					</Toolbar>
+				</AppBar>
 			</footer>
 		)
 	}
 };
 
 Footer.propTypes = {
-  classes: propTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
 	outcomeAreas: state.outcomes,
+	user: state.user,
 })
 
 export default compose(

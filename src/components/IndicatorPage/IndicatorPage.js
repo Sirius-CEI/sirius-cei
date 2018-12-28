@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
 import propTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import 'typeface-lato';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import 'react-chartjs-2';
 
+import Nav from '../UI/Nav';
+import FooterNav from '../UI/FooterNav';
+import Footer from '../UI/Footer';
 import GraphIndicator from './GraphIndicator';
 import TextIndicator from './TextIndicator';
 import TitleIndicator from './TitleIndicator';
@@ -14,44 +17,25 @@ import TitleIndicator from './TitleIndicator';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    textAlign: 'center',
-    width: '100%'
-  },
-  title: {
-    marginBottom: '5vh'
-  },
-  graph: {
-    padding: '1%'
-  },
-  text: {
-    padding: '1%'
-  },
+	},
+	grow: {
+		flexGrow: 1,
+	},
 });
 
 class IndicatorPage extends Component {
   render() {
 		const { classes } = this.props;
 		console.log(this.props);
-      return (
-        <div className={classes.root}>
-          <Grid container spacing={8}>
-
-            <Grid className={classes.title} item xs={12}>
-              <TitleIndicator />
-            </Grid>
-          
-            <Grid className={classes.graph} item md={6}>
-              <GraphIndicator />
-            </Grid>
-
-            <Grid className={classes.text} item md={6}>
-              <TextIndicator />
-            </Grid>
-
-          </Grid>
-        </div>
-      );
-  }
+		return (
+			<div className={classes.root}>
+				<Grid container spacing={0}>
+					<Grid item>
+					</Grid>
+				</Grid>
+			</div>
+		);
+	}
 }
 
 const mapStateToProps = reduxState => ({
@@ -62,4 +46,7 @@ IndicatorPage.propTypes = {
   classes: propTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(IndicatorPage));
+export default compose(
+	connect(mapStateToProps),
+	withStyles(styles)
+)(IndicatorPage);

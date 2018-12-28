@@ -138,7 +138,8 @@ class Nav extends React.Component {
 								{outcomeAreas.map((item, index) => (
 										<Button
 											key={index}
-											component={Link} to={item.route}
+											component={Link}
+											to={item.route}
 											color="primary"
 											className={classes.buttons}
 										>

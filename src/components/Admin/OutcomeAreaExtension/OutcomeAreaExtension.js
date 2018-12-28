@@ -76,7 +76,7 @@ class AnnualReleaseExtension extends Component {
 	}
 
 	componentDidMount() {
-		this.getOutcomeAreas();
+		// this.getOutcomeAreas();
 	}
 
   render() {
