@@ -1,10 +1,9 @@
 import { all } from 'redux-saga/effects';
 import loginSaga from './loginSaga';
-// import registrationSaga from './registrationSaga';
+import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import cardSaga from './cardSaga';
 import passwordSaga from './passwordSaga';
-import releaseSaga from '../../components/Old/annualReleaseSaga';
 import outcomeAreaSaga from './outcomeAreaSaga';
 
 // rootSaga is the primary saga.
@@ -17,11 +16,10 @@ import outcomeAreaSaga from './outcomeAreaSaga';
 export default function* rootSaga() {
   yield all([
     loginSaga(),
-    // registrationSaga(),
+    registrationSaga(),
     userSaga(),
     cardSaga(),
     passwordSaga(),
-		// releaseSaga(),
 		outcomeAreaSaga(),
   ]);
 }

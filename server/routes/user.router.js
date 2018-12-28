@@ -12,10 +12,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+// Get all users
+// TODO: rejectUnauthenticated
+router.get('/list', (req, res) => {
+  Person.find({}).sort({ username: 1 }).exec((err, data) => {
+		return err ? res.json({ success: false, error: err }) : res.send(data);
+  });
+});
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
-router.post('/register', (req, res, next) => {  
+router.post('/register', (req, res, next) => {
+	console.log(`in api/user/register router`, req.body);
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
 

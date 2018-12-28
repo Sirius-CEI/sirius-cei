@@ -26,8 +26,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/cards', cardRouter);
-app.use('/annual-release', releaseRouter);
+app.use('/api/cards', cardRouter);
 app.use('/api/outcome-areas', outcomeAreaRouter);
 
 // Serve static files

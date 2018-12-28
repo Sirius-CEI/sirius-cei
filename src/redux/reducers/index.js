@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errorsReducer';
 import user from './userReducer';
+import users from './userListReducer';
 import cards from './cardReducer';
 import outcomes from './outcomeAreaReducer';
 import appState from './appReducer';
@@ -13,12 +14,11 @@ import appState from './appReducer';
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
 	appState,
-  errors, // error messages
-  // loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
-  user, // will have an id and username if someone is logged in
 	cards,
-  // annualRelease,
-  outcomes //will have outcome area data
+	errors, // error messages
+	outcomes, // outcome area data
+	user, // will have an id and username if someone is logged in
+	users,
 });
 
 export default rootReducer;

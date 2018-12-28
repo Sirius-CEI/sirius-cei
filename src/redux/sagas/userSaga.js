@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
@@ -27,8 +27,28 @@ function* fetchUser() {
   }
 }
 
+function* fetchUserList() {
+	try {
+		yield put({ type: 'FETCH_DATA_BEGIN'})
+		let response = yield axios.get('/api/user/list');
+		console.log('getUserList response', response.data);
+		yield put({ type: 'SET_USER_LIST', payload: response.data });
+		yield put({ type: 'FETCH_DATA_SUCCESS' })
+	} catch (error) {
+		console.log(`user list get request failed`, error);
+		yield put({ type: 'API_ERROR', payload: error});
+		yield put({ type: 'FETCH_DATA_FAILURE' });
+	}
+}
+
+function* editUser() {
+	
+}
+
 function* userSaga() {
-  yield takeLatest('FETCH_USER', fetchUser);
+	yield takeLatest('FETCH_USER', fetchUser);
+	yield takeEvery('FETCH_USER_LIST', fetchUserList);
+	yield takeEvery('EDIT_USER', editUser)
 }
 
 export default userSaga;
