@@ -1,7 +1,7 @@
 import React from 'react';
-import OutcomeAreaExtension from '../views/Admin/OutcomeAreas/OutcomeAreaExtension';
+import OutcomeAreaExtension from '../views/Admin/OutcomeAreas';
 import CsvExtension from '../views/Admin/Csv/CsvExtension';
-import CardExtension from '../views/Admin/Cards/CardExtension';
+import CardExtension from '../views/Admin/Cards';
 import ManageUsers from '../views/Admin/ManageUsers/index';
 
 const adminPages = [
