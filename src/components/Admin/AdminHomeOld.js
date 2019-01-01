@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 // Other components
 import ExtensionPanels from './ExtensionPanels/ExtensionPanels';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import PasswordResetEmail from './PasswordResetEmail/PasswordResetEmail';
 
 const styles = theme => ({
 	root: {
@@ -33,7 +34,7 @@ class AdminHome extends Component {
           <h1 className={classes.h1} id="welcome">
             Welcome, { this.props.user.username }
           </h1>
-          <LogOutButton />
+                    <LogOutButton />
           <div className={classes.extensionPanels}>
             <ExtensionPanels />
           </div>

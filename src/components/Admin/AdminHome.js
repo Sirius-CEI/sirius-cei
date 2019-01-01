@@ -11,6 +11,7 @@ import OutcomeAreaExtension from './OutcomeAreaExtension/OutcomeAreaExtension';
 import CsvExtension from './CsvExtension/CsvExtension';
 import CardExtension from './CardExtension/CardExtension';
 import EditPasswordExtension from './EditPasswordExtension/EditPasswordExtension';
+import PasswordResetEmail from './PasswordResetEmail/PasswordResetEmail';
 
 const styles = theme => ({
   root: {
@@ -50,7 +51,8 @@ class AdminHome extends React.Component {
 							<Typography variant="h6">{panel.title}</Typography>
 						</ExpansionPanelSummary>
 						<ExpansionPanelDetails>{panel.component}</ExpansionPanelDetails>
-					</ExpansionPanel>						
+          </ExpansionPanel>	
+          				
 				))}
       </div>
     );
