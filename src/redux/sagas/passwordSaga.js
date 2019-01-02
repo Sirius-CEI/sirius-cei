@@ -16,7 +16,7 @@ try {
 function* forgotPassword(action) {
     console.log('forgot password', action.payload);
     const userId = action.payload;
-    const response = yield axios.get(`/forgot-password/${userId}`);
+    const response = yield axios.get(`/forgot-password`);
     console.log('in forgot password generator function', response.data);
     yield put({ type: 'SET_USER', payload: response.data})
 }

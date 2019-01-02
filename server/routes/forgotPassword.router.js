@@ -7,7 +7,7 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 //GET route to get a username from database
-router.get('/:id', (req, res) => {
+router.get('/', (req, res) => {
     console.log('req.params', req.params);
     const userId = req.params;
     Person.findOne({userId})
@@ -21,6 +21,7 @@ router.get('/:id', (req, res) => {
 });
 
   router.post('/', (req, res, next) => {
+    console.log('in router.post forgot password', req.body.username);
     if (req.body.username === '') {
       res.json('email required');
     }
