@@ -22,7 +22,7 @@ const styles = theme => ({
 		color: theme.palette.text.primary,
 		flexGrow: 1,
   },
-  button: {
+  buttonIcon: {
 		marginLeft: theme.spacing.unit
 	},
 	test: {
@@ -49,24 +49,29 @@ class OutcomeAreas extends Component {
 		return (
 			<div className={classes.root}>
 				<Grid container spacing={16}>
-				{outcomes.map((item, index) => (
-					<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-						<Card>
-							<CardContent>
-								<Grid container direction="row" justify="center" alignItems="center">
-									<Grid item className={classes.grow}>
-										<Typography variant="body1" className={classes.heading}>
-											{item.title}
-										</Typography>
-									</Grid>
-									<Grid item>
-										<AddIndicator item={item} />
-									</Grid>
-								</Grid>
-							</CardContent>
-						</Card>
+					<Grid item xs={12}>
+						<Grid container spacing={16}>
+							<Grid item className={classes.grow} />
+							<Grid item>
+								<AddIndicator classes={classes} />
+							</Grid>
+						</Grid>
 					</Grid>
-				))}
+					{outcomes.map((item, index) => (
+						<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+							<Card>
+								<CardContent>
+									<Grid container direction="row" justify="center" alignItems="center">
+										<Grid item className={classes.grow}>
+											<Typography variant="body1" className={classes.heading}>
+												{item.title}
+											</Typography>
+										</Grid>
+									</Grid>
+								</CardContent>
+							</Card>
+						</Grid>
+					))}
 				</Grid>
 			</div>
 		);

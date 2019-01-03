@@ -2,11 +2,11 @@ import React, { Component, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 // import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
@@ -19,7 +19,7 @@ class AddIndicator extends Component {
 			copy: '',
 			notes: '',
 		},
-		id: ''
+		id: this.props.item._id
 	}	
 
 	handleOpen = event => {
@@ -40,24 +40,16 @@ class AddIndicator extends Component {
 		})
 	}
 
-	handleIdChange = event => {
-		event.preventDefault();
-		this.setState({
-			...this.state,
-			[event.target.name]: event.target.value
-		})
-	}
-
 	addIndicator = event => {
 		event.preventDefault();
-		console.log(`in addIndicator`, this.state);
+		console.log(this.state);
 		const { newIndicator, id } = this.state;
 		this.props.dispatch({
 			type: 'POST_INDICATOR',
 			payload: newIndicator,
 			id: id,
 		});
-		this.handleClose();
+		this.handleClose(event);
 	}
 
 	updateIndicator = event => {
@@ -67,19 +59,17 @@ class AddIndicator extends Component {
 	handleClose = event => {
 		this.setState({
 			open: false,
-			id: '',
 		})
 	}
 
   render() {
 		const { open, title, copy, notes, id } = this.state;
-		const { classes, outcomes } = this.props;
+		const { className, outcomes } = this.props;
     return (
 			<Fragment>
-				<Button aria-label="Add indicator" variant="outlined" onClick={this.handleOpen}>
-					Indicator
-					<FontAwesomeIcon icon="plus" className={classes.buttonIcon}/>
-				</Button>
+				<Fab aria-label="Add indicator" color="primary" size="small" onClick={this.handleOpen} className={className}>
+					<FontAwesomeIcon icon="plus" />
+				</Fab>
 				<form id="indicator-form" onSubmit={this.addIndicator}>
 					<Dialog
 						open={open}
@@ -89,19 +79,7 @@ class AddIndicator extends Component {
 						<DialogTitle id="form-dialog-title">Add Indicator</DialogTitle>
 						<DialogContent>
 							<TextField
-								label="Outcome area"
-								name="id"
-								select
-								margin="dense"
-								fullWidth
-								value={id}
-								onChange={this.handleIdChange}
-							>
-								{outcomes.map((item) => (
-									<MenuItem key={item._id} value={item._id}>{item.title}</MenuItem>
-								))}
-							</TextField>
-							<TextField
+								autoFocus
 								label="Indicator title"
 								name="title"
 								type="text"
@@ -144,8 +122,8 @@ class AddIndicator extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-	outcomes: state.outcomes
-});
+const mapStateToProps = state = {
+	outcomes: state.outcomes,
+}
 
 export default connect(mapStateToProps)(AddIndicator);
