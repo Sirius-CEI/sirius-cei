@@ -1,114 +1,73 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import  { Card, CardHeader, CardContent } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import AddIndicator from './AddIndicator';
 
 const styles = theme => ({
 	root: {
 		flexGrow: 1,
 	},
+	grow: {
+		flexGrow: 1,
+	},
+  heading: {
+		color: theme.palette.text.primary,
+		flexGrow: 1,
+  },
+  button: {
+		marginLeft: theme.spacing.unit
+	},
+	test: {
+		border: 'solid tomato 1px',
+		alignContent: 'center'
+	}
 });
 
 class OutcomeAreas extends Component {
 
 	state = {
-		outcomeAreaList: [],
-		outcomeArea: {
-			title: '',
-			copy: '',
-			notes: '',
-		}
-	}
-	
-	// handle open of drop down menu
-	handleOpen = () => {
-		this.setState({ open: true });
+		expanded: ''
+	}	
+
+  handleExpand = panel => (event, expanded) => {
+    this.setState({
+      expanded: expanded ? panel : false,
+    });
 	};
-	
-	// handle close of drop down menu
-	handleClose = () => {
-		this.setState({ open: false });
-	};
-
-	getOutcomeAreas = () => {
-		console.log(`in getOutcomeAreas`);
-		this.props.dispatch({
-			type: 'GET_OUTCOME_AREAS'
-		})
-	}
-
-	// handle changes in the form inputs
-	handleChange = event => {
-		this.setState({
-			outcomeArea: {
-				...this.state.outcomeArea,
-				[event.target.name]: event.target.value,
-			}
-		});
-	}
-	
-	handleSubmit = event => {
-		event.preventDefault();
-		const { outcomeArea } = this.state
-		this.props.dispatch({
-			type: 'POST_OUTCOME_AREA',
-			payload: outcomeArea
-		})
-		this.setState({
-			outcomeArea: {
-				title: '',
-				copy: '',
-				notes: '',
-			}
-		})
-	}
-
-	componentDidMount() {
-		// this.getOutcomeAreas();
-	}
 
   render() {
 		const { classes, outcomes } = this.props;
-		const { outcomeArea } = this.state;
-		console.log(this.props);
+		const { expanded } = this.state;
 		return (
-			<div className={classes.root} id="root">
-				{outcomes ? 
-				<List>
-					{outcomes.map((outcome, index) => (
-						<ListItem key={index}>
-							<ListItemText primary={outcome.title} />
-						</ListItem>
-					))}
-				</List> : null}
-				<form className={classes.form} id="form" onSubmit={this.handleSubmit}>
-						<TextField
-							label="Title"
-							type="text"
-							name="title"
-							fullWidth
-							value={outcomeArea.title}
-							onChange={this.handleChange}
-						/>
-						<TextField
-							label="Copy text"
-							type="text"
-							name="copy"
-							fullWidth
-							value={outcomeArea.copy}
-							onChange={this.handleChange}
-						/>
-					<Button	type="submit" variant="outlined" color="primary">Submit</Button>
-				</form>
+			<div className={classes.root}>
+				<Grid container spacing={16}>
+				{outcomes.map((item, index) => (
+					<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+						<Card>
+							<CardContent>
+								<Grid container direction="row" justify="center" alignItems="center">
+									<Grid item className={classes.grow}>
+										<Typography variant="body1" className={classes.heading}>
+											{item.title}
+										</Typography>
+									</Grid>
+									<Grid item>
+										<AddIndicator item={item} />
+									</Grid>
+								</Grid>
+							</CardContent>
+						</Card>
+					</Grid>
+				))}
+				</Grid>
 			</div>
 		);
   }

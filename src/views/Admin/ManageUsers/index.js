@@ -45,7 +45,7 @@ class ManageUsers extends React.Component {
       <div className={classes.root}>
 				{manageUsers.map((item, index) => (
 					<ExpansionPanel key={index} expanded={expanded === index} onChange={this.handleChange(index)}>
-						<ExpansionPanelSummary className={classes.summary} expandIcon={<FontAwesomeIcon icon='chevron-down' size='sm' />}>
+						<ExpansionPanelSummary expandIcon={<FontAwesomeIcon icon='chevron-down' size='xs' />}>
 							<Grid container spacing={8} direction="row" justify="flex-start" alignItems="center">
 								<Grid item>
 									<Typography variant="body1" className={classes.secondaryHeading}>

@@ -1,6 +1,11 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
+	props: {
+		MuiInputLabel: {
+			shrink: true,
+		}
+	},
   palette: {
     primary: {
 			main: '#008ab7'
@@ -22,8 +27,7 @@ const theme = createMuiTheme({
 			textTransform: 'uppercase',
 		},
 		h5: {
-			color: "#fff",
-			fontWeight: 500,
+			fontWeight: 600,
 			fontSize: '1.5rem',
 			letterSpacing: '0em',
 			lineHeight: 1,

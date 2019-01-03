@@ -40,6 +40,7 @@ const outcomeAreaSchema = new Schema({
 	order: { type: Number, default: 100 },
 	notes: String,
 	indicators: [indicatorSchema],
-});
+	},
+	{ timestamps: true });
 
 module.exports = mongoose.model('OutcomeAreas', outcomeAreaSchema);

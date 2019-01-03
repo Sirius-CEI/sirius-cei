@@ -25,6 +25,9 @@ const styles = theme => ({
 		height: 180,
 		width: 280,
 	},
+	text: {
+		color: 'white'
+	},
 });
 
 class FooterNav extends Component {
@@ -46,7 +49,7 @@ class FooterNav extends Component {
 										className={classes.card}
 									>
 										<div />
-										<Typography variant="h5" align="center">{outcome.title}</Typography>
+										<Typography variant="h5" align="center" color="inherit" className={classes.text}>{outcome.title}</Typography>
 										<Chip
 											clickable
 											color="default"
