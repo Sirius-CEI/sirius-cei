@@ -1,8 +1,8 @@
 import React from 'react';
-import OutcomeAreaExtension from '../views/Admin/OutcomeAreas';
-import CsvExtension from '../views/Admin/Csv/CsvExtension';
-import CardExtension from '../views/Admin/Cards';
-import ManageUsers from '../views/Admin/ManageUsers/index';
+import OutcomeAreaExtension from './OutcomeAreas/index';
+import CsvExtension from './Csv/CsvExtension';
+import CardExtension from './Cards';
+import ManageUsers from './ManageUsers/index';
 
 const adminPages = [
 	{ title: 'Edit Outcome Areas and Indicators', tabText: 'Indicators', icon: 'chart-area', path: '/indicators', component: <OutcomeAreaExtension /> },

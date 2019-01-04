@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import adminPages from '../../constants/adminPages'
+import adminPages from './data'
 
 const styles = theme => ({
   root: {
@@ -17,11 +17,6 @@ const styles = theme => ({
 		background: theme.palette.secondary.light,
 		padding: theme.spacing.unit * 2
 	},
-	fab: {
-    position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 2,
-  },
 });
 
 class AdminHome extends Component {

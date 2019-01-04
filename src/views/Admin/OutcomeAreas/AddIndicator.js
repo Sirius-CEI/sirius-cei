@@ -1,14 +1,28 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import MenuItem from '@material-ui/core/MenuItem';
+
+const styles = theme => ({
+	root: {
+		flexGrow: 1,
+	},
+	rightIcon: {
+		marginLeft: theme.spacing.unit
+	},
+	test: {
+		border: 'solid tomato 1px'
+	}
+});
 
 class AddIndicator extends Component {
 
@@ -74,10 +88,11 @@ class AddIndicator extends Component {
 		const { open, title, copy, notes, id } = this.state;
 		const { classes, outcomes } = this.props;
     return (
-			<Fragment>
-				<Fab className={classes.fab} color="primary" onClick={this.handleOpen}>
-					<FontAwesomeIcon icon="chart-area" size="lg" />
-				</Fab>
+			<div>
+				<Button variant="outlined" onClick={this.handleOpen}>
+					Add Indicator
+					<FontAwesomeIcon icon="plus" className={classes.rightIcon} />
+				</Button>
 				<form id="indicator-form" onSubmit={this.addIndicator}>
 					<Dialog
 						open={open}
@@ -137,13 +152,20 @@ class AddIndicator extends Component {
 						</DialogActions>
 					</Dialog>
 				</form>
-			</Fragment>
+			</div>
     );
   }
 }
+
+AddIndicator.propTypes = {
+	classes: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = state => ({
 	outcomes: state.outcomes
 });
 
-export default connect(mapStateToProps)(AddIndicator);
+export default compose(
+	connect(mapStateToProps),
+	withStyles(styles)
+)(AddIndicator);
