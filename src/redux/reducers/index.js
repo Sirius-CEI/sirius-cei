@@ -4,6 +4,7 @@ import user from './userReducer';
 import users from './userListReducer';
 import cards from './cardReducer';
 import outcomes from './outcomeAreaReducer';
+import indicator from './indicatorReducer';
 import appState from './appReducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
 	appState,
 	cards,
 	errors, // error messages
+	indicator,
 	outcomes, // outcome area data
 	user, // will have an id and username if someone is logged in
 	users,

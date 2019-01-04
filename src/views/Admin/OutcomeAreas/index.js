@@ -8,8 +8,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import  { Card, CardHeader, CardContent } from '@material-ui/core';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import AddIndicator from './AddIndicator';
+import EditIndicator from './EditIndicator';
 
 const styles = theme => ({
 	root: {
@@ -18,37 +20,65 @@ const styles = theme => ({
 	grow: {
 		flexGrow: 1,
 	},
-  heading: {
-		color: theme.palette.text.primary,
-		flexGrow: 1,
-  },
   buttonIcon: {
 		marginLeft: theme.spacing.unit
 	},
 	test: {
 		border: 'solid tomato 1px',
-		alignContent: 'center'
-	}
+	},
 });
 
 class OutcomeAreas extends Component {
-
 	state = {
-		expanded: ''
-	}	
+		selectedIndicator: ''
+	}
 
-  handleExpand = panel => (event, expanded) => {
-    this.setState({
-      expanded: expanded ? panel : false,
-    });
-	};
+	handleSelectIndicator = indicator => {
+		this.setState({
+			selectedIndicator: indicator._id,
+		});
+		this.props.dispatch({
+			type: 'SET_INDICATOR',
+			payload: indicator
+		})
+	}
 
   render() {
 		const { classes, outcomes } = this.props;
-		const { expanded } = this.state;
+		const { selectedIndicator } = this.state;
 		return (
 			<div className={classes.root}>
-				<Grid container spacing={16}>
+				<Grid container spacing={16} direction="row" justify="center" alignItems="stretch">
+					<Grid item xs={12}>
+						<EditIndicator />
+					</Grid>
+					{outcomes.map((item, index) => (
+						<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+							<Card>
+								<CardHeader
+									title={item.title}
+									titleTypographyProps={{
+										variant: 'h6',
+										color: 'primary'
+									}}
+								/>
+								<CardContent>
+									<List>
+										{item.indicators.map((indicator) => (
+											<ListItem
+												button
+												key={indicator._id}
+												selected={selectedIndicator === indicator._id}
+												onClick={()=>this.handleSelectIndicator(indicator)}
+											>
+												<ListItemText primary={indicator.title} />
+											</ListItem>
+										))}
+									</List>
+								</CardContent>
+							</Card>
+						</Grid>
+					))}
 					<Grid item xs={12}>
 						<Grid container spacing={16}>
 							<Grid item className={classes.grow} />
@@ -57,21 +87,6 @@ class OutcomeAreas extends Component {
 							</Grid>
 						</Grid>
 					</Grid>
-					{outcomes.map((item, index) => (
-						<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-							<Card>
-								<CardContent>
-									<Grid container direction="row" justify="center" alignItems="center">
-										<Grid item className={classes.grow}>
-											<Typography variant="body1" className={classes.heading}>
-												{item.title}
-											</Typography>
-										</Grid>
-									</Grid>
-								</CardContent>
-							</Card>
-						</Grid>
-					))}
 				</Grid>
 			</div>
 		);
@@ -83,7 +98,8 @@ OutcomeAreas.propTypes = {
 };
 
 const mapReduxStateToProps = reduxState => ({
-  outcomes: reduxState.outcomes
+	outcomes: reduxState.outcomes,
+	indicator: reduxState.indicator
 });
 
 export default compose(

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,6 +12,18 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+
+const styles = theme => ({
+  root: {
+		flexGrow: 1,
+	},
+	grow: {
+		flexGrow: 1,
+	},
+	rightIcon: {
+		marginLeft: theme.spacing.unit,
+	},
+});
 
 class LoginButton extends Component {
 	state = {
@@ -58,11 +74,14 @@ class LoginButton extends Component {
 	}
 
   render() {
+		const { classes } = this.props;
 		const { open } = this.state;
-		console.log(this.props);
     return (
 			<div>
-				<Button variant="outlined" onClick={this.handleOpen}>Admin Login</Button>
+				<Button variant="outlined" onClick={this.handleOpen}>
+					Admin Login
+					<FontAwesomeIcon icon="sign-in-alt" className={classes.rightIcon} />
+				</Button>
 				<form id="login-form" onSubmit={this.login}>
 					<Dialog
 						open={open}
@@ -107,6 +126,12 @@ class LoginButton extends Component {
   }
 }
 
-const mapStateToProps = state => ({ state });
+LoginButton.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-export default withRouter(connect(mapStateToProps)(LoginButton));
+export default compose(
+	withRouter,
+	connect(),
+	withStyles(styles),
+)(LoginButton)

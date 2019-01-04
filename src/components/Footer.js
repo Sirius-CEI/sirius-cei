@@ -29,8 +29,11 @@ const styles = theme => ({
 	},
 	toolbar: {
 		margin: 0,
-		padding: theme.spacing.unit,
+		padding: theme.spacing.unit * 2,
 	},
+	leftIcon: {
+		marginRight: theme.spacing.unit,
+	}
 });
 
 class Footer extends Component {
@@ -40,21 +43,21 @@ class Footer extends Component {
 			<footer className={classes.root}>
 				<AppBar position="static" className={classes.bottomNav}>
 					<Toolbar className={classes.toolbar}>
-						<Grid container spacing={8} justify="center" alignItems="center">
+						<Grid container spacing={16} justify="center" alignItems="center">
 							<Grid item>
 								<Typography variant="body1" align="center" className={classes.bottomNavText}>
-									<FontAwesomeIcon icon="phone" />{' '}(612) 351-8200
+									<FontAwesomeIcon icon="phone" className={classes.leftIcon} />(612) 351-8200
 								</Typography>
 							</Grid>
 							<Grid item>
 								<Typography variant="body1" align="center" className={classes.bottomNavText}>
-									<FontAwesomeIcon icon="at" />{' '}info@CenterForEconomicInclusion.org
+									<FontAwesomeIcon icon="at" className={classes.leftIcon} />info@CenterForEconomicInclusion.org
 								</Typography>
 							</Grid>
 							<Grid item xs={12}>
-								<Grid container direction="row" justify="flex-end" alignItems="center">
+								<Grid container spacing={16} direction="row" justify="flex-end" alignItems="center">
 									<Grid item>
-										<LoginButton {...this.props}/>
+										<LoginButton />
 									</Grid>
 								</Grid>
 							</Grid>

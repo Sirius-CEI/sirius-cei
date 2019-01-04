@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux';
 import AdminHome from '../views/Admin';
-import LoginModal from '../components/LoginModal';
+import LoginModal from '../old/LoginModal';
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
