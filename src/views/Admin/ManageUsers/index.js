@@ -7,7 +7,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import manageUsers from './manageUsers';
+import manageUsers from './data';
 
 const styles = theme => ({
   root: {
