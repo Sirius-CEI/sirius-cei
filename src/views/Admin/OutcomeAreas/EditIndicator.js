@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import AddIndicator from './AddIndicator';
 
 const styles = theme => ({
 	root: {
@@ -47,14 +48,17 @@ const styles = theme => ({
 	},
 	test: {
 		border: 'solid tomato 1px',
-	}
+	},
+	fab: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 6,
+    right: theme.spacing.unit * 4,
+  },
 });
 
 class EditIndicator extends Component {
 	state = {
-		title: this.props.indicator.title,
-		copy: this.props.indicator.copy,
-		notes: this.props.indicator.notes,
+		...this.props.indicator
 	}
 
 	handleChange = event => {
@@ -87,11 +91,12 @@ class EditIndicator extends Component {
 										<Grid item>
 											<Typography variant="body1">Graph Copy</Typography>
 										</Grid>
-									</Grid>	
-								</Grid>								
+									</Grid>
+								</Grid>							
 							</Grid>
 						</Grid>
 					</Grid>
+					<AddIndicator classes={classes} />
 				</Paper>
 			</form>
 		);

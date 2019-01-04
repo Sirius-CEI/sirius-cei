@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import  { Card, CardHeader, CardContent } from '@material-ui/core';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import AddIndicator from './AddIndicator';
 import EditIndicator from './EditIndicator';
 
 const styles = theme => ({
@@ -47,7 +46,7 @@ class OutcomeAreas extends Component {
 		const { classes, outcomes } = this.props;
 		const { selectedIndicator } = this.state;
 		return (
-			<div className={classes.root}>
+			<Fragment>
 				<Grid container spacing={16} direction="row" justify="center" alignItems="stretch">
 					<Grid item xs={12}>
 						<EditIndicator />
@@ -79,16 +78,8 @@ class OutcomeAreas extends Component {
 							</Card>
 						</Grid>
 					))}
-					<Grid item xs={12}>
-						<Grid container spacing={16}>
-							<Grid item className={classes.grow} />
-							<Grid item>
-								<AddIndicator classes={classes} />
-							</Grid>
-						</Grid>
-					</Grid>
 				</Grid>
-			</div>
+			</Fragment>
 		);
   }
 }

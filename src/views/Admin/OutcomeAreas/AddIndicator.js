@@ -2,13 +2,13 @@ import React, { Component, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
-// import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import MenuItem from '@material-ui/core/MenuItem';
 
 class AddIndicator extends Component {
 
@@ -50,7 +50,6 @@ class AddIndicator extends Component {
 
 	addIndicator = event => {
 		event.preventDefault();
-		console.log(`in addIndicator`, this.state);
 		const { newIndicator, id } = this.state;
 		this.props.dispatch({
 			type: 'POST_INDICATOR',
@@ -76,10 +75,9 @@ class AddIndicator extends Component {
 		const { classes, outcomes } = this.props;
     return (
 			<Fragment>
-				<Button aria-label="Add indicator" variant="outlined" onClick={this.handleOpen}>
-					Indicator
-					<FontAwesomeIcon icon="plus" className={classes.buttonIcon}/>
-				</Button>
+				<Fab className={classes.fab} color="primary" onClick={this.handleOpen}>
+					<FontAwesomeIcon icon="chart-area" size="lg" />
+				</Fab>
 				<form id="indicator-form" onSubmit={this.addIndicator}>
 					<Dialog
 						open={open}

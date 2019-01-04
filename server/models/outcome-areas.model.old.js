@@ -14,7 +14,7 @@ const chartSchema = new Schema({
 	},
 	{ timestamps: true }
 );
-const Chart = mongoose.model('Charts', chartSchema)
+const Chart = mongoose.model('Chart', chartSchema)
 
 const indicatorSchema = new Schema({
 	title: { type: String, trim: true, required: true },
@@ -22,11 +22,11 @@ const indicatorSchema = new Schema({
 	active: { type: Boolean, default: false },
 	order: { type: Number, default: 100 },
 	notes: String,
-	charts: [{ type: Schema.Types.ObjectId, ref: 'Charts'}]
+	charts: [{ type: Schema.Types.ObjectId, ref: 'Chart'}]
 	},
 	{ timestamps: true }
 );
-const Indicator = mongoose.model('Indicators', indicatorSchema)
+const Indicator = mongoose.model('Indicator', indicatorSchema)
 
 const outcomeAreaSchema = new Schema({
 	title: { type: String, trim: true, required: true, index: {
@@ -49,6 +49,6 @@ const outcomeAreaSchema = new Schema({
 	},
 	{ timestamps: true }
 );
-const OutcomeArea = mongoose.model('OutcomeAreas', outcomeAreaSchema);
+const OutcomeArea = mongoose.model('OutcomeArea', outcomeAreaSchema);
 
-module.exports = [Chart, Indicator, OutcomeArea]
+module.exports = { Chart, Indicator, OutcomeArea }

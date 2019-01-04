@@ -16,7 +16,12 @@ const styles = theme => ({
 	container: {
 		background: theme.palette.secondary.light,
 		padding: theme.spacing.unit * 2
-	}
+	},
+	fab: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 2,
+  },
 });
 
 class AdminHome extends Component {
