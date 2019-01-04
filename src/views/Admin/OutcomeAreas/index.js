@@ -1,16 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 import  { Card, CardHeader, CardContent } from '@material-ui/core';
 import { List, ListItem, ListItemText } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
 import EditIndicator from './EditIndicator';
+import AddIndicator from './AddIndicator';
+
 
 const styles = theme => ({
 	root: {
@@ -21,6 +19,11 @@ const styles = theme => ({
 	},
   buttonIcon: {
 		marginLeft: theme.spacing.unit
+	},
+	fab: {
+		position: 'absolute',
+		bottom: theme.spacing.unit * 2,
+		right: theme.spacing.unit * 2,
 	},
 	test: {
 		border: 'solid tomato 1px',
@@ -78,6 +81,7 @@ class OutcomeAreas extends Component {
 							</Card>
 						</Grid>
 					))}
+				<AddIndicator classes={classes} />
 				</Grid>
 			</Fragment>
 		);
