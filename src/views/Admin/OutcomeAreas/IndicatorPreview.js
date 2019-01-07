@@ -42,45 +42,50 @@ const styles = theme => ({
 
 const PreviewIndicator = ({ classes, indicator, charts }) => (
 	<Paper>
-		<Grid
-			container
-			direction="row"
-			justify="space-between"
-			alignItems="center"
-			wrap="nowrap"
-			className={classes.padded}
-		>
-			<Grid item>
-				<Typography variant="h4" color="secondary">{indicator.title}</Typography>
+		<div className={classes.padded}>
+			<Grid
+				container
+				direction="row"
+				justify="space-between"
+				alignItems="center"
+				wrap="nowrap"
+			>
+				<Grid item>
+					<Typography variant="h4" color="secondary">{indicator.title}</Typography>
+				</Grid>
+				<Grid item>
+					<EditIndicator />
+				</Grid>
 			</Grid>
-			<Grid item>
-				<EditIndicator />
-			</Grid>
-		</Grid>
+		</div>
 		<Divider />
-		<Grid container className={classes.padded}>
-			<Grid item xs={12}>
-				<Typography
-					variant="body1"
-					className={classnames(classes.grey, classes.padded)}
-				>
-					{indicator.copy}
-				</Typography>
+		<div className={classes.padded}>
+			<Grid container>
+				<Grid item xs={12}>
+					<Typography
+						variant="body1"
+						className={classes.grey}
+					>
+						{indicator.copy}
+					</Typography>
+				</Grid>
 			</Grid>
-		</Grid>
+			</div>
 		<Divider />
-		<Grid
-			container
-			direction="row"
-			justify="flex-end"
-			alignItems="stretch"
-			className={classes.test}
-		>
-			<IndicatorPreviewCharts />
-			<Grid item className={classnames(classes.grow, classes.button)}>
-				<AddChart />
+		<div className={classes.padded}>
+			<Grid
+				container
+				spacing={16}
+				direction="row"
+				justify="flex-end"
+				alignItems="stretch"
+			>
+				<IndicatorPreviewCharts />
+				<Grid item className={classnames(classes.grow, classes.button)}>
+					<AddChart />
+				</Grid>
 			</Grid>
-		</Grid>
+		</div>
 	</Paper>
 )
 

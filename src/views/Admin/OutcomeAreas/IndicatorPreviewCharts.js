@@ -27,15 +27,13 @@ const styles = theme => ({
 	},
 	test: {
 		border: 'solid tomato 1px',
-		height: '100%',
-		padding: 8,
 	}
 })
 
 const IndicatorPreviewCharts = ({ classes, charts }) => (
 	<Fragment>
 		{charts.map((chart) => (
-			<Grid item xs={12} md={6} className={classes.test} key={chart._id}>
+			<Grid item xs={12} md={6} key={chart._id}>
 				<Paper elevation={2}>
 						<Grid container direction="row" alignItems="stretch">
 							<Grid item xs={12} md={4} className={classnames(classes.grey)} />
