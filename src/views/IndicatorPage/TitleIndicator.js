@@ -9,6 +9,8 @@ import Card from '@material-ui/core/Card';
 const styles = theme => ({
     root: {
       textAlign: 'center',
+      maxWidth: '100%',
+      height: 'auto',
     },
     title: {
       textAlign: 'center',
@@ -27,6 +29,9 @@ const styles = theme => ({
     card: {
       height: 350,
       position: 'relative',
+      background: 'transparent',
+      boxShadow: 'none',
+      borderRadius: '0',
     },
     media: {
       height: '100%',
