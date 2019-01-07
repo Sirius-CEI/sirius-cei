@@ -14,6 +14,11 @@ const zoomLevel = 10;
 
 class MapIndicator extends Component {
 
+    state = {
+        grades: [0, 10000, 20000, 50000, 100000, 200000, 500000, 1000000],
+        labels: []
+    }
+
 	color = (d) => {
 		return d > 1000000 ? '#800026' :
 		d > 500000  ? '#BD0026' :
