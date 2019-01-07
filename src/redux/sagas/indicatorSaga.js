@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, call, takeEvery } from 'redux-saga/effects';
 
-function* getindicators() {
+function* getIndicators() {
     try {
       const response = yield axios.get('/indicators');
       console.log('get indicatorSaga response', response.data);
@@ -12,7 +12,7 @@ function* getindicators() {
 }
 
 function* indicatorSaga() {
-  yield takeEvery('GET_INDICATORS', getindicators);
+  yield takeEvery('GET_INDICATORS', getIndicators);
 }
 
 export default indicatorSaga;
