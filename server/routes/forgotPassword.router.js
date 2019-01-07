@@ -21,26 +21,31 @@ router.get('/', (req, res) => {
         })
 });
 
-  router.post('/', (req, res, next) => {
+  router.put('/', (req, res, next) => {
     console.log('in router.post forgot password', req.body.username);
     if (req.body.username === '') {
       res.json('email required');
     }
+    const token = crypto.randomBytes(20).toString('hex');
     console.log(req.body.username);
-    Person.findOne(
+    Person.findOneAndUpdate(
       {
         username: req.body.username,
       },
-    ).then(users => {
-      if (users === null) {
+      { $set: { resetPasswordToken: token, resetPasswordExpires: Date.now() + 3600000 } },
+      (error, doc) => ( error ? res.json({ success: false, error: error.message }) : res.json({ success: true, doc: doc }))
+    ).then(user => {
+      console.log('users here ', user);
+      if (user === null) {
         console.log('email not in database');
         res.json('email not in db');
       } else {
         const token = crypto.randomBytes(20).toString('hex');
-        Person.update({
-          resetPasswordToken: token,
-          resetPasswordExpires: Date.now() + 3600000,
-        });
+        user.update(
+          { resetPasswordToken : token },
+          { resetPasswordExpires : Date.now() + 3600000 },
+        );
+        console.log('post users update', user);
         const transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
@@ -58,7 +63,7 @@ router.get('/', (req, res) => {
             have requested the reset of the password for your account.\n\n` +
             `Please click on the following link, or paste this into 
             your browser to complete the process within one hour of receiving it:\n\n` +
-            `http://localhost:3000/reset/${token}\n\n` +
+            `http://localhost:3000/#/reset/${token}/\n\n` +
             `If you did not request this, please ignore this email and 
             your password will remain unchanged.\n`,
         };

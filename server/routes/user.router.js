@@ -3,6 +3,8 @@ const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 const encryptLib = require('../auth/encryption');
 const Person = require('../models/user');
 const userStrategy = require('../strategies/user.strategy');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 
 const router = express.Router();
 
@@ -39,5 +41,48 @@ router.post('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
 });
+
+router.put('/password-reset', (req, res) => {
+  const token = crypto.randomBytes(20).toString('hex');
+  Person.findOneAndUpdate({ username: req.body.username },
+    { $set: { resetPasswordToken: token, resetPasswordExpires: Date.now() + 3600000 } },
+    { new: true },
+    (error, doc) => ( error ? res.json({ success: false, error: error.message }) : res.json({ success: true, doc: doc }))
+  )
+  .then((doc) => {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_ADDRESS,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: `ceimailtestmn@gmail.com`,
+      to: `${req.body.username}`,
+      subject: `Link To Reset Password`,
+      text:
+        `You are receiving this e-mail because you (or someone else) 
+        has requested a password reset for your account.\n\n` +
+        `Please click on the following link or paste it into 
+        your browser to complete the process within one hour of receiving this message:\n\n` +
+        `http://localhost:3000/#/reset/${token}/\n\n` +
+        `If you did not request a password reset, please ignore this e-mail and 
+        your password will remain unchanged.\n`,
+    };
+
+    console.log('sending mail');
+
+    transporter.sendMail(mailOptions, (err, response) => {
+      if (err) {
+        console.error('there was an error: ', err);
+      } else {
+        console.log('here is the res: ', response);
+        res.status(200).json('recovery email sent');
+      }
+    });
+  })
+})
 
 module.exports = router;

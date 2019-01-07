@@ -1,23 +1,25 @@
 import axios from 'axios';
-import { put, call, takeEvery } from 'redux-saga/effects';
+import { call, takeEvery } from 'redux-saga/effects';
   
-function* editPassword(action) {
-console.log('Edit password saga', action.payload);
-try {
-    yield call(axios.put, '/password', action.payload);
-    alert('Successfully Changed Password')
-}
-    catch (error) {
-        console.log('error with Password PUT request', error);
-        alert('Error Changing Password')
-    }
-}
+// function* editPassword(action) {
+// console.log('Edit password saga', action.payload);
+// try {
+//     yield call(axios.put, '/password', action.payload);
+//     alert('Successfully Changed Password')
+// }
+//     catch (error) {
+//         console.log('error with Password PUT request', error);
+//         alert('Error Changing Password')
+//     }
+// }
 
 function* forgotPassword(action) {
     console.log('forgot password', action.payload);
-    const userId = action.payload;
+    const username = action.payload;
     try{
-        yield call(axios.post, `/forgot-password`, userId);
+        const response = yield call(axios.put, `/api/user/password-reset`, username );
+        console.log(response.data);
+        
     }
     catch (error) {
         console.log('error with forgot password request', error);
@@ -25,7 +27,7 @@ function* forgotPassword(action) {
 }
 
 function* passwordSaga() {
-  yield takeEvery('EDIT_PASSWORD', editPassword);
+//   yield takeEvery('EDIT_PASSWORD', editPassword);
   yield takeEvery('FORGOT_PASSWORD', forgotPassword)
 }
 
