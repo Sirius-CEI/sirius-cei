@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const OutcomeArea = require('./outcome-areas.model');
 
-chartSchema = new Schema({
+const chartSchema = new Schema({
 	title: { type: String, trim: true, required: true, },
 	description: { type: String, trim: true },
 	copy: { type: String, trim: true },
@@ -11,7 +12,9 @@ chartSchema = new Schema({
 	query: { type: String, trim: true },
 	citation: { type: String, trim: true },
 	notes: String,
-},
-{ timestamps: true });
+	indicator: { type: Schema.Types.ObjectId, ref: 'OutcomeArea.indicators'}
+	},
+	{ timestamps: true }
+);
 
-module.exports = mongoose.model('Charts', chartSchema);
+module.exports = mongoose.model('Chart', chartSchema);

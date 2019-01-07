@@ -5,7 +5,7 @@ function* getOutcomeAreas() {
     try {
 			yield put({ type: 'FETCH_DATA_BEGIN'})
       let response = yield axios.get('/api/outcome-areas');
-      // console.log('getOutcomeAreas response', response.data);
+			// console.log('getOutcomeAreas response', response.data);
 			yield put({ type: 'SET_OUTCOME_AREAS', payload: response.data });
 			yield put({ type: 'FETCH_DATA_SUCCESS' })
     } catch (error) {
@@ -30,7 +30,7 @@ function* postOutcomeArea(action) {
 function* postIndicator(action) {
 	try {
 		let response = yield axios.post(`/api/outcome-areas/${action.id}`, { payload: action.payload })
-		console.log(response.data);
+		// console.log(response.data);
 		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
 		yield put({ type: 'GET_OUTCOME_AREAS' });
 	} catch (error) {

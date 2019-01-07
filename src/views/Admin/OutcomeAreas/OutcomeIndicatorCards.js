@@ -4,8 +4,10 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 import  { Card, CardHeader, CardContent } from '@material-ui/core';
-import { List, ListItem, ListItemText } from '@material-ui/core';
+
+import OutcomeIndicatorList from './OutcomeIndicatorList';
 
 const styles = theme => ({
 	root: {
@@ -17,6 +19,10 @@ const styles = theme => ({
 	card: {
 		height: '100%',
 	},
+	content: {
+		paddingTop: 0,
+		paddingBottom: 0,
+	},
 	test: {
 		border: 'solid tomato 1px',
 	},
@@ -27,13 +33,17 @@ class OutcomeIndicatorCards extends Component {
 		selectedIndicator: ''
 	}
 
-	handleSelectIndicator = indicator => {
+	handleSelectIndicator = (indicator, outcomeId) => {
 		this.setState({
 			selectedIndicator: indicator._id,
 		});
 		this.props.dispatch({
 			type: 'SET_INDICATOR',
-			payload: indicator
+			payload: { outcomeId: outcomeId, ...indicator }
+		})
+		this.props.dispatch({
+			type: 'GET_CHARTS',
+			indicator: indicator._id
 		})
 	}
 
@@ -43,8 +53,8 @@ class OutcomeIndicatorCards extends Component {
 		return (
 			<Fragment>
 				<Grid container spacing={16} direction="row" justify="center" alignItems="stretch">
-					{outcomes.map((item, index) => (
-						<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+					{outcomes.map((item) => (
+						<Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
 							<Card className={classes.card}>
 								<CardHeader
 									title={item.title}
@@ -53,19 +63,14 @@ class OutcomeIndicatorCards extends Component {
 										color: 'primary'
 									}}
 								/>
-								<CardContent>
-									<List>
-										{item.indicators.map((indicator) => (
-											<ListItem
-												button
-												key={indicator._id}
-												selected={selectedIndicator === indicator._id}
-												onClick={()=>this.handleSelectIndicator(indicator)}
-											>
-												<ListItemText primary={indicator.title} />
-											</ListItem>
-										))}
-									</List>
+								<Divider />
+								<CardContent className={classes.content}>
+									<OutcomeIndicatorList
+										classes={classes}
+										outcome={item}
+										selectedIndicator={selectedIndicator}
+										handleSelectIndicator={this.handleSelectIndicator}
+									/>
 								</CardContent>
 							</Card>
 						</Grid>

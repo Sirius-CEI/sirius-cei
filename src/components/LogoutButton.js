@@ -19,8 +19,13 @@ const styles = theme => ({
 	},
 });
 
-const LogoutButton = ({ classes, dispatch }) => (
-  <Button onClick={dispatch({ type: 'LOGOUT' })} >
+const logout = (dispatch, history) => {
+	dispatch({type:'LOGOUT'})
+	history.push("/");
+}
+
+const LogoutButton = ({ classes, dispatch, history }) => (
+  <Button variant="outlined" onClick={()=>logout(dispatch, history)} >
     Log Out
 		<FontAwesomeIcon icon="sign-out-alt" className={classes.rightIcon} />
   </Button>
@@ -31,6 +36,7 @@ LogoutButton.propTypes = {
 };
 
 export default compose(
+	withRouter,
 	connect(),
 	withStyles(styles),
 )(LogoutButton)
