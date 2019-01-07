@@ -2,17 +2,41 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Paper, Typography, InputAdornment, IconButton } from '@material-ui/core';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Lock from '@material-ui/icons/Lock';
 
 const styles = theme => ({
   root: {
+    textAlign: 'center',
+    width: '30%',
+    padding: 40,
+    margin: '20px auto',
+    borderRadius: '4px',
   },
+  loginBtn: {
+    marginTop: 30,
+  },
+  textField: {
+    width: '100%',
+    marginTop: 30,
+  },
+  title: {
+    color: '#4c2a74',
+    textTransform: 'uppercase',
+    letterSpacing: '1.53px',
+    lineHeight: '1em',
+    marginBottom: 30,
+  }
 });
 
 class LoginPage extends Component {
   state = {
     username: '',
     password: '',
+    showPassword: false,
   };
 
   login = (event) => {
@@ -37,6 +61,10 @@ class LoginPage extends Component {
     });
   }
 
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -49,40 +77,80 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form className={classes.root} onSubmit={this.login}>
-          <TextField
-            required
-            label="Username"
-            className={classes.username}
-            value={this.state.username}
-            onChange={this.handleInputChangeFor('username')}
-          />
-          <br></br>
-          <TextField
-            required
-            label="Password"
-            className={classes.password}
-            value={this.state.password}
-            onChange={this.handleInputChangeFor('password')}
-          />
-          <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
+        <Paper className={classes.root}>
+          <form onSubmit={this.login}>
+
+            <Typography className={classes.title}>
+              Admin Login
+            </Typography>
+            
+            <TextField
+              required
+              variant="outlined"
+              margin="normal"
+              label="Enter Username"
+              className={classes.textField}
+              value={this.state.username}
+              onChange={this.handleInputChangeFor('username')}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
             />
-          </div>
-        </form>
-        <center>
-          <Button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-          >
-            Register
-          </Button>
-        </center>
+            <br></br>
+            <TextField
+              required
+              variant="outlined"
+              margin="normal"
+              label="Enter Password"
+              className={classes.textField}
+              value={this.state.password}
+              onChange={this.handleInputChangeFor('password')}
+              type={this.state.showPassword ? 'text' : 'password'}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Lock />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="Toggle password visibility"
+                      onClick={this.handleClickShowPassword}
+                    >
+                      {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+              <Button
+                className={classes.loginBtn}
+                type="submit"
+                name="submit"
+                value="Log In"
+                variant="contained"
+                color="primary"
+              >
+                Log In
+              </Button>
+          </form>
+        </Paper>
+
+          <center>
+            <Button
+              className={classes.registerBtn}
+              onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
+            >
+              Register
+            </Button>
+          </center>
+          
       </div>
     );
   }

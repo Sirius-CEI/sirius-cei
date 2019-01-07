@@ -1,10 +1,42 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import propTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { TextField, Button, Paper, Typography, InputAdornment, IconButton } from '@material-ui/core';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Lock from '@material-ui/icons/Lock';
+
+const styles = theme => ({
+  root: {
+    textAlign: 'center',
+    width: '30%',
+    padding: 40,
+    margin: '20px auto',
+    borderRadius: '4px',
+  },
+  loginBtn: {
+    marginTop: 30,
+  },
+  textField: {
+    width: '100%',
+    marginTop: 30,
+  },
+  title: {
+    color: '#4c2a74',
+    textTransform: 'uppercase',
+    letterSpacing: '1.53px',
+    lineHeight: '1em',
+    marginBottom: 30,
+  }
+});
 
 class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
+    showPassword: false,
   };
 
   registerUser = (event) => {
@@ -29,7 +61,12 @@ class RegisterPage extends Component {
     });
   }
 
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
+
   render() {
+    const { classes } = this.props;
     return (
       <div>
         {this.props.errors.registrationMessage && (
@@ -40,59 +77,91 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="register"
-              type="submit"
-              name="submit"
-              value="Register"
+        <Paper className={classes.root}>
+          <form onSubmit={this.registerUser}>
+
+            <Typography className={classes.title}>
+              Register New User
+            </Typography>
+
+            <TextField
+              required
+              variant="outlined"
+              margin="normal"
+              label="Create Username"
+              className={classes.textField}
+              value={this.state.username}
+              onChange={this.handleInputChangeFor('username')}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
             />
-          </div>
-        </form>
+            <br></br>
+            <TextField
+              required
+              variant="outlined"
+              margin="normal"
+              label="Create Password"
+              className={classes.textField}
+              value={this.state.password}
+              onChange={this.handleInputChangeFor('password')}
+              type={this.state.showPassword ? 'text' : 'password'}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Lock />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="Toggle password visibility"
+                      onClick={this.handleClickShowPassword}
+                    >
+                      {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+              <Button
+                className={classes.loginBtn}
+                type="submit"
+                name="submit"
+                value="Register"
+                variant="contained"
+                color="primary"
+              >
+                Register
+              </Button>
+          </form>
+        </Paper>
+
         <center>
-          <button
-            type="button"
-            className="link-button"
+          <Button
+            className={classes.registerBtn}
             onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
           >
             Login
-          </button>
+          </Button>
         </center>
+        
       </div>
     );
   }
 }
 
-// Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(RegisterPage);
+RegisterPage.propTypes = {
+  classes: propTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(RegisterPage));
 
