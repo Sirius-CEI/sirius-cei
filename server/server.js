@@ -10,8 +10,8 @@ require('./modules/database');
 // Route includes
 const userRouter = require('./routes/user.router');
 const cardRouter = require('./routes/cards.router');
-const releaseRouter = require('./routes/release.router');
 const outcomeAreaRouter = require('./routes/outcomeArea.router');
+const chartRouter = require('./routes/charts.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -28,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/cards', cardRouter);
 app.use('/api/outcome-areas', outcomeAreaRouter);
+app.use('/api/charts', chartRouter);
 
 // Serve static files
 app.use(express.static('build'));

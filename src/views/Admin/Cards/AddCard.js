@@ -4,11 +4,7 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 
 const styles = theme => ({
 	root: {
@@ -41,7 +37,7 @@ class AddCard extends Component {
 	}
 
 		render() {
-		const { classes } = this.props;
+		const { classes, outcomes } = this.props;
 		const { newCard } = this.state;
 		return (
 			<Fragment>
@@ -50,8 +46,8 @@ class AddCard extends Component {
 					type='text' 
 					label="title" 
 					name="title" 
-					margin="normal" 
-					variant="outlined"
+					margin="dense"
+					fullWidth
 					value={newCard.title} 
 					onChange={this.handleChange} 
 				/>
@@ -60,8 +56,8 @@ class AddCard extends Component {
 					type='text' 
 					label="image" 
 					name="image" 
-					margin="normal" 
-					variant="outlined"
+					margin="dense" 
+					fullWidth
 					value={newCard.image} 
 					onChange={this.handleChange} 
 				/>
@@ -70,37 +66,24 @@ class AddCard extends Component {
 					className={classes.description} 
 					type='url' label="url" 
 					name="url" 
-					margin="normal" 
-					variant="outlined"
+					margin="dense"
+					fullWidth
 					value={newCard.url} 
 					onChange={this.handleChange} 
 				/>
-				<Select
-					variant="outlined"
-					label="Outcome area"
-					placeholder="Select outcome area..."
-					open={this.state.open}
-					onClose={this.handleClose}
-					onOpen={this.handleOpen}
+				<TextField
+					label="outcome area"
+					name="category_id"
+					select
+					margin="dense"
+					fullWidth
 					value={newCard.category_id}
 					onChange={this.handleChange}
-					name="category_id"
-					input={
-						<OutlinedInput
-							labelWidth={0}
-							name="category_id"
-							id="category-select"
-							label="category"
-							placeholder="category"
-						/>
-					}
 				>
-					<MenuItem value=''>Select outcome area...</MenuItem>
-					<MenuItem value={1}>Macro View</MenuItem> 
-					<MenuItem value={2}>Economic Development</MenuItem> 
-					<MenuItem value={3}>Human Capital</MenuItem>
-					<MenuItem value={4}>Access and Transit</MenuItem>
-				</Select>
+					{outcomes.map((item) => (
+						<MenuItem key={item._id} value={item._id}>{item.title}</MenuItem>
+					))}
+				</TextField>
 			</Fragment>
 		);
   }
@@ -111,7 +94,7 @@ AddCard.propTypes = {
 };
 
 const mapReduxStateToProps = reduxState => ({
-  reduxState
+  outcomes: reduxState.outcomes
 });
 
 export default compose(

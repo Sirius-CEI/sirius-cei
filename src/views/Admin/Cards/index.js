@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
 import AddCard from './AddCard';
@@ -11,9 +12,14 @@ import CardItems from './CardItems';
 const styles = theme => ({
 	root: {
 		flexGrow: 1,
+		display: 'flex',
+		justifyContent: 'flex-end',
 	},
 	grow: {
 		flexGrow: 1,
+	},
+	rightIcon: {
+		marginLeft: theme.spacing.unit,
 	},
 });
 
@@ -78,7 +84,10 @@ class CardExtension extends Component {
 		const { open } = this.state;
 		return (
 			<div className={classes.root}>
-			<Button variant="outlined" onClick={this.handleOpen}>Add Card</Button>
+				<Button variant="outlined" onClick={this.handleOpen}>
+					Add Card
+					<FontAwesomeIcon icon="plus" className={classes.rightIcon} />
+				</Button>
 				<form id="add-card-form" onSubmit={this.addCard}>
 					<Dialog
 						open={open}

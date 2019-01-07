@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
@@ -77,7 +77,7 @@ class LoginButton extends Component {
 		const { classes } = this.props;
 		const { open } = this.state;
     return (
-			<div>
+			<Fragment>
 				<Button variant="outlined" onClick={this.handleOpen}>
 					Admin Login
 					<FontAwesomeIcon icon="sign-in-alt" className={classes.rightIcon} />
@@ -121,7 +121,7 @@ class LoginButton extends Component {
 						</DialogActions>
 					</Dialog>
 				</form>
-			</div>
+			</Fragment>
     );
   }
 }

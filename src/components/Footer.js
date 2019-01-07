@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
 import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const styles = theme => ({
@@ -55,10 +58,17 @@ class Footer extends Component {
 								</Typography>
 							</Grid>
 							<Grid item xs={12}>
-								<Grid container spacing={16} direction="row" justify="flex-end" alignItems="center">
+								<Grid container spacing={8} direction="row" justify="flex-end" alignItems="center">
 									<Grid item>
-										<LoginButton />
+									{!user._id ? <LoginButton /> : <LogoutButton />}
 									</Grid>
+									{!!user._id && 
+										<Grid item>
+											<IconButton component={Link} to="/admin">
+												<FontAwesomeIcon icon="home" size="sm" />
+											</IconButton>
+										</Grid>
+									}
 								</Grid>
 							</Grid>
 						</Grid>

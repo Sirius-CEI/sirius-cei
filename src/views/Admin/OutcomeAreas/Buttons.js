@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import AddOutcomeArea from './AddOutcomeArea';
-import AddIndicator from './AddIndicator';
+import AddOutcomeArea from './OutcomeArea.add';
+import AddIndicator from './Indicator.add';
 
 const styles = theme => ({
 	root: {

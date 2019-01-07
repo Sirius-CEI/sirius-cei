@@ -8,7 +8,7 @@ import {
 // import { connect } from 'react-redux';
 
 //Protected Components
-import ProtectedRoute from './ProtectedRoute';
+// import ProtectedRoute from './ProtectedRoute';
 
 //Non Protected Components
 import AdminHome from '../views/Admin';

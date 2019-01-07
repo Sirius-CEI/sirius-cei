@@ -5,6 +5,7 @@ import userSaga from './userSaga';
 import cardSaga from './cardSaga';
 import passwordSaga from './passwordSaga';
 import outcomeAreaSaga from './outcomeAreaSaga';
+import chartSaga from './chartSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     cardSaga(),
     passwordSaga(),
 		outcomeAreaSaga(),
+		chartSaga(),
   ]);
 }

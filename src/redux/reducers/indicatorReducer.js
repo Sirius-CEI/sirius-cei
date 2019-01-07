@@ -4,7 +4,6 @@ const initialState = {
 	active: false,
 	order: 100,
 	notes: '',
-	charts: []
 }
 
 const indicatorReducer = (state = initialState, action) => {

@@ -6,6 +6,7 @@ import cards from './cardReducer';
 import outcomes from './outcomeAreaReducer';
 import indicator from './indicatorReducer';
 import appState from './appReducer';
+import charts from './chartReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,6 +17,7 @@ import appState from './appReducer';
 const rootReducer = combineReducers({
 	appState,
 	cards,
+	charts,
 	errors, // error messages
 	indicator,
 	outcomes, // outcome area data
