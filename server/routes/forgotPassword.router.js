@@ -5,6 +5,7 @@ const Person = require('../models/user');
 require('dotenv').config();
 
 const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 
 //GET route to get a username from database
 router.get('/', (req, res) => {
@@ -26,11 +27,11 @@ router.get('/', (req, res) => {
       res.json('email required');
     }
     console.log(req.body.username);
-    Person.findOne({
-      where: {
-        email: req.body.username,
+    Person.findOne(
+      {
+        username: req.body.username,
       },
-    }).then(users => {
+    ).then(users => {
       if (users === null) {
         console.log('email not in database');
         res.json('email not in db');
@@ -38,26 +39,28 @@ router.get('/', (req, res) => {
         const token = crypto.randomBytes(20).toString('hex');
         Person.update({
           resetPasswordToken: token,
-          resetPasswordExpires: Date.now() + 360000,
+          resetPasswordExpires: Date.now() + 3600000,
         });
-
         const transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: `${process.env.EMAIL_ADDRESS}`,
-            pass: `${process.env.EMAIL_PASSWORD}`,
+            user: process.env.EMAIL_ADDRESS,
+            pass: process.env.EMAIL_PASSWORD,
           },
         });
 
         const mailOptions = {
           from: `ceimailtestmn@gmail.com`,
-          to: `${user.email}`,
+          to: `${req.body.username}`,
           subject: `Link To Reset Password`,
           text:
-            `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n` +
-            `Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n` +
-            `http://localhost:3031/reset/${token}\n\n` +
-            `If you did not request this, please ignore this email and your password will remain unchanged.\n`,
+            `You are receiving this because you (or someone else) 
+            have requested the reset of the password for your account.\n\n` +
+            `Please click on the following link, or paste this into 
+            your browser to complete the process within one hour of receiving it:\n\n` +
+            `http://localhost:3000/reset/${token}\n\n` +
+            `If you did not request this, please ignore this email and 
+            your password will remain unchanged.\n`,
         };
 
         console.log('sending mail');

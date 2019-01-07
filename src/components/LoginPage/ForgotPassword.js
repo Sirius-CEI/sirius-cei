@@ -18,7 +18,9 @@ class ForgotPassword extends Component {
   sendEmail = e => {
       e.preventDefault();
       console.log('email state', this.state.username);
-      this.props.dispatch({ type: 'FORGOT_PASSWORD', payload: this.state.username});
+      this.props.dispatch({ type: 'FORGOT_PASSWORD', payload: {
+        username: this.state.username,
+      }});
     //   if(this.state.username === '') {
     //       this.setState({
     //           showError: false,
@@ -54,7 +56,6 @@ class ForgotPassword extends Component {
       <div>
         <form onSubmit={this.sendEmail}>
           <h1>Enter Email</h1>
-          {JSON.stringify(this.props.user)}
           <div>
             <label htmlFor="username">
               Username:

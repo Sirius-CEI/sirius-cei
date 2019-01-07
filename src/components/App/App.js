@@ -10,6 +10,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 //Protected Components
 import AdminHome from '../Admin/AdminHome';
+import PasswordReset from '../LoginPage/passwordReset';
 
 //Non Protected Components
 import Macro from '../Macro/Macro';
@@ -94,6 +95,11 @@ class App extends Component {
               exact
               path="/admin"
               component={AdminHome}
+            />
+            <Route
+              exact
+              path="/reset"
+              component={PasswordReset}
             />
             <Route render={() => <h1>404</h1>} />
           </Switch>

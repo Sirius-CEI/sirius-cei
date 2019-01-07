@@ -16,18 +16,11 @@ try {
 function* forgotPassword(action) {
     console.log('forgot password', action.payload);
     const userId = action.payload;
-    const response = yield axios.get(`/forgot-password`);
-    console.log('in forgot password generator function', response.data);
-    yield put({ type: 'SET_USER', payload: response.data})
-}
-
-function* getCards() {
-    try {
-      const response = yield axios.get('/cards');
-      console.log('get cardSaga response', response.data);
-      yield put({ type: 'SET_CARDS', payload: response.data });      
-    } catch (error) {
-      console.log('Card get request failed', error);
+    try{
+        yield call(axios.post, `/forgot-password`, userId);
+    }
+    catch (error) {
+        console.log('error with forgot password request', error);
     }
 }
 
