@@ -1,17 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
-const chartSchema = new Schema({
-	title: { type: String, trim: true, required: true, },
-	description: { type: String, trim: true },
-	copy: { type: String, trim: true },
-	active: { type: Boolean, default: false },
-	order: { type: Number, default: 100 },
-	toggleText: { type: String, trim: true, required: true, maxlength: 255, },
-	query: { type: String, trim: true },
-	citation: { type: String, trim: true },
-	notes: String,
-})
+// const Chart = require('./charts.model');
 
 const indicatorSchema = new Schema({
 	title: { type: String, trim: true, required: true },
@@ -19,7 +8,7 @@ const indicatorSchema = new Schema({
 	active: { type: Boolean, default: false },
 	order: { type: Number, default: 100 },
 	notes: String,
-	charts: [chartSchema]
+	// charts: [{ type: Schema.Types.ObjectId, ref: 'Chart' }]
 })
 
 const outcomeAreaSchema = new Schema({
@@ -40,6 +29,8 @@ const outcomeAreaSchema = new Schema({
 	order: { type: Number, default: 100 },
 	notes: String,
 	indicators: [indicatorSchema],
-});
+	},
+	{ timestamps: true }
+);
 
-module.exports = mongoose.model('OutcomeAreas', outcomeAreaSchema);
+module.exports = mongoose.model('OutcomeArea', outcomeAreaSchema);

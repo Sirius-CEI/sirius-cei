@@ -19,6 +19,9 @@ router.post('/', (req, res) => {
 		// set route by changing spaces to dashes and removing special characters
 		let route = payload.title.replace(/\s/g, '_');
 		route = route.replace(/\W/g, '').replace(/[_]/g, '-').toLowerCase();
+		while(route.includes('--')) {
+			route = route.replace('--', '-')
+		}
 		outcomeArea.route = `/${route}`;
 		outcomeArea.save((err, data) => {
 			return err ? res.json({ success: false, error: err })
@@ -28,7 +31,19 @@ router.post('/', (req, res) => {
 		console.log(`outcome area post error`, error);
 		res.json({ success: false, error: error });
 	}
-	
 });
+
+router.post('/:id', (req, res) => {
+	try {
+		const { payload } = req.body;
+		OutcomeArea.findByIdAndUpdate(req.params.id, { $push: { indicators: payload } }, (err, doc) => {
+			return err ? res.json({ success: false, error: err })
+			: res.json({ success: true, doc: doc })
+		})
+	} catch (error) {
+		console.log(`indicator post error`, error);
+		res.json({ success: false, error: error})
+	}
+})
 
 module.exports = router;

@@ -12,8 +12,6 @@ const errorMessage = (state = null, action) => {
 		return 'Password fields must match.';
 	case 'USERNAME_TAKEN':
 		return 'That username is already taken. Please choose a different username, or go to the Login screen instead.';
-	case 'INCORRECT_LOCATION':
-		return 'Incorrect location code. Please try again.';
 	case 'LOGIN_FAILED':
 		return 'Incorrect username or password. Please try again.';
 	case 'AUTH_FAILED_NO_CODE':

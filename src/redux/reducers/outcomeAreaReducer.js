@@ -1,4 +1,4 @@
-const outcomeAreaReducer = (state = null, action) => {
+const outcomeAreaReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'SET_OUTCOME_AREAS':
 			return action.payload;

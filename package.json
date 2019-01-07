@@ -29,14 +29,14 @@
       "email": "",
       "url": ""
     }
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Sirius-CEI/sirius-cei"
-	},
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sirius-CEI/sirius-cei"
+  },
   "main": "",
   "proxy": "http://localhost:5000",
-	"dependencies": {
+  "dependencies": {
     "@material-ui/core": "^3.6.2",
     "@material-ui/icons": "^3.0.1",
     "@material-ui/lab": "^3.0.0-alpha.26",
@@ -68,6 +68,8 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^7.32.4",
     "typeface-karla": "^0.0.54",
     "typeface-lato": "0.0.54",
     "typeface-roboto": "^0.0.54"

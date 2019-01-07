@@ -1,14 +1,17 @@
 import axios from 'axios';
-import { put, call, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
 function* getOutcomeAreas() {
     try {
+			yield put({ type: 'FETCH_DATA_BEGIN'})
       let response = yield axios.get('/api/outcome-areas');
-      // console.log('getOutcomeAreas response', response.data);
-      yield put({ type: 'SET_OUTCOME_AREAS', payload: response.data });      
+			// console.log('getOutcomeAreas response', response.data);
+			yield put({ type: 'SET_OUTCOME_AREAS', payload: response.data });
+			yield put({ type: 'FETCH_DATA_SUCCESS' })
     } catch (error) {
       console.log(`outcome areas get request failed`, error);
-			yield put({ type: 'API_ERROR', payload: error})
+			yield put({ type: 'API_ERROR', payload: error});
+			yield put({ type: 'FETCH_DATA_FAILURE' });
     }
 }
 
@@ -20,13 +23,26 @@ function* postOutcomeArea(action) {
 		yield put({ type: 'GET_OUTCOME_AREAS' });
 	} catch (error) {
 		console.log(`outcome area post request failed`, error);
-		yield put({ type: 'API_ERROR', payload: error})
+		yield put({ type: 'API_ERROR', payload: error});
+	}
+}
+
+function* postIndicator(action) {
+	try {
+		let response = yield axios.post(`/api/outcome-areas/${action.id}`, { payload: action.payload })
+		// console.log(response.data);
+		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
+		yield put({ type: 'GET_OUTCOME_AREAS' });
+	} catch (error) {
+		console.log(`indicator post request failed`, error);
+		yield put({ type: 'API_ERROR', payload: error});
 	}
 }
 
 function* outcomeAreaSaga() {
 	yield takeEvery('GET_OUTCOME_AREAS', getOutcomeAreas);
 	yield takeEvery('POST_OUTCOME_AREA', postOutcomeArea);
+	yield takeEvery('POST_INDICATOR', postIndicator);
 }
 
 export default outcomeAreaSaga;

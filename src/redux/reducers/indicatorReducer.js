@@ -1,12 +1,18 @@
-const indicatorReducer = (state = null, action) => {
-	switch (action.type) {
-		case 'SET_INDICATORS':
-			return action.payload;
-		default:
-			return state;
-	}
+const initialState = {
+	title: '',
+	copy: '',
+	active: false,
+	order: 100,
+	notes: '',
+}
+
+const indicatorReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SET_INDICATOR':
+      return action.payload;
+    default:
+      return state;
+  }
 };
-  
-  // page will be on the redux state at:
-  // state.indicators
-  export default indicatorReducer;
+
+export default indicatorReducer;
