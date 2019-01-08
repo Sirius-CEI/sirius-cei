@@ -36,15 +36,15 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const addData = req.body;
     console.log('new data_indicators req.body', addData);
-    // IndicatorData.create(addData)
-    //     .then( (results) => {
-    //         console.log('data_indicators POST results ',results);
-    //         res.sendStatus(201);
-    //     })
-    //     .catch( (error) => {
-    //         console.log('data_indicators POST error', error);
-    //         res.sendStatus(500);
-    //     })
+    IndicatorData.create(addData)
+        .then( (results) => {
+            console.log('data_indicators POST results ',results);
+            res.sendStatus(201);
+        })
+        .catch( (error) => {
+            console.log('data_indicators POST error', error);
+            res.sendStatus(500);
+        })
 });
 
 // DELETE route to remove a CSV file

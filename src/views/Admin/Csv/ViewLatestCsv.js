@@ -15,10 +15,8 @@ const styles = theme => ({
       display: 'none',
     },
     recentCsv: {
-        maxHeight: '100px',
-        maxWidth: '100px',
-        height: 'auto',
-        width: 'auto',
+        height: '150px',
+        width: '100px',
     }
   });
 class ViewLatestCsv extends Component {
@@ -44,6 +42,7 @@ class ViewLatestCsv extends Component {
                         <Card className={classes.recentCsv} id="display">
                             <CardContent>
                                 <h2>CSV here</h2>
+                                {csv.year}
                             </CardContent>
                         </Card>                       
                         <Button 
