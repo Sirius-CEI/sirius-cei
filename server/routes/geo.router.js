@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const County = require('../models/counties.model');
-const Tracts = require('../models/tracts.model');
+const Tract = require('../models/tracts.model');
 
 router.get('/counties', (req, res) => {
 	County.find({})

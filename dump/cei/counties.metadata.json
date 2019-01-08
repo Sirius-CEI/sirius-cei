@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"cei.counties"},{"v":2,"unique":true,"key":{"properties.GEOID":1},"name":"properties.GEOID_1","ns":"cei.counties","background":true}],"uuid":"9ada6f35f5234990a4098cebd3bbcc22"}

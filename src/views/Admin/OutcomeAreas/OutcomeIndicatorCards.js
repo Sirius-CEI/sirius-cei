@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-import  { Card, CardHeader, CardContent } from '@material-ui/core';
+import  { Card, CardContent } from '@material-ui/core';
 
 import OutcomeIndicatorList from './OutcomeIndicatorList';
+import EditOutcome from './OutcomeArea.edit';
 
 const styles = theme => ({
 	root: {
@@ -56,13 +57,7 @@ class OutcomeIndicatorCards extends Component {
 					{outcomes.map((item) => (
 						<Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
 							<Card className={classes.card}>
-								<CardHeader
-									title={item.title}
-									titleTypographyProps={{
-										variant: 'h6',
-										color: 'primary'
-									}}
-								/>
+								<EditOutcome item={item}/>
 								<Divider />
 								<CardContent className={classes.content}>
 									<OutcomeIndicatorList

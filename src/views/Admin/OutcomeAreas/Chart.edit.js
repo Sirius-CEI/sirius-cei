@@ -1,23 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import CardActionArea from '@material-ui/core/CardActionArea';
 
 import DialogForm from '../../../components/DialogForm';
 import ChartFields from './Chart.fields';
 
 const styles = theme => ({
-	root: {
+	grow: {
 		flexGrow: 1,
 	},
-	rightIcon: {
-		marginLeft: theme.spacing.unit
+	container: {
+		flexGrow: 1,
+		height: '100%',
+	},
+	title: {
+		fontWeight: theme.typography.fontWeightMedium + 100,
+		textTransform: 'uppercase',
+		lineHeight: 1.5,
 	},
 	test: {
-		border: 'solid tomato 1px'
+		border: 'solid tomato 1px',
 	}
 });
 
@@ -25,8 +32,7 @@ class EditChart extends Component {
 
 	state = {
 		open: false,
-		id: '',
-		chart: {
+		updates: {
 			title: '',
 			description: '',
 			copy: '',
@@ -34,20 +40,25 @@ class EditChart extends Component {
 			query: '',
 			citation: '',
 			notes: '',
-			indicator: '',
 			active: false,
 			order: 100,
-			_id: '',
-		}
-	}	
+			indicator: '',
+		},
+		_id: '',
+	}
 
 	handleOpen = event => {
-		const { chart } = this.props;
+		event.preventDefault();
+		const { thisChart } = this.props;
+		const { updates } = this.state;
+		const setUpdates = {};
+		Object.keys(updates).forEach((key) => setUpdates[key] = thisChart[key])
 		this.setState({
-			...this.state,
 			open: true,
-			id: chart._id,
-			chart: chart
+			updates: {
+				...setUpdates
+			},
+			id: thisChart._id
 		})
 	}
 
@@ -55,19 +66,21 @@ class EditChart extends Component {
 		event.preventDefault();
 		this.setState({
 			...this.state,
-			[event.target.name]: event.target.value
+			updates: {
+				...this.state.updates,
+				[event.target.name]: event.target.value
+			}
 		})
 	}
 
 	onSubmit = event => {
 		event.preventDefault();
-		var updates = Object.assign({}, this.state);
-		delete updates.open;
-		delete updates._id;
+		const { id, updates } = this.state;
+		console.log(`updates:`, updates);
 		this.props.dispatch({
 			type: 'UPDATE_CHART',
 			payload: updates,
-			id: this.state._id
+			id: id
 		});
 		this.handleClose();
 	}
@@ -75,8 +88,7 @@ class EditChart extends Component {
 	handleClose = event => {
 		this.setState({
 			open: false,
-			id: '',
-			chart: {
+			updates:{
 				title: '',
 				description: '',
 				copy: '',
@@ -87,20 +99,35 @@ class EditChart extends Component {
 				indicator: '',
 				active: false,
 				order: 100,
-				_id: '',
-			}
+				indicator: '',
+			},
+			id: '',
 		})
 	}
 
   render() {
-		const { open, chart } = this.state;
-		const { classes } = this.props;
+		const { open, updates } = this.state;
+		const { classes, thisChart } = this.props;
     return (
-			<div>
-				<Button variant="outlined" onClick={this.handleOpen}>
-					Chart
-					<FontAwesomeIcon icon="plus" className={classes.rightIcon} />
-				</Button>
+			<Fragment>
+				<CardActionArea className={classes.container} onClick={this.handleOpen}>
+					<Grid 
+						container
+						direction="column"
+						justify="flex-start"
+						alignItems="stretch"
+						alignContent="stretch"
+					>
+						<Grid item xs={12}>
+							<Typography variant="h6" align="center" className={classes.title}>
+								{thisChart.title}
+							</Typography>
+						</Grid>
+						<Grid item xs={12}>
+							<Typography variant="body1">{thisChart.copy}</Typography>
+						</Grid>
+					</Grid>
+				</CardActionArea>
 				<DialogForm
 					open={open}
 					dialogTitle={'Edit Chart'}
@@ -108,14 +135,14 @@ class EditChart extends Component {
 					formFields={
 						<ChartFields
 							handleChange={this.handleChange}
-							chart={chart}
+							chart={updates}
 							editMode={true}
 						/>
 					}
 					onSubmit={this.onSubmit}
 					handleClose={this.handleClose}
 				/>
-			</div>
+			</Fragment>
     );
   }
 }
@@ -124,11 +151,7 @@ EditChart.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-	indicator: state.indicator
-});
-
 export default compose(
-	connect(mapStateToProps),
+	connect(),
 	withStyles(styles)
 )(EditChart);
