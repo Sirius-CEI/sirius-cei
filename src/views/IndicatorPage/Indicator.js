@@ -35,7 +35,9 @@ class Indicator extends Component {
           <Grid container spacing={12}>
           
             <Grid className={classes.graph} item md={6}>
-              <GraphIndicator />
+              <GraphIndicator 
+                indicator={indicator}
+              />
             </Grid>
 
             <Grid className={classes.text} item md={6}>
