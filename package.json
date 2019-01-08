@@ -10,9 +10,9 @@
       "url": ""
     },
     {
-      "name": "",
-      "email": "",
-      "url": ""
+      "name": "Trevor Dammon",
+      "email": "trevordammon@gmail.com",
+      "url": "https://tdammon.github.io"
     },
     {
       "name": "",
@@ -61,6 +61,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-chartjs-2": "^2.7.4",
+    "react-csv-reader": "^1.2.1",
     "react-dom": "^16.2.0",
     "react-leaflet": "^1.9.1",
     "react-leaflet-choropleth": "^2.0.0",

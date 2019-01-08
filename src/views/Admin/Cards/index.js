@@ -40,22 +40,10 @@ class CardExtension extends Component {
 			open: false 
 		});  
 	};
+
 	
-	addCard = event => {
-		event.preventDefault();
-		const { newCard } = this.state;
-		const { dispatch, handleClose } = this.props;
-		dispatch({ type: 'ADD_CARD', payload: newCard })
-		handleClose();
-		this.setState({
-			newCard: {
-				title: '',
-				image: '',
-				url: '',
-				category_id: '',
-			}
-		});
-	}
+	
+	
 
 	deleteCard = (id) => {
 		this.props.dispatch({
@@ -83,7 +71,9 @@ class CardExtension extends Component {
 		const { classes } = this.props;
 		const { open } = this.state;
 		return (
+			
 			<div className={classes.root}>
+			{JSON.stringify(this.state)}
 				<Button variant="outlined" onClick={this.handleOpen}>
 					Add Card
 					<FontAwesomeIcon icon="plus" className={classes.rightIcon} />
@@ -96,7 +86,7 @@ class CardExtension extends Component {
 					>
 						<DialogTitle id="form-dialog-title">Add Card</DialogTitle>
 						<DialogContent>
-							<AddCard />
+							<AddCard handleClose={this.handleClose}/>
 						</DialogContent>
 						<DialogActions>
 							<Button onClick={this.handleClose} color="primary">

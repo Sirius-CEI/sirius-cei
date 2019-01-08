@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
 	root: {
@@ -19,10 +20,10 @@ class AddCard extends Component {
 
 	state = {
 		newCard: {
-			title: '',
-			image: '',
-			url: '',
-			category_id: '',
+			title: 'test',
+			image: 'test',
+			url: 'test',
+			category_id: 'test',
 		}
 	}
 
@@ -36,11 +37,26 @@ class AddCard extends Component {
 		});
 	}
 
+	addCard = event => {
+		console.log('adding card')
+		event.preventDefault();
+		this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
+		this.props.handleClose();
+		this.setState({
+			newCard: {
+				title: '',
+				image: '',
+				url: '',
+				category_id: '',
+			}
+		});
+	}
+
 		render() {
 		const { classes, outcomes } = this.props;
 		const { newCard } = this.state;
 		return (
-			<Fragment>
+			<Fragment >
 				<TextField 
 					id="card-title" 
 					type='text' 
@@ -80,10 +96,13 @@ class AddCard extends Component {
 					value={newCard.category_id}
 					onChange={this.handleChange}
 				>
-					{outcomes.map((item) => (
+				<MenuItem value='test'>test</MenuItem>
+					{/* {outcomes.map((item) => (
 						<MenuItem key={item._id} value={item._id}>{item.title}</MenuItem>
-					))}
+					))} */}
 				</TextField>
+				<Button onClick={this.addCard}>Add Card</Button>
+				
 			</Fragment>
 		);
   }
