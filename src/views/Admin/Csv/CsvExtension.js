@@ -4,10 +4,6 @@ import CsvConversion from './CsvConversion';
 
 class CsvExtension extends Component {
 
-    addCsv = ()=> {
-        console.log('add csv');
-    }
-
     render() {
         return (
             <div>
