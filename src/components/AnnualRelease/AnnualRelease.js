@@ -1,5 +1,6 @@
 import React from 'react';
 import PasswordResetEmail from '../Admin/PasswordResetEmail/PasswordResetEmail';
+import LearnMore from '../LearnMore/LearnMore'
 
 const AnnualRelease = () => (
   <div>
@@ -7,6 +8,7 @@ const AnnualRelease = () => (
     <p>
         AnnualRelease
     </p>
+    <LearnMore />
   </div>
 );
 

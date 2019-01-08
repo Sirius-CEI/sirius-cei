@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 // import Button from '@material-ui/core/Button';
 
+
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -49,6 +50,7 @@ class AboutPage extends Component {
                 ))} */}
                 {releaseOne}
               </GridList>
+              
         </div>
     );
   }
