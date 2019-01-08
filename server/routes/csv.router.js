@@ -1,41 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
+const Upload = require('../models/upload.model');
+const csv = require('csvtojson');
 
-// MONGOOSE SCHEMA //
-
-const Schema = mongoose.Schema;
-
-//Schema for geography collection
-const indicatorSchema = new Schema({
-    geography: { type: Number, required: true},
-    year: { type: Number, required: true},
-    race: { type: String, required: true},
-    value: { type: Number, required: true},
-    upload_id: { type: Number, required: true},
-    indicator: { type: Number, required: true},
-    chart: { type: Number, required: true},
-});
-
-const IndicatorData = mongoose.model('data_indicators', indicatorSchema);
 router.get('/', (req, res) => {
     console.log('in indicator get server side');
-    IndicatorData.find().limit(1).sort({$natural: -1})
+    Upload.find().limit(1).sort({$natural: -1})
         .then((results) => {
             console.log('results', results);
             res.send(results);
         })
         .catch((error) => {
-            console.log(`Error making IndicatorData GET query`, error);
+            console.log(`Error making Upload GET query`, error);
             res.sendStatus(500);
         })
 });
 
-// POST route to add geography documents
 router.post('/', (req, res) => {
+    console.log('post router', req.body);
     const addData = req.body;
     console.log('new data_indicators req.body', addData);
-    IndicatorData.create(addData)
+    Upload.create(addData)
         .then( (results) => {
             console.log('data_indicators POST results ',results);
             res.sendStatus(201);
@@ -50,7 +35,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
     let reqId = req.params.id;
     console.log('Delete CSV request for id', req.params);
-    IndicatorData.findOneAndDelete({
+    Upload.findOneAndDelete({
         _id: reqId
     })
         .then( (removedDocument) => {

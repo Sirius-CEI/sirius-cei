@@ -19,7 +19,7 @@ const styles = theme => ({
 class CsvConversion extends Component {
 
     state = {
-        csv: '',
+        data: [],
     }
 
    // handle changes in the form inputs
@@ -27,7 +27,7 @@ class CsvConversion extends Component {
         console.log('handleChange', event)
         this.setState({
                 ...this.state,
-                csv: event,
+                data: event,
         });
     }
 
@@ -35,9 +35,9 @@ class CsvConversion extends Component {
     handleSubmit = (event) => {
         console.log('Adding CSV: ', this.state);
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_CSV_DATA', payload: this.state })
+        this.props.dispatch({ type: 'ADD_CSV_DATA', payload: this.state.data })
         this.setState({
-            csv: '',
+            data: [],
         });
     }
 
@@ -49,6 +49,7 @@ class CsvConversion extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <CSVReader
                     cssClass="react-csv-input"
+                    parserOptions={ {header: true} }
                     onFileLoaded={this.handleChange}
                     />
                     <br></br>
