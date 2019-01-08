@@ -30,7 +30,7 @@ function* postChart(action) {
 function* updateChart(action) {
 	try {
 		let response = yield axios.put(`/api/charts/${action.id}`, { payload: action.payload })
-		// console.log(response.data);
+		console.log(response.data);
 		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
 		yield put({ type: 'GET_CHARTS', indicator: action.payload.indicator });
 	} catch (error) {

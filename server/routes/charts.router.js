@@ -34,7 +34,8 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
 	try {
 		const { payload } = req.body;
-		Chart.findByIdAndUpdate(req.params.id, payload, (err, doc) => {
+		console.log(payload);
+		Chart.findByIdAndUpdate(req.params.id, { $set: payload }, (err, doc) => {
 			return err ? res.json({ success: false, error: err })
 			: res.json({ success: true, doc: doc })
 		})
