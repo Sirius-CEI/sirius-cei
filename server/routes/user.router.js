@@ -29,7 +29,6 @@ router.delete('/:id', (req, res) => {
   })
     .then( (removedDocument) => {
       console.log('delete result', removedDocument);
-      
       res.sendStatus(200)
     })
     .catch( (error) => {

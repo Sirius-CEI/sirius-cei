@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 import Block from '@material-ui/icons/Block';
+import Swal from 'sweetalert2';
 
 const styles = theme => ({
   root: {
@@ -49,14 +50,30 @@ const styles = theme => ({
 
 class UserList extends Component {
 	componentDidMount() {
-		this.props.dispatch({
-			type: 'FETCH_USER_LIST'
-		})
+		this.props.dispatch( { type: 'FETCH_USER_LIST'} )
 	}
 
+	//delete user
 	deleteUser = (id) => {
 		console.log('delete user id', id);
-		this.props.dispatch( { type: 'DELETE_USER', payload: id } );
+		Swal({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes'
+		}).then((result) => {
+			if (result.value) {
+				this.props.dispatch( { type: 'DELETE_USER', payload: id } );
+				Swal(
+					'Deleted!',
+					'User has been deleted.',
+					'success'
+				)
+			}
+		})
 	}
 
   render() {

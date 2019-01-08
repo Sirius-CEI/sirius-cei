@@ -48,11 +48,11 @@ function* editUser() {
 function* deleteUser(action) {
 	console.log('in deleteUserSaga', action.payload);
 	try {
-		yield call(axios.delete, `api/user/${action.payload}`);
+		yield call(axios.delete, `/api/user/${action.payload}`);
 		yield put( { type: 'FETCH_USER_LIST' } );
 	}
 		catch(error) {
-			console.log('error with delete request to /user');
+			console.log('error with delete request to /api/user');
 			alert('Error deleting user');
 		}
 }
