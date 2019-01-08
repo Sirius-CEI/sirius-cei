@@ -16,8 +16,8 @@ router.post('/', (req, res) => {
   const mailOptions = {
     from: `Trevor`,
     to: 'trevordammon@gmail.com',
-    subject: `Test`,
-    text: `Does this work?`,
+    subject: `Free Mondy`,
+    text: `Want to join a Pyramid Scheme?`,
     replyTo: `Trevor`
   }
   transporter.sendMail(mailOptions, function(err, res) {
