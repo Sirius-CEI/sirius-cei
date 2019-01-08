@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const uniqueValidator = require("mongoose-unique-validator");
@@ -21,3 +22,18 @@ UserSchema.virtual("password").set(function(value) {
 const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
+=======
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+// Mongoose Schema
+const UserSchema = new Schema({
+  username: { type: String, required: true, index: { unique: true } },
+  password: { type: String, required: true },
+},
+{
+	timepstamps: true,
+});
+
+module.exports = mongoose.model('user', UserSchema);
+>>>>>>> a13a45a1103a385f3065daef5f969e0d1e440c41

@@ -3,11 +3,14 @@ import { put, call, takeEvery } from 'redux-saga/effects';
 
 function* getCards() {
     try {
+			yield put({ type: 'FETCH_DATA_BEGIN' })
       const response = yield axios.get('/cards');
       console.log('get cardSaga response', response.data);
-      yield put({ type: 'SET_CARDS', payload: response.data });      
+			yield put({ type: 'SET_CARDS', payload: response.data });
+			yield put({ type: 'FETCH_DATA_SUCCESS' })
     } catch (error) {
-      console.log('Card get request failed', error);
+			console.log('Card get request failed', error);
+			yield put({ type: 'FETCH_DATA_FAILURE' })
     }
 }
 

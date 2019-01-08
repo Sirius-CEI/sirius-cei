@@ -4,8 +4,9 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import cardSaga from './cardSaga';
 import passwordSaga from './passwordSaga';
-import releaseSaga from './annualReleaseSaga';
-import getQwiData from './getExternalDataSaga';
+import outcomeAreaSaga from './outcomeAreaSaga';
+import chartSaga from './chartSaga';
+import csvSaga from './csvSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,7 +22,8 @@ export default function* rootSaga() {
     userSaga(),
     cardSaga(),
     passwordSaga(),
-    releaseSaga(),
-    getQwiData(),
+		outcomeAreaSaga(),
+    chartSaga(),
+    csvSaga(),
   ]);
 }
