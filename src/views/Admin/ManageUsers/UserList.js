@@ -53,6 +53,18 @@ class UserList extends Component {
 		this.props.dispatch( { type: 'FETCH_USER_LIST'} )
 	}
 
+	//deactivate user
+	deactivateUser = (id) => {
+		console.log('deactivate user', id);
+		this.props.dispatch( { type: 'DEACTIVATE_USER', payload: id } );
+	}
+
+	//reactivate user
+	reactivateUser = (id) => {
+		console.log('reactivate user', id);
+		this.props.dispatch( { type: 'REACTIVATE_USER', payload: id } );
+	}
+
 	//delete user
 	deleteUser = (id) => {
 		console.log('delete user id', id);
@@ -86,17 +98,18 @@ class UserList extends Component {
 					{users.map((item, index) => (
 						<ListItem key={index}>
 							<ListItemText primary={item.username} />
+							<ListItemText primary={item.active.toString()} />
 							<Button 
 								variant="contained"  
 								className={classes.reactivateBtn}
-								onClick={this.delete}>
+								onClick={()=> this.reactivateUser(item._id)}>
 								Re-activate
 								<PowerSettingsNew className={classes.rightIcon} />
 							</Button>
 							<Button 
 								variant="contained"  
 								className={classes.deactivateBtn}
-								onClick={this.deactivate}>
+								onClick={()=> this.deactivateUser(item._id)}>
 								De-activate
 								<Block className={classes.rightIcon} />
 							</Button>
