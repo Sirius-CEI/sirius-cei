@@ -6,7 +6,7 @@
 const mongoose = require('mongoose');
 
 /* Mongo Connection */
-let mongoURI = 'mongodb://cei:cei359@ds159926.mlab.com:59926/heroku_f0j74zsg';
+let mongoURI = '';
 
 // process.env.MONGODB_URI will only be defined if you are running on Heroku
 if (process.env.MONGODB_URI) {
