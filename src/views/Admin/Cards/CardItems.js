@@ -24,6 +24,13 @@ const styles = theme => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit * 4,
     },
+    projectsDiv: {
+        display: 'flex',
+    },
+    cardStyle: {
+        margin: 5,
+        maxHeight: 250,
+    }
   });
 class CardItems extends Component {
 
@@ -61,11 +68,11 @@ class CardItems extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div className="projects-div">
+            <div className={classes.projectsDiv}>
                 {this.props.cards.map( (card, index) => {
                     return (
                     <div key={index}>
-                        <Card className="project-content" id="display">
+                        <Card className={classes.cardStyle} id="display">
                             <CardMedia>
                                 <img 
                                     id="img" 
