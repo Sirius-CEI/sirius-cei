@@ -26,6 +26,10 @@ class PasswordReset extends Component {
     confirm: '',
   };
 
+  componentDidMount() {
+    this.props.dispatch({ type: 'GET_TOKEN' });
+  }
+
   // on click reset password in db if passwords match
   resetPassword = (event) => {
     event.preventDefault();

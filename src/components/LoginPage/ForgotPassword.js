@@ -17,38 +17,11 @@ class ForgotPassword extends Component {
   
   sendEmail = e => {
       e.preventDefault();
+      this.props.handleClose();
       console.log('email state', this.state.username);
       this.props.dispatch({ type: 'FORGOT_PASSWORD', payload: {
         username: this.state.username,
       }});
-    //   if(this.state.username === '') {
-    //       this.setState({
-    //           showError: false,
-    //           messageFromServer: '',
-    //       });
-    //   } else {
-    //       axios
-    //         .post('/forgot-password', {
-    //             username: this.state.username,
-    //         })
-    //         .then(response => {
-    //             console.log('response data', response.data);
-    //             if(response.data === 'email not in db') {
-    //                 this.setState({
-    //                     showError: true,
-    //                     massageFromServer: '',
-    //                 });
-    //             } else if(response.data === 'recovery email sent') {
-    //                 this.setState({
-    //                     showError: false,
-    //                     messageFromServer: 'recovery email sent',
-    //                 });
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.log('error', error.data);                
-    //         })
-    //   }
   }
 
   render() {

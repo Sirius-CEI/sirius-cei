@@ -26,9 +26,15 @@ function* forgotPassword(action) {
     }
 }
 
+function* getToken() {
+    console.log('in get token');
+    
+}
+
 function* passwordSaga() {
 //   yield takeEvery('EDIT_PASSWORD', editPassword);
-  yield takeEvery('FORGOT_PASSWORD', forgotPassword)
+  yield takeEvery('FORGOT_PASSWORD', forgotPassword);
+  yield takeEvery('GET_TOKEN', getToken);
 }
 
 export default passwordSaga;

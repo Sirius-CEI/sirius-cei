@@ -135,7 +135,7 @@ class LoginPage extends Component {
           >
           <div style={this.getModalStyle()} className={classes.paper}>
             <h2 id="reset-password">Forgot Password</h2>
-            <ForgotPassword />
+            <ForgotPassword handleClose={this.handleClose} />
           </div>
           </Modal>
         </center>

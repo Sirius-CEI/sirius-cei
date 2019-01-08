@@ -5,6 +5,8 @@ const Person = require('../models/user');
 const userStrategy = require('../strategies/user.strategy');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 const router = express.Router();
 
@@ -12,6 +14,28 @@ const router = express.Router();
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
   res.send(req.user);
+});
+
+// Handle Ajax request to get user password reset token
+router.get('/reset-password', (req, res) => {
+  console.log('req.query in router.get for reset password', req.query);
+  Person.findOne({
+      resetPasswordToken: req.query.resetPasswordToken,
+      resetPasswordExpires: {
+        [Op.gt]: Date.now(),
+      },
+    }
+  ).then(user => {
+    if (user == null) {
+      console.log('password reset link is invalid or has expired');
+      res.json('password reset link is invalid or has expired');
+    } else {
+      res.status(200).send({
+        username: req.body.username,
+        message: 'password reset link a-ok',
+      });
+    }
+  });
 });
 
 // Handles POST request with new user data
