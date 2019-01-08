@@ -16,12 +16,14 @@ class App extends Component {
 	componentDidMount() {
 		this.props.dispatch({
 			type: 'GET_OUTCOME_AREAS',
-		})
+		});
+		this.props.dispatch({
+			type: 'GET_GEO_DATA'
+		});
 	}
 
   render() {
     return (
-			
 			<Router>
 				<div>
 					<Nav />

@@ -27,6 +27,17 @@ function* postOutcomeArea(action) {
 	}
 }
 
+function* updateOutcomeArea(action) {
+	try {
+		let response = yield axios.put(`/api/outcome-areas/${action.id}`, { payload: action.payload })
+		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
+		yield put({ type: 'GET_OUTCOME_AREAS' });
+	} catch (error) {
+		console.log(`outcome area put request failed`, error);
+		yield put({ type: 'API_ERROR', payload: error })
+	}
+}
+
 function* postIndicator(action) {
 	try {
 		let response = yield axios.post(`/api/outcome-areas/${action.id}`, { payload: action.payload })
@@ -42,6 +53,7 @@ function* postIndicator(action) {
 function* outcomeAreaSaga() {
 	yield takeEvery('GET_OUTCOME_AREAS', getOutcomeAreas);
 	yield takeEvery('POST_OUTCOME_AREA', postOutcomeArea);
+	yield takeEvery('UPDATE_OUTCOME_AREA', updateOutcomeArea);
 	yield takeEvery('POST_INDICATOR', postIndicator);
 }
 
