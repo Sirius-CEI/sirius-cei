@@ -8,7 +8,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Modal from '@material-ui/core/Modal';
-import EditCard from './EditCard'
+import EditCard from './EditCard';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     img: {
@@ -28,7 +30,12 @@ const styles = theme => ({
         display: 'flex',
     },
     cardStyle: {
-        margin: 5,
+        
+        padding: '2%',
+        margin: '1%',
+        display: 'inline-block',
+        width: '100%',
+        textAlign: 'center',
         maxHeight: 250,
     }
   });
@@ -69,22 +76,17 @@ class CardItems extends Component {
         const { classes } = this.props;
         return (
             <div className={classes.projectsDiv}>
+            <Grid container spacing={12}>
                 {this.props.cards.map( (card, index) => {
                     return (
                     <div key={index}>
+                    <Grid  item xs={8}>
                         <Card className={classes.cardStyle} id="display">
-                            <CardMedia>
-                                <img 
-                                    id="img" 
-                                    alt="card-action" 
-                                    className={classes.img} 
-                                    src={card.image}
-                                />
-                            </CardMedia>
-                            <CardContent>
+                        <Typography>
                                 <h2>{card.title}</h2>
-                            </CardContent>
-                            <CardContent>
+                            </Typography>
+                            <CardMedia image={card.image}>
+                                
                                 <Button 
                                     color="primary" 
                                     variant="contained">
@@ -97,10 +99,10 @@ class CardItems extends Component {
                                         Read More
                                     </a>
                                 </Button>
-                            </CardContent>
-                            <CardContent>
-                                <div>Showing on Page {card.name}</div>
-                            </CardContent>
+                                <Typography>
+                                Showing on Page {card.name}
+                                </Typography>
+                            </CardMedia>
                         </Card>
                         <Button onClick={this.handleOpen}>Edit</Button>
                         <Modal
@@ -115,9 +117,11 @@ class CardItems extends Component {
                         </div>
                         </Modal>                        
                         <Button onClick={() => this.deleteCard(card._id)}>Delete</Button>
+                        </Grid>
                     </div>
                 )
             })}
+            </Grid>
         </div>
     );
   }
