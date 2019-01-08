@@ -3,49 +3,49 @@ import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import { ListItem, ListItemText } from '@material-ui/core';
 import RegisterButton from './RegisterButton';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 import Block from '@material-ui/icons/Block';
 import Swal from 'sweetalert2';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Fab from '@material-ui/core/Fab';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-	},
-	grow: {
-		flexGrow: 1,
+	width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
 	},
 	reactivateBtn: {
 		margin: theme.spacing.unit,
-		backgroundColor:'#4caf50',
+		backgroundColor:'#02c39a',
 			'&:hover': {
-				backgroundColor: '#388e3c'
+				backgroundColor: '#009B78'
 			},
 		color: 'white',
 	},
 	deactivateBtn: {
 		margin: theme.spacing.unit,
-		backgroundColor:'#ffc107',
+		backgroundColor:'#ffc100',
 			'&:hover': {
-				backgroundColor: '#ffa000'
+				backgroundColor: '#C69500'
 			},
 		color: 'white',
 	},
 	delBtn: {
 		margin: theme.spacing.unit,
-		backgroundColor:'#f44336',
+		backgroundColor:'#d0021b',
 			'&:hover': {
-				backgroundColor: '#d32f2f'
+				backgroundColor: '#A90014'
 			},
 		color: 'white',
 	},
-	rightIcon: {
-    marginLeft: theme.spacing.unit,
-  },
 });
 
 class UserList extends Component {
@@ -94,35 +94,52 @@ class UserList extends Component {
     return (
 			<div className={classes.root}>
 				<RegisterButton />
-				<List>
-					{users.map((item, index) => (
-						<ListItem key={index}>
-							<ListItemText primary={item.username} />
-							<ListItemText primary={item.active.toString()} />
-							<Button 
-								variant="contained"  
-								className={classes.reactivateBtn}
-								onClick={()=> this.reactivateUser(item._id)}>
-								Re-activate
-								<PowerSettingsNew className={classes.rightIcon} />
-							</Button>
-							<Button 
-								variant="contained"  
-								className={classes.deactivateBtn}
-								onClick={()=> this.deactivateUser(item._id)}>
-								De-activate
-								<Block className={classes.rightIcon} />
-							</Button>
-							<Button 
-								variant="contained"  
-								className={classes.delBtn}
-								onClick={()=> this.deleteUser(item._id)}>
-								Delete
-								<DeleteIcon className={classes.rightIcon} />
-							</Button>
-						</ListItem>
-					))}
-				</List>
+					<Table className={classes.table}>
+						<TableHead>
+						<TableRow>
+							<TableCell>Username</TableCell>
+							<TableCell align="right">Status</TableCell>
+							<TableCell align="right">Reactivate</TableCell>
+							<TableCell align="right">Deactivate</TableCell>
+							<TableCell align="right">Delete</TableCell>
+						</TableRow>
+						</TableHead>
+						<TableBody>
+						{users.map((item, index) => {
+							return (
+							<TableRow key={index}>
+								<TableCell component="th" scope="row">
+								{item.username}
+								</TableCell>
+								<TableCell align="right">
+									{item.active.toString()}
+								</TableCell>
+								<TableCell align="right">
+									<Fab 
+										className={classes.reactivateBtn}
+										onClick={()=> this.reactivateUser(item._id)}>
+										<PowerSettingsNew/>
+									</Fab>
+								</TableCell>
+								<TableCell align="right">
+									<Fab 
+										className={classes.deactivateBtn}
+										onClick={()=> this.deactivateUser(item._id)}>
+										<Block/>
+									</Fab>
+								</TableCell>
+								<TableCell align="right">
+									<Fab  
+										className={classes.delBtn}
+										onClick={()=> this.deleteUser(item._id)}>
+										<DeleteIcon className={classes.rightIcon}/>
+									</Fab>
+								</TableCell>
+							</TableRow>
+							);
+						})}
+						</TableBody>
+					</Table>
 			</div>
     );
   }
