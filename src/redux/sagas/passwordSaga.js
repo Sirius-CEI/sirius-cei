@@ -17,7 +17,7 @@ function* forgotPassword(action) {
     console.log('forgot password', action.payload);
     const username = action.payload;
     try{
-        const response = yield call(axios.put, `/api/user/password-reset`, username );
+        const response = yield call(axios.post, `/password-reset`, username );
         console.log(response.data);
         
     }

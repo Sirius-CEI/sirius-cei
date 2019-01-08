@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Person = require('../models/user');
-// import crypto from 'crypto';
+const Person = require('../models/user.model');
 require('dotenv').config();
 
 const nodemailer = require('nodemailer');
@@ -21,7 +20,7 @@ router.get('/', (req, res) => {
         })
 });
 
-  router.put('/', (req, res, next) => {
+  router.post('/', (req, res, next) => {
     console.log('in router.post forgot password', req.body.username);
     if (req.body.username === '') {
       res.json('email required');

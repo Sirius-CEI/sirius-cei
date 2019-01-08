@@ -66,7 +66,7 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.put('/password-reset', (req, res) => {
+router.post('/password-reset', (req, res) => {
   const token = crypto.randomBytes(20).toString('hex');
   Person.findOneAndUpdate({ username: req.body.username },
     { $set: { resetPasswordToken: token, resetPasswordExpires: Date.now() + 3600000 } },

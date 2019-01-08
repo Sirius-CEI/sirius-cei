@@ -67,7 +67,7 @@ class App extends Component {
             />
             <Route
               exact
-              path="/reset"
+              path="/reset/:token"
               component={PasswordReset}
             />
             <Route render={() => <h1>404</h1>} />

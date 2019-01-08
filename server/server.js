@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const sessionMiddleware = require('./auth/session-middleware');
 const passport = require('./auth/user-strategy');
-require('./modules/database');
+require('./auth/database');
 
 // Route includes
 // const adminRouter = require('./routes/admin.router');
@@ -31,7 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/cards', cardRouter);
 app.use('/annual-release', releaseRouter);
 app.use('/data-indicators', csvRouter);
-app.use('/forgot-password', recoverPasswordRouter);
+app.use('/password-reset', recoverPasswordRouter);
 
 // Serve static files
 app.use(express.static('build'));
