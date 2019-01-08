@@ -8,7 +8,7 @@ const passport = require('./auth/user-strategy');
 require('./modules/database');
 
 // Route includes
-const adminRouter = require('./routes/admin.router');
+const userRouter = require('./routes/user.router');
 const cardRouter = require('./routes/cards.router');
 const outcomeAreaRouter = require('./routes/outcomeArea.router');
 const chartRouter = require('./routes/charts.router');

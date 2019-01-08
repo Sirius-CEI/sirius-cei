@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
+import compose from 'recompose/compose';
 import CSVReader from 'react-csv-reader';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = theme => ({
+    button: {
+      margin: theme.spacing.unit,
+    },
+    input: {
+      display: 'none',
+    },
+  });
 
 class CsvConversion extends Component {
 
@@ -30,24 +41,39 @@ class CsvConversion extends Component {
     }
 
     render() {
+		const { classes } = this.props;
         return (
             <div className="container">
+                <h3>Select CSV File</h3>
                 <form onSubmit={this.handleSubmit}>
                     <CSVReader
                     cssClass="react-csv-input"
-                    label="Select CSV file to upload"
                     onFileLoaded={this.handleChange}
                     />
                     <br></br>
-                    <Button type="submit">Submit CSV</Button>
+                    <Button 
+                        type="submit"
+                        variant="contained" 
+                        color="primary" 
+                        className={classes.button}
+                    >
+                        Submit CSV
+                    </Button>
                 </form>
             </div>
         );
     }
 }
 
+CsvConversion.propTypes = {
+	classes: PropTypes.object.isRequired,
+};
+
 const mapReduxStateToProps = reduxState => ({
     reduxState
-  });
+});
 
-export default connect(mapReduxStateToProps)(CsvConversion);
+export default compose(
+	connect(mapReduxStateToProps),
+	withStyles(styles)
+)(CsvConversion);

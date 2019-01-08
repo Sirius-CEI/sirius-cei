@@ -21,8 +21,9 @@ const IndicatorData = mongoose.model('data_indicators', indicatorSchema);
 
 router.get('/', (req, res) => {
     console.log('in indicator get server side');
-    IndicatorData.find({})
+    IndicatorData.find().limit(1).sort({$natural: -1})
         .then((results) => {
+            console.log('results', results);
             res.send(results);
         })
         .catch((error) => {
