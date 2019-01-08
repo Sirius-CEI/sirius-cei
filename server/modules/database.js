@@ -15,7 +15,7 @@ if (process.env.MONGODB_URI) {
   mongoURI = process.env.MONGODB_URI;
 } else {
   // use the local database server
-  mongoURI = 'mongodb://localhost:27017/cei';
+  mongoURI = 'mongodb://cei:cei359@ds159926.mlab.com:59926/heroku_f0j74zsg';
 }
 
 mongoose.connect(mongoURI);

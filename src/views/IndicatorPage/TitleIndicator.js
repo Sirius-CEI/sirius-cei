@@ -40,7 +40,7 @@ const styles = theme => ({
 
 class TitleIndicator extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, title } = this.props;
       return (
         <div className={classes.root}>
             <Card className={classes.card}>
@@ -48,7 +48,7 @@ class TitleIndicator extends Component {
                     className={classes.media}
                     image="images/twincitiesblue.jpg"
                     title="title-background">
-                    <Typography className={classes.title}>Macro Indicators</Typography>
+                    <Typography className={classes.title}>{title}</Typography>
                 </CardMedia>
             </Card>
         </div>
