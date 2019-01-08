@@ -72,8 +72,6 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
-    "sequelize": "^4.42.0",
-    "typeface-lato": "0.0.54",
     "typeface-karla": "^0.0.54",
     "typeface-lato": "0.0.54",
     "typeface-roboto": "^0.0.54"
