@@ -1,12 +1,12 @@
 const express = require('express');
 const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 const encryptLib = require('../auth/encryption');
-const Person = require('../models/user');
-const userStrategy = require('../strategies/user.strategy');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const Person = require('../models/user.model');
+const userStrategy = require('../auth/user-strategy');
 
 const router = express.Router();
 

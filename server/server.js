@@ -4,8 +4,8 @@ require('dotenv').config();
 const app = express();
 const bodyParser = require('body-parser');
 const sessionMiddleware = require('./auth/session-middleware');
-const passport = require('./strategies/user.strategy');
-require('./auth/database');
+const passport = require('./auth/user-strategy');
+require('./modules/database');
 
 // Route includes
 // const adminRouter = require('./routes/admin.router');

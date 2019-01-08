@@ -1,7 +1,7 @@
 // No changes should be required in this file
 
 const cookieSession = require('cookie-session');
-const warnings = require('../constants/warnings');
+const warnings = require('./warnings');
 
 /*
   The cookie session makes it so a user can enters their username and password one time,

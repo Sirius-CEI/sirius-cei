@@ -5,6 +5,8 @@ import user from './userReducer';
 import cards from './cardReducer';
 import annualRelease from './annualReleaseReducer';
 import csv from './csvReducer';
+import pages from './pageReducer';
+import indicators from './indicatorReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   cards,
   annualRelease,
   csv,
+  pages, //will have the title and list of indicators for each page
+  indicators //will have indicator data
 });
 
 export default rootReducer;
