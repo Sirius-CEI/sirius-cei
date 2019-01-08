@@ -29,7 +29,7 @@ const OutcomeAreaFields = ({ outcomeArea, handleChange, editMode }) => (
 			margin="dense"
 			fullWidth
 			multiline
-			value={outcomeArea.copy}
+			value={outcomeArea.notes}
 			onChange={handleChange}
 		/>
 	</Fragment>
