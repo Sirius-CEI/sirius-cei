@@ -70,8 +70,8 @@ class LearnMore extends Component {
   }
 }
 
-const mapStateToProps = reduxState => ({
-  reduxState,
+const mapStateToProps = state => ({
+  cards: state.cardRecuder,
 });
 
 LearnMore.propTypes = {
