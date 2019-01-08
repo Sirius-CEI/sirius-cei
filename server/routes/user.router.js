@@ -20,6 +20,24 @@ router.get('/list', (req, res) => {
   });
 });
 
+// DELETE route to remove user
+router.delete('/:id', (req, res) => {
+  console.log('in router delete user', req.params.id);
+  let reqId = req.params.id;
+  Person.findOneAndDelete({
+    _id: reqId
+  })
+    .then( (removedDocument) => {
+      console.log('delete result', removedDocument);
+      
+      res.sendStatus(200)
+    })
+    .catch( (error) => {
+      console.log('delete error');
+      res.sendStatus(500)
+    })
+})
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted

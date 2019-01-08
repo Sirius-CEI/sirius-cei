@@ -6,6 +6,10 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import { ListItem, ListItemText } from '@material-ui/core';
 import RegisterButton from './RegisterButton';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
+import Block from '@material-ui/icons/Block';
 
 const styles = theme => ({
   root: {
@@ -14,6 +18,33 @@ const styles = theme => ({
 	grow: {
 		flexGrow: 1,
 	},
+	reactivateBtn: {
+		margin: theme.spacing.unit,
+		backgroundColor:'#4caf50',
+			'&:hover': {
+				backgroundColor: '#388e3c'
+			},
+		color: 'white',
+	},
+	deactivateBtn: {
+		margin: theme.spacing.unit,
+		backgroundColor:'#ffc107',
+			'&:hover': {
+				backgroundColor: '#ffa000'
+			},
+		color: 'white',
+	},
+	delBtn: {
+		margin: theme.spacing.unit,
+		backgroundColor:'#f44336',
+			'&:hover': {
+				backgroundColor: '#d32f2f'
+			},
+		color: 'white',
+	},
+	rightIcon: {
+    marginLeft: theme.spacing.unit,
+  },
 });
 
 class UserList extends Component {
@@ -21,6 +52,11 @@ class UserList extends Component {
 		this.props.dispatch({
 			type: 'FETCH_USER_LIST'
 		})
+	}
+
+	deleteUser = (id) => {
+		console.log('delete user id', id);
+		this.props.dispatch( { type: 'DELETE_USER', payload: id } );
 	}
 
   render() {
@@ -33,6 +69,27 @@ class UserList extends Component {
 					{users.map((item, index) => (
 						<ListItem key={index}>
 							<ListItemText primary={item.username} />
+							<Button 
+								variant="contained"  
+								className={classes.reactivateBtn}
+								onClick={this.delete}>
+								Re-activate
+								<PowerSettingsNew className={classes.rightIcon} />
+							</Button>
+							<Button 
+								variant="contained"  
+								className={classes.deactivateBtn}
+								onClick={this.deactivate}>
+								De-activate
+								<Block className={classes.rightIcon} />
+							</Button>
+							<Button 
+								variant="contained"  
+								className={classes.delBtn}
+								onClick={()=> this.deleteUser(item._id)}>
+								Delete
+								<DeleteIcon className={classes.rightIcon} />
+							</Button>
 						</ListItem>
 					))}
 				</List>

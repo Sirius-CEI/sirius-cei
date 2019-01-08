@@ -4,12 +4,7 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import 'react-chartjs-2';
-
-import GraphIndicator from './GraphIndicator';
-import TextIndicator from './TextIndicator';
-import TitleIndicator from './TitleIndicator';
 
 const styles = theme => ({
   root: {
