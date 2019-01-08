@@ -6,7 +6,7 @@
 const mongoose = require('mongoose');
 
 /* Mongo Connection */
-let mongoURI = '';
+let mongoURI = 'mongodb://cei:cei359@ds159926.mlab.com:59926/heroku_f0j74zsg';
 
 // process.env.MONGODB_URI will only be defined if you are running on Heroku
 if (process.env.MONGODB_URI) {
@@ -14,8 +14,8 @@ if (process.env.MONGODB_URI) {
   // use the string value of the environment variable
   mongoURI = process.env.MONGODB_URI;
 } else {
-  // use the local database server
-  mongoURI = 'mongodb://localhost:27017/cei';
+  // use the mlab database server
+  mongoURI = 'mongodb://cei:cei359@ds159926.mlab.com:59926/heroku_f0j74zsg';
 }
 
 mongoose.connect(mongoURI);
