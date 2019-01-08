@@ -2,22 +2,32 @@ const express = require('express');
 const router = express.Router();
 const Person = require('../models/user.model');
 require('dotenv').config();
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
-//GET route to get a username from database
-router.get('/', (req, res) => {
-    console.log('req.params', req.params);
-    const userId = req.params;
-    Person.findOne({userId})
-        .then((results) => {
-            res.send(results);
-        })
-        .catch((error) => {
-            console.log(`Error making userId GET query`, error);
-            res.sendStatus(500);
-        })
+//GET route to get a token from user
+router.get('/:id', (req, res) => {
+  console.log('req.params in forgot password GET', req.params);
+  Person.find({
+      resetPasswordToken: req.query,
+      resetPasswordExpires: {
+        [Op.gt]: Date.now(),
+      },
+    }
+  ).then(user => {
+    if (user == null) {
+      console.log('password reset link is invalid or has expired');
+      res.json('password reset link is invalid or has expired');
+    } else {
+      res.status(200).send({
+        username: req.body.username,
+        message: 'password reset link a-ok',
+      });
+    }
+  });
 });
 
   router.post('/', (req, res, next) => {

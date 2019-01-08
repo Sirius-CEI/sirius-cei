@@ -27,7 +27,7 @@ class PasswordReset extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch({ type: 'GET_TOKEN' });
+    this.props.dispatch({ type: 'GET_TOKEN', payload: this.props.match.params.token });
   }
 
   // on click reset password in db if passwords match

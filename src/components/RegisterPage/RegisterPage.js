@@ -23,6 +23,7 @@ class RegisterPage extends Component {
   } // end registerUser
 
   handleInputChangeFor = propertyName => (event) => {
+    console.log(event.target.value);
     this.setState({
       [propertyName]: event.target.value,
     });
@@ -46,8 +47,8 @@ class RegisterPage extends Component {
               Username:
               <input
                 type="text"
-                name="password"
-                value={this.state.password}
+                name="username"
+                value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
               />
             </label>
