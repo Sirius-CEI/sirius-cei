@@ -14,11 +14,10 @@ const indicatorSchema = new Schema({
     value: { type: Number, required: true},
     upload_id: { type: Number, required: true},
     indicator: { type: Number, required: true},
-    chard: { type: Number, required: true},
+    chart: { type: Number, required: true},
 });
 
 const IndicatorData = mongoose.model('data_indicators', indicatorSchema);
-
 router.get('/', (req, res) => {
     console.log('in indicator get server side');
     IndicatorData.find().limit(1).sort({$natural: -1})
