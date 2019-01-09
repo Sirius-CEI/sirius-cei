@@ -16,7 +16,8 @@ const countySchema = new Schema({
 			type: [[[Number]]],
 			required: true
 		}
-	}
-}, { strict: false })
+	}},
+	{ strict: false }
+);
 
 module.exports = mongoose.model('County', countySchema);

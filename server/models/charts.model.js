@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const OutcomeArea = require('./outcome-areas.model');
+const Indicator = require('./indicators.model');
 
 const chartSchema = new Schema({
 	title: { type: String, trim: true, required: true, },
@@ -12,7 +12,7 @@ const chartSchema = new Schema({
 	query: { type: String, trim: true },
 	citation: { type: String, trim: true },
 	notes: String,
-	indicator: { type: Schema.Types.ObjectId, ref: 'OutcomeArea.indicators'}
+	indicator_id: { type: Schema.Types.ObjectId, ref: 'Indicator'}
 	},
 	{ timestamps: true }
 );

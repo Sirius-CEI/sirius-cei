@@ -1,7 +1,7 @@
-const errorMessage = (state = null, action) => {
+const errorMessage = (state = '', action) => {
 	switch (action.type) {
-	case 'CLEAR_AUTH_ERRORS':
-		return null;
+	case 'CLEAR_ERRORS':
+		return '';
 	case 'AUTH_INPUT_ERROR':
 		return 'Please fill out all required fields.';
 	case 'INVALID_USERNAME':
@@ -18,6 +18,8 @@ const errorMessage = (state = null, action) => {
 		return 'Oops! Something went wrong... Is the server running?';
 	case 'API_ERROR':
 		return action.payload;
+	case 'USER_DEACTIVATED':
+		return 'Your account has been deactivated. Please contact the administrator to reactivate your account.';
 	default:
 		return state;
 	}

@@ -4,8 +4,9 @@ import user from './userReducer';
 import users from './userListReducer';
 import cards from './cardReducer';
 import outcomes from './outcomeAreaReducer';
-import indicator from './indicatorReducer';
-import appState from './appReducer';
+import indicatorList from './indicatorReducer';
+import indicator from './selectedIndicatorReducer';
+import fetching from './appReducer';
 import charts from './chartReducer';
 import csv from './csvReducer';
 
@@ -16,12 +17,13 @@ import csv from './csvReducer';
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
-	appState,
+	fetching,
 	cards,
 	charts,
-	errors, // error messages
-	indicator,
+	errors, // error messages,
 	outcomes, // outcome area data
+	indicatorList,
+	indicator,
 	user, // will have an id and username if someone is logged in
 	users,
 	csv,

@@ -29,7 +29,7 @@ function* deleteCsv(action) {
   try {
       yield call(axios.delete, `/api/csv/${action.payload}`);
       alert('Deleted CSV');
-      yield put( { type: 'SET_CSV' } );
+      yield put( { type: 'FETCH_CSV' } );
   }
       catch (error) {
           console.log('error with delete request to /data-indicators');

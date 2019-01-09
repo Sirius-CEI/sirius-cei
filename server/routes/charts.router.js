@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Chart = require('../models/charts.model');
 
-router.get('/:indicator', (req, res) => {
+router.get('/', (req, res) => {
 	Chart
-	.find({ indicator: req.params.indicator })
-	.sort({ active: -1, order: 1, title: 1, _v: -1, _id: 1 })
+	.find({})
+	.sort({ active: -1, order: 1, createdAt: 1 })
 	.exec((err, data) => {
 		return err ? res.json({ success: false, error: err }) : res.send(data);
   });
@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 		console.log(`chart:`, chart);
 		chart.save((err, data) => {
 			return err ? res.json({ success: false, error: err })
-			: res.status(201).json({ success: true, objectId: data._id });
+			: res.sendStatus(201);
 		});
 	} catch (error) {
 		console.log(`chart post error`, error);
@@ -34,9 +34,10 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
 	try {
 		const { payload } = req.body;
-		Chart.findByIdAndUpdate(req.params.id, payload, (err, doc) => {
+		// console.log(payload);
+		Chart.findByIdAndUpdate(req.params.id, { $set: payload }, (err, doc) => {
 			return err ? res.json({ success: false, error: err })
-			: res.json({ success: true, doc: doc })
+			: res.sendStatus(200);
 		})
 	} catch (error) {
 		console.log(`chart put error`, error);

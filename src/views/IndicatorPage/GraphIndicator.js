@@ -72,7 +72,7 @@ class GraphIndicator extends Component {
           }
           <div className={classes.button}>
             <ToggleButtonGroup exclusive value={this.state.display} onChange={this.handleDisplay}>
-              <ToggleButton value="race">Race</ToggleButton>
+              <ToggleButton value="race">Race/Ethnicity</ToggleButton>
               <ToggleButton value="location">Location</ToggleButton>
             </ToggleButtonGroup>
           </div>
