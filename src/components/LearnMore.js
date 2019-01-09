@@ -61,8 +61,10 @@ class LearnMore extends Component {
                   <CardContent style={{backgroundColor: 'white', fontSize: 30, padding: 2}}>{cards.title}</CardContent>
                   <CardMedia className={classes.image} image={cards.image}>
                     
-                    <a target='blank' href={cards.url}>
-                    <Button variant='contained'>Read More</Button>
+                    <a target='blank' href={cards.url} style={{textDecoration: 'none'}}>
+                    <Button style={{background: 'rgba(104, 104, 104, 0.5)'}}variant='contained'>
+                    Read More
+                    </Button>
                     </a>
                     </CardMedia>
                   </Grid>
