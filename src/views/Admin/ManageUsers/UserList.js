@@ -4,7 +4,6 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import RegisterButton from './RegisterButton';
-import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 import Block from '@material-ui/icons/Block';
@@ -96,13 +95,13 @@ class UserList extends Component {
 				<RegisterButton />
 					<Table className={classes.table}>
 						<TableHead>
-						<TableRow>
-							<TableCell>Username</TableCell>
-							<TableCell align="right">Status</TableCell>
-							<TableCell align="right">Reactivate</TableCell>
-							<TableCell align="right">Deactivate</TableCell>
-							<TableCell align="right">Delete</TableCell>
-						</TableRow>
+              <TableRow>
+                <TableCell>Username</TableCell>
+                <TableCell align="right">Status</TableCell>
+                <TableCell align="right">Reactivate</TableCell>
+                <TableCell align="right">Deactivate</TableCell>
+                <TableCell align="right">Delete</TableCell>
+              </TableRow>
 						</TableHead>
 						<TableBody>
 						{users.map((item, index) => {
@@ -115,21 +114,24 @@ class UserList extends Component {
 									{item.active.toString()}
 								</TableCell>
 								<TableCell align="right">
-									<Fab 
+                  <Fab
+                    size="small" 
 										className={classes.reactivateBtn}
 										onClick={()=> this.reactivateUser(item._id)}>
 										<PowerSettingsNew/>
 									</Fab>
 								</TableCell>
 								<TableCell align="right">
-									<Fab 
+                  <Fab 
+                    size="small" 
 										className={classes.deactivateBtn}
 										onClick={()=> this.deactivateUser(item._id)}>
 										<Block/>
 									</Fab>
 								</TableCell>
 								<TableCell align="right">
-									<Fab  
+                  <Fab  
+                    size="small" 
 										className={classes.delBtn}
 										onClick={()=> this.deleteUser(item._id)}>
 										<DeleteIcon className={classes.rightIcon}/>

@@ -37,8 +37,8 @@ passport.use('local', new LocalStrategy({
     Person.find({ username })
       .then((result) => {
         const user = result && result[0];
-        if (user && encryptLib.comparePassword(password, user.password)) {
-          // all good! Passwords match!
+        if (user && encryptLib.comparePassword(password, user.password) && user.active) {
+          // all good! Passwords match and user is active!
           done(null, user);
         } else if (user) {
           // not good! Passwords don't match!
