@@ -30,16 +30,23 @@ const styles = theme => ({
         display: 'flex',
     },
     cardStyle: {
-        
+        display: 'flex',
         padding: '2%',
         margin: '1%',
         display: 'inline-block',
         width: '100%',
         textAlign: 'center',
+        alignItems: 'center',
         maxHeight: 250,
     },
     cardmedia: {
         height: 170,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    cardButton: {
+        
     }
   });
 class CardItems extends Component {
@@ -84,17 +91,18 @@ class CardItems extends Component {
                     return (
                     <div key={index}>
                     <Grid  item xs={8}>
-                        <Card className={classes.cardStyle} id="display">
+                        <Card className={classes.cardStyle} >
                         <Typography>
                                 <p>{card.title}</p>
                             </Typography>
                             <CardMedia className={classes.cardmedia} image={card.image}>
                                 
                                 <Button 
+                                    className={classes.cardButton}
                                     color="primary" 
                                     variant="contained">
                                     <a 
-                                        className="project-link-button" 
+                                        
                                         href={card.url} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
@@ -104,9 +112,7 @@ class CardItems extends Component {
                                 </Button>
                                 
                             </CardMedia>
-                            <Typography>
-                                Showing on Page {card.name}
-                                </Typography>
+                            
                         </Card>
                         <Button onClick={this.handleOpen}>Edit</Button>
                         <Modal

@@ -96,10 +96,13 @@ class AddCard extends Component {
 					value={newCard.category_id}
 					onChange={this.handleChange}
 				>
-				<MenuItem value='test'>test</MenuItem>
-					{/* {outcomes.map((item) => (
-						<MenuItem key={item._id} value={item._id}>{item.title}</MenuItem>
-					))} */}
+				<MenuItem value=''>
+                    <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={1}>Macro View</MenuItem> 
+                    <MenuItem value={2}>Economic Development</MenuItem> 
+                    <MenuItem value={3}>Human Capital</MenuItem>
+                    <MenuItem value={4}>Access and Transit</MenuItem>
 				</TextField>
 				<Button onClick={this.addCard}>Add Card</Button>
 				
