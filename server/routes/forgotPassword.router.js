@@ -6,6 +6,7 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
+// moved to user.router
 //GET route to get a token from user and check if
 // the users reset password time is valid
 router.get('/:resetPasswordToken', (req, res) => {
@@ -32,6 +33,10 @@ router.get('/:resetPasswordToken', (req, res) => {
   });
 });
 
+// moved to user.router
+// post new token and time in users account
+// and sends email to users email address
+// with link the reset password
 router.post('/', (req, res, next) => {
   console.log('in router.post forgot password', req.body.username);
   if (req.body.username === '') {

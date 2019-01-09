@@ -31,7 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/cards', cardRouter);
 app.use('/annual-release', releaseRouter);
 app.use('/data-indicators', csvRouter);
-app.use('/password-reset', recoverPasswordRouter);
+// app.use('/api/user/password-reset', recoverPasswordRouter);
 
 // Serve static files
 app.use(express.static('build'));
