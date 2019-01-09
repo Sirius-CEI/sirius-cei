@@ -37,6 +37,9 @@ const styles = theme => ({
         width: '100%',
         textAlign: 'center',
         maxHeight: 250,
+    },
+    cardmedia: {
+        height: 170,
     }
   });
 class CardItems extends Component {
@@ -83,9 +86,9 @@ class CardItems extends Component {
                     <Grid  item xs={8}>
                         <Card className={classes.cardStyle} id="display">
                         <Typography>
-                                <h2>{card.title}</h2>
+                                <p>{card.title}</p>
                             </Typography>
-                            <CardMedia image={card.image}>
+                            <CardMedia className={classes.cardmedia} image={card.image}>
                                 
                                 <Button 
                                     color="primary" 
@@ -99,10 +102,11 @@ class CardItems extends Component {
                                         Read More
                                     </a>
                                 </Button>
-                                <Typography>
+                                
+                            </CardMedia>
+                            <Typography>
                                 Showing on Page {card.name}
                                 </Typography>
-                            </CardMedia>
                         </Card>
                         <Button onClick={this.handleOpen}>Edit</Button>
                         <Modal
