@@ -13,7 +13,6 @@ class EditOutcome extends Component {
 			title: '',
 			copy: '',
 			route: '',
-			image: '',
 			active: false,
 			order: 100,
 			notes: '',
@@ -22,7 +21,6 @@ class EditOutcome extends Component {
 	}
 	
 	handleOpen = event => {
-		event.preventDefault();
 		const { item } = this.props;
 		const { updates } = this.state;
 		const setUpdates = {};
@@ -39,6 +37,7 @@ class EditOutcome extends Component {
 	// handle changes in the form inputs
 	handleChange = event => {
 		this.setState({
+			...this.state,
 			updates: {
 				...this.state.updates,
 				[event.target.name]: event.target.value,
@@ -48,6 +47,7 @@ class EditOutcome extends Component {
 	
 	onSubmit = event => {
 		event.preventDefault();
+		// console.log(this.state);
 		const { updates, id } = this.state;
 		this.props.dispatch({
 			type: 'UPDATE_OUTCOME_AREA',
@@ -64,7 +64,6 @@ class EditOutcome extends Component {
 				title: '',
 				copy: '',
 				route: '',
-				image: '',
 				active: false,
 				order: 100,
 				notes: '',
@@ -90,7 +89,7 @@ class EditOutcome extends Component {
 				<DialogForm
 					open={open}
 					dialogTitle={'Edit Outcome Area'}
-					formId={'edit-outcome-area'}
+					formId={item._id}
 					formFields={
 						<OutcomeAreaFields
 							outcomeArea={updates}

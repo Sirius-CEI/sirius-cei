@@ -1,22 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 
 const OutcomeIndicatorList = props => {
-	const { classes, outcome, selectedIndicator, handleSelectIndicator } = props;
+	const { outcomeId, indicatorList, indicator, dispatch } = props;
+	const outcomeIndicators = indicatorList.filter(indicatorItem => indicatorItem.outcome_id === outcomeId);
 	return (
-		<List className={classes.content}>
-			{outcome.indicators.map((indicator) => (
+		<List disablePadding>
+			{outcomeIndicators.map((listItem) => (
 				<ListItem
 					button
-					key={indicator._id}
-					selected={selectedIndicator === indicator._id}
-					onClick={()=>handleSelectIndicator(indicator, outcome._id)}
+					key={listItem._id}
+					selected={indicator === listItem._id}
+					onClick={()=>dispatch({ type: 'SET_INDICATOR', payload: listItem._id})}
 				>
-					<ListItemText primary={indicator.title} />
+					<ListItemText primary={listItem.title} />
 				</ListItem>
 			))}
 		</List>
 	)
 }
 
-export default OutcomeIndicatorList;
+const mapStateToProps = ({ indicatorList, indicator }) => ({
+	indicatorList: indicatorList,
+	indicator: indicator
+});
+
+export default connect(mapStateToProps)(OutcomeIndicatorList);

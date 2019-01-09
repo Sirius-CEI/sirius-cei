@@ -8,7 +8,7 @@ const indicatorSchema = new Schema({
 	active: { type: Boolean, default: false },
 	order: { type: Number, default: 100 },
 	notes: String,
-	outcomeArea_id: [{ type: Schema.Types.ObjectId, ref: 'OutcomeArea' }]
+	outcome_id: { type: Schema.Types.ObjectId, ref: 'OutcomeArea' }
 	},
 	{ timestamps: true }
 );

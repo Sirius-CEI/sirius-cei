@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -36,12 +37,12 @@ const IndicatorFields = ({ outcomes, handleChange, indicator, editMode }) => (
 		/>
 		<TextField
 			label="Outcome area"
-			name="outcomeId"
+			name="outcome_id"
 			select
 			margin="dense"
 			fullWidth
-			disabled={editMode}
-			value={indicator.outcomeId}
+			required
+			value={indicator.outcome_id}
 			onChange={handleChange}
 		>
 			{outcomes.map((item) => (
@@ -51,4 +52,6 @@ const IndicatorFields = ({ outcomes, handleChange, indicator, editMode }) => (
 	</Fragment>
 )
 
-export default IndicatorFields
+const mapStateToProps = ({outcomes}) => ({ outcomes: outcomes })
+
+export default connect(mapStateToProps)(IndicatorFields);

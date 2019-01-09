@@ -17,6 +17,12 @@ class App extends Component {
 		this.props.dispatch({
 			type: 'GET_OUTCOME_AREAS',
 		});
+		this.props.dispatch({
+			type: 'GET_INDICATORS',
+		})
+		this.props.dispatch({
+			type: 'GET_CHARTS',
+		})
 	}
 
   render() {

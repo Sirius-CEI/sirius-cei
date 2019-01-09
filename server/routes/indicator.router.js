@@ -1,28 +1,42 @@
 const express = require('express');
 const router = express.Router();
-const OutcomeArea = require('../models/outcome-areas.model');
+const Indicator = require('../models/indicators.model');
 
-router.post('/:outcomeId', (req, res) => {
+router.get('/', (req, res) => {
+	Indicator
+	.find({})
+	.sort({ active: -1, order: 1, createdAt: 1 })
+	.exec((err, data) => {
+		return err ? res.json({ success: false, error: err }) : res.send(data);
+  });
+});
+
+router.post('/', (req, res) => {
 	try {
 		const { payload } = req.body;
-		OutcomeArea.findByIdAndUpdate(req.params.outcomeId, { $push: { indicators: payload } }, (err, doc) => {
+		console.log(payload);
+		let indicator = new Indicator();
+		// set document fields equal to the value of the matching payload key
+		Object.entries(payload).forEach(
+			([key, value]) => indicator[key] = value
+		);
+		indicator.save((err, data) => {
 			return err ? res.json({ success: false, error: err })
-			: res.json({ success: true, doc: doc })
-		})
+			: res.sendStatus(201);
+		});
 	} catch (error) {
-		console.log(`indicator post error`, error);
+		console.log(`outcome area post error`, error);
 		res.json({ success: false, error: error });
 	}
 })
 
-router.put('/:outcomeId/:indicatorId', (req, res) => {
+router.put('/:id', (req, res) => {
 	try {
 		const { payload } = req.body;
-		OutcomeArea.find(req.params.outcomeId, (err, doc) => {
+		Indicator.findByIdAndUpdate(req.params.id, { $set: payload }, (err, doc) => {
 			return err ? res.json({ success: false, error: err })
-			: res.json({ success: true, doc: doc })
-		});
-		
+			: res.sendStatus(200);
+		})
 	} catch (error) {
 		console.log(`outcome put error`, error);
 		res.json({ success: false, error: error });

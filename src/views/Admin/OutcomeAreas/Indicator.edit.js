@@ -31,7 +31,7 @@ class EditIndicator extends Component {
 			notes: '',
 			active: false,
 			order: 100,
-			outcomeId: '',
+			outcome_id: '',
 		},
 		id: '',
 	};
@@ -60,7 +60,7 @@ class EditIndicator extends Component {
 				notes: '',
 				active: false,
 				order: 100,
-				outcomeId: ''
+				outcome_id: ''
 			},
 			id: ''
 		});  
@@ -105,7 +105,6 @@ class EditIndicator extends Component {
 					formFields={
 						<IndicatorFields
 							handleChange={this.handleChange}
-							outcomes={outcomes}
 							indicator={updates}
 							editMode={true}
 						/>
@@ -122,10 +121,10 @@ EditIndicator.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-const mapReduxStateToProps = reduxState => ({
-	outcomes: reduxState.outcomes,
-	indicator: reduxState.indicator
-});
+const mapReduxStateToProps = ({ outcomes, indicator, indicatorList }) => ({
+	outcomes: outcomes,
+	indicator: indicatorList.filter(item => item._id === indicator)[0]
+})
 
 export default compose(
 	connect(mapReduxStateToProps),
