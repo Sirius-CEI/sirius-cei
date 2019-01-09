@@ -17,8 +17,8 @@ router.get('/:resetPasswordToken', (req, res) => {
     { resetPasswordExpires: { $gt: Date.now(), }, 
   }).then(user => {
     console.log('user info: ', user);
-    if (user == undefined) {
-      console.log('password reset link is invalid or has expired', req.body.username);
+    if (user.username == undefined) {
+      console.log('password reset link is invalid or has expired');
       res.json('password reset link is invalid or has expired');
     } else {
       res.status(200).send({

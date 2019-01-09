@@ -33,16 +33,15 @@ class PasswordReset extends Component {
   // on click reset password in db if passwords match
   resetPassword = (event) => {
     event.preventDefault();
-    if (this.state.username === this.state.password) {
+    if (this.state.password === this.state.confirm) {
       this.props.dispatch({
         type: 'EDIT_PASSWORD',
         payload: {
           password: this.state.password,
-        },
+        }
       });
     } else {
-        console.log('error resetting password');
-        alert('error editing password')
+        alert('Passwords Must Match')
     }
   }
 
@@ -57,8 +56,6 @@ class PasswordReset extends Component {
     const { classes } = this.props;
     return (
       <div>
-        {JSON.stringify('props.match -->')}
-        {JSON.stringify(this.props.match)}
         <center>
           <form onSubmit={this.resetPassword}>
             <h1>Reset Password</h1>
