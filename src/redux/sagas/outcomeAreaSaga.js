@@ -3,7 +3,8 @@ import { put, takeEvery } from 'redux-saga/effects';
 
 function* getOutcomeAreas() {
     try {
-			yield put({ type: 'FETCH_DATA_BEGIN'})
+			yield put({ type: 'FETCH_DATA_BEGIN'});
+			yield put({ type: 'CLEAR_ERRORS' });
       let response = yield axios.get('/api/outcome-areas');
 			// console.log('getOutcomeAreas response', response.data);
 			yield put({ type: 'SET_OUTCOME_AREAS', payload: response.data });
@@ -19,7 +20,7 @@ function* postOutcomeArea(action) {
 	try {
 		let response = yield axios.post('/api/outcome-areas', { payload: action.payload });
 		console.log(response);
-		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
+		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error }) }
 		yield put({ type: 'GET_OUTCOME_AREAS' });
 	} catch (error) {
 		console.log(`outcome area post request failed`, error);
@@ -30,7 +31,7 @@ function* postOutcomeArea(action) {
 function* updateOutcomeArea(action) {
 	try {
 		let response = yield axios.put(`/api/outcome-areas/${action.id}`, { payload: action.payload })
-		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
+		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error }) }
 		yield put({ type: 'GET_OUTCOME_AREAS' });
 	} catch (error) {
 		console.log(`outcome area put request failed`, error);
@@ -38,23 +39,10 @@ function* updateOutcomeArea(action) {
 	}
 }
 
-function* postIndicator(action) {
-	try {
-		let response = yield axios.post(`/api/outcome-areas/${action.id}`, { payload: action.payload })
-		// console.log(response.data);
-		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
-		yield put({ type: 'GET_OUTCOME_AREAS' });
-	} catch (error) {
-		console.log(`indicator post request failed`, error);
-		yield put({ type: 'API_ERROR', payload: error});
-	}
-}
-
 function* outcomeAreaSaga() {
 	yield takeEvery('GET_OUTCOME_AREAS', getOutcomeAreas);
 	yield takeEvery('POST_OUTCOME_AREA', postOutcomeArea);
 	yield takeEvery('UPDATE_OUTCOME_AREA', updateOutcomeArea);
-	yield takeEvery('POST_INDICATOR', postIndicator);
 }
 
 export default outcomeAreaSaga;

@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import 'typeface-lato';
 import Grid from '@material-ui/core/Grid';
-import { Typography, CardMedia } from '@material-ui/core';
+import { Typography, CardMedia, CardContent } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 
@@ -24,17 +24,29 @@ const styles = theme => ({
   },
   card: {
     maxWidth: 290,
+    height: 280,
     padding: '2%',
     margin: '1%',
     display: 'inline-block',
     width: '100%',
     textAlign: 'center',
-    // backgroundColor: 'blue',
     borderRadius: 5,
   },
+  image: {
+    maxWidth: 290,
+    height: 180,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 class LearnMore extends Component {
+
+  componentDidMount() {
+    this.props.dispatch({type: 'GET_CARDS'});
+  }
+
   render() {
     const { classes } = this.props;
       return (
@@ -44,25 +56,17 @@ class LearnMore extends Component {
         </Typography>
           <Grid container spacing={12}>
 
-          {/* {this.props.cards.map( (cards, index) => (
+          {this.props.cards.map( (cards, index) => (
                   <Grid key={index} className={classes.card} item xs={3}>
-                  <CardMedia image={cards.image}>
-                    <h3>{cards.title}</h3>
+                  <CardContent style={{backgroundColor: 'white', fontSize: 30, padding: 2}}>{cards.title}</CardContent>
+                  <CardMedia className={classes.image} image={cards.image}>
+                    
                     <a target='blank' href={cards.url}>
                     <Button variant='contained'>Read More</Button>
                     </a>
                     </CardMedia>
                   </Grid>
-                ))} */}
-
-            <Grid  className={classes.card} item xs={3}>
-            <CardMedia image='images/CEI_Logo.png' >
-              <p>Hello</p>
-              <a target='blank' href='http://www.google.com'>
-            <Button variant='contained'>Read More</Button>
-            </a>
-            </CardMedia>
-            </Grid>
+                ))}
 
           </Grid>
         </div>
@@ -71,7 +75,7 @@ class LearnMore extends Component {
 }
 
 const mapStateToProps = state => ({
-  cards: state.cardRecuder,
+  cards: state.cards,
 });
 
 LearnMore.propTypes = {

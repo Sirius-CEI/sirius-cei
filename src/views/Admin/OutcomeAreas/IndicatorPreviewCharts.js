@@ -4,7 +4,6 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 
 import EditChart from './Chart.edit';
@@ -45,7 +44,7 @@ class IndicatorPreviewCharts extends Component {
 					container
 					spacing={16}
 					direction="row"
-					justify="flex-end"
+					justify="space-between"
 					alignItems="flex-end"
 					alignContent="flex-end"
 				>
@@ -61,7 +60,8 @@ class IndicatorPreviewCharts extends Component {
 							</Card>
 						</Grid>
 					))}
-					<Grid item>
+					{charts.length === 0 ? <Grid item className={classes.grow} /> : null}
+					<Grid item >
 						<AddChart />
 					</Grid>
 				</Grid>
@@ -74,7 +74,9 @@ IndicatorPreviewCharts.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({ charts: state.charts })
+const mapStateToProps = ({ charts, indicator }) => ({ 
+	charts: charts.filter(chart => chart.indicator_id === indicator)
+})
 
 export default compose(
 	connect(mapStateToProps),

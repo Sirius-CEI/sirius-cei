@@ -11,8 +11,6 @@ import Paper from '@material-ui/core/Paper';
 
 import EditIndicator from './Indicator.edit';
 import IndicatorPreviewCharts from './IndicatorPreviewCharts';
-import AddChart from './Chart.add';
-import EditChart from './Chart.edit';
 
 const styles = theme => ({
 	root: {
@@ -34,21 +32,23 @@ const styles = theme => ({
 	},
 	test: {
 		border: 'solid purple 1px',
+		flexGrow: 1
 	},
 });
 
-const PreviewIndicator = ({ classes, indicator }) => (
+const PreviewIndicator = ({ classes, indicatorObj }) => (
 	<Paper>
 		<div className={classes.padded}>
 			<Grid
 				container
+				spacing={8}
 				direction="row"
-				justify="space-between"
+				justify="center"
 				alignItems="center"
 				wrap="nowrap"
 			>
-				<Grid item>
-					<Typography variant="h4" color="secondary">{indicator.title}</Typography>
+				<Grid item className={classes.grow}>
+					<Typography variant="h4" color="secondary">{indicatorObj.title}</Typography>
 				</Grid>
 				<Grid item>
 					<EditIndicator />
@@ -63,11 +63,11 @@ const PreviewIndicator = ({ classes, indicator }) => (
 						variant="body1"
 						className={classnames(classes.grey, classes.padded)}
 					>
-						{indicator.copy}
+						{indicatorObj.copy}
 					</Typography>
 				</Grid>
 			</Grid>
-			</div>
+		</div>
 		<Divider />
 		<div className={classes.padded}>
 			<IndicatorPreviewCharts />
@@ -79,9 +79,10 @@ PreviewIndicator.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = reduxState => ({
-	indicator: reduxState.indicator,
-});
+const mapStateToProps = state => {
+	const filtered = state.indicatorList.filter(indicatorItem => indicatorItem._id === state.indicator)
+	return { indicatorObj: filtered[0] }
+}
 
 export default compose(
 	connect(mapStateToProps),

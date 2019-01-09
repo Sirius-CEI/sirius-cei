@@ -7,10 +7,12 @@ import Routes from './Routes';
 import FooterNav from '../components/FooterNav';
 import Footer from '../components/Footer';
 import './App.css';
+import LearnMore from '../components/LearnMore';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTrash, faUserCircle, faUserCog, faUsers } from '@fortawesome/free-solid-svg-icons'
-library.add(faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTrash, faUserCircle, faUserCog, faUsers)
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers } from '@fortawesome/free-solid-svg-icons'
+library.add(faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers)
+
 
 class App extends Component {
 	componentDidMount() {
@@ -18,8 +20,11 @@ class App extends Component {
 			type: 'GET_OUTCOME_AREAS',
 		});
 		this.props.dispatch({
-			type: 'GET_GEO_DATA'
-		});
+			type: 'GET_INDICATORS',
+		})
+		this.props.dispatch({
+			type: 'GET_CHARTS',
+		})
 	}
 
   render() {
@@ -28,6 +33,7 @@ class App extends Component {
 				<div>
 					<Nav />
 					<Routes />
+					<LearnMore />
 					<FooterNav />
 					<Footer />
 				</div>
