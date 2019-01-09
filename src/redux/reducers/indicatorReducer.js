@@ -1,14 +1,6 @@
-const initialState = {
-	title: '',
-	copy: '',
-	active: false,
-	order: 100,
-	notes: '',
-}
-
-const indicatorReducer = (state = initialState, action) => {
+const indicatorReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_INDICATOR':
+    case 'SET_ALL_INDICATORS':
       return action.payload;
     default:
       return state;

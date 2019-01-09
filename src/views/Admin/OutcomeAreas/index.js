@@ -8,7 +8,7 @@ import OutcomeIndicatorCards from './OutcomeIndicatorCards';
 
 const OutcomeAreas = ({ indicator }) => (
 	<Grid container spacing={16}>
-		{indicator._id && (
+		{indicator && (
 			<Grid item xs={12}>
 				<PreviewIndicator />
 			</Grid>

@@ -12,7 +12,8 @@ const tractSchema = new Schema({
 			enum: ['Polygon', 'MultiPolygon'],
 			required: true
 		}
-	}
-}, { strict: false })
+	}},
+	{ strict: false }
+);
 
 module.exports = mongoose.model('Tract', tractSchema);

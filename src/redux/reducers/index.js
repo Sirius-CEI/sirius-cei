@@ -4,7 +4,8 @@ import user from './userReducer';
 import users from './userListReducer';
 import cards from './cardReducer';
 import outcomes from './outcomeAreaReducer';
-import indicator from './indicatorReducer';
+import indicatorList from './indicatorReducer';
+import indicator from './selectedIndicatorReducer';
 import fetching from './appReducer';
 import charts from './chartReducer';
 import csv from './csvReducer';
@@ -19,9 +20,10 @@ const rootReducer = combineReducers({
 	fetching,
 	cards,
 	charts,
-	errors, // error messages
-	indicator,
+	errors, // error messages,
 	outcomes, // outcome area data
+	indicatorList,
+	indicator,
 	user, // will have an id and username if someone is logged in
 	users,
 	csv,

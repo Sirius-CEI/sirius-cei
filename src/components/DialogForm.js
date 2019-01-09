@@ -20,7 +20,7 @@ const DialogForm = ({ open, dialogTitle, formId, formFields, onSubmit, handleClo
 				<Button onClick={handleClose} color="primary">
 					Cancel
 				</Button>
-				<Button type="submit" form={formId} color="primary">
+				<Button type="submit" form={formId} color="primary" onSubmit={onSubmit}>
 					Submit
 				</Button>
 			</DialogActions>

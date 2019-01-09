@@ -3,7 +3,11 @@ const router = express.Router();
 const OutcomeArea = require('../models/outcome-areas.model');
 
 router.get('/', (req, res) => {
-  OutcomeArea.find({}).sort({ active: -1, order: 1, title: 1, _v: -1, _id: 1 }).exec((err, data) => {
+	OutcomeArea
+	.find({})
+	.populate('indicator_ids')
+	.sort({ active: -1, order: 1, createdAt: 1 })
+	.exec((err, data) => {
 		return err ? res.json({ success: false, error: err }) : res.send(data);
   });
 });
@@ -25,26 +29,13 @@ router.post('/', (req, res) => {
 		outcomeArea.route = `/${route}`;
 		outcomeArea.save((err, data) => {
 			return err ? res.json({ success: false, error: err })
-			: res.status(201).json({ success: true, objectId: data._id });
+			: res.sendStatus(201);
 		});
 	} catch (error) {
 		console.log(`outcome area post error`, error);
 		res.json({ success: false, error: error });
 	}
 });
-
-router.post('/:id', (req, res) => {
-	try {
-		const { payload } = req.body;
-		OutcomeArea.findByIdAndUpdate(req.params.id, { $push: { indicators: payload } }, (err, doc) => {
-			return err ? res.json({ success: false, error: err })
-			: res.json({ success: true, doc: doc })
-		})
-	} catch (error) {
-		console.log(`indicator post error`, error);
-		res.json({ success: false, error: error });
-	}
-})
 
 router.put('/:id', (req, res) => {
 	try {

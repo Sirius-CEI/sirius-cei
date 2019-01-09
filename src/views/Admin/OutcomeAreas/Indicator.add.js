@@ -28,7 +28,7 @@ class AddIndicator extends Component {
 		title: '',
 		copy: '',
 		notes: '',
-		outcomeId: ''
+		outcome_id: ''
 	}	
 
 	handleOpen = event => {
@@ -47,14 +47,11 @@ class AddIndicator extends Component {
 
 	onSubmit = event => {
 		event.preventDefault();
-		const { outcomeId } = this.state;
 		var newIndicator = Object.assign({}, this.state);
 		delete newIndicator.open;
-		delete newIndicator.outcomeId;
 		this.props.dispatch({
 			type: 'POST_INDICATOR',
 			payload: newIndicator,
-			id: outcomeId,
 		});
 		this.handleClose();
 	}
@@ -65,7 +62,7 @@ class AddIndicator extends Component {
 			title: '',
 			copy: '',
 			notes: '',
-			outcomeId: ''
+			outcome_id: ''
 		})
 	}
 

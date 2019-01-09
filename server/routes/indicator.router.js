@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Chart = require('../models/charts.model');
+const Indicator = require('../models/indicators.model');
 
 router.get('/', (req, res) => {
-	Chart
+	Indicator
 	.find({})
 	.sort({ active: -1, order: 1, createdAt: 1 })
 	.exec((err, data) => {
@@ -14,34 +14,32 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 	try {
 		const { payload } = req.body;
-		console.log(`post chart payload:`, payload);
-		let chart = new Chart();
+		console.log(payload);
+		let indicator = new Indicator();
 		// set document fields equal to the value of the matching payload key
 		Object.entries(payload).forEach(
-			([key, value]) => chart[key] = value
+			([key, value]) => indicator[key] = value
 		);
-		console.log(`chart:`, chart);
-		chart.save((err, data) => {
+		indicator.save((err, data) => {
 			return err ? res.json({ success: false, error: err })
 			: res.sendStatus(201);
 		});
 	} catch (error) {
-		console.log(`chart post error`, error);
+		console.log(`outcome area post error`, error);
 		res.json({ success: false, error: error });
 	}
-});
+})
 
 router.put('/:id', (req, res) => {
 	try {
 		const { payload } = req.body;
-		// console.log(payload);
-		Chart.findByIdAndUpdate(req.params.id, { $set: payload }, (err, doc) => {
+		Indicator.findByIdAndUpdate(req.params.id, { $set: payload }, (err, doc) => {
 			return err ? res.json({ success: false, error: err })
 			: res.sendStatus(200);
 		})
 	} catch (error) {
-		console.log(`chart put error`, error);
-		res.json({ success: false, error: error})
+		console.log(`outcome put error`, error);
+		res.json({ success: false, error: error });
 	}
 })
 
