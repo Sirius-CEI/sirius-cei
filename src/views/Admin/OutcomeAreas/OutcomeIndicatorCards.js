@@ -60,12 +60,12 @@ class OutcomeIndicatorCards extends Component {
 								<EditOutcome item={item}/>
 								<Divider />
 								<CardContent className={classes.content}>
-									<OutcomeIndicatorList
+									{/* <OutcomeIndicatorList
 										classes={classes}
 										outcome={item}
 										selectedIndicator={selectedIndicator}
 										handleSelectIndicator={this.handleSelectIndicator}
-									/>
+									/> */}
 								</CardContent>
 							</Card>
 						</Grid>

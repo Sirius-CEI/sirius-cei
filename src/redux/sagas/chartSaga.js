@@ -17,13 +17,14 @@ function* getCharts(action) {
 
 function* postChart(action) {
 	try {
+		yield put({ type: 'CLEAR_ERRORS' });
 		let response = yield axios.post(`/api/charts`, { payload: action.payload });
 		console.log(response);
-		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
+		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error }) }
 		yield put({ type: 'GET_CHARTS', indicator: action.payload.indicator })
 	} catch (error) {
 		console.log(`chart post request failed`, error);
-		yield put({ type: 'API_ERROR', payload: error});
+		yield put({ type: 'API_ERROR', payload: error });
 	}
 }
 
@@ -31,7 +32,7 @@ function* updateChart(action) {
 	try {
 		let response = yield axios.put(`/api/charts/${action.id}`, { payload: action.payload })
 		console.log(response.data);
-		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
+		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error }) }
 		yield put({ type: 'GET_CHARTS', indicator: action.payload.indicator });
 	} catch (error) {
 		console.log(`chart put request failed`, error);

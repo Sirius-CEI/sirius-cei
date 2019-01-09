@@ -28,7 +28,7 @@ class AddIndicator extends Component {
 		title: '',
 		copy: '',
 		notes: '',
-		outcomeId: ''
+		outcome_id: ''
 	}	
 
 	handleOpen = event => {

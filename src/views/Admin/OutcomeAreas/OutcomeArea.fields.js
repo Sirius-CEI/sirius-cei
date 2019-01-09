@@ -9,6 +9,7 @@ const OutcomeAreaFields = ({ outcomeArea, handleChange, editMode }) => (
 			name="title"
 			margin="dense"
 			fullWidth
+			autoFocus
 			value={outcomeArea.title}
 			onChange={handleChange}
 		/>

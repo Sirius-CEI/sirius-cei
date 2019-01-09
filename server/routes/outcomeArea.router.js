@@ -33,19 +33,6 @@ router.post('/', (req, res) => {
 	}
 });
 
-router.post('/:id', (req, res) => {
-	try {
-		const { payload } = req.body;
-		OutcomeArea.findByIdAndUpdate(req.params.id, { $push: { indicators: payload } }, (err, doc) => {
-			return err ? res.json({ success: false, error: err })
-			: res.json({ success: true, doc: doc })
-		})
-	} catch (error) {
-		console.log(`indicator post error`, error);
-		res.json({ success: false, error: error });
-	}
-})
-
 router.put('/:id', (req, res) => {
 	try {
 		const { payload } = req.body;

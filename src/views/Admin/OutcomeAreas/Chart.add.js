@@ -32,7 +32,7 @@ class AddChart extends Component {
 		query: '',
 		citation: '',
 		notes: '',
-		indicator: '',
+		indicator_id: '',
 	}	
 
 	handleOpen = event => {
@@ -40,7 +40,7 @@ class AddChart extends Component {
 		this.setState({
 			...this.state,
 			open: true,
-			indicator: indicator._id,
+			indicator_id: indicator._id,
 		})
 	}
 
@@ -73,7 +73,7 @@ class AddChart extends Component {
 			query: '',
 			citation: '',
 			notes: '',
-			indicator: '',
+			indicator_id: '',
 		})
 	}
 

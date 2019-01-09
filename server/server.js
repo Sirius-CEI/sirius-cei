@@ -11,6 +11,7 @@ require('./modules/database');
 const userRouter = require('./routes/user.router');
 const cardRouter = require('./routes/cards.router');
 const outcomeAreaRouter = require('./routes/outcomeArea.router');
+const indicatorRouter = require('./routes/indicator.router');
 const chartRouter = require('./routes/charts.router');
 const geoRouter = require('./routes/geo.router');
 
@@ -29,6 +30,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/cards', cardRouter);
 app.use('/api/outcome-areas', outcomeAreaRouter);
+app.use('/api/indicators', indicatorRouter);
 app.use('/api/charts', chartRouter);
 app.use('/api/geo', geoRouter);
 
