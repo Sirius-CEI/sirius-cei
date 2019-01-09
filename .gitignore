@@ -64,3 +64,6 @@ typings/
 # ignore package-lock as it complicates merging
 package-lock.json
 yarn.lock
+
+# because deleting is too much for vintage 2012 MacBooks
+*/old
