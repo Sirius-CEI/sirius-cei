@@ -8,6 +8,7 @@ import indicatorList from './indicatorReducer';
 import indicator from './selectedIndicatorReducer';
 import fetching from './appReducer';
 import charts from './chartReducer';
+import csv from './csvReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
 	indicator,
 	user, // will have an id and username if someone is logged in
 	users,
+	csv,
 });
 
 export default rootReducer;

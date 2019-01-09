@@ -4,11 +4,9 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import 'react-chartjs-2';
 
-import GraphIndicator from './GraphIndicator';
-import TextIndicator from './TextIndicator';
+import Indicator from './Indicator';
 import TitleIndicator from './TitleIndicator';
 
 const styles = theme => ({
@@ -22,21 +20,32 @@ const styles = theme => ({
 
 class IndicatorPage extends Component {
   render() {
-		const { classes } = this.props;
-		console.log(this.props);
+		const { classes, outcomeAreas, location } = this.props;
+		const outcome = outcomeAreas.find(outcome => {return outcome.route === location.pathname});
+		console.log(outcome);
 		return (
 			<div className={classes.root}>
-				<Grid container spacing={0}>
+				{outcome && <Grid container spacing={0}>
+
+					<Grid className={classes.title} item xs={12}>
+            <TitleIndicator title={outcome.title}/>
+          </Grid>
+
+					{outcome.indicators.map((indicator, index) => (
+						<Indicator
+							key={index}
+							indicator={indicator}/>
+					))}
 					<Grid item>
 					</Grid>
-				</Grid>
+				</Grid>}
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = reduxState => ({
-  reduxState,
+const mapStateToProps = state => ({
+  outcomeAreas: state.outcomes,
 });
 
 IndicatorPage.propTypes = {

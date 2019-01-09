@@ -18,6 +18,8 @@ const errorMessage = (state = '', action) => {
 		return 'Oops! Something went wrong... Is the server running?';
 	case 'API_ERROR':
 		return action.payload;
+	case 'USER_DEACTIVATED':
+		return 'Your account has been deactivated. Please contact the administrator to reactivate your account.';
 	default:
 		return state;
 	}

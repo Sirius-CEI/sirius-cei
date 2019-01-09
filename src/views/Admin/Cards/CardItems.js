@@ -8,7 +8,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Modal from '@material-ui/core/Modal';
-import EditCard from './EditCard'
+import EditCard from './EditCard';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     img: {
@@ -24,6 +26,28 @@ const styles = theme => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit * 4,
     },
+    projectsDiv: {
+        display: 'flex',
+    },
+    cardStyle: {
+        display: 'flex',
+        padding: '2%',
+        margin: '1%',
+        display: 'inline-block',
+        width: '100%',
+        textAlign: 'center',
+        alignItems: 'center',
+        maxHeight: 250,
+    },
+    cardmedia: {
+        height: 170,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    cardButton: {
+        
+    }
   });
 class CardItems extends Component {
 
@@ -61,28 +85,24 @@ class CardItems extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div className="projects-div">
+            <div className={classes.projectsDiv}>
+            <Grid container spacing={12}>
                 {this.props.cards.map( (card, index) => {
                     return (
                     <div key={index}>
-                        <Card className="project-content" id="display">
-                            <CardMedia>
-                                <img 
-                                    id="img" 
-                                    alt="card-action" 
-                                    className={classes.img} 
-                                    src={card.image}
-                                />
-                            </CardMedia>
-                            <CardContent>
-                                <h2>{card.title}</h2>
-                            </CardContent>
-                            <CardContent>
+                    <Grid  item xs={8}>
+                        <Card className={classes.cardStyle} >
+                        <Typography>
+                                <p>{card.title}</p>
+                            </Typography>
+                            <CardMedia className={classes.cardmedia} image={card.image}>
+                                
                                 <Button 
+                                    className={classes.cardButton}
                                     color="primary" 
                                     variant="contained">
                                     <a 
-                                        className="project-link-button" 
+                                        
                                         href={card.url} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
@@ -90,10 +110,9 @@ class CardItems extends Component {
                                         Read More
                                     </a>
                                 </Button>
-                            </CardContent>
-                            <CardContent>
-                                <div>Showing on Page {card.name}</div>
-                            </CardContent>
+                                
+                            </CardMedia>
+                            
                         </Card>
                         <Button onClick={this.handleOpen}>Edit</Button>
                         <Modal
@@ -108,9 +127,11 @@ class CardItems extends Component {
                         </div>
                         </Modal>                        
                         <Button onClick={() => this.deleteCard(card._id)}>Delete</Button>
+                        </Grid>
                     </div>
                 )
             })}
+            </Grid>
         </div>
     );
   }

@@ -12,6 +12,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Lock from '@material-ui/icons/Lock';
 
 const styles = theme => ({
   root: {
@@ -23,6 +29,10 @@ const styles = theme => ({
 	rightIcon: {
 		marginLeft: theme.spacing.unit,
 	},
+	textField: {
+		marginTop: 30,
+		width: '100%'
+  },
 });
 
 class LoginButton extends Component {
@@ -30,6 +40,7 @@ class LoginButton extends Component {
 		username: '',
 		password: '',
 		open: false,
+		showPassword: false,
 	}
 
 	handleOpen = event => {
@@ -73,6 +84,10 @@ class LoginButton extends Component {
 		})
 	}
 
+	handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
+
   render() {
 		const { classes } = this.props;
 		const { open } = this.state;
@@ -92,23 +107,52 @@ class LoginButton extends Component {
 						<DialogContent>
 							<DialogContentText>This form allows site admins to log in. If you have reached this form in error, please click CANCEL.</DialogContentText>
 							<TextField
+								required
 								autoFocus
+								variant="outlined"
 								id="username"
 								label="username"
 								name="username"
 								type="email"
-								fullWidth
+								className={classes.textField}
 								value={this.state.username}
 								onChange={this.handleChange}
+								InputProps={{
+									startAdornment: (
+										<InputAdornment position="start">
+											<AccountCircle />
+										</InputAdornment>
+									),
+								}}
 							/>
+							<br></br>
 							<TextField
+								required
+								variant="outlined"
 								id="password"
 								label="password"
 								name="password"
-								type="password"
-								fullWidth
+								type={this.state.showPassword ? 'text' : 'password'}
+								className={classes.textField}
 								value={this.state.password}
 								onChange={this.handleChange}
+								InputProps={{
+									startAdornment: (
+										<InputAdornment position="start">
+											<Lock />
+										</InputAdornment>
+									),
+									endAdornment: (
+										<InputAdornment position="end">
+											<IconButton
+												aria-label="Toggle password visibility"
+												onClick={this.handleClickShowPassword}
+											>
+												{this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+											</IconButton>
+										</InputAdornment>
+									),
+								}}
 							/>
 						</DialogContent>
 						<DialogActions>

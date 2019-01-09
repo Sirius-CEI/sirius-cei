@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest, takeEvery } from 'redux-saga/effects';
+import { put, call, takeLatest, takeEvery } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
@@ -45,10 +45,52 @@ function* editUser() {
 	
 }
 
+//deactivate user from user list
+function* deactivateUser(action) {
+	console.log('in deactivateUserSaga', action.payload);
+	try {
+		yield call(axios.put, `/api/user/deactivate/${action.payload}`);
+		yield put( {type: 'FETCH_USER_LIST'} );
+	}
+	catch(error) {
+		console.log('error with put request to /api/user/deactivate');
+		alert('Error in updating user')
+	}
+}
+
+//reactivate user from user list
+function* reactivateUser(action) {
+	console.log('in reactivateUserSaga', action.payload);
+	try {
+		yield call(axios.put, `/api/user/reactivate/${action.payload}`);
+		yield put( {type: 'FETCH_USER_LIST'} );
+	}
+	catch(error) {
+		console.log('error with put request to /api/user/reactivate');
+		alert('Error in updating user')
+	}
+}
+
+//delete user from user list
+function* deleteUser(action) {
+	console.log('in deleteUserSaga', action.payload);
+	try {
+		yield call(axios.delete, `/api/user/${action.payload}`);
+		yield put( { type: 'FETCH_USER_LIST' } );
+	}
+		catch(error) {
+			console.log('error with delete request to /api/user');
+			alert('Error deleting user');
+		}
+}
+
 function* userSaga() {
 	yield takeLatest('FETCH_USER', fetchUser);
 	yield takeEvery('FETCH_USER_LIST', fetchUserList);
-	yield takeEvery('EDIT_USER', editUser)
+	yield takeEvery('EDIT_USER', editUser);
+	yield takeEvery('DELETE_USER', deleteUser);
+	yield takeEvery('DEACTIVATE_USER', deactivateUser);
+	yield takeEvery('REACTIVATE_USER', reactivateUser);
 }
 
 export default userSaga;
