@@ -129,16 +129,14 @@ router.post('/password-reset', (req, res, next) => {
 });
 
 // PUT route to update user password
-router.put('/new-password/:id', (req, res) => {
+router.put('/new-password/:username', (req, res) => {
   const password = encryptLib.encryptPassword(req.body.password);
   console.log('update password:', password);
-  console.log('update password username:', req.params.username);
+  console.log('update password username:', req.body.username);
   Person.findOneAndUpdate(
     { username: req.body.username },
-    { $set: { password: password },
-    (error, doc) => ( error ? res.json({ success: false, error: error.message }) : res.json({ success: true, doc: doc })
-    )
-  .then((results) => {
+    { $set: { password: password } },
+  ).then((results) => {
   console.log(`Success updating password`, results);
   res.sendStatus(200);
   })
