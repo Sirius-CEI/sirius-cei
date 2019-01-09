@@ -50,7 +50,8 @@ class GraphIndicator extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, indicator } = this.props;
+    console.log(indicator)
       return (
         <div>
         <div>
@@ -63,8 +64,9 @@ class GraphIndicator extends Component {
                 height={'100%'}
                 chartType="Line"
                 data={data}
+                graph_id={indicator.title}
                 options={{
-                  colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b']
+                  colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b'],
                 }}
               />
             )
