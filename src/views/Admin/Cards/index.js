@@ -90,12 +90,12 @@ class CardExtension extends Component {
 							<AddCard handleClose={this.handleClose}/>
 						</DialogContent>
 						<DialogActions>
-							<Button onClick={this.handleClose} color="primary">
+							{/* <Button onClick={this.handleClose} color="primary">
 								Cancel
 							</Button>
 							<Button type="submit" form="add-card-form" color="primary">
 								Submit
-							</Button>
+							</Button> */}
 						</DialogActions>
 					</Dialog>
 				</form>

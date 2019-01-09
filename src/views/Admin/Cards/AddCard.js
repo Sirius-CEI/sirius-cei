@@ -104,6 +104,7 @@ class AddCard extends Component {
                     <MenuItem value={3}>Human Capital</MenuItem>
                     <MenuItem value={4}>Access and Transit</MenuItem>
 				</TextField>
+				<Button onClick={()=>this.props.handleClose()}>Cancel</Button>
 				<Button onClick={this.addCard}>Add Card</Button>
 				
 			</Fragment>
