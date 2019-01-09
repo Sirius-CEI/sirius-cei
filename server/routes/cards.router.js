@@ -101,7 +101,7 @@ const cardSchema = new Schema({
     title: { type: String, required: true},
     image: { type: String, required: true},
     url: { type: String, required: true},
-    indicator_id: { type: Number, required: true},
+    category_id: { type: Number, required: true},
 });
 
 const Card = mongoose.model('action_cards', cardSchema);

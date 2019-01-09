@@ -13,7 +13,7 @@ const styles = theme => ({
 	root: {
 		flexGrow: 1,
 		display: 'flex',
-		justifyContent: 'flex-end',
+		justifyContent: 'center',
 	},
 	grow: {
 		flexGrow: 1,
@@ -21,6 +21,12 @@ const styles = theme => ({
 	rightIcon: {
 		marginLeft: theme.spacing.unit,
 	},
+	button: {
+		height: 44,
+		justifySelf: 'flex-end',
+		alignSelf: 'flex-end',
+		
+	}
 });
 
 class CardExtension extends Component {
@@ -73,11 +79,6 @@ class CardExtension extends Component {
 		return (
 			
 			<div className={classes.root}>
-			{JSON.stringify(this.state)}
-				<Button variant="outlined" onClick={this.handleOpen}>
-					Add Card
-					<FontAwesomeIcon icon="plus" className={classes.rightIcon} />
-				</Button>
 				<form id="add-card-form" onSubmit={this.addCard}>
 					<Dialog
 						open={open}
@@ -98,7 +99,12 @@ class CardExtension extends Component {
 						</DialogActions>
 					</Dialog>
 				</form>
+				
 				<CardItems />
+				<Button className={classes.button} variant="outlined" onClick={this.handleOpen}>
+					Add Card
+					<FontAwesomeIcon icon="plus" className={classes.rightIcon} />
+				</Button>
 			</div>
 		);
 	}

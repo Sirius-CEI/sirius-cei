@@ -23,7 +23,7 @@ class AddCard extends Component {
 			title: 'test',
 			image: 'test',
 			url: 'test',
-			category_id: 'test',
+			category_id: 1,
 		}
 	}
 
