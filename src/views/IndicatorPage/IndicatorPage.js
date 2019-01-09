@@ -6,6 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import 'react-chartjs-2';
 
+import Indicator from './Indicator';
+import TitleIndicator from './TitleIndicator';
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
