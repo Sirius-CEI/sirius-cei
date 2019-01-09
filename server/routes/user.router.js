@@ -20,6 +20,55 @@ router.get('/list', (req, res) => {
   });
 });
 
+//PUT route to reactivate user
+router.put('/reactivate/:id', (req, res) => {
+  console.log('in router reactivate user',  req.params.id);
+  let reqId = req.params.id;
+  Person.findByIdAndUpdate({
+    _id: reqId}, {$set: {"active": true}})
+    .then( (updatedPerson) => {
+      console.log('updated result', updatedPerson);
+      res.sendStatus(200)
+    })
+    .catch( (error) => {
+      console.log('updating error');
+      res.sendStatus(500)
+    })
+})
+
+//PUT route to deactivate user
+router.put('/deactivate/:id', (req, res) => {
+  console.log('in router deactivate user',  req.params.id);
+  let reqId = req.params.id;
+  Person.findByIdAndUpdate({
+    _id: reqId}, {$set: {"active": false}})
+    .then( (updatedPerson) => {
+      console.log('updated result', updatedPerson);
+      res.sendStatus(200)
+    })
+    .catch( (error) => {
+      console.log('updating error');
+      res.sendStatus(500)
+    })
+})
+
+// DELETE route to remove user
+router.delete('/:id', (req, res) => {
+  console.log('in router delete user', req.params.id);
+  let reqId = req.params.id;
+  Person.findOneAndDelete({
+    _id: reqId
+  })
+    .then( (removedPerson) => {
+      console.log('delete result', removedPerson);
+      res.sendStatus(200)
+    })
+    .catch( (error) => {
+      console.log('delete error');
+      res.sendStatus(500)
+    })
+})
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
