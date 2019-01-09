@@ -22,6 +22,7 @@ const styles = theme => ({
 
 class PasswordReset extends Component {
   state = {
+    username: '',
     password: '',
     confirm: '',
   };
@@ -35,8 +36,9 @@ class PasswordReset extends Component {
     event.preventDefault();
     if (this.state.password === this.state.confirm) {
       this.props.dispatch({
-        type: 'EDIT_PASSWORD',
+        type: 'RESET_PASSWORD',
         payload: {
+          username: this.state.username,
           password: this.state.password,
         }
       });
@@ -60,8 +62,17 @@ class PasswordReset extends Component {
           <form onSubmit={this.resetPassword}>
             <h1>Reset Password</h1>
             <div>
+              <label htmlFor="username">
+              Username:
+              <input
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleInputChangeFor('username')}
+              />
+              </label>
               <label htmlFor="password">
-              Password:
+              New Password:
               <input
                   type="password"
                   name="password"
@@ -69,9 +80,8 @@ class PasswordReset extends Component {
                   onChange={this.handleInputChangeFor('password')}
               />
               </label>
-              <br></br>
               <label htmlFor="password">
-              confirm:
+              Confirm Password:
               <input
                   type="password"
                   name="confirm"

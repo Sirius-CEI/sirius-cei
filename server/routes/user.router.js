@@ -128,4 +128,24 @@ router.post('/password-reset', (req, res, next) => {
   })
 });
 
+// PUT route to update user password
+router.put('/new-password/:id', (req, res) => {
+  const password = encryptLib.encryptPassword(req.body.password);
+  console.log('update password:', password);
+  console.log('update password username:', req.params.username);
+  Person.findOneAndUpdate(
+    { username: req.body.username },
+    { $set: { password: password },
+    (error, doc) => ( error ? res.json({ success: false, error: error.message }) : res.json({ success: true, doc: doc })
+    )
+  .then((results) => {
+  console.log(`Success updating password`, results);
+  res.sendStatus(200);
+  })
+  .catch((error) => {
+      console.log(`Error making database password UPDATE`, error);
+      res.sendStatus(500);
+  })
+});
+
 module.exports = router;
