@@ -10,6 +10,7 @@ import './App.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTrash, faUserCircle, faUserCog, faUsers } from '@fortawesome/free-solid-svg-icons'
+import LearnMore from '../components/LearnMore';
 library.add(faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTrash, faUserCircle, faUserCog, faUsers)
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
 				<div>
 					<Nav />
 					<Routes />
+					<LearnMore />
 					<FooterNav />
 					<Footer />
 				</div>
