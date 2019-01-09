@@ -5,7 +5,7 @@ function* getCharts(action) {
     try {
 			yield put({ type: 'FETCH_DATA_BEGIN'})
       let response = yield axios.get(`/api/charts`);
-			// console.log('getOutcomeAreas response', response.data);
+			console.log('getCharts response', response.data);
 			yield put({ type: 'SET_CHARTS', payload: response.data });
 			yield put({ type: 'FETCH_DATA_SUCCESS' })
     } catch (error) {

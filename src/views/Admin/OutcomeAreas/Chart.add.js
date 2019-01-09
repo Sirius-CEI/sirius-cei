@@ -40,7 +40,7 @@ class AddChart extends Component {
 		this.setState({
 			...this.state,
 			open: true,
-			indicator_id: indicator._id,
+			indicator_id: indicator,
 		})
 	}
 

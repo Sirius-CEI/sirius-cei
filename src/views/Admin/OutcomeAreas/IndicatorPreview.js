@@ -32,6 +32,7 @@ const styles = theme => ({
 	},
 	test: {
 		border: 'solid purple 1px',
+		flexGrow: 1
 	},
 });
 
@@ -40,12 +41,13 @@ const PreviewIndicator = ({ classes, indicatorObj }) => (
 		<div className={classes.padded}>
 			<Grid
 				container
+				spacing={8}
 				direction="row"
-				justify="space-between"
+				justify="center"
 				alignItems="center"
 				wrap="nowrap"
 			>
-				<Grid item>
+				<Grid item className={classes.grow}>
 					<Typography variant="h4" color="secondary">{indicatorObj.title}</Typography>
 				</Grid>
 				<Grid item>
