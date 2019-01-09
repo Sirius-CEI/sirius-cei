@@ -132,7 +132,6 @@ class LoginButton extends Component {
 								id="password"
 								label="password"
 								name="password"
-								type="password"
 								type={this.state.showPassword ? 'text' : 'password'}
 								className={classes.textField}
 								value={this.state.password}
