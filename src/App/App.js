@@ -17,14 +17,9 @@ library.add(faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, f
 class App extends Component {
 	componentDidMount() {
 		this.props.dispatch({
-			type: 'GET_OUTCOME_AREAS',
+			type: 'GET_DATA',
+			main: 'LOAD_DATA'
 		});
-		this.props.dispatch({
-			type: 'GET_INDICATORS',
-		})
-		this.props.dispatch({
-			type: 'GET_CHARTS',
-		})
 	}
 
   render() {

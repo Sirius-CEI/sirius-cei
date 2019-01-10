@@ -32,7 +32,7 @@ class Indicator extends Component {
     const { classes, indicator } = this.props;
       return (
         <div className={classes.root}>
-          <Grid container spacing={12}>
+          <Grid container spacing={16}>
           
             <Grid className={classes.graph} item md={6}>
               <GraphIndicator 

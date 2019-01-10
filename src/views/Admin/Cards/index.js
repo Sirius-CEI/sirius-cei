@@ -46,26 +46,12 @@ class CardExtension extends Component {
 			open: false 
 		});  
 	};
-
 	
-	
-	
-
 	deleteCard = (id) => {
 		this.props.dispatch({
 			type: 'DELETE_CARD',
 			payload: id
 		});
-	}
-
-	// display cards on page load
-	componentDidMount() {
-		this.getCards();
-	}
-
-	// get cards
-	getCards() {
-		this.props.dispatch( { type: 'GET_CARDS' } );
 	}
 
 	// edit card

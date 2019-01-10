@@ -37,7 +37,7 @@ class FooterNav extends Component {
 			<nav className={classes.root}>
 				<Grid container spacing={24} justify="center">
 					<Grid item xs={12}>
-						<Typography align="center" variant="h4" color="secondary">Dive Deeper</Typography>
+						<Typography align="center" variant="h4" color="secondary">Learn More</Typography>
 					</Grid>
 					{outcomeAreas.map((outcome, index) => (
 						<Grid item key={index}>
