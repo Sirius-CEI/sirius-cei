@@ -1,41 +1,28 @@
-import { combineReducers } from 'redux';
-
-// loginMessage holds the string that will display
-// on the login screen if there's an error
-const loginMessage = (state = '', action) => {
-  switch (action.type) {
-    case 'CLEAR_LOGIN_ERROR':
-      return '';
-    case 'LOGIN_INPUT_ERROR':
-      return 'Enter your username and password!';
-    case 'LOGIN_FAILED':
-      return 'Oops! The username and password didn\'t match. Try again!';
-    case 'LOGIN_FAILED_NO_CODE':
-      return 'Oops! Something went wrong! Is the server running?';
-    default:
-      return state;
-  }
+const errorMessage = (state = '', action) => {
+	switch (action.type) {
+	case 'CLEAR_ERRORS':
+		return '';
+	case 'AUTH_INPUT_ERROR':
+		return 'Please fill out all required fields.';
+	case 'INVALID_USERNAME':
+		return 'Username cannot contain spaces or special characters.';
+	case 'PASSWORD_TOO_SHORT':
+		return 'Password must be at least eight characters.';
+	case 'PASSWORD_MISMATCH':
+		return 'Password fields must match.';
+	case 'USERNAME_TAKEN':
+		return 'That username is already taken. Please choose a different username, or go to the Login screen instead.';
+	case 'LOGIN_FAILED':
+		return 'Incorrect username or password. Please try again.';
+	case 'AUTH_FAILED_NO_CODE':
+		return 'Oops! Something went wrong... Is the server running?';
+	case 'API_ERROR':
+		return action.payload;
+	case 'USER_DEACTIVATED':
+		return 'Your account has been deactivated. Please contact the administrator to reactivate your account.';
+	default:
+		return state;
+	}
 };
 
-// registrationMessage holds the string that will display
-// on the registration screen if there's an error
-const registrationMessage = (state = '', action) => {
-  switch (action.type) {
-    case 'CLEAR_REGISTRATION_ERROR':
-      return '';
-    case 'REGISTRATION_INPUT_ERROR':
-      return 'Choose a username and password!';
-    case 'REGISTRATION_FAILED':
-      return 'Oops! That didn\'t work. The username might already be taken. Try again!';
-    default:
-      return state;
-  }
-};
-
-// make one object that has keys loginMessage, registrationMessage
-// these will be on the redux state at:
-// state.errors.loginMessage and state.errors.registrationMessage
-export default combineReducers({
-  loginMessage,
-  registrationMessage,
-});
+export default errorMessage;

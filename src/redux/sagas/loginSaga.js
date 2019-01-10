@@ -4,8 +4,8 @@ import axios from 'axios';
 // worker Saga: will be fired on "LOGIN" actions
 function* loginUser(action) {
   try {
-    // clear any existing error on the login page
-    yield put({ type: 'CLEAR_LOGIN_ERROR' });
+		// clear any existing error on the login page
+    yield put({ type: 'CLEAR_ERRORS' });
 
     const config = {
       headers: { 'Content-Type': 'application/json' },
@@ -30,7 +30,7 @@ function* loginUser(action) {
     } else {
       // Got an error that wasn't a 401
       // Could be anything, but most common cause is the server is not started
-      yield put({ type: 'LOGIN_FAILED_NO_CODE' });
+      yield put({ type: 'AUTH_FAILED_NO_CODE' });
     }
   }
 }
