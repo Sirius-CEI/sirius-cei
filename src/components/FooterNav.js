@@ -39,7 +39,7 @@ class FooterNav extends Component {
 					<Grid item xs={12}>
 						<Typography align="center" variant="h4" color="secondary">Dive Deeper</Typography>
 					</Grid>
-					{outcomeAreas === null ? null : outcomeAreas.map((outcome, index) => (
+					{outcomeAreas.map((outcome, index) => (
 						<Grid item key={index}>
 							<Card>
 								<CardActionArea component={Link} to={outcome.route}>

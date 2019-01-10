@@ -3,35 +3,30 @@ import { connect } from 'react-redux';
 
 import propTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import 'typeface-lato';
 import Grid from '@material-ui/core/Grid';
-import { Typography, CardMedia, CardContent } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
+import { Card, CardHeader, CardActionArea, CardMedia, CardContent } from '@material-ui/core';
 
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    textAlign: 'center',
-    width: '100%',
-    backgroundColor: 'grey',
-  },
-  title: {
-    marginBottom: '5vh'
-  },
-  graph: {
-    padding: '1%'
-  },
-  card: {
-    maxWidth: 290,
-    height: 280,
-    padding: '2%',
-    margin: '1%',
-    display: 'inline-block',
-    width: '100%',
-    textAlign: 'center',
-    borderRadius: 5,
-  },
+		backgroundColor: theme.palette.grey[500],
+		padding: theme.spacing.unit * 3,
+	},
+	card: {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'space-evenly',
+		height: 180,
+		width: 280,
+	},
+	text: {
+		color: 'white'
+	},
   image: {
     maxWidth: 290,
     height: 180,
@@ -48,27 +43,43 @@ class LearnMore extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, cards } = this.props;
       return (
         <div className={classes.root}>
-        <Typography variant="display1">
-            What you can do
-        </Typography>
-          <Grid container spacing={12}>
-
-          {this.props.cards.map( (cards, index) => (
-                  <Grid key={index} className={classes.card} item xs={3}>
-                  <CardContent style={{backgroundColor: 'white', fontSize: 30, padding: 2}}>{cards.title}</CardContent>
-                  <CardMedia className={classes.image} image={cards.image}>
-                    
-                    <a target='blank' href={cards.url}>
-                    <Button variant='contained'>Read More</Button>
-                    </a>
-                    </CardMedia>
-                  </Grid>
-                ))}
-
-          </Grid>
+					<Grid container spacing={24} justify="center">
+						<Grid item xs={12}>
+							<Typography align="center" variant="h4" className={classes.text}>
+								What You Can Do
+							</Typography>
+						</Grid>
+						{cards.map((card, index) => (
+							<Grid item key={index}>
+								<Card>
+									<CardHeader
+										title={card.title}
+										titleTypographyProps={{
+											variant: 'h5',
+											align: 'center',
+											color: 'inherit'
+										}}
+									/>
+									<CardActionArea href={card.url} target="blank">
+										<CardMedia
+											image={card.image}
+											title={card.title}
+											className={classes.card}
+										>
+											<Chip
+												clickable
+												color="default"
+												label="read more"
+											/>
+										</CardMedia>
+									</CardActionArea>
+								</Card>
+							</Grid>
+						))}
+					</Grid>
         </div>
       );
   }
