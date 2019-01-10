@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import MapIndicator from './MapIndicator';
-
+import { withStyles } from '@material-ui/core/styles';
 import propTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Chart from 'react-google-charts';
 
+import MapIndicator from './IndicatorChart.map';
+
 const styles = theme => ({
   button: {
-    marginTop: '3%',
-    marginBottom: '3%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -23,7 +22,10 @@ const styles = theme => ({
   location: {
     marginLeft: theme.spacing.unit,
     borderRadius: 20
-  } 
+	},
+	test: {
+		border: 'solid tomato 1px',
+	}
 });
 
 const data = [
@@ -51,34 +53,31 @@ class GraphIndicator extends Component {
 
   render() {
     const { classes, indicator } = this.props;
-    console.log(indicator)
       return (
-        <div>
-        <div>
-          {
-            this.state.display === 'location' ? (
-              <MapIndicator/>
-            ) : (
-              <Chart
-                width={'100%'}
-                height={'100%'}
-                chartType="Line"
-                data={data}
-                graph_id={indicator.title}
-                options={{
-                  colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b'],
-                }}
-              />
-            )
-          }
-          </div>
-          <div className={classes.button}>
-            <ToggleButtonGroup exclusive value={this.state.display} onChange={this.handleDisplay}>
-              <ToggleButton value="race">Race/Ethnicity</ToggleButton>
-              <ToggleButton value="location">Location</ToggleButton>
-            </ToggleButtonGroup>
-          </div>
-        </div>
+        <Grid container spacing={16} className={classes.test}>
+					<Grid item className={classes.test}>
+						{
+							this.state.display === 'location' ? (
+								<MapIndicator/>
+							) : (
+								<Chart
+									chartType="Line"
+									data={data}
+									graph_id={indicator.title}
+									options={{
+										colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b'],
+									}}
+								/>
+							)
+						}
+						</Grid>
+						<Grid item>
+							<ToggleButtonGroup exclusive value={this.state.display} onChange={this.handleDisplay}>
+								<ToggleButton value="race">Race/Ethnicity</ToggleButton>
+								<ToggleButton value="location">Location</ToggleButton>
+							</ToggleButtonGroup>
+						</Grid>
+        </Grid>
       );
   }
 }
