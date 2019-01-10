@@ -1,58 +1,50 @@
-import React, { Component } from 'react';
-import propTypes from 'prop-types';
-import { compose } from 'recompose';
+import React from 'react';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import 'react-chartjs-2';
 
-import Indicator from './Indicator';
-import TitleIndicator from './TitleIndicator';
+import propTypes from 'prop-types';
+import {withStyles} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
+import Indicator from  './IndicatorTest';
+import OutcomeTitle from './OutcomeTitle';
+import IndicatorList from './IndicatorList';
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
+	root: {
+		border: 'solid red 1px',
 	},
-	grow: {
-		flexGrow: 1,
-	},
-});
-
-class IndicatorPage extends Component {
-  render() {
-		const { classes, outcomeAreas, location } = this.props;
-		const outcome = outcomeAreas.find(outcome => {return outcome.route === location.pathname});
-		console.log(outcome);
-		return (
-			<div className={classes.root}>
-				{outcome && <Grid container spacing={0}>
-
-					<Grid className={classes.title} item xs={12}>
-            <TitleIndicator title={outcome.title}/>
-          </Grid>
-
-					{outcome.indicators.map((indicator, index) => (
-						<Indicator
-							key={index}
-							indicator={indicator}/>
-					))}
-					<Grid item>
-					</Grid>
-				</Grid>}
-			</div>
-		);
+	test: {
+		border: 'solid red 1px'
 	}
+})
+
+const OutcomePage = ({ classes, outcomeAreas, location }) => {
+	const outcome = (outcomeAreas.find(outcome => (outcome.route === location.pathname)));
+
+	return (
+		<div>
+			{outcome && <Grid container spacing={0}>
+
+				<Grid item xs={12}>
+					<OutcomeTitle title={outcome.title}/>
+				</Grid>
+
+				<Grid item xs={12}>
+					<IndicatorList outcomeId={outcome._id} />
+				</Grid>
+
+			</Grid>}
+		</div>
+	);
 }
 
-const mapStateToProps = state => ({
-  outcomeAreas: state.outcomes,
-});
-
-IndicatorPage.propTypes = {
-  classes: propTypes.object.isRequired,
+OutcomePage.propTypes = {
+	classes: propTypes.object.isRequired,
 };
 
-export default compose(
-	connect(mapStateToProps),
-	withStyles(styles)
-)(IndicatorPage);
+const mapStateToProps = state => ({
+	outcomeAreas: state.outcomes,
+	indicatorList: state.indicatorList
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(OutcomePage));

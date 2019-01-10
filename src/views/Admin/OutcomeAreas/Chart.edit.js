@@ -96,10 +96,9 @@ class EditChart extends Component {
 				query: '',
 				citation: '',
 				notes: '',
-				indicator: '',
+				indicator_id: '',
 				active: false,
 				order: 100,
-				indicator: '',
 			},
 			id: '',
 		})

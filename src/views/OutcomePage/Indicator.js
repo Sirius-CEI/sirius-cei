@@ -1,54 +1,55 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import propTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import 'typeface-lato';
 import Grid from '@material-ui/core/Grid';
-import 'react-chartjs-2';
 
-import GraphIndicator from './GraphIndicator';
-import TextIndicator from './TextIndicator';
+import IndicatorChart from './IndicatorChart';
+import IndicatorText from './IndicatorText';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    textAlign: 'center',
-    width: '100%'
-  },
-  title: {
-    marginBottom: '5vh'
-  },
-  graph: {
-    padding: '1%'
-  },
-  text: {
-    padding: '1%'
-  },
+		flexGrow: 1,
+		border: 'solid tomato 1px'
+	},
 });
 
 class Indicator extends Component {
+	state = {
+    display: 'race',
+  };
+
+  handleDisplay = (event, display) => {
+    console.log(display);
+    
+    this.setState({ display: display});
+    console.log(this.state);
+    
+	}
+	
   render() {
-    const { classes, indicator } = this.props;
-      return (
-        <div className={classes.root}>
-          <Grid container spacing={16}>
-          
-            <Grid className={classes.graph} item md={6}>
-              <GraphIndicator 
-                indicator={indicator}
-              />
-            </Grid>
+		const { classes, indicator, order } = this.props;
+		const { display } = this.state;
+		return (
+			<div className={classes.root}>
+				<Grid
+					container
+					spacing={0}
+					alignItems="stretch"
+					direction={order%2 === 0 ? 'row' : 'row-reverse'}
+				>
+					<Grid item xs={12} md={5}>
+						<IndicatorChart indicator={indicator} />
+					</Grid>
 
-            <Grid className={classes.text} item md={6}>
-              <TextIndicator 
-                indicator={indicator}
-              />
-            </Grid>
+					<Grid className={classes.text} item xs={12} md={6}>
+						<IndicatorText indicator={indicator} handleDisplay={this.handleDisplay} display={display}/>
+					</Grid>
 
-          </Grid>
-        </div>
-      );
+					<Grid item xs={false} md={1} />
+				</Grid>
+			</div>
+		);
   }
 }
 
@@ -57,7 +58,7 @@ const mapStateToProps = reduxState => ({
 });
 
 Indicator.propTypes = {
-  classes: propTypes.object.isRequired,
+	classes: propTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(Indicator));
