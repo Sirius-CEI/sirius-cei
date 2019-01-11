@@ -60,9 +60,14 @@ class AddIndicator extends Component {
 		this.setState({
 			open: false,
 			title: '',
-			copy: '',
-			notes: '',
-			outcome_id: ''
+			chart_title: '',
+			what_this_means_copy: '',
+			why_this_matters_copy: '',
+			trend: '',
+			trend_copy: '',
+			active: false,
+			order: 100,
+			outcome_id: '',
 		})
 	}
 
