@@ -14,7 +14,7 @@ function* fetchUser() {
     // If a user is logged in, this will return their information
 		// from the server session (req.user)
 		yield put({ type: 'FETCH_DATA_BEGIN' });
-    const response = yield axios.get('api/user', config);
+    const response = yield call(axios.get, 'api/user', config);
 
     // now that the session has given us a user object
     // with an id and username set the client-side user object to let
@@ -29,7 +29,7 @@ function* fetchUser() {
 
 function* fetchUserList() {
 	try {
-		let response = yield axios.get('/api/user/list');
+		let response = yield call(axios.get, '/api/user/list');
 		// console.log('getUserList response', response.data);
 		yield put({ type: 'SET_USER_LIST', payload: response.data });
 	} catch (error) {
