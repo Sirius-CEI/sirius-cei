@@ -42,9 +42,10 @@ const LineChart = ({ indicator, classes }) => (
 			colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b', '#424242'],
 			fontName: 'Lato',
 			legend: {
-				position: 'bottom',
-				alignment: 'center',
-			}
+				position: 'none',
+			},
+			height: '300px',
+			
 		}}
 	/>
 )

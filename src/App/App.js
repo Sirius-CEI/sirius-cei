@@ -37,4 +37,6 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+const mapStateToProps = state => ({ state })
+
+export default connect(mapStateToProps)(App);
