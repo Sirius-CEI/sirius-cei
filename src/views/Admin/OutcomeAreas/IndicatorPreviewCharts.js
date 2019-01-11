@@ -53,7 +53,7 @@ class IndicatorPreviewCharts extends Component {
 						<Grid item xs={12} md={6} key={chart._id}>
 							<Card>
 								<Grid container direction="row" alignItems="stretch" alignContent="stretch">
-									<Grid item xs={12} sm={4} className={classes.grey} />
+									{/* <Grid item xs={12} sm={4} className={classes.grey} /> */}
 									<Grid item xs={12} sm={8} className={classes.gold}>
 										<Typography variant="h4" color="secondary">{chart.type}</Typography>
 										{chart.map_level && <Typography variant="body1"> {chart.map_level}</Typography>}

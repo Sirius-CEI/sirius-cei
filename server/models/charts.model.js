@@ -4,7 +4,7 @@ const Indicator = require('./indicators.model');
 
 const chartSchema = new Schema({
 	type: { type: String, enum: ['line', 'map'], required: true },
-	map_level: { type: String, enum: ['tract', 'county', 'MSA', 'state'] },
+	map_level: { type: String, enum: ['tract', 'county', 'MSA', 'state', ''] },
 	active: { type: Boolean, default: false },
 	order: { type: Number, default: 100 },
 	citation: { type: String, trim: true },
