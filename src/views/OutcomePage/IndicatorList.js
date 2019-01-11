@@ -26,6 +26,7 @@ const IndicatorList = ({ classes, outcomeId, indicatorList }) => {
 		<div className={classes.root}>
 			{indicators.map((indicator, index) => (
 					<Indicator
+						key={indicator._id}
 						order={index++}
 						indicator={indicator}
 					/>

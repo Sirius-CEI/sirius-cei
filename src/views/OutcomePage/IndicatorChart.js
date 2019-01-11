@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import propTypes from 'prop-types';
-import { Card, CardHeader, CardContent, Button } from '@material-ui/core'
+import { Card, CardHeader, CardContent, CardActions, Button, Typography } from '@material-ui/core'
 
 import MapChart from './IndicatorChart.map';
 import LineChart from './IndicatorChart.line'
@@ -31,12 +31,14 @@ class GraphIndicator extends Component {
     display: 'race',
   };
 
-  handleDisplay = (event, display) => {
-    this.setState({ display: display});    
+  handleDisplay = (display) => {
+		this.setState({ display: display });
+		console.log(this.state);   
   }
 
   render() {
-    const { indicator, classes } = this.props;
+		const { indicator, classes } = this.props;
+		const { display } = this.state;
 		return (
 			<Card className={classes.root}>
 				<CardHeader
@@ -55,6 +57,21 @@ class GraphIndicator extends Component {
 						)
 					}
 					</CardContent>
+					<CardActions>
+						<Typography align="right">View information by:</Typography>
+						<Button
+							onClick={()=>this.handleDisplay('race')}
+							disabled={display==='race'}
+						>
+							race/ethnicity
+						</Button>
+						<Button
+							onClick={()=>this.handleDisplay('location')}
+							disabled={display==='location'}
+						>
+							location
+						</Button>
+					</CardActions>
 			</Card>
 		);
   }
