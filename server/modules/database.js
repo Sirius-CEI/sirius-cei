@@ -16,13 +16,13 @@ if (process.env.MONGODB_URI) {
   mongoURI = process.env.MONGODB_URI;
 } else {
   // use the local database server
-  mongoURI = 'mongodb://localhost:27017/cei';
+  // mongoURI = 'mongodb://localhost:27017/cei';
 }
 
 mongoose.connect(mongoURI);
 
 mongoose.connection.once('open', () => {
-  console.log('Mongo connected');
+  console.log('Mongo connected', mongoURI);
 });
 
 mongoose.connection.on('error', (err) => {

@@ -39,7 +39,7 @@ const styles = theme => ({
 class LearnMore extends Component {
 
   componentDidMount() {
-    this.props.dispatch({type: 'GET_CARDS'});
+    // this.props.dispatch({type: 'GET_CARDS'});
   }
 
   render() {

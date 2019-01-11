@@ -29,15 +29,11 @@ function* fetchUser() {
 
 function* fetchUserList() {
 	try {
-		yield put({ type: 'FETCH_DATA_BEGIN'})
 		let response = yield axios.get('/api/user/list');
-		console.log('getUserList response', response.data);
+		// console.log('getUserList response', response.data);
 		yield put({ type: 'SET_USER_LIST', payload: response.data });
-		yield put({ type: 'FETCH_DATA_SUCCESS' })
 	} catch (error) {
 		console.log(`user list get request failed`, error);
-		yield put({ type: 'API_ERROR', payload: error});
-		yield put({ type: 'FETCH_DATA_FAILURE' });
 	}
 }
 
@@ -50,7 +46,7 @@ function* deactivateUser(action) {
 	console.log('in deactivateUserSaga', action.payload);
 	try {
 		yield call(axios.put, `/api/user/deactivate/${action.payload}`);
-		yield put( {type: 'FETCH_USER_LIST'} );
+		yield put( {type: 'GET_DATA', main: 'FETCH_USER_LIST'} );
 	}
 	catch(error) {
 		console.log('error with put request to /api/user/deactivate');
@@ -63,7 +59,7 @@ function* reactivateUser(action) {
 	console.log('in reactivateUserSaga', action.payload);
 	try {
 		yield call(axios.put, `/api/user/reactivate/${action.payload}`);
-		yield put( {type: 'FETCH_USER_LIST'} );
+		yield put( {type: 'GET_DATA', main: 'FETCH_USER_LIST'} );
 	}
 	catch(error) {
 		console.log('error with put request to /api/user/reactivate');
@@ -76,7 +72,7 @@ function* deleteUser(action) {
 	console.log('in deleteUserSaga', action.payload);
 	try {
 		yield call(axios.delete, `/api/user/${action.payload}`);
-		yield put( { type: 'FETCH_USER_LIST' } );
+		yield put( { type: 'GET_DATA', main: 'FETCH_USER_LIST' } );
 	}
 		catch(error) {
 			console.log('error with delete request to /api/user');
