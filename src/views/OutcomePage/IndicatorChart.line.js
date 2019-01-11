@@ -45,7 +45,6 @@ const LineChart = ({ indicator, classes }) => (
 				position: 'none',
 			},
 			height: '300px',
-			
 		}}
 	/>
 )

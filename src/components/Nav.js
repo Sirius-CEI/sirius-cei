@@ -111,7 +111,7 @@ class Nav extends React.Component {
     const { open } = this.state;
 
     return (
-      <div className={classes.root}>
+			<div className={classes.root}>
         <AppBar
           position="static"
 					color="default"
@@ -180,7 +180,7 @@ class Nav extends React.Component {
           <Divider />
         </Drawer>
       </div>
-    );
+		)
   }
 }
 

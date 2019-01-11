@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import propTypes from 'prop-types';
-import { Card, CardHeader, CardContent, CardActions, Button, Typography } from '@material-ui/core'
+import { Card, CardHeader, CardContent, Button, Grid, Typography } from '@material-ui/core'
 
 import MapChart from './IndicatorChart.map';
 import LineChart from './IndicatorChart.line'
@@ -10,6 +10,12 @@ import LineChart from './IndicatorChart.line'
 const styles = theme => ({
 	root: {
 		flexGrow: 1,
+	},
+	buttons: {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	test: {
 		border: 'solid tomato 1px',
@@ -33,13 +39,13 @@ class GraphIndicator extends Component {
 
   handleDisplay = (display) => {
 		this.setState({ display: display });
-		console.log(this.state);   
   }
 
   render() {
 		const { indicator, classes } = this.props;
 		const { display } = this.state;
 		return (
+			indicator && (
 			<Card className={classes.root}>
 				<CardHeader
 					title="Chart Title"
@@ -51,38 +57,53 @@ class GraphIndicator extends Component {
 				<CardContent>
 					{
 						this.state.display === 'location' ? (
-							<MapChart />
+							<MapChart indicator={indicator}/>
 						) : (
-							<LineChart />
+							<LineChart indicator={indicator}/>
 						)
 					}
 					</CardContent>
-					<CardActions>
-						<Typography align="right">View information by:</Typography>
-						<Button
-							onClick={()=>this.handleDisplay('race')}
-							disabled={display==='race'}
+					<CardContent className={classes.buttons}>
+						<Typography
+							align="center"
+							variant="button"
+							color="primary"
 						>
-							race/ethnicity
-						</Button>
-						<Button
-							onClick={()=>this.handleDisplay('location')}
-							disabled={display==='location'}
+							View information by:
+						</Typography>
+						<Grid
+							container
+							spacing={8}
+							alignItems="center"
+							justify="center"
 						>
-							location
-						</Button>
-					</CardActions>
-			</Card>
+							<Grid item>
+								<Button
+									variant="contained"
+									onClick={()=>this.handleDisplay('race')}
+									disabled={display==='race'}
+								>
+									race/ethnicity
+								</Button>
+							</Grid>
+							<Grid item>
+								<Button
+									variant="contained"
+									onClick={()=>this.handleDisplay('location')}
+									disabled={display==='location'}
+								>
+									location
+								</Button>
+							</Grid>
+						</Grid>
+					</CardContent>
+			</Card>)
 		);
   }
 }
-
-const mapStateToProps = reduxState => ({
-  reduxState,
-});
 
 GraphIndicator.propTypes = {
   classes: propTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(GraphIndicator));
+export default withStyles(styles)(GraphIndicator);

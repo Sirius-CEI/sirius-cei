@@ -24,7 +24,7 @@ const IndicatorList = ({ classes, outcomeId, indicatorList }) => {
 
 	return (
 		<div className={classes.root}>
-			{indicators.map((indicator, index) => (
+			{indicators && indicators.map((indicator, index) => (
 					<Indicator
 						key={indicator._id}
 						order={index++}
