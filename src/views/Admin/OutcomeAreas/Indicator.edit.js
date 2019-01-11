@@ -27,8 +27,11 @@ class EditIndicator extends Component {
 		open: false,
 		updates: {
 			title: '',
-			copy: '',
-			notes: '',
+			chart_title: '',
+			what_this_means_copy: '',
+			why_this_matters_copy: '',
+			trend: '',
+			trend_copy: '',
 			active: false,
 			order: 100,
 			outcome_id: '',
@@ -56,11 +59,14 @@ class EditIndicator extends Component {
 			open: false,
 			updates: {
 				title: '',
-				copy: '',
-				notes: '',
+				chart_title: '',
+				what_this_means_copy: '',
+				why_this_matters_copy: '',
+				trend: '',
+				trend_copy: '',
 				active: false,
 				order: 100,
-				outcome_id: ''
+				outcome_id: '',
 			},
 			id: ''
 		});  

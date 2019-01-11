@@ -16,23 +16,57 @@ const IndicatorFields = ({ outcomes, handleChange, indicator, editMode }) => (
 			onChange={handleChange}
 		/>
 		<TextField
-			label="Copy"
-			name="copy"
+			label="Chart title"
+			name="chart_title"
 			type="text"
 			margin="dense"
 			fullWidth
-			multiline
-			value={indicator.copy}
+			autoFocus
+			value={indicator.chart_title}
 			onChange={handleChange}
 		/>
 		<TextField
-			label="Notes"
-			name="notes"
+			label="What This Means Copy"
+			name="what_this_means_copy"
 			type="text"
 			margin="dense"
 			fullWidth
 			multiline
-			value={indicator.notes}
+			value={indicator.what_this_means_copy}
+			onChange={handleChange}
+		/>
+		<TextField
+			label="Why This Matters Copy"
+			name="why_this_matters_copy"
+			type="text"
+			margin="dense"
+			fullWidth
+			multiline
+			value={indicator.why_this_matters_copy}
+			onChange={handleChange}
+		/>
+		<TextField
+			label="Trend"
+			name="trend"
+			select
+			margin="dense"
+			fullWidth
+			required
+			value={indicator.trend}
+			onChange={handleChange}
+		>
+			<MenuItem value="positive">positive</MenuItem>
+			<MenuItem value="negative">negative</MenuItem>
+			<MenuItem value="neutral">neutral</MenuItem>
+		</TextField>
+		<TextField
+			label="Trend Copy"
+			name="trend_copy"
+			type="text"
+			margin="dense"
+			fullWidth
+			multiline
+			value={indicator.trend_copy}
 			onChange={handleChange}
 		/>
 		<TextField
