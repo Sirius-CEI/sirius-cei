@@ -9,8 +9,7 @@ import IndicatorText from './IndicatorText';
 
 const styles = theme => ({
   root: {
-		flexGrow: 1,
-		border: 'solid tomato 1px'
+		padding: 8
 	},
 });
 

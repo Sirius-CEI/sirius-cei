@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import propTypes from 'prop-types';
@@ -9,7 +9,8 @@ import Indicator from  './IndicatorTest';
 
 const styles = theme => ({
 	root: {
-		padding: theme.spacing.unit * 3,
+		padding: theme.spacing.unit * 2,
+		flexGrow: 1
 	},
 	test: {
 		border: 'solid red 1px'
@@ -23,16 +24,12 @@ const IndicatorList = ({ classes, outcomeId, indicatorList }) => {
 
 	return (
 		<div className={classes.root}>
-			<Grid container spacing={24}>
-				{indicators.map((indicator, index) => (
-					<Grid item key={indicator._id}>
-						<Indicator
-							order={index++}
-							indicator={indicator}
-						/>
-					</Grid>
-				))}
-				</Grid>
+			{indicators.map((indicator, index) => (
+					<Indicator
+						order={index++}
+						indicator={indicator}
+					/>
+			))}
 		</div>
 	);
 }

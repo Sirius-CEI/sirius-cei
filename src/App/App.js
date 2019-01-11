@@ -10,8 +10,8 @@ import './App.css';
 import LearnMore from '../components/LearnMore';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers } from '@fortawesome/free-solid-svg-icons'
-library.add(faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers)
+import { faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers, faSmile, faFrown, faMeh } from '@fortawesome/free-solid-svg-icons'
+library.add(faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers, faSmile, faFrown, faMeh )
 
 
 class App extends Component {
