@@ -4,10 +4,11 @@ import { put, call, takeEvery } from 'redux-saga/effects';
 function* getIndicators() {
 	try {
 		let response = yield call(axios.get, '/api/indicators');
-		// console.log(response.data);
+		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error }) }
 		yield put({ type: 'SET_ALL_INDICATORS', payload: response.data });
 	} catch (error) {
 		console.log(`indicators get request failed`, error);
+		yield put({ type: 'API_ERROR', payload: error });
 	}
 }
 

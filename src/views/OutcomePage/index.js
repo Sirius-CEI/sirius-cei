@@ -1,24 +1,16 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-
 import propTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 
-import Indicator from  './IndicatorTest';
 import OutcomeTitle from './OutcomeTitle';
 import IndicatorList from './IndicatorList';
+import LearnMore from './LearnMore';
 
 const styles = theme => ({
 	root: {
 		flexGrow: 1,
 	},
-	padding: {
-		padding: theme.spacing.unit * 3
-	},
-	test: {
-		border: 'solid red 1px'
-	}
 })
 
 const OutcomePage = ({ classes, outcomeAreas, location }) => {
@@ -30,6 +22,7 @@ const OutcomePage = ({ classes, outcomeAreas, location }) => {
 				<Fragment>
 					<OutcomeTitle title={outcome.title} />
 					<IndicatorList outcomeId={outcome._id} />
+					<LearnMore outcomeId={outcome._id} />
 				</Fragment>
 			}
 		</div>

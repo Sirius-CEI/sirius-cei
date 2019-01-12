@@ -33,7 +33,7 @@ const styles = theme => ({
 
 const direction = props => (props.index%2 === 0 ? 'row' : 'row-reverse')
 
-const IndicatorTest = ({ classes, indicator, order }) => (
+const IndicatorItem = ({ classes, indicator, order }) => (
 	<div className={classes.root}>
 		<Grid
 			container
@@ -74,8 +74,8 @@ const IndicatorTest = ({ classes, indicator, order }) => (
 	</div>
 )
 
-IndicatorTest.propTypes = {
+IndicatorItem.propTypes = {
 	classes: propTypes.object.isRequired,
 };
 
-export default withStyles(styles)(IndicatorTest);
+export default withStyles(styles)(IndicatorItem);
