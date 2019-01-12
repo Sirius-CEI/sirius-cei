@@ -27,7 +27,7 @@ const styles = theme => ({
 		alignItems: 'center',
 		justifyContent: 'space-evenly',
 		height: 180,
-		width: 280,
+		minWidth: 280,
 		backgroundColor: theme.palette.grey[800],
 	},
 	title: {
@@ -52,9 +52,9 @@ const LearnMore = ({ classes, outcomeId, cards }) => {
 					Learn More
 				</Typography>
 			</div>
-			<div className={classes.cardContainer}>
+			<Grid container spacing={0} className={classes.cardContainer}>
 					{outcomeCards && outcomeCards.map((cardItem, index) => (
-						<div className={classes.spacing}>
+						<Grid item xs={12} sm={6} md={4} lg={3} className={classes.spacing}>
 							<Card>
 								<CardActionArea>
 									<CardMedia
@@ -73,9 +73,10 @@ const LearnMore = ({ classes, outcomeId, cards }) => {
 									</CardMedia>
 								</CardActionArea>
 							</Card>
-						</div>
+						</Grid>
 					))}
-				</div>
+					<Grid item className={classes.grow} />
+				</Grid>
 			</div>
 	)
 }
