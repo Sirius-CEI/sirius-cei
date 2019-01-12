@@ -14,19 +14,29 @@ const styles = theme => ({
 	grow: {
 		flexGrow: 1,
 	},
+	spacing: {
+		padding: theme.spacing.unit
+	},
 	list: {
 		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center'
+		flexFlow: 'row wrap',
+		alignItems: 'stretch',
+		alignContent: 'flex-start',
+		justifyContent:'center',
 	},
 	card: {
 		display: 'flex',
 		flexDirection: 'column',
+		alignItems: 'stretch',
+		justifyContent: 'center',
+		alignContent: 'center',
 		height: '100%',
+		width: '100%',
 		minWidth: 280,
+		minHeight: 180,
 	},
 	img: {
-		height: '80'
+		height: 80
 	},
 	actionButtons: {
 		display: 'flex',
@@ -51,20 +61,28 @@ const CardList = ({ classes, cards, outcome, dispatch }) => {
 				title={outcome.title}
 			/>
 			<CardContent className={classes.list}>
-				<Grid container spacing={16}>
+				<Grid container spacing={0} className={classes.spacing}>
 					{outcomeCards.map((cardItem, index) => (
-						<Grid item key={index}>
+						<Grid item xs={12} sm={6} md={4} lg={3} className={classes.spacing} key={index}>
 							<Card className={classes.card}>
-									<CardMedia
-										image={cardItem.image}
-										title={cardItem.title}
-										className={classes.img}
-									/>
-									<CardContent>
-										<Typography variant="h6" align="center" color="primary">
-											{cardItem.title}
-										</Typography>
-									</CardContent>
+								<CardMedia
+									image={cardItem.image}
+									title={cardItem.title}
+									className={classes.img}
+								/>
+								<CardHeader
+									title={cardItem.title}
+									titleTypographyProps={{
+										variant: "h6",
+										align: "center",
+										color: "primary"
+									}}
+								/>
+								<CardContent className={classes.grow}>
+									<Typography variant="body1" align="left">
+										{cardItem.url}
+									</Typography>
+								</CardContent>
 								<CardActions className={classes.actionButtons}>
 									<EditCard card={cardItem}/>
 									<Button onClick={()=>deleteCard(cardItem._id)} color="primary">
@@ -74,6 +92,7 @@ const CardList = ({ classes, cards, outcome, dispatch }) => {
 							</Card>
 						</Grid>
 					))}
+					<Grid item className={classes.grow} />
 				</Grid>
 			</CardContent>
 		</Card>
