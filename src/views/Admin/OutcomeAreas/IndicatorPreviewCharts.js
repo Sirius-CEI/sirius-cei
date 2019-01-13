@@ -58,6 +58,7 @@ class IndicatorPreviewCharts extends Component {
 										<Typography variant="h4" color="secondary">{chart.type}</Typography>
 										{chart.map_level && <Typography variant="body1"> {chart.map_level}</Typography>}
 										{chart.citation && <Typography variant="body1"> {chart.citation}</Typography>}
+										{chart._id && <Typography variant="body1"> {chart._id}</Typography>}
 										<EditChart thisChart={chart} />
 									</Grid>
 								</Grid>

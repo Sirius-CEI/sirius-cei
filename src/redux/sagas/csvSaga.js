@@ -24,6 +24,16 @@ function* getCsv() {
     }
 }
 
+function* getAllCsv() {
+    try {
+      const response = yield axios.get('/api/csv/all');
+      console.log('get csvSaga response', response.data);
+      yield put({ type: 'SET_CHART_DATA', payload: response.data });      
+    } catch (error) {
+      console.log('csv get request failed', error);
+    }
+}
+
 function* deleteCsv(action) {
   console.log('Delete saga to remove latest csv: ', action.payload);
   try {
@@ -40,6 +50,7 @@ function* deleteCsv(action) {
 function* csvSaga() {
     yield takeEvery('ADD_CSV_DATA', addCsv);
     yield takeEvery('FETCH_CSV', getCsv);
+    yield takeEvery('FETCH_CSVDATA', getAllCsv)
     yield takeEvery('DELETE_CSV', deleteCsv);
 }
 

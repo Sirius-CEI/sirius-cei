@@ -16,6 +16,18 @@ router.get('/', (req, res) => {
 		})
 });
 
+//get all csv data
+router.get('/all', (req, res) => {
+    Upload.find({})
+        .then((results) => {
+            res.send(results);
+        })
+        .catch((error) => {
+            console.log(`Error making Card GET query`, error);
+            res.sendStatus(500);
+        })
+});
+
 router.post('/', (req, res) => {
 	console.log('post router', req.body);
 	const addData = req.body;
