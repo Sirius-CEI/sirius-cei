@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 
 import Nav from '../components/Nav';
 import Routes from './Routes';
-import FooterNav from '../components/FooterNav';
 import Footer from '../components/Footer';
 import './App.css';
-import LearnMore from '../components/LearnMore';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers, faSmile, faFrown, faMeh } from '@fortawesome/free-solid-svg-icons'
@@ -28,8 +26,6 @@ class App extends Component {
 				<div>
 					<Nav />
 					<Routes />
-					<LearnMore />
-					<FooterNav />
 					<Footer />
 				</div>
 			</Router>

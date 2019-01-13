@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import DialogForm from '../../../components/DialogForm';
+import DialogForm from '../../src/components/DialogForm';
 import IndicatorFields from './Indicator.fields';
 
 const styles = theme => ({
@@ -21,7 +21,7 @@ const styles = theme => ({
 	}
 });
 
-class AddIndicator extends Component {
+class AddCard extends Component {
 
 	state = {
 		open: false,
@@ -33,7 +33,8 @@ class AddIndicator extends Component {
 
 	handleOpen = event => {
 		this.setState({
-			open: true
+			...this.state,
+			open: true,
 		})
 	}
 
@@ -60,20 +61,15 @@ class AddIndicator extends Component {
 		this.setState({
 			open: false,
 			title: '',
-			chart_title: '',
-			what_this_means_copy: '',
-			why_this_matters_copy: '',
-			trend: '',
-			trend_copy: '',
-			active: false,
-			order: 100,
-			outcome_id: '',
+			copy: '',
+			notes: '',
+			outcome_id: ''
 		})
 	}
 
   render() {
 		const { open } = this.state;
-		const { classes } = this.props;
+		const { classes, outcomes } = this.props;
     return (
 			<div>
 				<Button variant="outlined" onClick={this.handleOpen}>
@@ -86,6 +82,7 @@ class AddIndicator extends Component {
 					formId={'add-indicator'}
 					formFields={
 						<IndicatorFields
+							outcomes={outcomes}
 							handleChange={this.handleChange}
 							indicator={this.state}
 							editMode={false}
@@ -99,12 +96,15 @@ class AddIndicator extends Component {
   }
 }
 
-AddIndicator.propTypes = {
+AddCard.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = state => ({
+	outcomes: state.outcomes
+});
 
 export default compose(
-	connect(),
+	connect(mapStateToProps),
 	withStyles(styles)
-)(AddIndicator);
+)(AddCard);

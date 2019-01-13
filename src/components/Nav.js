@@ -9,7 +9,6 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -19,6 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid'
 
 const drawerWidth = 240;
 
@@ -31,14 +31,16 @@ const styles = theme => ({
 		flexGrow: 1,
 	},
   appBar: {
-		boxShadow: 'none',
+		// boxShadow: 'none',
+		...theme.mixins.toolbar,
+		padding: theme.spacing.unit,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
 		}),
   },
   appBarShift: {
-    marginRight: drawerWidth,
+    marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
@@ -46,10 +48,7 @@ const styles = theme => ({
 		}),
 	},
 	logo: {
-		height: theme.mixins.toolbar.minHeight,
-		width: theme.mixins.toolbar.minHeight,
-		margin: theme.spacing.unit,
-		borderRadius: 0,
+		height: theme.mixins.toolbar.minHeight
 	},
 	links: {
 		flexGrow: 1,
@@ -77,7 +76,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -113,7 +112,7 @@ class Nav extends React.Component {
     return (
 			<div className={classes.root}>
         <AppBar
-          position="static"
+					position="sticky"
 					color="default"
           className={classnames(classes.appBar, {
             [classes.appBarShift]: open
@@ -131,11 +130,19 @@ class Nav extends React.Component {
 							</IconButton>
 						</Hidden>
 						<Hidden smDown>
-							<Button component={Link} to="/macro-indicators">
-								<img src="/images/CEI_Logo.png" alt="logo" className={classes.logo}/>
-							</Button>
-            	<Typography align="right" className={classes.links}>
-								{outcomeAreas.map((item, index) => (
+							<Grid
+								container
+								direction="row"
+								alignItems="center"
+								justify="space-between"
+							>
+								<Grid item>
+									<Button component={Link} to="/macro-indicators">
+										<img src="/images/CEI_Logo.png" alt="logo" className={classes.logo}/>
+									</Button>
+								</Grid>
+								<Grid item>
+									{outcomeAreas.length > 0 && outcomeAreas.map((item, index) => (
 										<Button
 											key={index}
 											component={Link}
@@ -145,8 +152,9 @@ class Nav extends React.Component {
 										>
 											{item.title}
 										</Button>
-								))}
-							</Typography>
+									))}
+								</Grid>
+							</Grid>
 						</Hidden>
           </Toolbar>
         </AppBar>

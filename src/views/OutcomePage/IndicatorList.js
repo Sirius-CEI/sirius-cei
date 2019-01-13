@@ -5,12 +5,13 @@ import propTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import Indicator from  './IndicatorTest';
+import Indicator from  './Indicator';
 
 const styles = theme => ({
 	root: {
 		padding: theme.spacing.unit * 2,
-		flexGrow: 1
+		flexGrow: 1,
+		backgroundColor: theme.palette.secondary.light,
 	},
 	test: {
 		border: 'solid red 1px'

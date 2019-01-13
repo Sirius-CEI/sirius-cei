@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 import Chart from 'react-google-charts';
@@ -12,14 +12,6 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-  race: {
-    marginRight: theme.spacing.unit,
-    borderRadius: 20,
-  },
-  location: {
-    marginLeft: theme.spacing.unit,
-    borderRadius: 20
-	},
 	test: {
 		border: 'solid tomato 1px',
 	}
@@ -45,6 +37,7 @@ const LineChart = ({ indicator, classes }) => (
 				position: 'none',
 			},
 			height: '300px',
+			width: '100%'
 		}}
 	/>
 )

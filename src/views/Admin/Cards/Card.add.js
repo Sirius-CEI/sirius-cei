@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import DialogForm from '../../../components/DialogForm';
 import Button from '@material-ui/core/Button';
 
-import DialogForm from '../../../components/DialogForm';
-import IndicatorFields from './Indicator.fields';
+import CardFields from './Card.fields'
 
 const styles = theme => ({
 	root: {
@@ -16,78 +16,77 @@ const styles = theme => ({
 	rightIcon: {
 		marginLeft: theme.spacing.unit
 	},
-	test: {
-		border: 'solid tomato 1px'
-	}
+	grow: {
+		flexGrow: 1,
+	},
 });
 
-class AddIndicator extends Component {
+class AddCard extends Component {
 
 	state = {
 		open: false,
-		title: '',
-		copy: '',
-		notes: '',
-		outcome_id: ''
-	}	
+		newCard: {
+			title: '',
+			image: '',
+			url: '',
+			outcome_id: '',
+		}
+	}
 
 	handleOpen = event => {
 		this.setState({
-			open: true
+			...this.state,
+			open: true,
 		})
 	}
 
+	// handle changes in the form inputs
 	handleChange = event => {
 		event.preventDefault();
 		this.setState({
-			...this.state,
-			[event.target.name]: event.target.value
-		})
+			newCard: {
+				...this.state.newCard,
+				[event.target.name]: event.target.value,
+			}
+		});
 	}
 
 	onSubmit = event => {
+		console.log('adding card')
 		event.preventDefault();
-		var newIndicator = Object.assign({}, this.state);
-		delete newIndicator.open;
-		this.props.dispatch({
-			type: 'POST_INDICATOR',
-			payload: newIndicator,
-		});
-		this.handleClose();
+		this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
+		this.handleClose();	
 	}
 
 	handleClose = event => {
 		this.setState({
 			open: false,
-			title: '',
-			chart_title: '',
-			what_this_means_copy: '',
-			why_this_matters_copy: '',
-			trend: '',
-			trend_copy: '',
-			active: false,
-			order: 100,
-			outcome_id: '',
-		})
+			newCard: {
+				title: '',
+				image: '',
+				url: '',
+				outcome_id: '',
+			}
+		});
 	}
 
-  render() {
-		const { open } = this.state;
+		render() {
 		const { classes } = this.props;
-    return (
+		const { newCard, open } = this.state;
+		return (
 			<div>
 				<Button variant="outlined" onClick={this.handleOpen}>
-					Indicator
+					Card
 					<FontAwesomeIcon icon="plus" className={classes.rightIcon} />
 				</Button>
 				<DialogForm
 					open={open}
-					dialogTitle={'Add Indicator'}
-					formId={'add-indicator'}
+					dialogTitle={'Add Action Card'}
+					formId={'add-action'}
 					formFields={
-						<IndicatorFields
+						<CardFields
 							handleChange={this.handleChange}
-							indicator={this.state}
+							newCard={newCard}
 							editMode={false}
 						/>
 					}
@@ -95,16 +94,15 @@ class AddIndicator extends Component {
 					handleClose={this.handleClose}
 				/>
 			</div>
-    );
+		);
   }
 }
 
-AddIndicator.propTypes = {
+AddCard.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
-
 
 export default compose(
 	connect(),
 	withStyles(styles)
-)(AddIndicator);
+)(AddCard);
