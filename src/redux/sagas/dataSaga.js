@@ -13,10 +13,10 @@ function* getData(action) {
 }
 
 function* loadData(action) {
+		yield put({ type: 'FETCH_ALL_CSV' });
 		yield put({ type: 'GET_OUTCOME_AREAS' });
 		yield put({ type: 'GET_INDICATORS' });
 		yield put({ type: 'GET_CHARTS' });
-		yield put({ type: 'FETCH_CSVDATA' });
 		yield put({ type: 'GET_CARDS' });
 }
 
