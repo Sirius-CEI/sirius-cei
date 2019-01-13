@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'recompose';
@@ -28,13 +29,18 @@ const styles = theme => ({
 		justifyContent: 'space-evenly',
 		height: 180,
 		minWidth: 280,
-		backgroundColor: theme.palette.grey[800],
+		opacity: 1,
+		padding: theme.spacing.unit
 	},
 	title: {
-		color: theme.palette.grey[100]
+		color: 'black',
+		opacity: 1,
+		margin: theme.spacing.unit,
 	},
-	media: {
-		opacity: 0.5
+	titleBox: {
+		width: '100%',
+		backgroundColor: 'white',
+		opacity: 0.8,
 	},
 });
 
@@ -54,23 +60,28 @@ const LearnMore = ({ classes, outcomeId, cards }) => {
 			</div>
 			<Grid container spacing={0} className={classes.cardContainer}>
 					{outcomeCards && outcomeCards.map((cardItem, index) => (
-						<Grid item xs={12} sm={6} md={4} lg={3} className={classes.spacing}>
+						<Grid item xs={12} sm={6} md={4} lg={3} className={classes.spacing} key={cardItem._id}>
 							<Card>
 								<CardActionArea>
 									<CardMedia
 										image={cardItem.image}
 										title={cardItem.title}
-										className={classes.card}
-									>
+										className={classnames(classes.card, classes.media)}
+									 >
+									 <div className={classnames(classes.titleBox)}>
 										<Typography variant="h5" align="center" className={classes.title}>
 											{cardItem.title}
 										</Typography>
+										</div>
 										<Chip
 											clickable
 											color="default"
 											label="learn more"
+											style={{
+												opacity: 1
+											}}
 										/>
-									</CardMedia>
+									</CardMedia>	
 								</CardActionArea>
 							</Card>
 						</Grid>

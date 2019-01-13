@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import Indicator from  './IndicatorTest';
+import Indicator from  './Indicator';
 
 const styles = theme => ({
 	root: {

@@ -6,8 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
-import AddCard from './Card.add';
-import CardItems from './CardItems';
+import AddCard from '../src/views/Admin/Cards/Card.add';
+import CardItems from '../src/views/Admin/Cards/CardItems';
 
 const styles = theme => ({
 	root: {

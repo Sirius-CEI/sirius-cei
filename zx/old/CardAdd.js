@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import DialogForm from '../../../components/DialogForm';
+import DialogForm from '../../src/components/DialogForm';
 import IndicatorFields from './Indicator.fields';
 
 const styles = theme => ({

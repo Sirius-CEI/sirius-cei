@@ -9,7 +9,6 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -19,6 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid'
 
 const drawerWidth = 240;
 
@@ -26,19 +26,20 @@ const styles = theme => ({
   root: {
 		display: 'flex',
 		flexGrow: 1,
+		padding: theme.spacing.unit
 	},
 	grow: {
 		flexGrow: 1,
 	},
   appBar: {
-		boxShadow: 'none',
+		// boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
 		}),
   },
   appBarShift: {
-    marginRight: drawerWidth,
+    marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
@@ -91,6 +92,7 @@ const styles = theme => ({
     }),
     marginRight: 0,
 	},
+	spacer: theme.mixins.toolbar
 });
 
 class Nav extends React.Component {
@@ -113,7 +115,7 @@ class Nav extends React.Component {
     return (
 			<div className={classes.root}>
         <AppBar
-          position="static"
+					position="fixed"
 					color="default"
           className={classnames(classes.appBar, {
             [classes.appBarShift]: open
@@ -131,24 +133,31 @@ class Nav extends React.Component {
 							</IconButton>
 						</Hidden>
 						<Hidden smDown>
-							<Button component={Link} to="/macro-indicators">
-								<img src="/images/CEI_Logo.png" alt="logo" className={classes.logo}/>
-							</Button>
-							{outcomeAreas.length > 0 && (
-								<Typography align="right" className={classes.links}>
-									{outcomeAreas.map((item, index) => (
-											<Button
-												key={index}
-												component={Link}
-												to={item.route}
-												color="primary"
-												className={classes.buttons}
-											>
-												{item.title}
-											</Button>
+							<Grid
+								container
+								direction="row"
+								alignItems="center"
+								justify="space-between"
+							>
+								<Grid item>
+									<Button component={Link} to="/macro-indicators">
+										<img src="/images/CEI_Logo.png" alt="logo" className={classes.logo}/>
+									</Button>
+								</Grid>
+								<Grid item>
+									{outcomeAreas.length > 0 && outcomeAreas.map((item, index) => (
+										<Button
+											key={index}
+											component={Link}
+											to={item.route}
+											color="primary"
+											className={classes.buttons}
+										>
+											{item.title}
+										</Button>
 									))}
-								</Typography>
-							)}
+								</Grid>
+							</Grid>
 						</Hidden>
           </Toolbar>
         </AppBar>
@@ -181,6 +190,7 @@ class Nav extends React.Component {
           </List>
           <Divider />
         </Drawer>
+				<div className={classes.spacer} />
       </div>
 		)
   }
