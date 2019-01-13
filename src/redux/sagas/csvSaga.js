@@ -24,14 +24,27 @@ function* getCsv() {
     }
 }
 
-function* getAllCsv() {
+function* getAllCsv(action) {
+
     try {
-      const response = yield axios.get('/api/csv/all');
-      console.log('get csvSaga response', response.data);
-      yield put({ type: 'SET_CHART_DATA', payload: response.data });      
+            yield put({ type: 'FETCH_DATA_BEGIN' })
+    const response = yield axios.get(`/api/csv/all`);
+    // console.log('get cardSaga response', response.data);
+            yield put({ type: 'SET_CHART_DATA', payload: response.data });
+            yield put({ type: 'FETCH_DATA_SUCCESS' })
     } catch (error) {
-      console.log('csv get request failed', error);
+            console.log('Chart data get request failed', error);
+            yield put({ type: 'FETCH_DATA_FAILURE' })
     }
+    // try {
+    //     let response = yield call(axios.get, `/api/csv/all`);
+    //         console.log(response);
+    //           if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error }) }
+    //           yield put({ type: 'SET_CHART_DATA', payload: response.data });
+    //   } catch (error) {
+    //           console.log(`charts get request failed`, error);
+    //           yield put({ type: 'API_ERROR', payload: error });
+    //   }
 }
 
 function* deleteCsv(action) {
@@ -50,7 +63,7 @@ function* deleteCsv(action) {
 function* csvSaga() {
     yield takeEvery('ADD_CSV_DATA', addCsv);
     yield takeEvery('FETCH_CSV', getCsv);
-    yield takeEvery('FETCH_CSVDATA', getAllCsv)
+    yield takeEvery('FETCH_ALL_CSV', getAllCsv)
     yield takeEvery('DELETE_CSV', deleteCsv);
 }
 

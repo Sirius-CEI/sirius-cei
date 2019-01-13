@@ -40,7 +40,7 @@ class GraphIndicator extends Component {
 		const mapChart = indidcatorCharts.filter(chart => (chart.type === 'map'));
 
 		return (
-			indicator && chartData && (
+			indicator && (
 			<Card className={classes.root}>
 				<CardHeader
 					title={indicator.chart_title}
