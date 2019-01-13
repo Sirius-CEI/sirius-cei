@@ -7,7 +7,7 @@ const uploadSchema = new Schema({
     variable: { type: Schema.Types.Mixed, required: true},
     value: { type: Number, required: true},
     unit: { type: String },
-    chart: { type: Schema.Types.ObjectId, ref: 'Chart.title' },
+		chart: { type: Schema.Types.ObjectId, ref: 'Chart' },
 },{
     timestamps: true
 })

@@ -4,7 +4,7 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 
 const styles = theme => ({
 	root: {
@@ -26,7 +26,9 @@ class CsvConversion extends Component {
 	state = {
 		data: [],
 		errors: [],
-		filename: 'No file chosen'
+		filename: 'No file chosen',
+		uploadId: '',
+		uploadStartTs: null,
 	}
 
    // handle changes in the form inputs
@@ -50,6 +52,10 @@ class CsvConversion extends Component {
 		// console.log('Adding CSV: ', this.state);
 		event.preventDefault();
 		this.props.dispatch({ type: 'ADD_CSV_DATA', payload: data })
+		this.handleClose();
+	}
+
+	handleClose = event => {
 		this.setState({
 			data: [],
 			errors: [],

@@ -17,6 +17,7 @@ function* loadData(action) {
 		yield put({ type: 'GET_INDICATORS' });
 		yield put({ type: 'GET_CHARTS' });
 		yield put({ type: 'GET_CARDS' });
+		yield put({ type: 'GET_DATA', main: 'FETCH_CARDS'})
 }
 
 function* getDataSaga() {

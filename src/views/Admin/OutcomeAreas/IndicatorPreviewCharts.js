@@ -4,7 +4,7 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
+import { Card, CardHeader, CardContent, CardActions, Divider } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
 import EditChart from './Chart.edit';
@@ -14,26 +14,21 @@ const styles = theme => ({
 	grow: {
 		flexGrow: 1,
 	},
-	chart: {
-		backgroundColor: theme.palette.gold.light,
-		minHeight: 180
+	card: {
+		height: '100%',
+		display: 'flex',
+		flexDirection: 'column',
 	},
-	grey: {
-		flexGrow: 1,
-		backgroundColor: theme.palette.grey[300],
-		minHeight: 180
-	},
-	gold: {
+	content: {
 		flexGrow: 1,
 		backgroundColor: theme.palette.gold.light,
-		minHeight: 180
 	},
-	padded: {
-		padding: 16,
+	actions: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+		alignItems: 'flex-end'
 	},
-	test: {
-		border: 'solid tomato 1px',
-	}
 })
 
 class IndicatorPreviewCharts extends Component {
@@ -46,25 +41,40 @@ class IndicatorPreviewCharts extends Component {
 					spacing={16}
 					direction="row"
 					justify="space-between"
-					alignItems="flex-end"
+					alignItems="stretch"
 					alignContent="flex-end"
 				>
-					{charts.map((chart) => (
-						<Grid item xs={12} md={6} key={chart._id}>
-							<Card>
-								<Grid container direction="row" alignItems="stretch" alignContent="stretch">
-									{/* <Grid item xs={12} sm={4} className={classes.grey} /> */}
-									<Grid item xs={12} sm={8} className={classes.gold}>
-										<Typography variant="h4" color="secondary">{chart.type}</Typography>
-										{chart.map_level && <Typography variant="body1"> {chart.map_level}</Typography>}
-										{chart.citation && <Typography variant="body1"> {chart.citation}</Typography>}
-										<EditChart thisChart={chart} />
-									</Grid>
-								</Grid>
+					{charts.length > 0 && charts.map((chart) => (
+						<Grid item xs={12} sm={6} md={4} lg={3} key={chart._id}>
+							<Card className={classes.card}>
+								<CardHeader
+									title={chart.type}
+									titleTypographyProps={{
+										variant: 'h5',
+										align: 'center',
+										color: 'primary'
+									}}
+								/>
+								<Divider />
+								<CardContent className={classes.content}>
+									<Typography variant="body1" gutterBottom>
+										{chart._id}
+									</Typography>
+									{chart.map_level && <Typography variant="body1" gutterBottom>
+										{chart.map_level}
+									</Typography>}
+									{chart.citation && <Typography variant="body1" gutterBottom>
+										{chart.citation}
+									</Typography>}
+								</CardContent>
+								<Divider />
+								<CardActions className={classes.actions}>
+									<EditChart thisChart={chart} />
+								</CardActions>
 							</Card>
 						</Grid>
 					))}
-					{charts.length === 0 ? <Grid item className={classes.grow} /> : null}
+					<Grid item className={classes.grow} />
 					<Grid item >
 						<AddChart />
 					</Grid>

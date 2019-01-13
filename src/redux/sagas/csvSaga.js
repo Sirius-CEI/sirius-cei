@@ -16,7 +16,7 @@ function* addCsv(action) {
 
 function* getCsv() {
     try {
-      const response = yield axios.get('/api/csv');
+      const response = yield call(axios.get, '/api/csv');
       console.log('get csvSaga response', response.data);
       yield put({ type: 'SET_CSV', payload: response.data });      
     } catch (error) {
@@ -39,7 +39,7 @@ function* deleteCsv(action) {
 
 function* csvSaga() {
     yield takeEvery('ADD_CSV_DATA', addCsv);
-    yield takeEvery('FETCH_CSV', getCsv);
+		yield takeEvery('FETCH_CSV', getCsv);
     yield takeEvery('DELETE_CSV', deleteCsv);
 }
 

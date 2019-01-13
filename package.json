@@ -81,7 +81,8 @@
     "sweetalert2": "^7.33.1",
     "typeface-karla": "^0.0.54",
     "typeface-lato": "0.0.54",
-    "typeface-roboto": "^0.0.54"
+    "typeface-roboto": "^0.0.54",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "nodemon": "^1.17.2"
