@@ -17,7 +17,7 @@ class MapIndicator extends Component {
         return (
             <div className="map">
                 <Map
-                    style={{ width: '100%', height: '300px' }}
+                    style={{ width: '100%', minHeight: '300px' }}
                     center={mapCenter}
                     zoom={zoomLevel}
                 >

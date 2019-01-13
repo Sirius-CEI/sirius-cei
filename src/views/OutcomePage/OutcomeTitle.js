@@ -9,15 +9,16 @@ import Card from '@material-ui/core/Card';
 const styles = theme => ({
     root: {
       maxWidth: '100%',
-      height: 'auto',
+			height: 'auto',
     },
     title: {
       fontWeight: 700,
       color: 'white',
-      textTransform: 'uppercase',
+			textTransform: 'uppercase',
+			margin: theme.spacing.unit * 2
     },
     card: {
-      height: 180,
+			height: 180,
     },
     media: {
 			height: '100%',
