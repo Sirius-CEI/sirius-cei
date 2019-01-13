@@ -81,7 +81,7 @@ class MapIndicator extends Component {
                       //onEachFeature={(feature, layer) => layer.bindPopup(feature.properties.ALAND)}
                       //ref={(el) => this.choropleth = el.leafletElement}
                     /> */}
-					<MapLegend />
+					{/* <MapLegend /> */}
 
                 </Map>
             </div>
