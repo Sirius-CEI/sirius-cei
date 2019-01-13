@@ -4,62 +4,69 @@ import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import CardContent from '@material-ui/core/CardContent';
-import Card from '@material-ui/core/Card';
+import { Card, CardContent, Typography, CardHeader, CardActions } from '@material-ui/core';
 
 const styles = theme => ({
-    button: {
-      margin: theme.spacing.unit,
-    },
-    input: {
-      display: 'none',
-    },
-    recentCsv: {
-        height: '150px',
-        width: '100px',
-    }
-  });
+	root: {
+		padding: theme.spacing.unit
+	},
+	recentCsv: {
+		height: 180,
+		width: 290,
+	},
+	actions: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+	},
+});
+
 class ViewLatestCsv extends Component {
 
-    deleteCard = (id) => {
-        console.log('Delete CSV id: ', id);
-        this.props.dispatch( { type: 'DELETE_CSV', payload: id } );
-    }
+	deleteCsv = (date) => {
+		console.log('Delete CSV id: ', date);
+		this.props.dispatch( { type: 'DELETE_CSV', payload: date } );
+	}
 
-    componentDidMount() {
-        this.props.dispatch( { type: 'FETCH_CSV' } );
-    }
+	componentDidMount() {
+		this.props.dispatch( { type: 'FETCH_CSV' } );
+	}
 
-    render() {
-        const { classes } = this.props;
-        return (
-            <div>
-                <h3>Latest CSV</h3>
-                <div>
-                    {this.props.csv.map( (csv, index) => {
-                        return (
-                        <div key={index}>
-                        <Card className={classes.recentCsv} id="display">
-                            <CardContent>
-                                <h2>CSV here</h2>
-                                {csv.year}
-                            </CardContent>
-                        </Card>                       
-                        <Button 
-                            variant="contained" 
-                            color="secondary" 
-                            className={classes.button}
-                            onClick={() => this.deleteCard(csv._id)}
-                        >
-                            Delete
-                        </Button>
-                        </div>
-                        )
-                    })}
-                </div>
-            </div>
-        );
-    }
+	render() {
+		const { classes, csv } = this.props;
+		return (
+			<div className={classes.root}>
+				<Typography variant="h4" gutterBottom>Latest csv</Typography>
+					{csv.map( (csv, index) => (
+						<div key={index}>
+							<Card className={classes.recentCsv} id="display">
+								<CardHeader
+									title="csv created at:"
+									titleTypographyProps={{
+										variant: "h5",
+										color: "primary",
+										align: "center"
+									}}
+								/>
+								<CardContent>
+									<Typography variant="h6" gutterBottom>{csv.createdAt}</Typography>
+								</CardContent>
+								<CardActions disableActionSpacing={true} className={classes.actions}>
+									<Button
+										variant="contained"
+										color="primary"
+										onClick={() => this.deleteCsv(csv.createdAt)}
+									>
+										Delete
+									</Button>
+								</CardActions>
+							</Card>
+						</div>
+						)
+					)}
+			</div>
+		);
+	}
 }
 
 ViewLatestCsv.propTypes = {
@@ -67,7 +74,7 @@ ViewLatestCsv.propTypes = {
 };
 
 const mapReduxStateToProps = reduxState => ({
-    csv: reduxState.csv
+	csv: reduxState.csv
 });
 
 export default compose(
