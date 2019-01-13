@@ -39,7 +39,7 @@ class LineChart extends Component {
 				return null;
 			}
 			let maxYear = Math.max.apply(Math, data.map(item => item.year ));
-			let minYear = maxYear-4;
+			let minYear = maxYear-5;
 			data = data.sort((a,b) => (a.variable > b.variable) ? 1: ((b.variable > a.variable) ? -1 : 0));
 			let graphData = [];
 			for (let y = minYear; y < maxYear; y++) {
@@ -56,7 +56,7 @@ class LineChart extends Component {
 					}
 					graphData.push(firstRow);
 				}
-				let yearRow = [y.toString]
+				let yearRow = [y.toString()]
 				for (let i=0; i< yearData.length; i++) {
 					let x = yearData[i];
 					yearRow.push(x.value);
@@ -76,7 +76,7 @@ class LineChart extends Component {
 					colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b', '#424242'],
 					fontName: 'Lato',
 					legend: {
-						position: 'none',
+						position: 'bottom',
 					},
 					height: '300px',
 					width: '100%'
