@@ -43,7 +43,7 @@ class GraphIndicator extends Component {
 			indicator && chartData && (
 			<Card className={classes.root}>
 				<CardHeader
-					title="Chart Title"
+					title={indicator.chart_title}
 					titleTypographyProps={{
 						variant: "h6",
 						align: 'center'
