@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import propTypes from 'prop-types';
@@ -11,10 +11,7 @@ import IndicatorList from './IndicatorList';
 
 const styles = theme => ({
 	root: {
-		flexGrow: 1,
-	},
-	padding: {
-		padding: theme.spacing.unit * 3
+		border: 'solid red 1px',
 	},
 	test: {
 		border: 'solid red 1px'
@@ -25,13 +22,18 @@ const OutcomePage = ({ classes, outcomeAreas, location }) => {
 	const outcome = (outcomeAreas.find(outcome => (outcome.route === location.pathname)));
 
 	return (
-		<div className={classes.root}>
-			{outcome &&
-				<Fragment>
-					<OutcomeTitle title={outcome.title} />
+		<div>
+			{outcome && <Grid container spacing={0}>
+
+				<Grid item xs={12}>
+					<OutcomeTitle title={outcome.title}/>
+				</Grid>
+
+				<Grid item xs={12}>
 					<IndicatorList outcomeId={outcome._id} />
-				</Fragment>
-			}
+				</Grid>
+
+			</Grid>}
 		</div>
 	);
 }

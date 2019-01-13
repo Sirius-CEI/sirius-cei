@@ -17,7 +17,7 @@ const styles = theme => ({
       textTransform: 'uppercase',
     },
     card: {
-      height: 350,
+      height: 180,
     },
     media: {
 			height: '100%',

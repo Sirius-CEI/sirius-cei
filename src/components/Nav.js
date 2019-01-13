@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -111,11 +111,11 @@ class Nav extends React.Component {
     const { open } = this.state;
 
     return (
-      <div className={classes.root}>
+			<div className={classes.root}>
         <AppBar
           position="static"
 					color="default"
-          className={classNames(classes.appBar, {
+          className={classnames(classes.appBar, {
             [classes.appBarShift]: open
           })}
         >
@@ -125,7 +125,7 @@ class Nav extends React.Component {
 								color="inherit"
 								aria-label="Open drawer"
 								onClick={this.handleDrawerOpen}
-								className={classNames(classes.menuButton, open && classes.hide)}
+								className={classnames(classes.menuButton, open && classes.hide)}
 							>
 								<MenuIcon color="primary" />
 							</IconButton>
@@ -180,7 +180,7 @@ class Nav extends React.Component {
           <Divider />
         </Drawer>
       </div>
-    );
+		)
   }
 }
 
