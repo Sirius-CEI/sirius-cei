@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 import Chart from 'react-google-charts';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
 	root: {
@@ -26,24 +27,65 @@ const data = [
   ['2017', 3, 5, 6, 3, 8, 7, 9]
 ];
 
-const LineChart = ({ indicator, classes }) => (
-	<Chart
-		chartType="Line"
-		data={data}
-		options={{
-			colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b', '#424242'],
-			fontName: 'Lato',
-			legend: {
-				position: 'none',
-			},
-			height: '300px',
-			width: '100%'
-		}}
-	/>
-)
+class LineChart extends Component {
+
+	render() {
+
+		const { indicator, classes, chart, chartData } = this.props;
+
+		// this.getData = (chartData, chart) => {
+		// 	let data = chartData.filter(item => (item.chart === chart._id));
+		// 	let maxYear = Math.max.apply(Math, data.map(item => item.year ));
+		// 	data = data.sort((a,b) => (a.variable > b.variable) ? 1: ((b.variable > a.variable) ? -1 : 0));
+		// 	let graphData = [];
+		// 	for (let y = (maxYear-5); y <= maxYear; y++) {
+		// 		let yearData = data.filter(item => (item.year === y));
+		// 		//on first loop only, create key row of array
+		// 		if (y === (maxYear-5)) {
+		// 			let firstRow = ['year'];
+		// 			for (let x in yearData) {
+		// 				firstRow.push(x.variable);
+		// 			}
+		// 			graphData.push(firstRow);
+		// 		}
+		// 		let yearRow = [toString(y)]
+		// 		for (let x in yearData) {
+		// 			yearRow.push(x.value);
+		// 		}
+		// 		graphData.push(yearRow);
+		// 	}
+			
+
+			
+		// 	console.log(graphData)
+		// }
+
+		return (
+			<Chart
+				chartType="Line"
+				// data={this.getData(chartData, chart)}
+				data={data}
+				options={{
+					colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b', '#424242'],
+					fontName: 'Lato',
+					legend: {
+						position: 'none',
+					},
+					height: '300px',
+					width: '100%'
+				}}
+			/>
+		)
+	}
+
+}
 
 LineChart.propTypes = {
-  classes: propTypes.object.isRequired,
+	classes: propTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LineChart);
+const mapStateToProps = state => ({
+	chartData: state.chartData,
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(LineChart));
