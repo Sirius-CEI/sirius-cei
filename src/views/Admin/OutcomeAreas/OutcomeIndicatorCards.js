@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
@@ -29,52 +29,23 @@ const styles = theme => ({
 	},
 });
 
-class OutcomeIndicatorCards extends Component {
-	state = {
-		selectedIndicator: ''
-	}
-
-	handleSelectIndicator = (indicator, outcomeId) => {
-		this.setState({
-			selectedIndicator: indicator._id,
-		});
-		this.props.dispatch({
-			type: 'SET_INDICATOR',
-			payload: { outcomeId: outcomeId, ...indicator }
-		})
-		this.props.dispatch({
-			type: 'GET_CHARTS',
-			indicator: indicator._id
-		})
-	}
-
-  render() {
-		const { classes, outcomes } = this.props;
-		const { selectedIndicator } = this.state;
-		return (
-			<Fragment>
-				<Grid container spacing={16} direction="row" justify="center" alignItems="stretch">
-					{outcomes.map((item) => (
-						<Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
-							<Card className={classes.card}>
-								<EditOutcome item={item}/>
-								<Divider />
-								<CardContent className={classes.content}>
-									<OutcomeIndicatorList
-										classes={classes}
-										outcome={item}
-										selectedIndicator={selectedIndicator}
-										handleSelectIndicator={this.handleSelectIndicator}
-									/>
-								</CardContent>
-							</Card>
-						</Grid>
-					))}
+const OutcomeIndicatorCards = ({ classes, outcomes }) => (
+	<Fragment>
+		<Grid container spacing={16} direction="row" justify="center" alignItems="stretch">
+			{outcomes.map((outcome) => (
+				<Grid item xs={12} sm={6} md={4} lg={3} key={outcome._id}>
+					<Card className={classes.card}>
+						<EditOutcome item={outcome}/>
+						<Divider />
+						<CardContent className={classes.content}>
+							<OutcomeIndicatorList outcomeId={outcome._id} />
+						</CardContent>
+					</Card>
 				</Grid>
-			</Fragment>
-		);
-  }
-}
+			))}
+		</Grid>
+	</Fragment>
+)
 
 OutcomeIndicatorCards.propTypes = {
 	classes: PropTypes.object.isRequired,
@@ -82,6 +53,7 @@ OutcomeIndicatorCards.propTypes = {
 
 const mapReduxStateToProps = reduxState => ({
 	outcomes: reduxState.outcomes,
+	indicator: reduxState.indicator,
 });
 
 export default compose(

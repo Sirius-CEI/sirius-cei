@@ -3,6 +3,7 @@
  change `prime_app` to the name of your database, and you should be all set!
 */
 
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 /* Mongo Connection */
@@ -15,13 +16,13 @@ if (process.env.MONGODB_URI) {
   mongoURI = process.env.MONGODB_URI;
 } else {
   // use the local database server
-  mongoURI = 'mongodb://cei:cei359@ds159926.mlab.com:59926/heroku_f0j74zsg';
+  mongoURI = 'mongodb://localhost:27017/cei';
 }
 
-mongoose.connect(mongoURI);
+mongoose.connect(mongoURI, {useMongoClient: true});
 
 mongoose.connection.once('open', () => {
-  console.log('Mongo connected');
+  console.log('Mongo connected', mongoURI);
 });
 
 mongoose.connection.on('error', (err) => {

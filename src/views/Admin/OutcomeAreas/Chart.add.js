@@ -25,14 +25,10 @@ class AddChart extends Component {
 
 	state = {
 		open: false,
-		title: '',
-		description: '',
-		copy: '',
-		toggleText: '',
-		query: '',
+		type: '',
+		map_level: '',
 		citation: '',
-		notes: '',
-		indicator: '',
+		indicator_id: '',
 	}	
 
 	handleOpen = event => {
@@ -40,7 +36,7 @@ class AddChart extends Component {
 		this.setState({
 			...this.state,
 			open: true,
-			indicator: indicator._id,
+			indicator_id: indicator,
 		})
 	}
 
@@ -66,14 +62,10 @@ class AddChart extends Component {
 	handleClose = event => {
 		this.setState({
 			open: false,
-			title: '',
-			description: '',
-			copy: '',
-			toggleText: '',
-			query: '',
+			type: '',
+			map_level: '',
 			citation: '',
-			notes: '',
-			indicator: '',
+			indicator_id: '',
 		})
 	}
 

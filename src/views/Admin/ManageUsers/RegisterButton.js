@@ -70,7 +70,9 @@ class RegisterButton extends Component {
 								label="username"
 								name="username"
 								type="email"
+								margin="dense"
 								fullWidth
+								required
 								value={username}
 								onChange={this.handleChange}
 							/>
@@ -79,7 +81,9 @@ class RegisterButton extends Component {
 								label="password"
 								name="password"
 								type="password"
+								margin="dense"
 								fullWidth
+								required
 								value={password}
 								onChange={this.handleChange}
 							/>

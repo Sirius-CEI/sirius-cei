@@ -25,38 +25,80 @@ class EditIndicator extends Component {
 
 	state = {
 		open: false,
-		indicator: {
-			outcomeId: '',
-			_id: '',
+		updates: {
 			title: '',
-			copy: '',
-			notes: '',
+			chart_title: '',
+			what_this_means_copy: '',
+			why_this_matters_copy: '',
+			trend: '',
+			trend_copy: '',
 			active: false,
 			order: 100,
-		}
+			outcome_id: '',
+		},
+		id: '',
 	};
 
-	handleOpen = () => {
+	handleOpen = event => {
+		event.preventDefault();
+		const { indicator } = this.props;
+		const { updates } = this.state;
+		const setUpdates = {};
+		Object.keys(updates).forEach((key) => setUpdates[key] = indicator[key])
 		this.setState({
-			...this.state,
-			open: true
-		});
-	};
+			open: true,
+			updates: {
+				...setUpdates
+			},
+			id: indicator._id,
+		})
+	}
 	
 	handleClose = () => {
 		this.setState({
-			...this.state,
-			open: false 
+			open: false,
+			updates: {
+				title: '',
+				chart_title: '',
+				what_this_means_copy: '',
+				why_this_matters_copy: '',
+				trend: '',
+				trend_copy: '',
+				active: false,
+				order: 100,
+				outcome_id: '',
+			},
+			id: ''
 		});  
 	};
 
-	onSubmit = () => {
+	handleChange = event => {
+		event.preventDefault();
+		this.setState({
+			...this.state,
+			updates: {
+				...this.state.updates,
+				[event.target.name]: event.target.value
+			}
+		})
+	}
 
+	onSubmit = event => {
+		event.preventDefault();
+		const { id, updates } = this.state;
+		console.log(`updates:`, updates);
+		this.props.dispatch({
+			type: 'UPDATE_INDICATOR',
+			payload: updates,
+			outcomeId: updates.outcomeId,
+			id: id
+		});
+		this.handleClose();
 	}
 
 	render() {
-		const { outcomes, indicator } = this.props;
-		const { open } = this.state;
+		const { outcomes } = this.props;
+		const { open, updates } = this.state;
 		return (
 			<Fragment>
 				<Fab size="medium" onClick={this.handleOpen}>
@@ -69,8 +111,7 @@ class EditIndicator extends Component {
 					formFields={
 						<IndicatorFields
 							handleChange={this.handleChange}
-							outcomes={outcomes}
-							indicator={indicator}
+							indicator={updates}
 							editMode={true}
 						/>
 					}
@@ -86,10 +127,10 @@ EditIndicator.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-const mapReduxStateToProps = reduxState => ({
-	outcomes: reduxState.outcomes,
-	indicator: reduxState.indicator
-});
+const mapReduxStateToProps = ({ outcomes, indicator, indicatorList }) => ({
+	outcomes: outcomes,
+	indicator: indicatorList.filter(item => item._id === indicator)[0]
+})
 
 export default compose(
 	connect(mapReduxStateToProps),

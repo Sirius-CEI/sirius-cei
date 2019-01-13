@@ -1,38 +1,37 @@
 import axios from 'axios';
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 
 function* getCharts(action) {
     try {
-			yield put({ type: 'FETCH_DATA_BEGIN'})
-      let response = yield axios.get(`/api/charts/${action.indicator}`);
-			// console.log('getOutcomeAreas response', response.data);
+      let response = yield call(axios.get, `/api/charts`);
+			if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error }) }
 			yield put({ type: 'SET_CHARTS', payload: response.data });
-			yield put({ type: 'FETCH_DATA_SUCCESS' })
     } catch (error) {
-      console.log(`charts get request failed`, error);
-			yield put({ type: 'API_ERROR', payload: error});
-			yield put({ type: 'FETCH_DATA_FAILURE' });
+			console.log(`charts get request failed`, error);
+			yield put({ type: 'API_ERROR', payload: error });
     }
 }
 
 function* postChart(action) {
 	try {
-		let response = yield axios.post(`/api/charts`, { payload: action.payload });
+		yield put({ type: 'CLEAR_ERRORS' });
+		let response = yield call(axios.post, `/api/charts`, { payload: action.payload });
 		console.log(response);
-		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
-		yield put({ type: 'GET_CHARTS', indicator: action.payload.indicator })
+		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error }) }
+		yield put({ type: 'GET_DATA', main: 'GET_CHARTS' })
 	} catch (error) {
 		console.log(`chart post request failed`, error);
-		yield put({ type: 'API_ERROR', payload: error});
+		yield put({ type: 'API_ERROR', payload: error });
 	}
 }
 
 function* updateChart(action) {
 	try {
-		let response = yield axios.put(`/api/charts/${action.id}`, { payload: action.payload })
+		yield put({ type: 'CLEAR_ERRORS' });
+		let response = yield call(axios.put, `/api/charts/${action.id}`, { payload: action.payload });
 		console.log(response.data);
-		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error.message }) }
-		yield put({ type: 'GET_CHARTS', indicator: action.payload.indicator });
+		if (response.data.error) { yield put({ type: 'API_ERROR', payload: response.data.error }) }
+		yield put({ type: 'GET_DATA', main: 'GET_CHARTS' })
 	} catch (error) {
 		console.log(`chart put request failed`, error);
 		yield put({ type: 'API_ERROR', payload: error});

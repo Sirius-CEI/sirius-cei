@@ -8,33 +8,23 @@ import Card from '@material-ui/core/Card';
 
 const styles = theme => ({
     root: {
-      textAlign: 'center',
       maxWidth: '100%',
-      height: 'auto',
+			height: 'auto',
     },
     title: {
-      textAlign: 'center',
-      fontSize: '45px',
       fontWeight: 700,
       color: 'white',
-      textTransform: 'uppercase',
-      letterSpacing: '1.53px',
-      lineHeight: '1em',
-      fontFamily: 'Lato',
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)'
+			textTransform: 'uppercase',
+			margin: theme.spacing.unit * 2
     },
     card: {
-      height: 350,
-      position: 'relative',
-      background: 'transparent',
-      boxShadow: 'none',
-      borderRadius: '0',
+			height: 180,
     },
     media: {
-      height: '100%',
+			height: '100%',
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center'
     },
   });
 
@@ -43,12 +33,12 @@ class TitleIndicator extends Component {
     const { classes, title } = this.props;
       return (
         <div className={classes.root}>
-            <Card className={classes.card}>
+            <Card className={classes.card} elevation={0} square>
                 <CardMedia
                     className={classes.media}
                     image="images/twincitiesblue.jpg"
                     title="title-background">
-                    <Typography className={classes.title}>{title}</Typography>
+                    <Typography variant="h3" align="center" className={classes.title}>{title}</Typography>
                 </CardMedia>
             </Card>
         </div>

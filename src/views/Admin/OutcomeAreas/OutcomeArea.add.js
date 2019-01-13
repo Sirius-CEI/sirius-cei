@@ -46,23 +46,23 @@ class AddOutcome extends Component {
 	}
 	
 	onSubmit = event => {
+		event.preventDefault();
 		const { outcomeArea } = this.state
 		this.props.dispatch({
 			type: 'POST_OUTCOME_AREA',
 			payload: outcomeArea
 		})
-		this.setState({
-			outcomeArea: {
-				title: '',
-				copy: '',
-				notes: '',
-			}
-		})
+		this.handleClose();
 	}
 
 	handleClose = event => {
 		this.setState({
 			open: false,
+			outcomeArea: {
+				title: '',
+				copy: '',
+				notes: '',
+			},
 		})
 	}
 

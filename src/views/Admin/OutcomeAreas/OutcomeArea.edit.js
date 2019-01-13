@@ -9,25 +9,27 @@ class EditOutcome extends Component {
 
 	state = {
 		open: false,
-		outcomeArea: {
-			_id: '',
+		updates: {
 			title: '',
 			copy: '',
 			route: '',
-			image: '',
 			active: false,
 			order: 100,
 			notes: '',
-			indicators: []
 		},
 		id: '',
 	}
 	
 	handleOpen = event => {
 		const { item } = this.props;
+		const { updates } = this.state;
+		const setUpdates = {};
+		Object.keys(updates).forEach((key) => setUpdates[key] = item[key])
 		this.setState({
 			open: true,
-			outcomeArea: item,
+			updates: {
+				...setUpdates
+			},
 			id: item._id
 		})
 	}
@@ -35,8 +37,9 @@ class EditOutcome extends Component {
 	// handle changes in the form inputs
 	handleChange = event => {
 		this.setState({
-			outcomeArea: {
-				...this.state.outcomeArea,
+			...this.state,
+			updates: {
+				...this.state.updates,
 				[event.target.name]: event.target.value,
 			}
 		});
@@ -44,12 +47,11 @@ class EditOutcome extends Component {
 	
 	onSubmit = event => {
 		event.preventDefault();
-		const { outcomeArea, id } = this.state;
-		const updates = Object.assign({}, outcomeArea);
-		delete updates._id;
+		// console.log(this.state);
+		const { updates, id } = this.state;
 		this.props.dispatch({
 			type: 'UPDATE_OUTCOME_AREA',
-			payload: outcomeArea,
+			payload: updates,
 			id: id,
 		});
 		this.handleClose();
@@ -58,16 +60,13 @@ class EditOutcome extends Component {
 	handleClose = event => {
 		this.setState({
 			open: false,
-			outcomeArea: {
-				_id: '',
+			updates: {
 				title: '',
 				copy: '',
 				route: '',
-				image: '',
 				active: false,
 				order: 100,
 				notes: '',
-				indicators: []
 			},
 			id: '',
 		})
@@ -75,7 +74,7 @@ class EditOutcome extends Component {
 
   render() {
 		const { item } = this.props;
-		const { outcomeArea, open } = this.state;
+		const { updates, open } = this.state;
 		return (
 			<Fragment>
 				<CardActionArea onClick={this.handleOpen}>
@@ -90,10 +89,10 @@ class EditOutcome extends Component {
 				<DialogForm
 					open={open}
 					dialogTitle={'Edit Outcome Area'}
-					formId={'edit-outcome-area'}
+					formId={item._id}
 					formFields={
 						<OutcomeAreaFields
-							outcomeArea={outcomeArea}
+							outcomeArea={updates}
 							handleChange={this.handleChange}
 							editMode={true}
 						/>
