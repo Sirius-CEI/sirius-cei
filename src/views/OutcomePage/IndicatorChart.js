@@ -22,15 +22,6 @@ const styles = theme => ({
 	}
 });
 
-const data = [
-  ['year', 'White Non-Hispanic', 'White Hispanic or Latino', 'Black or African American', 'American Indian or Alaskan Native', 'Asian', 'Native Hawaiian or Pacific Islander', 'Two or More Races'],
-  ['2013', 5, 6, 3, 2, 2, 5, 8],
-  ['2014', 3, 4, 3, 2, 4, 4, 6],
-  ['2015', 4, 4, 5, 2, 6, 4.5, 3], 
-  ['2016', 6, 7, 4, 2, 1, 2, 2],
-  ['2017', 3, 5, 6, 3, 8, 7, 9]
-];
-
 class GraphIndicator extends Component {
 
   state = {
@@ -42,13 +33,17 @@ class GraphIndicator extends Component {
   }
 
   render() {
-		const { indicator, classes } = this.props;
+		const { indicator, classes, charts, chartData } = this.props;
 		const { display } = this.state;
+		const indidcatorCharts = charts.filter(chart => (chart.indicator_id === indicator._id));
+		const lineChart = indidcatorCharts.filter(chart => (chart.type === 'line'));
+		const mapChart = indidcatorCharts.filter(chart => (chart.type === 'map'));
+
 		return (
 			indicator && (
 			<Card className={classes.root}>
 				<CardHeader
-					title="Chart Title"
+					title={indicator.chart_title}
 					titleTypographyProps={{
 						variant: "h6",
 						align: 'center'
@@ -57,9 +52,9 @@ class GraphIndicator extends Component {
 				<CardContent>
 					{
 						this.state.display === 'location' ? (
-							<MapChart indicator={indicator}/>
+							mapChart[0] && <MapChart indicator={indicator} chart={mapChart[0]}/>
 						) : (
-							<LineChart indicator={indicator}/>
+							lineChart[0] && <LineChart indicator={indicator} chart={lineChart[0]}/>
 						)
 					}
 					</CardContent>
@@ -106,4 +101,9 @@ GraphIndicator.propTypes = {
   classes: propTypes.object.isRequired,
 };
 
-export default withStyles(styles)(GraphIndicator);
+const mapStateToProps = state => ({
+	charts: state.charts,
+	chartData: state.chartData,
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(GraphIndicator));

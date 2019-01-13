@@ -60,12 +60,33 @@ const IndicatorItem = ({ classes, indicator, order }) => (
 						</Typography>
 					</Grid>
 					<Grid item>
+					<Typography
+							variant="h6"
+							align="left"
+							gutterBottom
+						>
+							WHAT THIS MEANS:
+						</Typography>
 						<Typography
 							variant="body1"
 							align="justify"
 							gutterBottom
 						>
-							{indicator.copy}
+							{indicator.what_this_means_copy}
+						</Typography>
+						<Typography
+							variant="h6"
+							align="left"
+							gutterBottom
+						>
+							WHY THIS MATTERS:
+						</Typography>
+						<Typography
+							variant="body1"
+							align="justify"
+							gutterBottom
+						>
+							{indicator.why_this_matters_copy}
 						</Typography>
 					</Grid>
 				</Grid>
