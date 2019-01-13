@@ -134,19 +134,21 @@ class Nav extends React.Component {
 							<Button component={Link} to="/macro-indicators">
 								<img src="/images/CEI_Logo.png" alt="logo" className={classes.logo}/>
 							</Button>
-            	<Typography align="right" className={classes.links}>
-								{outcomeAreas.map((item, index) => (
-										<Button
-											key={index}
-											component={Link}
-											to={item.route}
-											color="primary"
-											className={classes.buttons}
-										>
-											{item.title}
-										</Button>
-								))}
-							</Typography>
+							{outcomeAreas.length > 0 && (
+								<Typography align="right" className={classes.links}>
+									{outcomeAreas.map((item, index) => (
+											<Button
+												key={index}
+												component={Link}
+												to={item.route}
+												color="primary"
+												className={classes.buttons}
+											>
+												{item.title}
+											</Button>
+									))}
+								</Typography>
+							)}
 						</Hidden>
           </Toolbar>
         </AppBar>
