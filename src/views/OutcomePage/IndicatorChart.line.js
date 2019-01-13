@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 import Chart from 'react-google-charts';
