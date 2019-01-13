@@ -26,13 +26,14 @@ const styles = theme => ({
   root: {
 		display: 'flex',
 		flexGrow: 1,
-		padding: theme.spacing.unit
 	},
 	grow: {
 		flexGrow: 1,
 	},
   appBar: {
 		// boxShadow: 'none',
+		...theme.mixins.toolbar,
+		padding: theme.spacing.unit,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -47,10 +48,7 @@ const styles = theme => ({
 		}),
 	},
 	logo: {
-		height: theme.mixins.toolbar.minHeight,
-		width: theme.mixins.toolbar.minHeight,
-		margin: theme.spacing.unit,
-		borderRadius: 0,
+		height: theme.mixins.toolbar.minHeight
 	},
 	links: {
 		flexGrow: 1,
@@ -78,7 +76,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -92,7 +90,6 @@ const styles = theme => ({
     }),
     marginRight: 0,
 	},
-	spacer: theme.mixins.toolbar
 });
 
 class Nav extends React.Component {
@@ -115,7 +112,7 @@ class Nav extends React.Component {
     return (
 			<div className={classes.root}>
         <AppBar
-					position="fixed"
+					position="sticky"
 					color="default"
           className={classnames(classes.appBar, {
             [classes.appBarShift]: open
@@ -190,7 +187,6 @@ class Nav extends React.Component {
           </List>
           <Divider />
         </Drawer>
-				<div className={classes.spacer} />
       </div>
 		)
   }
