@@ -33,38 +33,45 @@ class LineChart extends Component {
 
 		const { indicator, classes, chart, chartData } = this.props;
 
-		// this.getData = (chartData, chart) => {
-		// 	let data = chartData.filter(item => (item.chart === chart._id));
-		// 	let maxYear = Math.max.apply(Math, data.map(item => item.year ));
-		// 	data = data.sort((a,b) => (a.variable > b.variable) ? 1: ((b.variable > a.variable) ? -1 : 0));
-		// 	let graphData = [];
-		// 	for (let y = (maxYear-5); y <= maxYear; y++) {
-		// 		let yearData = data.filter(item => (item.year === y));
-		// 		//on first loop only, create key row of array
-		// 		if (y === (maxYear-5)) {
-		// 			let firstRow = ['year'];
-		// 			for (let x in yearData) {
-		// 				firstRow.push(x.variable);
-		// 			}
-		// 			graphData.push(firstRow);
-		// 		}
-		// 		let yearRow = [toString(y)]
-		// 		for (let x in yearData) {
-		// 			yearRow.push(x.value);
-		// 		}
-		// 		graphData.push(yearRow);
-		// 	}
-			
+		this.getData = (chartData, chart) => {
+			let data = chartData.filter(item => (item.chart === chart._id));
+			if (data === []) {
+				return null;
+			}
+			let maxYear = Math.max.apply(Math, data.map(item => item.year ));
+			let minYear = maxYear-4;
+			data = data.sort((a,b) => (a.variable > b.variable) ? 1: ((b.variable > a.variable) ? -1 : 0));
+			let graphData = [];
+			for (let y = minYear; y < maxYear; y++) {
+				let yearData = data.filter(item => (item.year === y));
+				console.log(yearData);
+				
+				//on first loop only, create key row of array
+				if (y === minYear) {
+					let firstRow = ['year'];
+					for (let i=0; i< yearData.length; i++) {
+						let x = yearData[i];
+						
+						firstRow.push(x.variable);
+					}
+					graphData.push(firstRow);
+				}
+				let yearRow = [y.toString]
+				for (let i=0; i< yearData.length; i++) {
+					let x = yearData[i];
+					yearRow.push(x.value);
+				}
+				graphData.push(yearRow);
+			}
+			console.log(graphData);
 
-			
-		// 	console.log(graphData)
-		// }
+			return graphData;
+		}
 
 		return (
 			<Chart
 				chartType="Line"
-				// data={this.getData(chartData, chart)}
-				data={data}
+				data={this.getData(chartData, chart)}
 				options={{
 					colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b', '#424242'],
 					fontName: 'Lato',
