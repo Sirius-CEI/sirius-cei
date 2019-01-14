@@ -12,7 +12,7 @@ const accessToken = 'pk.eyJ1IjoibGV4Y2h1ZHppayIsImEiOiJjanBzaWx5dG8wdGppM3htaDhi
 const stamenTonerTiles = `https://api.tiles.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=${accessToken}`;
 const stamenTonerAttr = 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
 const mapCenter = [45.2, -93.43];
-const zoomLevel = 7;
+const zoomLevel = 8;
 
 
 class MapIndicator extends Component {
@@ -33,7 +33,7 @@ class MapIndicator extends Component {
     componentWillMount = () => {
         let data = this.props.chartData.filter(item => (item.chart === this.props.chart._id));
         let values = data.map((item) => item.value);
-        let grades = chroma.limits(values, 'e', 4);
+        let grades = chroma.limits(values, 'q', 4);
         this.setState({
             ...this.state,
             grades: grades,
