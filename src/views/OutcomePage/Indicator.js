@@ -65,7 +65,7 @@ const IndicatorItem = ({ classes, indicator, order }) => (
 							align="left"
 							gutterBottom
 						>
-							WHAT THIS MEANS:
+							WHAT THIS MEASURES:
 						</Typography>
 						<Typography
 							variant="body1"
