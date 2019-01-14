@@ -15,8 +15,8 @@
       "url": "https://tdammon.github.io"
     },
     {
-      "name": "",
-      "email": "",
+      "name": "Lex Chudzik",
+      "email": "chudzik.alex@gmail.com",
       "url": ""
     },
     {
@@ -69,8 +69,7 @@
     "react-csv-reader": "^1.2.1",
     "react-dom": "^16.2.0",
     "react-google-charts": "^3.0.10",
-    "react-leaflet": "^2.2.0",
-    "react-leaflet-choropleth": "^2.0.0",
+    "react-leaflet": "^2.1.3",
     "react-redux": "^5.0.7",
     "react-responsive": "^6.0.1",
     "react-router-dom": "^4.2.2",
