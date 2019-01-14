@@ -54,7 +54,7 @@ const IndicatorItem = ({ classes, indicator, order }) => (
 						<Typography
 							variant="h4"
 							align="center"
-							gutterBottom
+							paragraph
 						>
 							{indicator.title}
 						</Typography>
@@ -70,7 +70,7 @@ const IndicatorItem = ({ classes, indicator, order }) => (
 						<Typography
 							variant="body1"
 							align="justify"
-							gutterBottom
+							paragraph
 						>
 							{indicator.what_this_means_copy}
 						</Typography>
@@ -84,7 +84,7 @@ const IndicatorItem = ({ classes, indicator, order }) => (
 						<Typography
 							variant="body1"
 							align="justify"
-							gutterBottom
+							paragraph
 						>
 							{indicator.why_this_matters_copy}
 						</Typography>

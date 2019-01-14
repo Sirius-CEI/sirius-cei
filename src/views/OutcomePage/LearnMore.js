@@ -62,7 +62,7 @@ const LearnMore = ({ classes, outcomeId, cards }) => {
 					{outcomeCards && outcomeCards.map((cardItem, index) => (
 						<Grid item xs={12} sm={6} md={4} lg={3} className={classes.spacing} key={cardItem._id}>
 							<Card>
-								<CardActionArea>
+								<CardActionArea href={cardItem.url} target="blank">
 									<CardMedia
 										image={cardItem.image}
 										title={cardItem.title}

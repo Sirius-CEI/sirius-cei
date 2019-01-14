@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 import Chart from 'react-google-charts';
@@ -13,9 +13,6 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-	test: {
-		border: 'solid tomato 1px',
-	}
 });
 
 class LineChart extends Component {
@@ -59,22 +56,48 @@ class LineChart extends Component {
 		}
 
 		return (
+			<Fragment>
 			<Chart
 				chartType="Line"
 				data={this.getData(chartData, chart)}
 				options={{
 					colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b', '#424242'],
 					fontName: 'Lato',
+					height: 250,
+					width: '100%',
 					legend: {
-						position: 'bottom',
+						position: 'none'
 					},
-					height: '300px',
-					width: '100%'
+					animation: {
+						startup: true,
+						duration: 1000,
+					},
 				}}
 			/>
+			<Chart
+				chartType="LineChart"
+				data={this.getData(chartData, chart)}
+				options={{
+					colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b', '#424242'],
+					fontName: 'Lato',
+					height: 60,
+					width: '100%',
+					chartArea: {
+						width: '100%',
+						height: 0,
+					},
+					legend: {
+						position: 'top',
+						maxLines: 100,
+					},
+					axisTitlesPosition: 'none',
+					hAxis: {textPosition: 'none'},
+					vAxis: {textPosition: 'none'}
+				}}
+				/>
+		</Fragment>
 		)
 	}
-
 }
 
 LineChart.propTypes = {

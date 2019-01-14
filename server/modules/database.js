@@ -19,7 +19,7 @@ if (process.env.MONGODB_URI) {
   mongoURI = 'mongodb://localhost:27017/cei';
 }
 
-mongoose.connect(mongoURI, {useMongoClient: true});
+mongoose.connect(mongoURI);
 
 mongoose.connection.once('open', () => {
   console.log('Mongo connected', mongoURI);
