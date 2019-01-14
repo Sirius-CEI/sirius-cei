@@ -4,7 +4,7 @@ import tracts from './tracts';
 import 'leaflet/dist/leaflet.css';
 import { Map, TileLayer, GeoJSON, FeatureGroup } from 'react-leaflet';
 import './map.css';
-import MapLegend from './IndicatorChart.map.legend'
+// import MapLegend from './IndicatorChart.map.legend'
 import chroma from 'chroma-js';
 
 const accessToken = 'pk.eyJ1IjoibGV4Y2h1ZHppayIsImEiOiJjanBzaWx5dG8wdGppM3htaDhiZ3RwcXJ6In0.-gllVsZonwCccRMzb1DmYQ';
@@ -81,7 +81,7 @@ class MapIndicator extends Component {
                       //onEachFeature={(feature, layer) => layer.bindPopup(feature.properties.ALAND)}
                       //ref={(el) => this.choropleth = el.leafletElement}
                     /> */}
-					<MapLegend />
+					{/* <MapLegend /> */}
 
                 </Map>
             </div>

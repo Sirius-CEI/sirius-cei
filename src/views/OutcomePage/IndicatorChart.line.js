@@ -18,23 +18,31 @@ const styles = theme => ({
 });
 
 const data = [
-  ['year', 'White Non-Hispanic', 'White Hispanic or Latino', 'Black or African American', 'American Indian or Alaskan Native', 'Asian', 'Native Hawaiian or Pacific Islander', 'Two or More Races'],
-  ['2013', 5, 6, 3, 2, 2, 5, 8],
-  ['2014', 3, 4, 3, 2, 4, 4, 6],
-  ['2015', 4, 4, 5, 2, 6, 4.5, 3], 
-  ['2016', 6, 7, 4, 2, 1, 2, 2],
-  ['2017', 3, 5, 6, 3, 8, 7, 9]
-];
+	[
+		'year',
+		'White Alone',
+		'Black or African American Alone',
+		'American Indian or Alaska Native Alone',
+		'Asian Alone',
+		'Native Hawaiian or Other Pacific Islander Alone',
+		'Two or More Race Groups'
+	],
+	[2012, 4905, 2726, 2950, 4186, 2713, 3150],
+	[2013, 4980, 2738, 3002, 4260, 2829, 3210],
+	[2014, 5138, 2788, 3055, 4333, 2960, 3312],
+	[2015, 5342, 2926, 3151, 4559, 3081, 3458],
+	[2016, 5408, 2979, 3193, 4592, 3188, 3539]
+]
 
 const LineChart = ({ indicator, classes }) => (
 	<Chart
-		chartType="Line"
+		chartType="LineChart"
 		data={data}
 		options={{
 			colors: ['#4c2a74', '#008ab7', '#02c39a', '#ffc100', '#ff784f', '#d0021b', '#424242'],
 			fontName: 'Lato',
 			legend: {
-				position: 'none',
+				position: 'bottom',
 			},
 			height: '300px',
 			width: '100%'
