@@ -2,15 +2,16 @@ import axios from 'axios';
 import { put, call, takeEvery } from 'redux-saga/effects';
 
 function* addCsv(action) {
-	console.log('Add Release saga', action);
+	console.log('Add csv saga', action);
+	const { fileInfo, payload } = action;
 	try {
-		yield call( axios.post, '/api/csv', action.payload );
+		yield call( axios.post, '/api/csv', { payload: payload, fileInfo: fileInfo } );
 		alert('Success adding CSV!');
-	yield put( { type: 'FETCH_CSV' } );
+		yield put( { type: 'FETCH_CSV' } );
 	}
 	catch(error) {
-		console.log('Error adding Release', error);
-		alert('Error adding CSV');
+		console.log('Error adding csv', error);
+		alert('Error adding csv');
 	}
 }
 
@@ -51,12 +52,12 @@ function* deleteCsv(action) {
   console.log('Delete saga to remove latest csv: ', action.payload);
   try {
 	  yield call(axios.delete, `/api/csv/${action.payload}`);
-	  alert('Deleted CSV');
+	  alert('Deleted csv');
 	  yield put( { type: 'FETCH_CSV' } );
   }
 	  catch (error) {
 		  console.log('error with delete request to /data-indicators');
-		  alert('Error Deleting CSV');
+		  alert('Error deleting csv');
 	  }
 }
 

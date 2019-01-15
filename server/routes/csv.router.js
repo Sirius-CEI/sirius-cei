@@ -1,18 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const Upload = require('../models/upload.model');
-const csv = require('csvtojson');
 
 router.get('/', (req, res) => {
-	console.log('in indicator get server side');
-	Upload.find().limit(1).sort({$natural: -1})
+	Upload.find().sort({createdAt: -1, $natural: -1})
 		.then((results) => {
-			console.log('results', results);
+			// console.log('results', results);
 			res.send(results);
 		})
 		.catch((error) => {
 			console.log(`Error making Upload GET query`, error);
-			res.sendStatus(500);
+			res.json({ success: false, error: error });
 		})
 });
 
@@ -29,16 +27,17 @@ router.get('/all', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-	console.log('post router', req.body);
-	const addData = req.body;
-	console.log('new data_indicators req.body', addData);
-	Upload.create(addData)
+	// console.log('post router', req.body);
+	const { payload, fileInfo} = req.body;
+	const test = payload.map((item) => Object.assign({fileInfo: fileInfo}, item))
+	console.log('test', test);
+	Upload.create(test)
 		.then( (results) => {
-			console.log('data_indicators POST results ',results);
+			console.log('csv POST results ', results);
 			res.sendStatus(201);
 		})
 		.catch( (error) => {
-			console.log('data_indicators POST error', error);
+			console.log('csv POST error', error);
 			res.sendStatus(500);
 		})
 });

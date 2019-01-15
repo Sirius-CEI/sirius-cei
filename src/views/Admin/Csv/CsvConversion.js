@@ -4,7 +4,8 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
+import uuidv1 from 'uuid/v1';
 
 const styles = theme => ({
 	root: {
@@ -26,7 +27,7 @@ class CsvConversion extends Component {
 	state = {
 		data: [],
 		errors: [],
-		filename: 'No file chosen'
+		filename: 'No file chosen',
 	}
 
    // handle changes in the form inputs
@@ -35,7 +36,7 @@ class CsvConversion extends Component {
 		this.setState({
 				...this.state,
 				data: data,
-				filename: filename
+				filename: filename,
 		});
 	}
 
@@ -46,14 +47,20 @@ class CsvConversion extends Component {
 
 	// submit csv information
 	handleSubmit = event => {
-		const { data } = this.state;
+		const { data, filename } = this.state;
+		const { userId } = this.props;
+		const fileInfo = {
+			user_id: userId,
+			filename: filename,
+			uuid: uuidv1(),
+		}
 		// console.log('Adding CSV: ', this.state);
 		event.preventDefault();
-		this.props.dispatch({ type: 'ADD_CSV_DATA', payload: data })
+		this.props.dispatch({ type: 'ADD_CSV_DATA', payload: data, fileInfo: fileInfo })
 		this.setState({
 			data: [],
 			errors: [],
-			filename: 'No file chosen'
+			filename: 'No file chosen',
 		});
 	}
 
@@ -81,7 +88,6 @@ class CsvConversion extends Component {
 						Submit CSV
 					</Button>
 				</form>
-				
 			</div>
 		);
 	}
@@ -91,7 +97,9 @@ CsvConversion.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = ({ user }) => ({ userId: user._id})
+
 export default compose(
-	connect(),
+	connect(mapStateToProps),
 	withStyles(styles)
 )(CsvConversion);
