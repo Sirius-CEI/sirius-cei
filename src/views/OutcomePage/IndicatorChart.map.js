@@ -33,13 +33,10 @@ class MapIndicator extends Component {
     
     componentWillMount = () => {
         let geo = '';
-        console.log(this.props.chart.map_level);
-        
         switch (this.props.chart.map_level) {
             case 'county': geo = county; break;
             case 'tract': geo = tract; break;
         }
-        console.log(geo);
         
         let data = this.props.chartData.filter(item => (item.chart === this.props.chart._id));
         let values = data.map((item) => item.value);
