@@ -69,7 +69,7 @@ class GraphIndicator extends Component {
 						)
 					}
 					</CardContent>
-					{(this.state.charts.length > 1) && <CardContent className={classes.buttons}>
+					{(indidcatorCharts.length > 1) && <CardContent className={classes.buttons}>
 						<Typography
 							align="center"
 							variant="button"
@@ -98,7 +98,7 @@ class GraphIndicator extends Component {
 									onClick={()=>this.handleDisplay('location')}
 									disabled={display==='location'}
 								>
-									location
+									place
 								</Button>
 							</Grid>
 						</Grid>
