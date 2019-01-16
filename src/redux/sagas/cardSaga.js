@@ -23,7 +23,7 @@ function* addCard(action) {
     }
     catch(error) {
       console.log('error adding Card', error);
-      alert('Error adding Card');
+      alert(`Error adding card: ${error.message}`);
     }
   }
 // ----------------------------------- //
@@ -38,7 +38,7 @@ try {
 }
     catch (error) {
         console.log('error with delete request to /cards');
-        alert('Error Deleting Card');
+        alert(`Error deleting card: ${error.message}`);
     }
 }
   
@@ -51,7 +51,8 @@ try {
     yield put( { type: 'GET_CARDS' } );
 }
     catch (error) {
-        console.log('error with Card PUT request', error);
+				console.log('error with Card PUT request', error);
+				alert(`Error updating card: ${error.message}`)
     }
 }
 

@@ -25,13 +25,9 @@ class AddChart extends Component {
 
 	state = {
 		open: false,
-		title: '',
-		description: '',
-		copy: '',
-		toggleText: '',
-		query: '',
+		type: '',
+		map_level: '',
 		citation: '',
-		notes: '',
 		indicator_id: '',
 	}	
 
@@ -66,13 +62,9 @@ class AddChart extends Component {
 	handleClose = event => {
 		this.setState({
 			open: false,
-			title: '',
-			description: '',
-			copy: '',
-			toggleText: '',
-			query: '',
+			type: '',
+			map_level: '',
 			citation: '',
-			notes: '',
 			indicator_id: '',
 		})
 	}

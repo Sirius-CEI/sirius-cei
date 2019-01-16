@@ -60,15 +60,20 @@ class AddIndicator extends Component {
 		this.setState({
 			open: false,
 			title: '',
-			copy: '',
-			notes: '',
-			outcome_id: ''
+			chart_title: '',
+			what_this_means_copy: '',
+			why_this_matters_copy: '',
+			trend: '',
+			trend_copy: '',
+			active: false,
+			order: 100,
+			outcome_id: '',
 		})
 	}
 
   render() {
 		const { open } = this.state;
-		const { classes, outcomes } = this.props;
+		const { classes } = this.props;
     return (
 			<div>
 				<Button variant="outlined" onClick={this.handleOpen}>
@@ -81,7 +86,6 @@ class AddIndicator extends Component {
 					formId={'add-indicator'}
 					formFields={
 						<IndicatorFields
-							outcomes={outcomes}
 							handleChange={this.handleChange}
 							indicator={this.state}
 							editMode={false}
@@ -99,11 +103,8 @@ AddIndicator.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-	outcomes: state.outcomes
-});
 
 export default compose(
-	connect(mapStateToProps),
+	connect(),
 	withStyles(styles)
 )(AddIndicator);

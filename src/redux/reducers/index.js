@@ -9,6 +9,7 @@ import indicator from './selectedIndicatorReducer';
 import fetching from './appReducer';
 import charts from './chartReducer';
 import csv from './csvReducer';
+import chartData from './chartDataReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
 	fetching,
 	cards,
 	charts,
+	chartData,
 	errors, // error messages,
 	outcomes, // outcome area data
 	indicatorList,

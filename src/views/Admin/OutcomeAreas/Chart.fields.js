@@ -1,58 +1,38 @@
 import React, { Fragment } from 'react';
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const ChartFields = ({ handleChange, chart, editMode }) => (
 	<Fragment>
 		<TextField
-			label="Chart title"
-			name="title"
-			type="text"
+			label="Chart Type"
+			name="type"
+			select
 			margin="dense"
 			fullWidth
 			autoFocus
 			required
-			value={chart.title}
+			value={chart.type}
 			onChange={handleChange}
-		/>
-		<TextField
-			label="Description"
-			name="description"
+			>
+			<MenuItem value="line">line</MenuItem>
+			<MenuItem value="map">map</MenuItem>
+		</TextField>
+		{(chart.type === 'map') && <TextField
+			label="Map Level"
+			name="map_level"
+			select
 			type="text"
 			margin="dense"
 			fullWidth
-			multiline
-			value={chart.description}
+			value={chart.map_level}
 			onChange={handleChange}
-		/>
-		<TextField
-			label="Copy"
-			name="copy"
-			type="text"
-			margin="dense"
-			fullWidth
-			multiline
-			value={chart.copy}
-			onChange={handleChange}
-		/>
-		<TextField
-			label="Text for toggle button"
-			name="toggleText"
-			type="text"
-			margin="dense"
-			fullWidth
-			required
-			value={chart.toggleText}
-			onChange={handleChange}
-		/>
-		<TextField
-			label="Query"
-			name="query"
-			type="text"
-			margin="dense"
-			fullWidth
-			value={chart.query}
-			onChange={handleChange}
-		/>
+			>
+			<MenuItem value="tract">tract</MenuItem>
+			<MenuItem value="county">county</MenuItem>
+			<MenuItem value="MSA">MSA</MenuItem>
+			<MenuItem value="state">state</MenuItem>
+		</TextField>}
 		<TextField
 			label="Data source citation"
 			name="citation"
@@ -60,16 +40,6 @@ const ChartFields = ({ handleChange, chart, editMode }) => (
 			margin="dense"
 			fullWidth
 			value={chart.citation}
-			onChange={handleChange}
-		/>
-		<TextField
-			label="Notes"
-			name="notes"
-			type="text"
-			margin="dense"
-			fullWidth
-			multiline
-			value={chart.notes}
 			onChange={handleChange}
 		/>
 	</Fragment>
