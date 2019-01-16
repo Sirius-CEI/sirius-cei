@@ -33,13 +33,10 @@ class EditChart extends Component {
 	state = {
 		open: false,
 		updates: {
-			title: '',
-			description: '',
-			copy: '',
-			toggleText: '',
-			query: '',
+			type: '',
+			map_level: '',
 			citation: '',
-			notes: '',
+			indicator_id: '',
 			active: false,
 			order: 100,
 			indicator: '',
@@ -89,17 +86,12 @@ class EditChart extends Component {
 		this.setState({
 			open: false,
 			updates:{
-				title: '',
-				description: '',
-				copy: '',
-				toggleText: '',
-				query: '',
+				type: '',
+				map_level: '',
 				citation: '',
-				notes: '',
-				indicator: '',
+				indicator_id: '',
 				active: false,
 				order: 100,
-				indicator: '',
 			},
 			id: '',
 		})

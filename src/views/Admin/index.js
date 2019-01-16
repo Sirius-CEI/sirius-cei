@@ -13,6 +13,10 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
 	},
+	appBar: {
+		...theme.mixins.toolbar,
+		zIndex: theme.zIndex.appBar-1
+	},
 	container: {
 		background: theme.palette.secondary.light,
 		padding: theme.spacing.unit * 2
@@ -34,7 +38,7 @@ class AdminHome extends Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="sticky">
+        <AppBar position="sticky" className={classes.appBar}>
           <Tabs centered value={value} onChange={this.handleChange}>
             {adminPages.map((item, index) => (
 							<Tab key={index} label={item.tabText} icon={<FontAwesomeIcon icon={item.icon} size="lg" />} />

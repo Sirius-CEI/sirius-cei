@@ -49,7 +49,7 @@ const styles = theme => ({
 
 class UserList extends Component {
 	componentDidMount() {
-		this.props.dispatch( { type: 'FETCH_USER_LIST'} )
+		this.props.dispatch( { type: 'GET_DATA', main: 'FETCH_USER_LIST'} )
 	}
 
 	//deactivate user
