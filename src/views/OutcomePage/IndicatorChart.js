@@ -25,12 +25,23 @@ const styles = theme => ({
 class GraphIndicator extends Component {
 
   state = {
-    display: 'race',
+	display: 'race',
+	charts: [],
   };
 
-  handleDisplay = (display) => {
-		this.setState({ display: display });
+  componentWillMount = () => {
+	let charts = this.props.charts.filter(chart => (chart.indicator_id === this.props.indicator._id));
+	console.log('charts', charts);
+	
+	this.setState({...this, charts: charts});
+	  if (charts.length === 1 && charts[0].type === 'map') {
+		  this.setState({...this, display: 'location'});
+	  }	  
   }
+
+  handleDisplay = (display) => {
+		this.setState({...this, display: display });
+  };
 
   render() {
 		const { indicator, classes, charts, chartData } = this.props;
@@ -58,7 +69,7 @@ class GraphIndicator extends Component {
 						)
 					}
 					</CardContent>
-					<CardContent className={classes.buttons}>
+					{(this.state.charts.length > 1) && <CardContent className={classes.buttons}>
 						<Typography
 							align="center"
 							variant="button"
@@ -91,7 +102,7 @@ class GraphIndicator extends Component {
 								</Button>
 							</Grid>
 						</Grid>
-					</CardContent>
+					</CardContent>}
 			</Card>)
 		);
   }
