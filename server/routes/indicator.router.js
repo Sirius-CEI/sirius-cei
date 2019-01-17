@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Indicator = require('../models/indicators.model');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 router.get('/', (req, res) => {
 	Indicator
@@ -11,10 +12,9 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
 	try {
 		const { payload } = req.body;
-		console.log(payload);
 		let indicator = new Indicator();
 		// set document fields equal to the value of the matching payload key
 		Object.entries(payload).forEach(
@@ -25,12 +25,11 @@ router.post('/', (req, res) => {
 			: res.sendStatus(201);
 		});
 	} catch (error) {
-		console.log(`outcome area post error`, error);
 		res.json({ success: false, error: error });
 	}
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
 	try {
 		const { payload } = req.body;
 		Indicator.findByIdAndUpdate(req.params.id, { $set: payload }, (err, doc) => {
@@ -38,7 +37,6 @@ router.put('/:id', (req, res) => {
 			: res.sendStatus(200);
 		})
 	} catch (error) {
-		console.log(`outcome put error`, error);
 		res.json({ success: false, error: error });
 	}
 })

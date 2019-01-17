@@ -39,6 +39,7 @@ const ChartFields = ({ handleChange, chart, editMode }) => (
 			type="text"
 			margin="dense"
 			fullWidth
+			multiline
 			value={chart.citation}
 			onChange={handleChange}
 		/>

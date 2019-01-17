@@ -5,7 +5,6 @@ import 'leaflet/dist/leaflet.css';
 import { connect } from 'react-redux';
 import { Map, TileLayer, GeoJSON, FeatureGroup } from 'react-leaflet';
 import './map.css';
-// import MapLegend from './IndicatorChart.map.legend'
 import chroma from 'chroma-js';
 
 const accessToken = 'pk.eyJ1IjoibGV4Y2h1ZHppayIsImEiOiJjanBzaWx5dG8wdGppM3htaDhiZ3RwcXJ6In0.-gllVsZonwCccRMzb1DmYQ';
@@ -35,7 +34,7 @@ class MapIndicator extends Component {
         let geo = '';
         switch (this.props.chart.map_level) {
             case 'county': geo = county; break;
-            case 'tract': geo = tract; break;
+            default: geo = tract; break;
         }
         
         let data = this.props.chartData.filter(item => (item.chart === this.props.chart._id));
@@ -93,8 +92,6 @@ class MapIndicator extends Component {
 							/>)
 						) }
 					</FeatureGroup>
-					{/* <MapLegend /> */}
-
                 </Map>
             </div>
         );

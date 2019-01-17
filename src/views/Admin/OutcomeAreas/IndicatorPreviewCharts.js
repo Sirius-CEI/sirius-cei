@@ -4,7 +4,7 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
+import { Card, CardHeader, CardContent, CardActions, Divider } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
 import EditChart from './Chart.edit';
@@ -13,6 +13,9 @@ import AddChart from './Chart.add';
 const styles = theme => ({
 	grow: {
 		flexGrow: 1,
+	},
+	card: {
+		height: '100%'
 	},
 	chart: {
 		backgroundColor: theme.palette.gold.light,
@@ -45,23 +48,27 @@ class IndicatorPreviewCharts extends Component {
 					container
 					spacing={16}
 					direction="row"
-					justify="space-between"
-					alignItems="flex-end"
-					alignContent="flex-end"
+					alignItems="stretch"
+					alignContents="flex-end"
 				>
 					{charts.map((chart) => (
-						<Grid item xs={12} md={6} key={chart._id}>
-							<Card>
-								<Grid container direction="row" alignItems="stretch" alignContent="stretch">
-									{/* <Grid item xs={12} sm={4} className={classes.grey} /> */}
-									<Grid item xs={12} sm={8} className={classes.gold}>
-										<Typography variant="h4" color="secondary">{chart.type}</Typography>
+						<Grid item xs={12} sm={6} md={4} lg={3} key={chart._id}>
+							<Card className={classes.card}>
+								<CardHeader
+									title={chart.type}
+									titleTypographyProps={{
+										variant: 'h4',
+										color: 'secondary'
+									}}
+								/>
+								<CardContent className={classes.grow}>
 										{chart.map_level && <Typography variant="body1"> {chart.map_level}</Typography>}
 										{chart.citation && <Typography variant="body1"> {chart.citation}</Typography>}
 										{chart._id && <Typography variant="body1"> {chart._id}</Typography>}
+								</CardContent>
+								<CardActions>
 										<EditChart thisChart={chart} />
-									</Grid>
-								</Grid>
+								</CardActions>
 							</Card>
 						</Grid>
 					))}

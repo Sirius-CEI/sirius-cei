@@ -48,7 +48,6 @@ class PasswordReset extends Component {
   }
 
   handleInputChangeFor = propertyName => (event) => {
-    console.log('handle change', event.target.value);
     this.setState({
       [propertyName]: event.target.value,
     });
@@ -63,7 +62,7 @@ class PasswordReset extends Component {
             <h1>Reset Password</h1>
             <div>
               <label htmlFor="username">
-              Username:
+              Email:
               <input
                   type="text"
                   name="username"

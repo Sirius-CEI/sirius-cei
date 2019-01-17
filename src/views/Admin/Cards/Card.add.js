@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
@@ -52,7 +52,6 @@ class AddCard extends Component {
 	}
 
 	onSubmit = event => {
-		console.log('adding card')
 		event.preventDefault();
 		this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
 		this.handleClose();	

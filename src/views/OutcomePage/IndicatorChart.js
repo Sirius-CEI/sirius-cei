@@ -31,7 +31,6 @@ class GraphIndicator extends Component {
 
   componentWillMount = () => {
 	let charts = this.props.charts.filter(chart => (chart.indicator_id === this.props.indicator._id));
-	console.log('charts', charts);
 	
 	this.setState({...this, charts: charts});
 	  if (charts.length === 1 && charts[0].type === 'map') {
@@ -44,7 +43,7 @@ class GraphIndicator extends Component {
   };
 
   render() {
-		const { indicator, classes, charts, chartData } = this.props;
+		const { indicator, classes, charts } = this.props;
 		const { display } = this.state;
 		const indidcatorCharts = charts.filter(chart => (chart.indicator_id === indicator._id));
 		const lineChart = indidcatorCharts.filter(chart => (chart.type === 'line'));

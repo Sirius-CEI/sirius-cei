@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DialogForm from '../../../components/DialogForm';
 import Button from '@material-ui/core/Button';
 
@@ -61,7 +60,6 @@ class EditCard extends Component {
 	}
 
 	onSubmit = event => {
-		console.log('adding card')
 		event.preventDefault();
 		this.props.dispatch({ type: 'EDIT_CARD', payload: this.state.newCard })
 		this.handleClose();	

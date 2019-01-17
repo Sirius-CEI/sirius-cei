@@ -17,43 +17,41 @@ const styles = theme => ({
 
 class LineChart extends Component {
 
-	render() {
-
-		const { indicator, classes, chart, chartData } = this.props;
-
-		this.getData = (chartData, chart) => {
-			console.log(chart._id)
-			let data = chartData.filter(item => (item.chart === chart._id));
-			if (data === []) {
-				return null;
-			}
-			let maxYear = Math.max.apply(Math, data.map(item => item.year ));
-			let minYear = maxYear-5;
-			data = data.sort((a,b) => (a.variable > b.variable) ? 1: ((b.variable > a.variable) ? -1 : 0));
-			let graphData = [];
-			for (let y = minYear; y < maxYear; y++) {
-				let yearData = data.filter(item => (item.year === y));
-				//on first loop only, create key row of array
-				if (y === minYear) {
-					let firstRow = ['year'];
-					for (let i=0; i< yearData.length; i++) {
-						let x = yearData[i];
-						
-						firstRow.push(x.variable);
-					}
-					graphData.push(firstRow);
-				}
-				let yearRow = [y.toString()]
+	getData = (chartData, chart) => {
+		let data = chartData.filter(item => (item.chart === chart._id));
+		if (data === []) {
+			return null;
+		}
+		let maxYear = Math.max.apply(Math, data.map(item => item.year ));
+		let minYear = maxYear-5;
+		data = data.sort((a,b) => (a.variable > b.variable) ? 1: ((b.variable > a.variable) ? -1 : 0));
+		let graphData = [];
+		for (let y = minYear; y < maxYear; y++) {
+			let yearData = data.filter(item => (item.year === y));
+			//on first loop only, create key row of array
+			if (y === minYear) {
+				let firstRow = ['year'];
 				for (let i=0; i< yearData.length; i++) {
 					let x = yearData[i];
-					yearRow.push(x.value);
+					
+					firstRow.push(x.variable);
 				}
-				graphData.push(yearRow);
+				graphData.push(firstRow);
 			}
-			console.log(graphData);
-
-			return graphData;
+			let yearRow = [y.toString()]
+			for (let i=0; i< yearData.length; i++) {
+				let x = yearData[i];
+				yearRow.push(x.value);
+			}
+			graphData.push(yearRow);
 		}
+
+		return graphData;
+	}
+
+	render() {
+
+		const { classes, chart, chartData } = this.props;
 
 		return (
 			<Fragment>
