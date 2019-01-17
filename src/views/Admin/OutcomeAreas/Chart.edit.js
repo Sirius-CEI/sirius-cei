@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import CardActionArea from '@material-ui/core/CardActionArea';
 
 import DialogForm from '../../../components/DialogForm';
@@ -101,24 +102,7 @@ class EditChart extends Component {
 		const { classes, thisChart } = this.props;
     return (
 			<Fragment>
-				<CardActionArea className={classes.container} onClick={this.handleOpen}>
-					<Grid 
-						container
-						direction="column"
-						justify="flex-start"
-						alignItems="stretch"
-						alignContent="stretch"
-					>
-						<Grid item xs={12}>
-							<Typography variant="h6" align="center" className={classes.title}>
-								{thisChart.title}
-							</Typography>
-						</Grid>
-						<Grid item xs={12}>
-							<Typography variant="body1">{thisChart.copy}</Typography>
-						</Grid>
-					</Grid>
-				</CardActionArea>
+				<Button onClick={this.handleOpen}>Edit</Button>
 				<DialogForm
 					open={open}
 					dialogTitle={'Edit Chart'}
