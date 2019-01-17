@@ -173,7 +173,7 @@ class Nav extends React.Component {
           </div>
 					<Divider />
           <List className={classes.content}>
-						{outcomeAreas.map((item, index) => (
+						{outcomeAreas.length > 1 && outcomeAreas.map((item, index) => (
 							<ListItem
 								button
 								key={index}

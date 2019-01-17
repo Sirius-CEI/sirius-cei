@@ -14,7 +14,7 @@ const styles = theme => ({
 })
 
 const OutcomePage = ({ classes, outcomeAreas, location }) => {
-	const outcome = (outcomeAreas.find(outcome => (outcome.route === location.pathname)));
+	const outcome = (outcomeAreas.length >0 && outcomeAreas.find(outcome => (outcome.route === location.pathname)));
 
 	return (
 		<div className={classes.root}>

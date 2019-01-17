@@ -30,7 +30,7 @@ const Cards = ({ outcomes, cards, classes }) => (
 			justify="center"
 			alignItems="stretch"
 		>
-			{cards.length > 0 && outcomes.map((outcome) => (
+			{cards.length > 0 && outcomes.length > 0 && outcomes.map((outcome) => (
 				<Grid item xs={12} key={outcome._id}>
 					<CardList outcome={outcome} />
 				</Grid>

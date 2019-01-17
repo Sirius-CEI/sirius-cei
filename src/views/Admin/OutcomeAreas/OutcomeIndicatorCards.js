@@ -32,7 +32,7 @@ const styles = theme => ({
 const OutcomeIndicatorCards = ({ classes, outcomes }) => (
 	<Fragment>
 		<Grid container spacing={16} direction="row" justify="center" alignItems="stretch">
-			{outcomes.map((outcome) => (
+			{outcomes.length > 0 && outcomes.map((outcome) => (
 				<Grid item xs={12} sm={6} md={4} lg={3} key={outcome._id}>
 					<Card className={classes.card}>
 						<EditOutcome item={outcome}/>

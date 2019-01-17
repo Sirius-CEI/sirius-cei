@@ -104,7 +104,7 @@ class UserList extends Component {
               </TableRow>
 						</TableHead>
 						<TableBody>
-						{users.map((item, index) => {
+						{users.length > 0 && users.map((item, index) => {
 							return (
 							<TableRow key={index}>
 								<TableCell component="th" scope="row">

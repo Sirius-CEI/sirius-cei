@@ -4,10 +4,10 @@ import { List, ListItem, ListItemText } from '@material-ui/core';
 
 const OutcomeIndicatorList = props => {
 	const { outcomeId, indicatorList, indicator, dispatch } = props;
-	const outcomeIndicators = indicatorList.filter(indicatorItem => indicatorItem.outcome_id === outcomeId);
+	const outcomeIndicators = indicatorList.length > 0 && indicatorList.filter(indicatorItem => indicatorItem.outcome_id === outcomeId);
 	return (
 		<List disablePadding>
-			{outcomeIndicators.map((listItem) => (
+			{outcomeIndicators.length > 0 && outcomeIndicators.map((listItem) => (
 				<ListItem
 					button
 					key={listItem._id}

@@ -49,9 +49,8 @@ class IndicatorPreviewCharts extends Component {
 					spacing={16}
 					direction="row"
 					alignItems="stretch"
-					alignContents="flex-end"
 				>
-					{charts.map((chart) => (
+					{charts.length > 0 && charts.map((chart) => (
 						<Grid item xs={12} sm={6} md={4} lg={3} key={chart._id}>
 							<Card className={classes.card}>
 								<CardHeader
@@ -61,11 +60,13 @@ class IndicatorPreviewCharts extends Component {
 										color: 'secondary'
 									}}
 								/>
+								<Divider />
 								<CardContent className={classes.grow}>
 										{chart.map_level && <Typography variant="body1"> {chart.map_level}</Typography>}
 										{chart.citation && <Typography variant="body1"> {chart.citation}</Typography>}
 										{chart._id && <Typography variant="body1"> {chart._id}</Typography>}
 								</CardContent>
+								<Divider />
 								<CardActions>
 										<EditChart thisChart={chart} />
 								</CardActions>
@@ -87,7 +88,7 @@ IndicatorPreviewCharts.propTypes = {
 };
 
 const mapStateToProps = ({ charts, indicator }) => ({ 
-	charts: charts.filter(chart => chart.indicator_id === indicator)
+	charts: charts.length > 0 && charts.filter(chart => chart.indicator_id === indicator)
 })
 
 export default compose(
