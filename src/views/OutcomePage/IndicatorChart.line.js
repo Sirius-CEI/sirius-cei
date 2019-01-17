@@ -53,7 +53,7 @@ class LineChart extends Component {
 
 	render() {
 
-		const { indicator, classes, chart, chartData } = this.props;
+		const { classes, chart, chartData } = this.props;
 
 		return (
 			<Fragment>

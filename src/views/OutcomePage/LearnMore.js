@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
-import { Card, CardActionArea, CardMedia, CardHeader } from '@material-ui/core';
+import { Card, CardActionArea, CardMedia } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';

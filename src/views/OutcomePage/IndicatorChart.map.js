@@ -5,7 +5,6 @@ import 'leaflet/dist/leaflet.css';
 import { connect } from 'react-redux';
 import { Map, TileLayer, GeoJSON, FeatureGroup } from 'react-leaflet';
 import './map.css';
-// import MapLegend from './IndicatorChart.map.legend'
 import chroma from 'chroma-js';
 
 const accessToken = 'pk.eyJ1IjoibGV4Y2h1ZHppayIsImEiOiJjanBzaWx5dG8wdGppM3htaDhiZ3RwcXJ6In0.-gllVsZonwCccRMzb1DmYQ';
@@ -93,8 +92,6 @@ class MapIndicator extends Component {
 							/>)
 						) }
 					</FeatureGroup>
-					{/* <MapLegend /> */}
-
                 </Map>
             </div>
         );
