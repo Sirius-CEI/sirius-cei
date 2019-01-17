@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { Card, CardHeader, CardContent, CardMedia, CardActionArea, CardActions, Typography, Button, Grid, Divider } from '@material-ui/core';
+import { Card, CardHeader, CardContent, CardMedia, CardActions, Typography, Button, Grid } from '@material-ui/core';
 
 import EditCard from './Card.edit';
 

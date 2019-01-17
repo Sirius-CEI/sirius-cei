@@ -44,7 +44,7 @@ class GraphIndicator extends Component {
   };
 
   render() {
-		const { indicator, classes, charts, chartData } = this.props;
+		const { indicator, classes, charts } = this.props;
 		const { display } = this.state;
 		const indidcatorCharts = charts.filter(chart => (chart.indicator_id === indicator._id));
 		const lineChart = indidcatorCharts.filter(chart => (chart.type === 'line'));
