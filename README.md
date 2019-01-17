@@ -27,8 +27,8 @@ These instructions will get you a copy of the project up and running on your loc
 ---
 .env folder
 1. SERVER_SESSION_SECRET=randomNumbersAndLetters (over 10)
-2. EMAIL_ADDRESS=yourCreated email for email password reset
-3. EMAIL_PASSWORD=yourCreatedEmailPassword for email password reset
+2. EMAIL_ADDRESS=yourCreatedEmailAccount for email password reset
+3. EMAIL_PASSWORD=yourCreatedEmailAccount Password for email password reset
 
 ### Completed Features
 
