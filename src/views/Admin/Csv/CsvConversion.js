@@ -1,81 +1,97 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
-import compose from 'recompose/compose';
 import CSVReader from 'react-csv-reader';
+import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-// import ViewLatestCsv from './ViewLatestCsv';
+import { Button, Grid, Typography } from '@material-ui/core';
 
 const styles = theme => ({
-    button: {
-      margin: theme.spacing.unit,
-    },
-    input: {
-      display: 'none',
-    },
-  });
+	root: {
+		padding: theme.spacing.unit
+	},
+	cssClass: {
+		flexGrow: 1
+	},
+	input: {
+		display: 'flex',
+		fontFamily: 'Lato',
+		fontSize: '1rem',
+		paddingBottom: theme.spacing.unit
+	}
+});
 
 class CsvConversion extends Component {
 
-    state = {
-        data: [],
-    }
+	state = {
+		data: [],
+		errors: [],
+		filename: 'No file chosen'
+	}
 
    // handle changes in the form inputs
-    handleChange = event => {
-        console.log('handleChange', event)
-        this.setState({
-                ...this.state,
-                data: event,
-        });
-    }
+	handleChange = (data, filename) => {
+		// console.log(event.target.files[0]);
+		this.setState({
+				...this.state,
+				data: data,
+				filename: filename
+		});
+	}
 
-    // submit csv information
-    handleSubmit = (event) => {
-        console.log('Adding CSV: ', this.state);
-        event.preventDefault();
-        this.props.dispatch({ type: 'ADD_CSV_DATA', payload: this.state.data })
-        this.setState({
-            data: [],
-        });
-    }
+	handleErrors = error => {
+		alert('Error converting file')
+		console.log(`Error converting file`, error);
+	}
 
-    render() {
-        const { classes } = this.props;
-        return (
-            <div className="container">
-                <h3>Select CSV File</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <CSVReader
-                    cssClass="react-csv-input"
-                    parserOptions={ {header: true} }
-                    onFileLoaded={this.handleChange}
-                    />
-                    <br></br>
-                    <Button 
-                        type="submit"
-                        variant="contained" 
-                        color="primary" 
-                        className={classes.button}
-                    >
-                        Submit CSV
-                    </Button>
-                </form>
-            </div>
-        );
-    }
+	// submit csv information
+	handleSubmit = event => {
+		const { data } = this.state;
+		// console.log('Adding CSV: ', this.state);
+		event.preventDefault();
+		this.props.dispatch({ type: 'ADD_CSV_DATA', payload: data })
+		this.setState({
+			data: [],
+			errors: [],
+			filename: 'No file chosen'
+		});
+	}
+
+	render() {
+		const { classes } = this.props;
+		const { filename } = this.state;
+		return (
+			<div className={classes.root}>
+				<Typography variant="h4" gutterBottom>Select CSV File</Typography>
+				<form onSubmit={this.handleSubmit}>
+					<CSVReader
+						cssClass={classes.cssClass}
+						cssInputClass={classes.input}
+						parserOptions={ {header: true} }
+						onFileLoaded={this.handleChange}
+						onError={this.handleErrors}
+						inputId="csvFile"
+					/>
+					<Button
+						type="submit"
+						variant="contained"
+						color="primary"
+						disabled={filename === 'No file chosen'}
+					>
+						Submit CSV
+					</Button>
+				</form>
+				
+			</div>
+		);
+	}
 }
 
 CsvConversion.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-const mapReduxStateToProps = reduxState => ({
-    reduxState
-});
-
 export default compose(
-	connect(mapReduxStateToProps),
+	connect(),
 	withStyles(styles)
 )(CsvConversion);

@@ -60,7 +60,7 @@ class Footer extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={8} direction="row" justify="flex-end" alignItems="center">
 									<Grid item>
-									{!user._id ? <LoginButton /> : <LogoutButton />}
+										{!user._id ? <LoginButton /> : <LogoutButton />}
 									</Grid>
 									{!!user._id && 
 										<Grid item>

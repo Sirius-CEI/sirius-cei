@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import Typography from '@material-ui/core/Typography';
 
 import EditChart from './Chart.edit';
 import AddChart from './Chart.add';
@@ -52,8 +53,12 @@ class IndicatorPreviewCharts extends Component {
 						<Grid item xs={12} md={6} key={chart._id}>
 							<Card>
 								<Grid container direction="row" alignItems="stretch" alignContent="stretch">
-									<Grid item xs={12} sm={4} className={classes.grey} />
+									{/* <Grid item xs={12} sm={4} className={classes.grey} /> */}
 									<Grid item xs={12} sm={8} className={classes.gold}>
+										<Typography variant="h4" color="secondary">{chart.type}</Typography>
+										{chart.map_level && <Typography variant="body1"> {chart.map_level}</Typography>}
+										{chart.citation && <Typography variant="body1"> {chart.citation}</Typography>}
+										{chart._id && <Typography variant="body1"> {chart._id}</Typography>}
 										<EditChart thisChart={chart} />
 									</Grid>
 								</Grid>

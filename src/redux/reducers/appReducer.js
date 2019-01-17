@@ -1,4 +1,4 @@
-const loading = (state = null, action) => {
+const loading = (state = false, action) => {
 	switch (action.type) {
 		case 'FETCH_DATA_BEGIN':
 			return true;

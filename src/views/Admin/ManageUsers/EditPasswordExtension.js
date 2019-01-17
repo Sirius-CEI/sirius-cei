@@ -66,8 +66,6 @@ onSubmit = event => {
                         onChange={this.handleChange} 
                     />
                 </FormControl>
-                <br></br>
-                <br></br>
                 <Button type='submit' variant="outlined" color="primary">
                     Save Password
                 </Button>
