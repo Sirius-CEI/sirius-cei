@@ -15,7 +15,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 // Get all users
-// TODO: rejectUnauthenticated
 router.get('/list', rejectUnauthenticated, (req, res) => {
   Person.find({}).sort({ username: 1 }).exec((err, data) => {
 		return err ? res.json({ success: false, error: err }) : res.send(data);
