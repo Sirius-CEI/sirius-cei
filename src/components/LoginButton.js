@@ -126,7 +126,7 @@ class LoginButton extends Component {
 								autoFocus
 								variant="outlined"
 								id="username"
-								label="username"
+								label="email"
 								name="username"
 								type="email"
 								className={classes.textField}

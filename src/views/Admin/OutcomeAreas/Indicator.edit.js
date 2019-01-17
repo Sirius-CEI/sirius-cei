@@ -97,7 +97,6 @@ class EditIndicator extends Component {
 	}
 
 	render() {
-		const { outcomes } = this.props;
 		const { open, updates } = this.state;
 		return (
 			<Fragment>

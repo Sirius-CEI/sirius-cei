@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Indicator = require('../models/indicators.model');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 router.get('/', (req, res) => {
 	Indicator
@@ -11,7 +12,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
 	try {
 		const { payload } = req.body;
 		console.log(payload);
@@ -30,7 +31,7 @@ router.post('/', (req, res) => {
 	}
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
 	try {
 		const { payload } = req.body;
 		Indicator.findByIdAndUpdate(req.params.id, { $set: payload }, (err, doc) => {

@@ -31,7 +31,7 @@ class CheckboxList extends Component {
 	}
 	
   render() {
-    const { classes, user } = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
 				
