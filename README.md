@@ -24,18 +24,17 @@ These instructions will get you a copy of the project up and running on your loc
 2. `npm install`
 3. `npm run server` 
 4. `npm run client` * in a new terminal window
+---
+.env folder
+1. SERVER_SESSION_SECRET=randomNumbersAndLetters (over 10)
+2. EMAIL_ADDRESS=yourCreated email for email password reset
+3. EMAIL_PASSWORD=yourCreatedEmailPassword for email password reset
 
 ### Completed Features
 
-- [x] 
-- [x]
-- [x]
-
-### Future Features
-
-- [x] 
-- [x]
-- [x]
+- [x] Admin Page
+- [x] Client View of Economic Indicators
+- [x] Learn More Section
 
 ## Authors
 - Lex Chudzik
