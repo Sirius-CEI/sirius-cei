@@ -4,15 +4,14 @@ import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Typography, CardHeader, CardActions } from '@material-ui/core';
+import { Card, CardContent, Typography, CardHeader, CardActions, Grid, Divider } from '@material-ui/core';
 
 const styles = theme => ({
 	root: {
 		padding: theme.spacing.unit
 	},
 	recentCsv: {
-		height: 180,
-		width: 290,
+		minHeight: 180,
 	},
 	actions: {
 		display: 'flex',
@@ -23,9 +22,9 @@ const styles = theme => ({
 
 class ViewLatestCsv extends Component {
 
-	deleteCsv = (date) => {
-		console.log('Delete CSV id: ', date);
-		this.props.dispatch( { type: 'DELETE_CSV', payload: date } );
+	deleteCsv = (uuid) => {
+		console.log('Delete CSV id: ', uuid);
+		this.props.dispatch( { type: 'DELETE_CSV', payload: uuid } );
 	}
 
 	componentDidMount() {
@@ -36,34 +35,38 @@ class ViewLatestCsv extends Component {
 		const { classes, csv } = this.props;
 		return (
 			<div className={classes.root}>
-				<Typography variant="h4" gutterBottom>Latest csv</Typography>
+				<Typography variant="h4" gutterBottom>Loaded csv files</Typography>
+				<Grid container spacing={16}>
 					{csv.map( (csv, index) => (
-						<div key={index}>
+						<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
 							<Card className={classes.recentCsv} id="display">
 								<CardHeader
-									title="csv created at:"
+									title="csv id:"
 									titleTypographyProps={{
 										variant: "h5",
 										color: "primary",
 										align: "center"
 									}}
 								/>
+								<Divider />
 								<CardContent>
-									<Typography variant="h6" gutterBottom>{csv.createdAt}</Typography>
+									<Typography variant="h6" gutterBottom>{csv}</Typography>
 								</CardContent>
-								<CardActions disableActionSpacing={true} className={classes.actions}>
+								<Divider />
+								<CardActions className={classes.actions}>
 									<Button
 										variant="contained"
 										color="primary"
-										onClick={() => this.deleteCsv(csv.createdAt)}
+										onClick={() => this.deleteCsv(csv)}
 									>
 										Delete
 									</Button>
 								</CardActions>
 							</Card>
-						</div>
+						</Grid>
 						)
 					)}
+					</Grid>
 			</div>
 		);
 	}

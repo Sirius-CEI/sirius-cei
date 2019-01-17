@@ -56,7 +56,7 @@ const PreviewIndicator = ({ classes, indicatorObj }) => (
 			</Grid>
 		</div>
 		<Divider />
-		<div className={classes.padded}>
+		{/* <div className={classes.padded}>
 			<Grid container>
 				<Grid item xs={12}>
 					<Typography
@@ -68,7 +68,7 @@ const PreviewIndicator = ({ classes, indicatorObj }) => (
 				</Grid>
 			</Grid>
 		</div>
-		<Divider />
+		<Divider /> */}
 		<div className={classes.padded}>
 			<IndicatorPreviewCharts />
 		</div>
