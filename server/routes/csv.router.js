@@ -1,58 +1,54 @@
 const express = require('express');
 const router = express.Router();
 const Upload = require('../models/upload.model');
-const csv = require('csvtojson');
 const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
+//get all csv data
 router.get('/', (req, res) => {
-	console.log('in indicator get server side');
-	Upload.find().limit(1).sort({$natural: -1})
+	Upload.find({}).sort({ '_id' : -1 })
 		.then((results) => {
-			console.log('results', results);
-			res.send(results);
+			let uuidList = results.map((item) => item.fileInfo.uuid);
+			uuidList = [...new Set(uuidList)]
+			let arr = [];
+			// let fileList = results.map((item) => ({ 
+			// 	filename: item.fileInfo.filename,
+			// 	uuid: item.fileInfo.uuid,
+			// 	uploadTs: item.fileInfo.uploadTs
+			// }))
+			// fileList = [ ...new Set(fileList)];
+			res.send(uuidList)
 		})
 		.catch((error) => {
-			console.log(`Error making Upload GET query`, error);
-			res.sendStatus(500);
+				console.log(`Error making csv GET query`, error);
+				res.sendStatus(500);
 		})
-});
-
-//get all csv data
-router.get('/all', (req, res) => {
-    Upload.find({})
-        .then((results) => {
-            res.send(results);
-        })
-        .catch((error) => {
-            console.log(`Error making Card GET query`, error);
-            res.sendStatus(500);
-        })
 });
 
 router.post('/', rejectUnauthenticated, (req, res) => {
 	console.log('post router', req.body);
-	const addData = req.body;
-	console.log('new data_indicators req.body', addData);
-	Upload.create(addData)
+	const { payload, fileInfo } = req.body;
+	const test = payload.map((item) => Object.assign({fileInfo: fileInfo}, item));
+	// console.log(test);
+	Upload.create(test)
 		.then( (results) => {
-			console.log('data_indicators POST results ',results);
+			// console.log('csv POST results ',results);
 			res.sendStatus(201);
 		})
 		.catch( (error) => {
-			console.log('data_indicators POST error', error);
+			console.log('csv POST error', error);
 			res.sendStatus(500);
 		})
 });
 
 // DELETE route to remove a CSV file
-router.delete('/:date', rejectUnauthenticated, (req, res) => {
-	let reqDate = req.params.date;
-	console.log('Delete CSV request for id', req.params);
-	Upload.deleteMany({
-		createdAt: reqDate
-	})
-		.then( (results) => {
-			console.log('documents removed:', results.n);
+router.delete('/:uuid', rejectUnauthenticated, (req, res) => {
+	let uuid = req.params.uuid;
+	console.log('Delete CSV request for id', uuid);
+	Upload.deleteMany({'fileInfo.uuid': uuid})
+	// , (error, results) => console.log(results))
+	.then((results) => {
+			// console.log('documents found:', results);
+
 			res.sendStatus(200)
 		})
 		.catch( (error) => {

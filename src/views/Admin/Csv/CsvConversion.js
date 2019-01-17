@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CSVReader from 'react-csv-reader';
+import uuidv1 from 'uuid/v1';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -46,10 +47,21 @@ class CsvConversion extends Component {
 
 	// submit csv information
 	handleSubmit = event => {
-		const { data } = this.state;
+		const { data, filename } = this.state;
+		const { userId } = this.props;
 		// console.log('Adding CSV: ', this.state);
 		event.preventDefault();
-		this.props.dispatch({ type: 'ADD_CSV_DATA', payload: data })
+		this.props.dispatch({
+			type: 'ADD_CSV_DATA',
+			payload: data,
+			fileInfo: {
+				filename: filename,
+				uuid: uuidv1(),
+				user_id: userId,
+				uploadTs: Date.now()
+			}
+		});
+
 		this.setState({
 			data: [],
 			errors: [],
@@ -90,6 +102,8 @@ class CsvConversion extends Component {
 CsvConversion.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
+
+const mapStateToProps = ({ user }) => ({ userId: user._id })
 
 export default compose(
 	connect(),
