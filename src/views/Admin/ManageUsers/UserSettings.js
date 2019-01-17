@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import PasswordExtension from './EditPasswordExtension';
 
 const styles = theme => ({
   root: {
@@ -34,7 +35,7 @@ class CheckboxList extends Component {
     const { classes, user } = this.props;
     return (
       <div className={classes.root}>
-				
+				<PasswordExtension />
       </div>
     );
   }

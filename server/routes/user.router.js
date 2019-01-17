@@ -187,7 +187,7 @@ router.post('/password-reset', (req, res, next) => {
 });
 
 // PUT route to update user password
-router.put('/new-password/:username', (req, res) => {
+router.put('/new-password', (req, res) => {
   const password = encryptLib.encryptPassword(req.body.password);
   console.log('update password:', password);
   console.log('update password username:', req.body.username);

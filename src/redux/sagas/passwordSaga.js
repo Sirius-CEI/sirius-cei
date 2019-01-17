@@ -25,6 +25,18 @@ function* forgotPassword(action) {
     }
 }
 
+function* resetPassword(action) {
+    console.log('forgot password', action.payload);
+    const username = action.payload;
+    try{
+        const response = yield call(axios.put, `/api/user/new-password`, username );
+        console.log('password reset response data', response.data);
+    }
+    catch (error) {
+        console.log('error with forgot password request', error);
+    }
+}
+
 function* getToken(action) {
     console.log('in get token', action.payload);
     try {
@@ -36,8 +48,9 @@ function* getToken(action) {
 }
 
 function* passwordSaga() {
-  yield takeEvery('FORGOT_PASSWORD', forgotPassword);
-  yield takeEvery('GET_TOKEN', getToken);
+    yield takeEvery('FORGOT_PASSWORD', forgotPassword);
+    yield takeEvery('RESET_PASSWORD', resetPassword);
+    yield takeEvery('GET_TOKEN', getToken);
   yield takeEvery('RESET_PASSWORD', editPassword);
 }
 
