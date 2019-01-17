@@ -1,5 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { withRouter } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { compose } from 'recompose';
+
+const styles = theme => ({
+    root: {
+          flexGrow: 1,
+      },
+      grow: {
+          flexGrow: 1,
+      },
+      rightIcon: {
+          marginLeft: theme.spacing.unit,
+      },
+      form: {
+          marginTop: 30,
+          padding: 30,
+          width: '100%',
+    },
+  });
 
 class ForgotPassword extends Component {
 
@@ -18,45 +41,47 @@ class ForgotPassword extends Component {
   sendEmail = e => {
       e.preventDefault();
       this.props.handleClose();
-      console.log('email state', this.state.username);
       this.props.dispatch({ type: 'FORGOT_PASSWORD', payload: {
         username: this.state.username,
       }});
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <div>
-        <form onSubmit={this.sendEmail}>
-          <h1>Enter Email</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
+        <form className={classes.form} onSubmit={this.sendEmail}>
+            <TextField
+                required
+                autoFocus
+                variant="outlined"
+                id="username"
+                label="username"
                 name="username"
+                type="email"
+                className={classes.textField}
                 value={this.state.username}
                 onChange={this.handleChange('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
+            />
+            <Button
               className="log-in"
               type="submit"
               name="submit"
               value="Reset Password"
-            />
-          </div>
+              color="primary"
+            >
+            Request Password Reset
+            </Button>
         </form>
-      </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  errors: state.errors,
-  user: state.user,
-});
-
-export default connect(mapStateToProps)(ForgotPassword);
+ForgotPassword.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+  
+export default compose(
+    withRouter,
+    connect(),
+    withStyles(styles),
+)(ForgotPassword)

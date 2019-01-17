@@ -22,4 +22,12 @@ const outcomeAreaSchema = new Schema({
 	{ timestamps: true }
 );
 
+outcomeAreaSchema.pre('remove', (next) => {
+	// 'this' is the client being removed. Provide callbacks here if you want
+	// to be notified of the calls' result.
+	Card.remove({ outcome_id: this._id }).exec();
+	Submission.remove({ outcome_id: this._id }).exec();
+	next();
+});
+
 module.exports = mongoose.model('OutcomeArea', outcomeAreaSchema);

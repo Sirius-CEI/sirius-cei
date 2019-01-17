@@ -18,7 +18,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Lock from '@material-ui/icons/Lock';
-import Modal from '@material-ui/core/Modal';
 import ForgotPassword from './ForgotPassword';
 
 const styles = theme => ({
@@ -34,7 +33,10 @@ const styles = theme => ({
 	textField: {
 		marginTop: 30,
 		width: '100%'
-  },
+	},
+	forgotPassword: {
+		flexGrow: 1,
+	},
 });
 
 class LoginButton extends Component {
@@ -172,17 +174,15 @@ class LoginButton extends Component {
 						</DialogContent>
 						<DialogActions>
 							<Button onClick={this.handlePasswordOpen}>Forgot Password</Button>
-							<Modal
+							<Dialog
+								className={classes.forgotPassword}
 								aria-labelledby="simple-modal-title"
 								aria-describedby="simple-modal-description"
 								open={this.state.passwordOpen}
 								onClose={this.handlePasswordClose}
 							>
-							<div>
-								<h2 id="reset-password">Forgot Password</h2>
-								<ForgotPassword handleClose={this.handleClose} />
-							</div>
-							</Modal>
+								<ForgotPassword handleClose={this.handleClose} handleOpen={this.handlePasswordOpen} />
+							</Dialog>
 							<Button onClick={this.handleClose} color="primary">
 								Cancel
 							</Button>
