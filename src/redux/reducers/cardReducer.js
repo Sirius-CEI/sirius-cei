@@ -1,4 +1,4 @@
-const cardReducer = (state=[], action) => {
+const cardReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_CARDS':
         return action.payload;

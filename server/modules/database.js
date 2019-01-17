@@ -3,6 +3,7 @@
  change `prime_app` to the name of your database, and you should be all set!
 */
 
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 /* Mongo Connection */
@@ -21,7 +22,7 @@ if (process.env.MONGODB_URI) {
 mongoose.connect(mongoURI);
 
 mongoose.connection.once('open', () => {
-  console.log('Mongo connected');
+  console.log('Mongo connected', mongoURI);
 });
 
 mongoose.connection.on('error', (err) => {
