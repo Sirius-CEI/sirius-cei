@@ -204,4 +204,20 @@ router.put('/new-password', (req, res) => {
   })
 });
 
+// PUT route to update user password
+router.put('/new-username', (req, res) => {
+  console.log('update username:', req.body.username, req.body.newUsername);
+  Person.findOneAndUpdate(
+    { username: req.body.username },
+    { $set: { username: req.body.newUsername } },
+  ).then((results) => {
+  console.log(`Success updating username`, results);
+  res.sendStatus(200);
+  })
+  .catch((error) => {
+      console.log(`Error making database username UPDATE`, error);
+      res.sendStatus(500);
+  })
+});
+
 module.exports = router;
