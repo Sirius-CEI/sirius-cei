@@ -73,7 +73,6 @@ class EditChart extends Component {
 	onSubmit = event => {
 		event.preventDefault();
 		const { id, updates } = this.state;
-		console.log(`updates:`, updates);
 		this.props.dispatch({
 			type: 'UPDATE_CHART',
 			payload: updates,

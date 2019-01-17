@@ -8,7 +8,6 @@ function* addCsv(action) {
 		yield put( { type: 'FETCH_CSV' } );
 	}
 	catch(error) {
-		console.log('Error adding csv', error);
 		alert('Error adding CSV');
 	}
 }
@@ -16,22 +15,19 @@ function* addCsv(action) {
 function* getCsv() {
 	try {
 	  const response = yield call(axios.get, '/api/csv');
-	  console.log('get csvSaga response', response.data);
 	  yield put({ type: 'SET_CSV', payload: response.data });
 	} catch (error) {
-	  console.log('csv get request failed', error);
+		alert('csv get request failed', error);
 	}
 }
 
 function* deleteCsv(action) {
-  // console.log('Delete saga to remove latest csv: ', action.payload);
   try {
 	  yield call(axios.delete, `/api/csv/${action.payload}`);
 	  alert('Deleted CSV');
 	  yield put( { type: 'FETCH_CSV' } );
   }
 	  catch (error) {
-		  console.log('error with csv delete request');
 		  alert('Error Deleting CSV');
 	  }
 }

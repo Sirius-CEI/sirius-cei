@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
             res.send(results);
         })
         .catch((error) => {
-            console.log(`Error making Card GET query`, error);
             res.sendStatus(500);
         })
 });
@@ -23,7 +22,6 @@ router.get('/:id', (req, res) => {
             res.send(results);
         })
         .catch((error) => {
-            console.log(`Error making Card GET query`, error);
             res.sendStatus(500);
         })
 });
@@ -32,14 +30,11 @@ router.get('/:id', (req, res) => {
 //POST route to add Card to database
 router.post('/', rejectUnauthenticated, (req, res) => {
     const newCard = req.body;
-    console.log('new card req.body', newCard);
     Card.create(newCard)
         .then( (results) => {
-            // console.log('Card POST results ',results);
             res.sendStatus(201);
         })
         .catch( (error) => {
-            console.log('Error making Card POST query', error);
             res.sendStatus(500);
         })
 });
@@ -47,16 +42,13 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 // PUT route to edit card
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     let updateCard = req.body;
-    // console.log('update card:', req.body);
     Card.findByIdAndUpdate({
         _id: req.params.id
     }, updateCard)
     .then((results) => {
-    // console.log(`Success updating Card`, results);
     res.sendStatus(200);
     })
     .catch((error) => {
-        console.log(`Error making database UPDATE`, error);
         res.sendStatus(500);
     })
 })
@@ -64,16 +56,13 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 // DELETE route to remove a card
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     let reqId = req.params.id;
-    // console.log('Delete card request for id', req.params);
     Card.findOneAndDelete({
         _id: reqId
     })
         .then( (removedDocument) => {
-            // console.log('delete results', removedDocument);
             res.sendStatus(200)
         })
         .catch( (error) => {
-            console.log('delete error', error);
             res.sendStatus(500)
         })
 }) 

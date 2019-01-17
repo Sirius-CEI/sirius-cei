@@ -23,7 +23,6 @@ const styles = theme => ({
 class ViewLatestCsv extends Component {
 
 	deleteCsv = (uuid) => {
-		console.log('Delete CSV id: ', uuid);
 		this.props.dispatch( { type: 'DELETE_CSV', payload: uuid } );
 	}
 

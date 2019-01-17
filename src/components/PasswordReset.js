@@ -48,7 +48,6 @@ class PasswordReset extends Component {
   }
 
   handleInputChangeFor = propertyName => (event) => {
-    console.log('handle change', event.target.value);
     this.setState({
       [propertyName]: event.target.value,
     });

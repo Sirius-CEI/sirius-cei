@@ -47,7 +47,6 @@ class EditOutcome extends Component {
 	
 	onSubmit = event => {
 		event.preventDefault();
-		// console.log(this.state);
 		const { updates, id } = this.state;
 		this.props.dispatch({
 			type: 'UPDATE_OUTCOME_AREA',

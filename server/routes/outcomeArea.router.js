@@ -33,7 +33,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 			: res.sendStatus(201);
 		});
 	} catch (error) {
-		console.log(`outcome area post error`, error);
 		res.json({ success: false, error: error });
 	}
 });
@@ -46,7 +45,6 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 			: res.json({ success: true, doc: doc })
 		})
 	} catch (error) {
-		console.log(`outcome put error`, error);
 		res.json({ success: false, error: error });
 	}
 })

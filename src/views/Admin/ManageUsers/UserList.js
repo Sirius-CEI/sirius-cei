@@ -54,19 +54,16 @@ class UserList extends Component {
 
 	//deactivate user
 	deactivateUser = (id) => {
-		console.log('deactivate user', id);
 		this.props.dispatch( { type: 'DEACTIVATE_USER', payload: id } );
 	}
 
 	//reactivate user
 	reactivateUser = (id) => {
-		console.log('reactivate user', id);
 		this.props.dispatch( { type: 'REACTIVATE_USER', payload: id } );
 	}
 
 	//delete user
 	deleteUser = (id) => {
-		console.log('delete user id', id);
 		Swal({
 			title: 'Are you sure?',
 			text: "You won't be able to revert this!",

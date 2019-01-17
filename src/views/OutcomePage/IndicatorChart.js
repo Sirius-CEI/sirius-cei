@@ -31,7 +31,6 @@ class GraphIndicator extends Component {
 
   componentWillMount = () => {
 	let charts = this.props.charts.filter(chart => (chart.indicator_id === this.props.indicator._id));
-	console.log('charts', charts);
 	
 	this.setState({...this, charts: charts});
 	  if (charts.length === 1 && charts[0].type === 'map') {

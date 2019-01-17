@@ -32,16 +32,14 @@ state = {
 
 // handle changes in the form inputs
 handleChange = event => {
-    console.log('handleChange', event.target.value)
     this.setState({
         ...this.state,
         [event.target.name]: event.target.value,
     });
 }
 
-// submit project information from form
+// submit changed information from form
 onSubmit = event => {
-    console.log('Changing Password to: ', this.state);
     event.preventDefault();
     this.props.dispatch({ type: 'UPDATE_USERNAME', payload: this.state })
     this.setState({
