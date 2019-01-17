@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const OutcomeArea = require('../models/outcome-areas.model');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 router.get('/', (req, res) => {
 	OutcomeArea
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
 	try {
 		const { payload } = req.body;
 		let outcomeArea = new OutcomeArea();
@@ -37,7 +38,7 @@ router.post('/', (req, res) => {
 	}
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
 	try {
 		const { payload } = req.body;
 		OutcomeArea.findByIdAndUpdate(req.params.id, { $set: payload }, (err, doc) => {

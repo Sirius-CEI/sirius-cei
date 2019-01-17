@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Upload = require('../models/upload.model');
 const csv = require('csvtojson');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 router.get('/', (req, res) => {
 	console.log('in indicator get server side');
@@ -28,7 +29,7 @@ router.get('/all', (req, res) => {
         })
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
 	console.log('post router', req.body);
 	const addData = req.body;
 	console.log('new data_indicators req.body', addData);
@@ -44,7 +45,7 @@ router.post('/', (req, res) => {
 });
 
 // DELETE route to remove a CSV file
-router.delete('/:date', (req, res) => {
+router.delete('/:date', rejectUnauthenticated, (req, res) => {
 	let reqDate = req.params.date;
 	console.log('Delete CSV request for id', req.params);
 	Upload.deleteMany({

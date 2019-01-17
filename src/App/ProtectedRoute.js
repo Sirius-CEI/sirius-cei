@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import AdminHome from '../views/Admin';
 
@@ -15,7 +15,11 @@ import AdminHome from '../views/Admin';
 
 const ProtectedRoute = props => {
 	const { user, ...otherProps } = props;
-	return <Route exact path="/admin" render={(props) => <AdminHome {...otherProps} open={!user._id} /> } />
+	if(user._id) {
+		return <Route exact path="/admin" render={(props) => <AdminHome {...otherProps} open={!user._id} /> } />
+	} else {
+		return <Redirect exact from="/admin" to="/macro-indicators" />
+	}
 }
 
 const mapStateToProps = state => ({

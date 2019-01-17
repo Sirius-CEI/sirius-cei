@@ -67,7 +67,7 @@ class RegisterButton extends Component {
 							<TextField
 								autoFocus
 								id="register-username"
-								label="username"
+								label="email"
 								name="username"
 								type="email"
 								margin="dense"

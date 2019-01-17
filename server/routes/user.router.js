@@ -16,14 +16,14 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // Get all users
 // TODO: rejectUnauthenticated
-router.get('/list', (req, res) => {
+router.get('/list', rejectUnauthenticated, (req, res) => {
   Person.find({}).sort({ username: 1 }).exec((err, data) => {
 		return err ? res.json({ success: false, error: err }) : res.send(data);
   });
 });
 
 //PUT route to reactivate user
-router.put('/reactivate/:id', (req, res) => {
+router.put('/reactivate/:id', rejectUnauthenticated, (req, res) => {
   console.log('in router reactivate user',  req.params.id);
   let reqId = req.params.id;
   Person.findByIdAndUpdate({
@@ -39,7 +39,7 @@ router.put('/reactivate/:id', (req, res) => {
 })
 
 //PUT route to deactivate user
-router.put('/deactivate/:id', (req, res) => {
+router.put('/deactivate/:id', rejectUnauthenticated, (req, res) => {
   console.log('in router deactivate user',  req.params.id);
   let reqId = req.params.id;
   Person.findByIdAndUpdate({
@@ -55,7 +55,7 @@ router.put('/deactivate/:id', (req, res) => {
 })
 
 // DELETE route to remove user
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log('in router delete user', req.params.id);
   let reqId = req.params.id;
   Person.findOneAndDelete({
@@ -187,7 +187,7 @@ router.post('/password-reset', (req, res, next) => {
 });
 
 // PUT route to update user password
-router.put('/new-password/:username', (req, res) => {
+router.put('/new-password/:username', rejectUnauthenticated, (req, res) => {
   const password = encryptLib.encryptPassword(req.body.password);
   console.log('update password:', password);
   console.log('update password username:', req.body.username);

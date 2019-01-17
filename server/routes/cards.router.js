@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Card = require('../models/cards.model');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 //GET route to get Cards from database
 router.get('/', (req, res) => {
@@ -29,7 +30,7 @@ router.get('/:id', (req, res) => {
 
 
 //POST route to add Card to database
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const newCard = req.body;
     console.log('new card req.body', newCard);
     Card.create(newCard)
@@ -44,7 +45,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT route to edit card
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     let updateCard = req.body;
     // console.log('update card:', req.body);
     Card.findByIdAndUpdate({
@@ -61,7 +62,7 @@ router.put('/:id', (req, res) => {
 })
 
 // DELETE route to remove a card
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     let reqId = req.params.id;
     // console.log('Delete card request for id', req.params);
     Card.findOneAndDelete({
