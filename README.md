@@ -35,6 +35,7 @@ These instructions will get you a copy of the project up and running on your loc
 - [x] Admin Page
 - [x] Client View of Economic Indicators
 - [x] Learn More Section
+=======
 
 ## Authors
 - Lex Chudzik

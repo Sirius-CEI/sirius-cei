@@ -187,7 +187,7 @@ router.post('/password-reset', (req, res, next) => {
 });
 
 // PUT route to update user password
-router.put('/new-password/:username', rejectUnauthenticated, (req, res) => {
+router.put('/new-password', (req, res) => {
   const password = encryptLib.encryptPassword(req.body.password);
   console.log('update password:', password);
   console.log('update password username:', req.body.username);
@@ -200,6 +200,22 @@ router.put('/new-password/:username', rejectUnauthenticated, (req, res) => {
   })
   .catch((error) => {
       console.log(`Error making database password UPDATE`, error);
+      res.sendStatus(500);
+  })
+});
+
+// PUT route to update user password
+router.put('/new-username', (req, res) => {
+  console.log('update username:', req.body.username, req.body.newUsername);
+  Person.findOneAndUpdate(
+    { username: req.body.username },
+    { $set: { username: req.body.newUsername } },
+  ).then((results) => {
+  console.log(`Success updating username`, results);
+  res.sendStatus(200);
+  })
+  .catch((error) => {
+      console.log(`Error making database username UPDATE`, error);
       res.sendStatus(500);
   })
 });
