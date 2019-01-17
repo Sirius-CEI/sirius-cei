@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
 	try {
 		const { payload } = req.body;
 		console.log(`post chart payload:`, payload);
@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
 	}
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
 	try {
 		const { payload } = req.body;
 		// console.log(payload);

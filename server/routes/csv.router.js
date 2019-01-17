@@ -28,7 +28,7 @@ router.get('/all', (req, res) => {
         })
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
 	console.log('post router', req.body);
 	const addData = req.body;
 	console.log('new data_indicators req.body', addData);
@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
 });
 
 // DELETE route to remove a CSV file
-router.delete('/:date', (req, res) => {
+router.delete('/:date', rejectUnauthenticated, (req, res) => {
 	let reqDate = req.params.date;
 	console.log('Delete CSV request for id', req.params);
 	Upload.deleteMany({
