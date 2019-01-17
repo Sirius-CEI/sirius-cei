@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Card = require('../models/cards.model');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 //GET route to get Cards from database
 router.get('/', (req, res) => {

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Upload = require('../models/upload.model');
 const csv = require('csvtojson');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 router.get('/', (req, res) => {
 	console.log('in indicator get server side');

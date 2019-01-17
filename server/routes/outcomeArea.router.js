@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const OutcomeArea = require('../models/outcome-areas.model');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 router.get('/', (req, res) => {
 	OutcomeArea

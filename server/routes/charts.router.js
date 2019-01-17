@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Chart = require('../models/charts.model');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 router.get('/', (req, res) => {
 	Chart
