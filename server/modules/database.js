@@ -19,24 +19,19 @@ if (process.env.MONGODB_URI) {
 mongoose.connect(mongoURI);
 
 mongoose.connection.once('open', () => {
-	console.log('Mongo connected', mongoURI);
 	checkForUser();
 });
 
 mongoose.connection.on('error', (err) => {
-  console.log('Error on mongoose connection: ', err);
 });
 
 const checkForUser = () => {
 	User.countDocuments({}, (err, count) => {
-		console.log('there are %d users', count);
 		if (count === 0) {
 			const username = 'admin';
 			const password = encryptLib.encryptPassword('password');
 			const newPerson = new User({ username, password });
 			newPerson.save()
-				.then(() => { console.log(`Success adding admin user.`)})
-				.catch((err) => { console.log(`Error adding admin user:`, err)})
 			}
 		})
 }

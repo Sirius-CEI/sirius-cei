@@ -22,7 +22,6 @@ function* fetchUser() {
 		yield put({ type: 'SET_USER', payload: response.data });
 		yield put({ type: 'FETCH_DATA_SUCCESS' });
   } catch (error) {
-		console.log('User get request failed', error);
 		yield put({ type: 'FETCH_DATA_FAILURE' });
   }
 }
@@ -30,10 +29,9 @@ function* fetchUser() {
 function* fetchUserList() {
 	try {
 		let response = yield call(axios.get, '/api/user/list');
-		// console.log('getUserList response', response.data);
 		yield put({ type: 'SET_USER_LIST', payload: response.data });
 	} catch (error) {
-		console.log(`user list get request failed`, error);
+		alert(`user list get request failed`, error);
 	}
 }
 
@@ -43,52 +41,44 @@ function* editUser() {
 
 //deactivate user from user list
 function* deactivateUser(action) {
-	console.log('in deactivateUserSaga', action.payload);
 	try {
 		yield call(axios.put, `/api/user/deactivate/${action.payload}`);
 		yield put( {type: 'GET_DATA', main: 'FETCH_USER_LIST'} );
 	}
 	catch(error) {
-		console.log('error with put request to /api/user/deactivate');
 		alert('Error in updating user')
 	}
 }
 
 //reactivate user from user list
 function* reactivateUser(action) {
-	console.log('in reactivateUserSaga', action.payload);
 	try {
 		yield call(axios.put, `/api/user/reactivate/${action.payload}`);
 		yield put( {type: 'GET_DATA', main: 'FETCH_USER_LIST'} );
 	}
 	catch(error) {
-		console.log('error with put request to /api/user/reactivate');
 		alert('Error in updating user')
 	}
 }
 
 //delete user from user list
 function* deleteUser(action) {
-	console.log('in deleteUserSaga', action.payload);
 	try {
 		yield call(axios.delete, `/api/user/${action.payload}`);
 		yield put( { type: 'GET_DATA', main: 'FETCH_USER_LIST' } );
 	}
 		catch(error) {
-			console.log('error with delete request to /api/user');
 			alert('Error deleting user');
 		}
 }
 
 function* updateUsername(action) {
-    console.log('forgot password', action.payload);
     const username = action.payload;
     try{
         const response = yield call(axios.put, `/api/user/new-username`, username );
-        console.log('password reset response data', response.data);
     }
     catch (error) {
-        console.log('error with forgot password request', error);
+        alert('Error with forget password');
     }
 }
 

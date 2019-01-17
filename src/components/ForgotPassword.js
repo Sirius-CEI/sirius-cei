@@ -41,7 +41,6 @@ class ForgotPassword extends Component {
   sendEmail = e => {
       e.preventDefault();
       this.props.handleClose();
-      console.log('email state', this.state.username);
       this.props.dispatch({ type: 'FORGOT_PASSWORD', payload: {
         username: this.state.username,
       }});
@@ -50,14 +49,6 @@ class ForgotPassword extends Component {
   render() {
     const { classes } = this.props;
     return (
-        // <DialogForm 
-        //     open
-        //     dialogTitle
-        //     formId 
-        //     formFields 
-        //     onSubmit 
-        //     handleClose
-        // />
         <form className={classes.form} onSubmit={this.sendEmail}>
             <TextField
                 required

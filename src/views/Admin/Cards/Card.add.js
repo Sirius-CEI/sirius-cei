@@ -52,7 +52,6 @@ class AddCard extends Component {
 	}
 
 	onSubmit = event => {
-		console.log('adding card')
 		event.preventDefault();
 		this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
 		this.handleClose();	

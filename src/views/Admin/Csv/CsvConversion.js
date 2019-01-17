@@ -32,7 +32,6 @@ class CsvConversion extends Component {
 
    // handle changes in the form inputs
 	handleChange = (data, filename) => {
-		// console.log(event.target.files[0]);
 		this.setState({
 				...this.state,
 				data: data,
@@ -42,14 +41,12 @@ class CsvConversion extends Component {
 
 	handleErrors = error => {
 		alert('Error converting file')
-		console.log(`Error converting file`, error);
 	}
 
 	// submit csv information
 	handleSubmit = event => {
 		const { data, filename } = this.state;
 		const { userId } = this.props;
-		// console.log('Adding CSV: ', this.state);
 		event.preventDefault();
 		this.props.dispatch({
 			type: 'ADD_CSV_DATA',
