@@ -79,7 +79,7 @@ onSubmit = event => {
                     />
                 </FormControl>
                 <Button type='submit' variant="outlined" color="primary">
-                    Save Password
+                    Save Email Address
                 </Button>
             </form>
         </div>
