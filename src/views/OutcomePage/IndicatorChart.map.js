@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import tracts from './tracts';
-import counties from './counties';
+import tract from './geography/tracts';
+import county from './geography/counties';
 import 'leaflet/dist/leaflet.css';
 import { connect } from 'react-redux';
 import { Map, TileLayer, GeoJSON, FeatureGroup } from 'react-leaflet';
 import './map.css';
-// import MapLegend from './IndicatorChart.map.legend'
 import chroma from 'chroma-js';
 
 const accessToken = 'pk.eyJ1IjoibGV4Y2h1ZHppayIsImEiOiJjanBzaWx5dG8wdGppM3htaDhiZ3RwcXJ6In0.-gllVsZonwCccRMzb1DmYQ';
@@ -18,6 +17,7 @@ const zoomLevel = 8;
 class MapIndicator extends Component {
 
     state = {
+        geo: '',
         grades: [],
         labels: [],
         data: []
@@ -31,6 +31,12 @@ class MapIndicator extends Component {
     }
     
     componentWillMount = () => {
+        let geo = '';
+        switch (this.props.chart.map_level) {
+            case 'county': geo = county; break;
+            default: geo = tract; break;
+        }
+        
         let data = this.props.chartData.filter(item => (item.chart === this.props.chart._id));
         let values = data.map((item) => item.value);
         let grades = chroma.limits(values, 'q', 4);
@@ -38,28 +44,27 @@ class MapIndicator extends Component {
             ...this.state,
             grades: grades,
             data: data,
+            geo: geo,
         })
-        console.log(grades);
     }
 
 	choropleth = (feature) => {
         let id = feature.properties.GEOID;
         let dataPoint = this.state.data.find((x) => {return x.variable === id})
-        console.log(dataPoint);
         if (dataPoint) {
             let color = this.color(dataPoint.value)
             return {
                 fillColor: color,
                 weight: 1,
-                opacity: 0.8,
+                opacity: 0.5,
                 color: 'white',
                 dashArray: '3',
-                fillOpacity: 0.5
+                fillOpacity: 0.8
             }
         } else {return {
             fillColor: 'grey',
             weight: 1,
-            opacity: 0.8,
+            opacity: 0.5,
             color: 'white',
             dashArray: '3',
             fillOpacity: 0.5
@@ -79,16 +84,14 @@ class MapIndicator extends Component {
                         url={stamenTonerTiles}
                     />
 					<FeatureGroup>
-						{counties.features.map( (feature) =>
+						{this.state.geo.features.map( (feature) =>
 							(<GeoJSON
-                            key={feature._id.$oid}
+                            key={feature.properties.GEOID}
 							data={feature}
 							style={this.choropleth(feature)}
 							/>)
 						) }
 					</FeatureGroup>
-					{/* <MapLegend /> */}
-
                 </Map>
             </div>
         );

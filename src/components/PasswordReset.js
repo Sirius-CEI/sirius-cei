@@ -63,7 +63,7 @@ class PasswordReset extends Component {
             <h1>Reset Password</h1>
             <div>
               <label htmlFor="username">
-              Username:
+              Email:
               <input
                   type="text"
                   name="username"

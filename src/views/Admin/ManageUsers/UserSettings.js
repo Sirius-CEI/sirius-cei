@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import PasswordExtension from './EditPasswordExtension';
+import UsernameExtension from './EditUsername';
 
 const styles = theme => ({
   root: {
@@ -31,10 +33,13 @@ class CheckboxList extends Component {
 	}
 	
   render() {
-    const { classes, user } = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
-				
+				<h5>Edit Email Address</h5>
+				<UsernameExtension />
+				<h5>Edit Password</h5>
+				<PasswordExtension />
       </div>
     );
   }

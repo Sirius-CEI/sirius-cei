@@ -59,12 +59,34 @@ const PreviewIndicator = ({ classes, indicatorObj }) => (
 		{/* <div className={classes.padded}>
 			<Grid container>
 				<Grid item xs={12}>
-					<Typography
-						variant="body1"
-						className={classnames(classes.grey, classes.padded)}
-					>
-						{indicatorObj.copy}
-					</Typography>
+				<Typography
+							variant="h6"
+							align="left"
+							gutterBottom
+						>
+							WHAT THIS MEASURES:
+						</Typography>
+						<Typography
+							variant="body1"
+							align="justify"
+							paragraph
+						>
+							{indicatorObj.what_this_means_copy}
+						</Typography>
+						<Typography
+							variant="h6"
+							align="left"
+							gutterBottom
+						>
+							WHY THIS MATTERS:
+						</Typography>
+						<Typography
+							variant="body1"
+							align="justify"
+							paragraph
+						>
+							{indicatorObj.why_this_matters_copy}
+						</Typography>
 				</Grid>
 			</Grid>
 		</div>
