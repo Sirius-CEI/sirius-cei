@@ -96,7 +96,7 @@ class UserList extends Component {
 					<Table className={classes.table}>
 						<TableHead>
               <TableRow>
-                <TableCell>Username</TableCell>
+                <TableCell>Email</TableCell>
                 <TableCell align="right">Status</TableCell>
                 <TableCell align="right">Reactivate</TableCell>
                 <TableCell align="right">Deactivate</TableCell>

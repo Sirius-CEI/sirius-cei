@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Chart = require('../models/charts.model');
+const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 router.get('/', (req, res) => {
 	Chart
@@ -11,7 +12,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
 	try {
 		const { payload } = req.body;
 		console.log(`post chart payload:`, payload);
@@ -31,7 +32,7 @@ router.post('/', (req, res) => {
 	}
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
 	try {
 		const { payload } = req.body;
 		// console.log(payload);

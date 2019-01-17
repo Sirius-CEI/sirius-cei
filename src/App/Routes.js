@@ -8,7 +8,7 @@ import {
 import PasswordReset from '../components/PasswordReset';
 
 //Protected Components
-// import ProtectedRoute from './ProtectedRoute';
+import ProtectedRoute from './ProtectedRoute';
 
 //Non Protected Components
 import AdminHome from '../views/Admin';
@@ -18,7 +18,7 @@ class Routes extends Component {
   render() {
     return (
 			<Switch>
-				<Route exact path="/admin" component={AdminHome} />
+				<ProtectedRoute exact path="/admin" component={AdminHome} />
 				<Route exact path="/reset/:token" component={PasswordReset} />						
 				<Route path="/:outcome" component={OutcomePage} />						
 				<Redirect exact from="/" to="/macro-indicators" />
