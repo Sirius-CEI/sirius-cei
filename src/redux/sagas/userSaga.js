@@ -80,6 +80,18 @@ function* deleteUser(action) {
 		}
 }
 
+function* updateUsername(action) {
+    console.log('forgot password', action.payload);
+    const username = action.payload;
+    try{
+        const response = yield call(axios.put, `/api/user/new-username`, username );
+        console.log('password reset response data', response.data);
+    }
+    catch (error) {
+        console.log('error with forgot password request', error);
+    }
+}
+
 function* userSaga() {
 	yield takeLatest('FETCH_USER', fetchUser);
 	yield takeEvery('FETCH_USER_LIST', fetchUserList);
@@ -87,6 +99,7 @@ function* userSaga() {
 	yield takeEvery('DELETE_USER', deleteUser);
 	yield takeEvery('DEACTIVATE_USER', deactivateUser);
 	yield takeEvery('REACTIVATE_USER', reactivateUser);
+	yield takeEvery('UPDATE_USERNAME', updateUsername);
 }
 
 export default userSaga;

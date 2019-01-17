@@ -25,7 +25,7 @@ const styles = theme => ({
 class PasswordExtension extends Component {
 
 state = {
-    username: this.props.user.username,
+    username: '',
     password: '',
 }
 
@@ -42,9 +42,9 @@ handleChange = event => {
 onSubmit = event => {
     console.log('Changing Password to: ', this.state);
     event.preventDefault();
-    // this.props.dispatch({ type: 'EDIT_PASSWORD', payload: this.state })
+    this.props.dispatch({ type: 'RESET_PASSWORD', payload: this.state })
     this.setState({
-        username: this.props.user.username,
+        username: '',
         password: '',
     });
 }
@@ -55,6 +55,16 @@ onSubmit = event => {
         <div className={classes.div} id="form">
             <form className={classes.form} id="formInputs" onSubmit={this.onSubmit}>
                 <FormControl id="formMenu">
+                    <TextField 
+                        id="username" 
+                        type='text' 
+                        label="enter email" 
+                        name="username" 
+                        margin="normal" 
+                        variant="outlined"
+                        value={this.state.username} 
+                        onChange={this.handleChange} 
+                    />
                     <TextField 
                         id="edit_password" 
                         type='text' 
@@ -80,7 +90,7 @@ PasswordExtension.propTypes = {
 };
 
 const mapReduxStateToProps = reduxState => ({
-  user: reduxState.user,
+  user: reduxState.users,
 });
 
 export default compose(
