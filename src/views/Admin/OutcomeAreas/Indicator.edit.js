@@ -86,7 +86,6 @@ class EditIndicator extends Component {
 	onSubmit = event => {
 		event.preventDefault();
 		const { id, updates } = this.state;
-		console.log(`updates:`, updates);
 		this.props.dispatch({
 			type: 'UPDATE_INDICATOR',
 			payload: updates,
@@ -97,7 +96,6 @@ class EditIndicator extends Component {
 	}
 
 	render() {
-		const { outcomes } = this.props;
 		const { open, updates } = this.state;
 		return (
 			<Fragment>

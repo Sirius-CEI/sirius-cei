@@ -18,7 +18,6 @@ const styles = theme => ({
 class LineChart extends Component {
 
 	getData = (chartData, chart) => {
-		console.log(chart._id)
 		let data = chartData.filter(item => (item.chart === chart._id));
 		if (data === []) {
 			return null;
@@ -46,14 +45,13 @@ class LineChart extends Component {
 			}
 			graphData.push(yearRow);
 		}
-		console.log(graphData);
 
 		return graphData;
 	}
 
 	render() {
 
-		const { indicator, classes, chart, chartData } = this.props;
+		const { classes, chart, chartData } = this.props;
 
 		return (
 			<Fragment>
