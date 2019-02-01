@@ -137,9 +137,14 @@ class Nav extends React.Component {
 								justify="space-between"
 							>
 								<Grid item>
-									<Button component={Link} to="/macro-indicators">
+                  {/* <Button component={Link} to="/macro-indicators">
 										<img src="/images/CEI_Logo.png" alt="logo" className={classes.logo}/>
-									</Button>
+                  </Button> */}
+                  <a rel="noopener noreferrer" href="https://www.centerforeconomicinclusion.org/">
+                    <Button>
+                      <img src="/images/CEI_Logo.png" alt="logo" className={classes.logo}/>
+                    </Button>
+                  </a>
 								</Grid>
 								<Grid item>
 									{outcomeAreas.length > 0 && outcomeAreas.map((item, index) => (
