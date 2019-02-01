@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+// import Grid from '@material-ui/core/Grid';
+// import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import CardActionArea from '@material-ui/core/CardActionArea';
+// import CardActionArea from '@material-ui/core/CardActionArea';
 
 import DialogForm from '../../../components/DialogForm';
 import ChartFields from './Chart.fields';
@@ -99,7 +99,7 @@ class EditChart extends Component {
 
   render() {
 		const { open, updates } = this.state;
-		const { classes, thisChart } = this.props;
+		// const { classes, thisChart } = this.props;
     return (
 			<Fragment>
 				<Button onClick={this.handleOpen}>Edit</Button>

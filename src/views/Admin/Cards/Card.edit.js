@@ -18,6 +18,9 @@ const styles = theme => ({
 	grow: {
 		flexGrow: 1,
 	},
+	button: {
+
+	},
 });
 
 class EditCard extends Component {
@@ -83,7 +86,7 @@ class EditCard extends Component {
 		const { newCard, open } = this.state;
 		return (
 			<div>
-				<Button color="primary" onClick={this.handleOpen}>
+				<Button className={classes.button} color="primary" onClick={this.handleOpen}>
 					Edit
 				</Button>
 				<DialogForm

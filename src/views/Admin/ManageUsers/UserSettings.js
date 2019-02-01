@@ -45,10 +45,6 @@ class CheckboxList extends Component {
   }
 }
 
-const mapStateToProps = ({user}) => ({
-	user: user
-})
-
 CheckboxList.propTypes = {
   classes: PropTypes.object.isRequired,
 };

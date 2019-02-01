@@ -29,14 +29,20 @@ const styles = theme => ({
   });
 
 class TitleIndicator extends Component {
+
+  backgroundImages = (title) => {  
+    let image = "images/twincitiesblue.jpg"; 
+    return image; 
+  }
+
   render() {
-    const { classes, title } = this.props;
+    const { classes, title, route } = this.props;
       return (
         <div className={classes.root}>
             <Card className={classes.card} elevation={0} square>
                 <CardMedia
                     className={classes.media}
-                    image="images/twincitiesblue.jpg"
+                    image={`images/${route}.jpg`}
                     title="title-background">
                     <Typography variant="h3" align="center" className={classes.title}>{title}</Typography>
                 </CardMedia>

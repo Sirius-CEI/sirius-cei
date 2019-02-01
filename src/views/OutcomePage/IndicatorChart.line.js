@@ -8,11 +8,14 @@ const styles = theme => ({
 	root: {
 		height: '100%',
 	},
-  button: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
+	button: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+	},
+	chart: {
+		
+	}
 });
 
 class LineChart extends Component {
@@ -56,6 +59,7 @@ class LineChart extends Component {
 		return (
 			<Fragment>
 			<Chart
+				className={classes.chart}
 				chartType="Line"
 				data={this.getData(chartData, chart)}
 				options={{

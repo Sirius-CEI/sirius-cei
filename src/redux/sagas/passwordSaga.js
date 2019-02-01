@@ -5,6 +5,7 @@ function* forgotPassword(action) {
     const username = action.payload;
     try{
         const response = yield call(axios.post, `/api/user/password-reset`, username );
+        console.log('forgot password saga response: ', response);
     }
     catch (error) {
     }
@@ -14,6 +15,8 @@ function* resetPassword(action) {
     const username = action.payload;
     try{
         const response = yield call(axios.put, `/api/user/new-password`, username );
+        console.log('reset password saga response: ', response);
+        
     }
     catch (error) {
     }
@@ -22,6 +25,7 @@ function* resetPassword(action) {
 function* getToken(action) {
     try {
       const response = yield axios.get(`/api/user/password-reset/${action.payload}`);
+      console.log('get token password saga response: ', response);
     } catch (error) {
     }
 }

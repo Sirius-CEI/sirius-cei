@@ -100,8 +100,6 @@ CsvConversion.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({ user }) => ({ userId: user._id })
-
 export default compose(
 	connect(),
 	withStyles(styles)

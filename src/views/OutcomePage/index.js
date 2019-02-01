@@ -20,7 +20,7 @@ const OutcomePage = ({ classes, outcomeAreas, location }) => {
 		<div className={classes.root}>
 			{outcome &&
 				<Fragment>
-					<OutcomeTitle title={outcome.title} />
+					<OutcomeTitle route={outcome.route} title={outcome.title} />
 					<IndicatorList outcomeId={outcome._id} />
 					<LearnMore outcomeId={outcome._id} />
 				</Fragment>

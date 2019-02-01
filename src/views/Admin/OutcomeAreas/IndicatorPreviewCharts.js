@@ -4,7 +4,7 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { Card, CardHeader, CardContent, CardActions, Divider } from '@material-ui/core';
+import { Card, CardHeader, CardContent, CardActions } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
 import EditChart from './Chart.edit';

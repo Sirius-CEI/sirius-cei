@@ -75,7 +75,9 @@ function* deleteUser(action) {
 function* updateUsername(action) {
     const username = action.payload;
     try{
-        const response = yield call(axios.put, `/api/user/new-username`, username );
+		const response = yield call(axios.put, `/api/user/new-username`, username );
+		console.log('update username response: ', response);
+		
     }
     catch (error) {
         alert('Error with forget password');

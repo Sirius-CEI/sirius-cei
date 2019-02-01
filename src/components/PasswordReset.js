@@ -18,6 +18,9 @@ const styles = theme => ({
       boxShadow: theme.shadows[5],
       padding: theme.spacing.unit * 4,
   },
+  form: {
+    
+  }
 });
 
 class PasswordReset extends Component {
@@ -58,7 +61,7 @@ class PasswordReset extends Component {
     return (
       <div>
         <center>
-          <form onSubmit={this.resetPassword}>
+          <form className={classes.form} onSubmit={this.resetPassword}>
             <h1>Reset Password</h1>
             <div>
               <label htmlFor="username">
