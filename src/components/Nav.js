@@ -25,7 +25,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
 		display: 'flex',
-		flexGrow: 1,
+    flexGrow: 1,
 	},
 	grow: {
 		flexGrow: 1,
@@ -113,7 +113,7 @@ class Nav extends React.Component {
 			<div className={classes.root}>
         <AppBar
 					position="sticky"
-					color="default"
+					color="#FFFFFF"
           className={classnames(classes.appBar, {
             [classes.appBarShift]: open
           })}

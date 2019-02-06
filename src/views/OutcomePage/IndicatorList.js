@@ -10,7 +10,7 @@ const styles = theme => ({
 	root: {
 		padding: theme.spacing.unit * 2,
 		flexGrow: 1,
-		backgroundColor: theme.palette.secondary.light,
+		backgroundColor: '#FFFFFF',
 	},
 	test: {
 		border: 'solid red 1px'

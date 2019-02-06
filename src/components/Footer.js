@@ -62,7 +62,7 @@ class Footer extends Component {
 									<Grid item>
 										{!user._id ? <LoginButton /> : <LogoutButton />}
 									</Grid>
-									{!!user._id && 
+									{! !user._id && 
 										<Grid item>
 											<IconButton component={Link} to="/admin">
 												<FontAwesomeIcon icon="home" size="sm" />

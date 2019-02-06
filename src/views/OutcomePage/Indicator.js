@@ -11,6 +11,8 @@ const styles = theme => ({
   root: {
 		flexGrow: 1,
 		padding: theme.spacing.unit * 2,
+		// border: 'solid #ffe9b2 10px',
+		margin: '10px',
 	},
 	grow: {
 		flexGrow: 1,
@@ -24,11 +26,28 @@ const styles = theme => ({
 		backgroundColor: theme.palette.gold.light,
 	},
 	padded: {
-		padding: theme.spacing.unit * 2,
+		padding: theme.spacing.unit * 3,
 	},
 	test: {
 		border: 'solid tomato 1px'
 	},
+	mainGrid: {
+		backgroundColor: '#FFFFFF'
+	},
+	white: {
+		backgroundColor: '#FFFFFF'
+	},
+	centered: {
+		padding: '20px',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	yellow: {
+		backgroundColor: '#ffffd6',
+	},
+	middle: {
+		alignItems: 'center',
+	}
 });
 
 const IndicatorItem = ({ classes, indicator, order }) => (
@@ -38,11 +57,12 @@ const IndicatorItem = ({ classes, indicator, order }) => (
 			spacing={0}
 			direction={order%2 === 0 ? 'row' : 'row-reverse'}
 			alignItems="stretch"
+			className={classes.yellow}
 		>
-			<Grid item xs={12} sm={12} md className={classnames(classes.grey, classes.padded)}>
+			<Grid item xs={12} sm={12} md className={classnames(classes.padded)}>
 				<IndicatorChart indicator={indicator} />
 			</Grid>
-			<Grid item xs={12} sm={12} md className={classnames(classes.gold, classes.padded)}>
+			<Grid item xs={12} sm={12} md className={classnames(classes.centered)}>
 				<Grid
 					container
 					spacing={0}
@@ -58,21 +78,24 @@ const IndicatorItem = ({ classes, indicator, order }) => (
 							{indicator.title}
 						</Typography>
 					</Grid>
-					<Grid item>
+					<Grid 
+						item
+						className={classes.middle}
+					>
 					<Typography
-							variant="h6"
-							align="left"
-							gutterBottom
-						>
-							WHAT THIS MEASURES:
-						</Typography>
-						<Typography
-							variant="body1"
-							align="justify"
-							paragraph
-						>
-							{indicator.what_this_means_copy}
-						</Typography>
+						variant="h6"
+						align="left"
+						gutterBottom
+					>
+						WHAT THIS MEASURES:
+					</Typography>
+					<Typography
+						variant="body1"
+						align="justify"
+						paragraph
+					>
+						{indicator.what_this_means_copy}
+					</Typography>
 						<Typography
 							variant="h6"
 							align="left"

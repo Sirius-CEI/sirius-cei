@@ -13,9 +13,6 @@ const styles = theme => ({
 		alignItems: 'center',
 		justifyContent: 'flex-start',
 	},
-	chart: {
-		
-	}
 });
 
 class LineChart extends Component {

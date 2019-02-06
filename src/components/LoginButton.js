@@ -70,7 +70,7 @@ class LoginButton extends Component {
 	login = event => {
 		event.preventDefault();
 		const { username, password } = this.state;
-		const { history, location } = this.props;
+		// const { history, location } = this.props;
     if (username && password) {
       this.props.dispatch({
         type: 'LOGIN',
@@ -78,15 +78,16 @@ class LoginButton extends Component {
           username: username,
           password: password,
         },
-			});
-			this.handleClose();
-			history.push({
-				pathname: '/admin',
-				state: { from: location.pathname }
-			})
+		});
+		this.handleClose();
+		// history.push({
+		// 	pathname: '/admin',
+		// 	state: { from: location.pathname }
+		// })
+		this.props.history.push('/admin');
     } else {
-      this.props.dispatch({ type: 'AUTH_INPUT_ERROR' });
-    }
+      	this.props.dispatch({ type: 'AUTH_INPUT_ERROR' });
+    	}
 	}
 
 	handleClose = event => {
