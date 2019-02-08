@@ -32,15 +32,16 @@ const styles = theme => ({
 		border: 'solid tomato 1px'
 	},
 	mainGrid: {
-		backgroundColor: '#FFFFFF'
+		backgroundColor: '#FFFFFF',
 	},
 	white: {
 		backgroundColor: '#FFFFFF'
 	},
 	centered: {
 		padding: '20px',
-		justifyContent: 'center',
+		display: 'flex',
 		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	yellow: {
 		backgroundColor: '#ffffd6',

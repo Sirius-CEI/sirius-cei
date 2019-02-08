@@ -13,9 +13,11 @@ const styles = theme => ({
   root: {
 		flexGrow: 1,
 		padding: theme.spacing.unit * 2,
+		backgroundColor: 'white',
 	},
 	spacing: {
 		padding: theme.spacing.unit,
+		height: '100%',
 	},
 	cardContainer: {
 		display: 'flex',
@@ -30,7 +32,7 @@ const styles = theme => ({
 		height: 180,
 		minWidth: 280,
 		opacity: 1,
-		padding: theme.spacing.unit
+		padding: theme.spacing.unit,
 	},
 	title: {
 		color: 'black',

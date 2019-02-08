@@ -18,7 +18,8 @@ const styles = theme => ({
 			margin: theme.spacing.unit * 2
     },
     card: {
-			height: 180,
+      height: 450,
+      flex: 1,
     },
     media: {
 			height: '100%',

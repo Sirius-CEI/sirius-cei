@@ -26,6 +26,7 @@ const styles = theme => ({
   root: {
 		display: 'flex',
     flexGrow: 1,
+    padding: '20px, 0',
 	},
 	grow: {
 		flexGrow: 1,
@@ -48,15 +49,19 @@ const styles = theme => ({
 		}),
 	},
 	logo: {
-		height: theme.mixins.toolbar.minHeight
+    // height: theme.mixins.toolbar.minHeight,
+    height: 90,
+    padding: 5,
 	},
 	links: {
 		flexGrow: 1,
-		margin: theme.spacing.unit,
+    margin: theme.spacing.unit,
+    padding: 15,
 	},
   menuButton: {
     marginLeft: 12,
     marginRight: 20,
+    flex: 1,
   },
   hide: {
     display: 'none',
@@ -89,7 +94,11 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginRight: 0,
-	},
+  },
+  navHeight: {
+    height: 140,
+    flexGrow: 1,
+  }
 });
 
 class Nav extends React.Component {
@@ -114,9 +123,11 @@ class Nav extends React.Component {
         <AppBar
 					position="sticky"
 					color="#FFFFFF"
-          className={classnames(classes.appBar, {
-            [classes.appBarShift]: open
-          })}
+          className={classnames(
+            classes.appBar, {
+            [classes.appBarShift]: open},
+            classes.navHeight,
+          )}
         >
           <Toolbar disableGutters={!open}>
 						<Hidden mdUp>
