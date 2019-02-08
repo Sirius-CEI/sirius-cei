@@ -36,7 +36,7 @@ passport.use('local', new LocalStrategy({
     Person.find({ username })
       .then((result) => {
         const user = result && result[0];
-        if (user && encryptLib.comparePassword(password, user.password) && user.active) {
+        if (user && user.active && encryptLib.comparePassword(password, user.password)) {
           // all good! Passwords match and user is active!
           done(null, user);
         } else if (user) {
@@ -44,10 +44,10 @@ passport.use('local', new LocalStrategy({
           done(null, false, { message: 'Incorrect credentials.' });
         } else {
           // not good! No user with that name
-          done(null, false);
+          done(null, false, { message: 'Username does not exist.'});
         }
       }).catch((err) => {
-        done(null, {});
+        done(null, { message: err });
       });
   })));
 

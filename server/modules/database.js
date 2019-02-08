@@ -20,9 +20,11 @@ mongoose.connect(mongoURI);
 
 mongoose.connection.once('open', () => {
 	checkForUser();
+	console.log(`Connected to database ${mongoURI}.`);
 });
 
 mongoose.connection.on('error', (err) => {
+	console.log(`Mongoose error`, err);
 });
 
 const checkForUser = () => {

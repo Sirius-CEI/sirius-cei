@@ -9,6 +9,11 @@ const userReducer = (state = {_id: '', username: ''}, action) => {
   }
 };
 
+export const setUser = payload => ({
+	type: 'SET_USER',
+	payload
+})
+
 // user will be on the redux state at:
 // state.user
 export default userReducer;

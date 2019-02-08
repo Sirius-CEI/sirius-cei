@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 
 import DialogForm from '../../../components/DialogForm';
 import OutcomeAreaFields from './OutcomeArea.fields';
+import { setOutcomes } from '../../../redux/reducers/outcomeAreaReducer'
 
 const styles = theme => ({
 	root: {

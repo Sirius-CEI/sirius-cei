@@ -6,6 +6,8 @@ const loading = (state = false, action) => {
 			return false;
 		case 'FETCH_DATA_FAILURE':
 			return false;
+		case 'FETCH_DATA_COMPLETE':
+			return true;
 		default:
 			return state;
 	}

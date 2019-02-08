@@ -4,10 +4,12 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
+import * as serviceWorker from './registerServiceWorker'
 
 // styling imports
+import { registerIonic } from '@ionic/react';
 import { MuiThemeProvider} from '@material-ui/core/styles';
-import theme from './App/theme';
+import theme from './theme/mui-theme';
 import 'typeface-lato';
 import 'typeface-roboto';
 
@@ -15,6 +17,8 @@ import rootReducer from './redux/reducers'; // imports ./redux/reducers/index.js
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
 
 import App from './App/App';
+
+// registerIonic();
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -45,3 +49,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('react-root'),
 );
+
+// serviceWorker.register();

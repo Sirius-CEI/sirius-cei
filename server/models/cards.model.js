@@ -5,7 +5,7 @@ const OutcomeArea = require('./outcome-areas.model');
 //Schema for Cards
 const cardSchema = new Schema({
 	title: { type: String, required: true},
-	image: { type: String, required: true},
+	image: String,
 	url: { type: String, required: true},
 	outcome_id: { type: Schema.Types.ObjectId, ref: 'OutcomeArea' }
 	},

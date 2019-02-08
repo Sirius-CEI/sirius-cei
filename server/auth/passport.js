@@ -15,15 +15,15 @@ passport.use('local', new LocalStrategy({
   passReqToCallback: true,
   usernameField: 'username',
 }, ((username, password, done) => {
-    User.findOne({ username })
-      .then((user) => {
-        if( !user || !user.validPassword(password) ){
-          done(null, false, {message: 'invalid username or password'});
-        } else {
-          done(null, user);
-        } 
-  })
-  .catch(e => done(e));
+	User.findOne({ username })
+	.then((user) => {
+		if( !user || !user.validPassword(password) ){
+			return done(null, false, {message: 'invalid username or password'});
+		} else {
+			return done(null, user);
+		} 
+	})
+	.catch(e => done(e));
 }))); 
 
 module.exports = passport;

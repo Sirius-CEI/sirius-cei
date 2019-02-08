@@ -21,32 +21,47 @@ class LineChart extends Component {
 		let data = chartData.filter(item => (item.chart === chart._id));
 		if (data === []) {
 			return null;
+		} else {
+			console.log(`data for chart ${chart._id}`, data)
 		}
-		let maxYear = Math.max.apply(Math, data.map(item => item.year ));
-		let minYear = maxYear-5;
-		data = data.sort((a,b) => (a.variable > b.variable) ? 1: ((b.variable > a.variable) ? -1 : 0));
-		let graphData = [];
-		for (let y = minYear; y < maxYear; y++) {
-			let yearData = data.filter(item => (item.year === y));
-			//on first loop only, create key row of array
-			if (y === minYear) {
-				let firstRow = ['year'];
-				for (let i=0; i< yearData.length; i++) {
-					let x = yearData[i];
-					
-					firstRow.push(x.variable);
-				}
-				graphData.push(firstRow);
-			}
-			let yearRow = [y.toString()]
-			for (let i=0; i< yearData.length; i++) {
-				let x = yearData[i];
-				yearRow.push(x.value);
-			}
-			graphData.push(yearRow);
-		}
+		let years = data.map(item => item.year)
+		years = [...new Set(years)]
+		let variables = data.map(item => item.variable);
+		variables = [...new Set(variables)].unshift("year");
+		let dataArray = [];
+		dataArray.push(variables);
+		console.log(years, variables, dataArray);
 
-		return graphData;
+		years.forEach(year => {
+			let yearData = [];
+		})
+
+		// let maxYear = Math.max.apply(Math, data.map(item => item.year ));
+		// let minYear = maxYear-5;
+		data = data.sort((a,b) => (a.variable > b.variable) ? 1: ((b.variable > a.variable) ? -1 : 0));
+		// console.log(data);
+		let graphData = [];
+	// 	for (let y = minYear; y < maxYear; y++) {
+	// 		let yearData = data.filter(item => (item.year === y));
+	// 		//on first loop only, create key row of array
+	// 		if (y === minYear) {
+	// 			let firstRow = ['year'];
+	// 			for (let i=0; i< yearData.length; i++) {
+	// 				let x = yearData[i];
+					
+	// 				firstRow.push(x.variable);
+	// 			}
+	// 			graphData.push(firstRow);
+	// 		}
+	// 		let yearRow = [y.toString()]
+	// 		for (let i=0; i< yearData.length; i++) {
+	// 			let x = yearData[i];
+	// 			yearRow.push(x.value);
+	// 		}
+	// 		graphData.push(yearRow);
+	// 	}
+	// 	console.log(`graphData`, graphData);
+	// 	return graphData;
 	}
 
 	render() {

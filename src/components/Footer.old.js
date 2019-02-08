@@ -14,19 +14,28 @@ import LogoutButton from './LogoutButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const styles = theme => ({
+  root: {
+		flexGrow: 1,
+	},
 	grow: {
 		flexGrow: 1,
+	},
+	appBar: {
+		top: 'auto',
+		bottom: 0,
+		boxShadow: 'none',
 	},
 	bottomNavText: {
 		color: '#fff',
 		fontWeight: theme.typography.fontWeightLight,
+		textTransform: 'uppercase',
 	},
 	toolbar: {
 		margin: 0,
-		padding: theme.spacing.unit,
+		padding: theme.spacing.unit * 2,
 	},
 	leftIcon: {
-		marginRight: theme.spacing.unit
+		marginRight: theme.spacing.unit,
 	}
 });
 
@@ -34,17 +43,17 @@ class Footer extends Component {
 	render() {
 		const { classes, user } = this.props;
 		return (
-			<footer>
-				<AppBar position="static" color="primary" elevation={0} >
+			<footer className={classes.root}>
+				<AppBar color="primary" position="static" className={classes.appBar}>
 					<Toolbar className={classes.toolbar}>
 						<Grid container spacing={16} justify="center" alignItems="center">
 							<Grid item>
-								<Typography variant="button" align="center" className={classes.bottomNavText}>
+								<Typography variant="body1" align="center" className={classes.bottomNavText}>
 									<FontAwesomeIcon icon="phone" className={classes.leftIcon} />(612) 351-8200
 								</Typography>
 							</Grid>
 							<Grid item>
-								<Typography variant="button" align="center" className={classes.bottomNavText}>
+								<Typography variant="body1" align="center" className={classes.bottomNavText}>
 									<FontAwesomeIcon icon="at" className={classes.leftIcon} />info@CenterForEconomicInclusion.org
 								</Typography>
 							</Grid>
@@ -55,8 +64,8 @@ class Footer extends Component {
 									</Grid>
 									{!!user._id && 
 										<Grid item>
-											<IconButton component={Link} to="/admin" size="small">
-												<FontAwesomeIcon icon="home" size="xs" className={classes.bottomNavText} />
+											<IconButton component={Link} to="/admin">
+												<FontAwesomeIcon icon="home" size="sm" />
 											</IconButton>
 										</Grid>
 									}

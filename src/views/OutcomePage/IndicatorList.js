@@ -13,7 +13,7 @@ const styles = theme => ({
 		backgroundColor: theme.palette.secondary.light,
 	},
 	test: {
-		border: 'solid red 1px'
+		border: 'solid tomato 1px'
 	}
 })
 

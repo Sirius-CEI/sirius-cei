@@ -28,8 +28,8 @@ const styles = theme => ({
 	grow: {
 		flexGrow: 1,
 	},
-	icon: {
-		color: theme.palette.grey['100'],
+	rightIcon: {
+		marginLeft: theme.spacing.unit,
 	},
 	textField: {
 		marginTop: 30,
@@ -79,17 +79,17 @@ class LoginButton extends Component {
 	login = event => {
 		event.preventDefault();
 		const { username, password } = this.state;
-		const { dispatch, user, history } = this.props;
+		const { dispatch, user, fetching } = this.props;
     if (username && password) {
 			const config = {
 				headers: { 'Content-Type': 'application/json' },
 				withCredentials: true,
 			}
 			const credentials = { username: username, password: password }
-			dispatch({
-				type: 'LOGIN',
-				payload: credentials
-			})
+			axios.post('api/user/login', credentials, config)
+			.then(res => axios.get('api/user', config))
+			.then(res => dispatch({type:'SET_USER', payload: res.data}))
+			// .then(res => !fetching && this.handleClose(event))
 			console.log(user);
 			// if (user._id.length > 0) {
 			// 	console.log(user);
@@ -106,7 +106,7 @@ class LoginButton extends Component {
 		this.setState({
 			open: false
 		})
-		console.log(`in handleClose`, user, currentUser );
+		console.log(user);
 	}
 
 	handlePasswordClose = event => {
@@ -128,9 +128,10 @@ class LoginButton extends Component {
 		const { open } = this.state;
     return (
 			<Fragment>
-				<IconButton size="small" onClick={this.handleOpen}>
-					<FontAwesomeIcon icon="user-circle" size="xs" className={classes.icon} />
-				</IconButton>
+				<Button variant="outlined" onClick={this.handleOpen}>
+					Admin Login
+					<FontAwesomeIcon icon="sign-in-alt" className={classes.rightIcon} />
+				</Button>
 				<form id="login-form" onSubmit={this.login}>
 					<Dialog
 						open={open}
@@ -189,7 +190,7 @@ class LoginButton extends Component {
 							/>
 						</DialogContent>
 						<DialogActions>
-							{/* <Button onClick={this.handlePasswordOpen}>Forgot Password</Button>
+							<Button onClick={this.handlePasswordOpen}>Forgot Password</Button>
 							<Dialog
 								className={classes.forgotPassword}
 								aria-labelledby="simple-modal-title"
@@ -198,7 +199,7 @@ class LoginButton extends Component {
 								onClose={this.handlePasswordClose}
 							>
 								<ForgotPassword handleClose={this.handleClose} handleOpen={this.handlePasswordOpen} />
-							</Dialog> */}
+							</Dialog>
 							<Button onClick={this.handleClose} color="primary">
 								Cancel
 							</Button>

@@ -14,12 +14,18 @@ import AdminHome from '../views/Admin';
 // and by checking req.user for authorization
 
 const ProtectedRoute = props => {
-	const { user, ...otherProps } = props;
-	if(user._id) {
-		return <Route exact path="/admin" render={(props) => <AdminHome {...otherProps} open={!user._id} /> } />
-	} else {
-		return <Redirect exact from="/admin" to="/macro-indicators" />
-	}
+	const {
+    // Alias prop 'path' as 'PathToProtect'
+		path: PathToProtect,
+    user,
+    ...otherProps
+  } = props;
+
+	const PathToShow = user._id ? PathToProtect : "/macro-indicators"
+
+	return (
+		<Route path={PathToShow} {...otherProps} />
+	)
 }
 
 const mapStateToProps = state => ({

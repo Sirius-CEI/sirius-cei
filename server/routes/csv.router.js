@@ -3,7 +3,7 @@ const router = express.Router();
 const Upload = require('../models/upload.model');
 const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
-//get all csv data
+//get csv upload data
 router.get('/', (req, res) => {
 	Upload.find({}).sort({ '_id' : -1 })
 		.then((results) => {
@@ -15,6 +15,15 @@ router.get('/', (req, res) => {
 				res.sendStatus(500);
 		})
 });
+
+//get all data
+router.get('/data', (req, res) => {
+	Upload.find({}).sort({ chart: 1, 'fileInfo.uploadTs': 1, year: 1, variable: 1, _id: 1 })
+		.then((results) => {
+			res.send(results)
+		})
+		.catch((error) => res.json({ success: false, error: error }))
+})
 
 router.post('/', rejectUnauthenticated, (req, res) => {
 	const { payload, fileInfo } = req.body;

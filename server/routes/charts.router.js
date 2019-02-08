@@ -6,7 +6,7 @@ const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 router.get('/', (req, res) => {
 	Chart
 	.find({})
-	.sort({ active: -1, order: 1, createdAt: 1 })
+	.sort({ active: -1, type: 1, createdAt: 1 })
 	.exec((err, data) => {
 		return err ? res.json({ success: false, error: err }) : res.send(data);
   });

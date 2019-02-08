@@ -21,6 +21,16 @@ function* getCsv() {
 	}
 }
 
+function* getCsvData() {
+	try {
+		const response = yield call(axios.get, '/api/csv/data');
+		response.data.error ? yield put({ type: 'API_ERROR', payload: response.data.error })
+		: yield put({ type: 'SET_CHART_DATA', payload: response.data })
+	} catch (error) {
+		yield put({ type: 'API_ERROR', payload: error })
+	}
+}
+
 function* deleteCsv(action) {
   try {
 	  yield call(axios.delete, `/api/csv/${action.payload}`);
@@ -34,6 +44,7 @@ function* deleteCsv(action) {
 
 function* csvSaga() {
 	yield takeEvery('ADD_CSV_DATA', addCsv);
+	yield takeEvery('FETCH_CSV_DATA', getCsvData);
 	yield takeEvery('FETCH_CSV', getCsv);
 	yield takeEvery('DELETE_CSV', deleteCsv);
 }

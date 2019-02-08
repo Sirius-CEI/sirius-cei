@@ -8,15 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
-  root: {
-		flexGrow: 1,
-	},
-	grow: {
-		flexGrow: 1,
-	},
 	rightIcon: {
 		marginLeft: theme.spacing.unit,
 	},
+	button: {
+		color: theme.palette.grey['100'],
+		borderColor: theme.palette.grey['100']
+	}
 });
 
 const logout = (dispatch, history) => {
@@ -25,7 +23,7 @@ const logout = (dispatch, history) => {
 }
 
 const LogoutButton = ({ classes, dispatch, history }) => (
-  <Button variant="outlined" onClick={()=>logout(dispatch, history)} >
+  <Button variant="outlined" size="small" className={classes.button} onClick={()=>logout(dispatch, history)} >
     Log Out
 		<FontAwesomeIcon icon="sign-out-alt" className={classes.rightIcon} />
   </Button>

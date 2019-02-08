@@ -49,7 +49,6 @@ class IndicatorPreviewCharts extends Component {
 					spacing={16}
 					direction="row"
 					alignItems="stretch"
-					alignContents="flex-end"
 				>
 					{charts.map((chart) => (
 						<Grid item xs={12} sm={6} md={4} lg={3} key={chart._id}>
@@ -61,9 +60,14 @@ class IndicatorPreviewCharts extends Component {
 										color: 'secondary'
 									}}
 								/>
+								<Divider />
 								<CardContent className={classes.grow}>
-										{chart.map_level && <Typography variant="body1"> {chart.map_level}</Typography>}
-										{chart.citation && <Typography variant="body1"> {chart.citation}</Typography>}
+										{chart.map_level && <Typography variant="body1">
+											Geography: {chart.map_level}
+										</Typography>}
+										{chart.citation && <Typography variant="body1">
+											Citation: {chart.citation}
+										</Typography>}
 										{chart._id && <Typography variant="body1"> {chart._id}</Typography>}
 								</CardContent>
 								<CardActions>

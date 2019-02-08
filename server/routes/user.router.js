@@ -37,7 +37,7 @@ router.put('/reactivate/:id', rejectUnauthenticated, (req, res) => {
 
 //PUT route to deactivate user
 router.put('/deactivate/:id', rejectUnauthenticated, (req, res) => {
-  let reqId = req.params.id;
+	let reqId = req.params.id;
   Person.findByIdAndUpdate({
     _id: reqId}, {$set: {"active": false}})
     .then( (updatedPerson) => {
