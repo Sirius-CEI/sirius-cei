@@ -38,7 +38,7 @@ const styles = theme => ({
 		backgroundColor: '#FFFFFF'
 	},
 	centered: {
-		padding: '20px',
+		padding: 20,
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -48,7 +48,10 @@ const styles = theme => ({
 	},
 	middle: {
 		alignItems: 'center',
-	}
+	},
+	floatTextTop: {
+		alignItems: 'flex-end',	
+	},
 });
 
 const IndicatorItem = ({ classes, indicator, order }) => (
@@ -75,13 +78,14 @@ const IndicatorItem = ({ classes, indicator, order }) => (
 							variant="h4"
 							align="center"
 							paragraph
+							className={classes.floatTextTop}
 						>
 							{indicator.title}
 						</Typography>
 					</Grid>
 					<Grid 
 						item
-						className={classes.middle}
+						className={classnames(classes.middle)}
 					>
 					<Typography
 						variant="h6"

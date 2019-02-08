@@ -7,7 +7,7 @@ import { Map, TileLayer, GeoJSON, FeatureGroup } from 'react-leaflet';
 import './map.css';
 import chroma from 'chroma-js';
 
-const accessToken = 'pk.eyJ1IjoibGV4Y2h1ZHppayIsImEiOiJjanBzaWx5dG8wdGppM3htaDhiZ3RwcXJ6In0.-gllVsZonwCccRMzb1DmYQ';
+const accessToken = 'pk.eyJ1IjoiY29vcGVybWxsciIsImEiOiJjanJ3aHJlYngwZDIzNDRxcm8wZm1nbWdrIn0.mQCu9CKrchwGqODrQPQreQ';
 const stamenTonerTiles = `https://api.tiles.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=${accessToken}`;
 const stamenTonerAttr = 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
 const mapCenter = [45.2, -93.43];
@@ -36,8 +36,8 @@ class MapIndicator extends Component {
             case 'county': geo = county; break;
             default: geo = tract; break;
         }
-        
         let data = this.props.chartData.filter(item => (item.chart === this.props.chart._id));
+        console.log('data: ', data);
         let values = data.map((item) => item.value);
         let grades = chroma.limits(values, 'q', 4);
         this.setState({
@@ -74,6 +74,8 @@ class MapIndicator extends Component {
 	render() {
         return (
             <div className="map">
+            {JSON.stringify('chart data here: ')}
+            {JSON.stringify(this.props.chart)}
                 <Map
                     style={{ width: '100%', minHeight: '300px' }}
                     center={mapCenter}

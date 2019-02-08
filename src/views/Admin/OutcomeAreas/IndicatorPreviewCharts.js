@@ -49,7 +49,7 @@ class IndicatorPreviewCharts extends Component {
 					spacing={16}
 					direction="row"
 					alignItems="stretch"
-					alignContents="flex-end"
+					aligncontents="flex-end"
 				>
 					{charts.map((chart) => (
 						<Grid item xs={12} sm={6} md={4} lg={3} key={chart._id}>
