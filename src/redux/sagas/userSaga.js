@@ -35,8 +35,13 @@ function* fetchUserList() {
 	}
 }
 
-function* editUser() {
-	
+function* editUser(action) {
+	try {
+		yield call(axios.put, `/api/user/${action.id}`, action.payload)
+		yield put({ type: 'GET_DATA', main: 'FETCH_USER_LIST' })
+	} catch (error) {
+		yield put({ type: 'API_ERROR', payload: error })
+	}	
 }
 
 //deactivate user from user list

@@ -5,13 +5,13 @@ const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 //GET route to get Cards from database
 router.get('/', (req, res) => {
-    Card.find({})
-        .then((results) => {
-            res.send(results);
-        })
-        .catch((error) => {
-            res.sendStatus(500);
-        })
+	Card.find({}).sort({ _id: 1 })
+		.then((results) => {
+				res.send(results);
+		})
+		.catch((error) => {
+				res.json({ success: false, error: error });
+		})
 });
 
 //GET route to get a single Card from database

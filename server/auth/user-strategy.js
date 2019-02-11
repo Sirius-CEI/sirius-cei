@@ -11,7 +11,7 @@ passport.deserializeUser((id, done) => {
   Person.findById(id).then((result) => {
     // Handle Errors
     const user = result;
-
+		
     if (!user) {
       // user not found
       done(null, false, { message: 'Incorrect credentials.' });
@@ -33,10 +33,10 @@ passport.use('local', new LocalStrategy({
   passReqToCallback: true,
   usernameField: 'username',
 }, ((req, username, password, done) => {
-    Person.find({ username })
+		Person.find({ username })
       .then((result) => {
         const user = result && result[0];
-        if (user && encryptLib.comparePassword(password, user.password) && user.active) {
+        if (user && user.active && encryptLib.comparePassword(password, user.password)) {
           // all good! Passwords match and user is active!
           done(null, user);
         } else if (user) {

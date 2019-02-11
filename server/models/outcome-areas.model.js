@@ -19,7 +19,7 @@ const outcomeAreaSchema = new Schema({
 	order: { type: Number, default: 100 },
 	notes: String,
 	},
-	{ timestamps: true }
+	{ timestamps: true, strict: false }
 );
 
 outcomeAreaSchema.pre('remove', (next) => {

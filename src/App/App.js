@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { fetchOutcomeAreas, fetchIndicators, getInitialData } from '../redux/actions';
+import './fontawesome';
 
 import Nav from '../components/Nav';
 import Routes from './Routes';
 import Footer from '../components/Footer';
 import './App.css';
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers, faSmile, faFrown, faMeh } from '@fortawesome/free-solid-svg-icons'
-library.add(faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers, faSmile, faFrown, faMeh )
-
-
 class App extends Component {
 	componentDidMount() {
-		this.props.dispatch({
-			type: 'GET_DATA',
-			main: 'LOAD_DATA'
-		});
+		this.props.getInitialData();
 	}
 
   render() {
@@ -33,6 +29,10 @@ class App extends Component {
   }
 }
 
+App.propTypes ={ 
+	getInitialData: PropTypes.func.isRequired,
+}
+
 const mapStateToProps = state => ({ state })
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {getInitialData})(App);

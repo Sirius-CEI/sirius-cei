@@ -40,8 +40,10 @@ handleChange = event => {
 
 // submit changed information from form
 onSubmit = event => {
-    event.preventDefault();
-    this.props.dispatch({ type: 'UPDATE_USERNAME', payload: this.state })
+		event.preventDefault();
+		const { user } = this.props;
+		const { newUsername } = this.state;
+    this.props.dispatch({ type: 'UPDATE_USER', id: user._id, payload: { username: newUsername } })
     this.setState({
         username: '',
         newUsername: '',

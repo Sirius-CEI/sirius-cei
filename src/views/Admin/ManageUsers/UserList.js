@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -50,6 +51,11 @@ const styles = theme => ({
 class UserList extends Component {
 	componentDidMount() {
 		this.props.dispatch( { type: 'GET_DATA', main: 'FETCH_USER_LIST'} )
+	}
+
+	updateUser = (id, updates) => {
+		const { dispatch } = this.props;
+		dispatch({ type: 'UPDATE_USER', id: id, payload: updates })
 	}
 
 	//deactivate user
@@ -114,7 +120,7 @@ class UserList extends Component {
                   <Fab
                     size="small" 
 										className={classes.reactivateBtn}
-										onClick={()=> this.reactivateUser(item._id)}>
+										onClick={()=> this.updateUser(item._id, { active: true })}>
 										<PowerSettingsNew/>
 									</Fab>
 								</TableCell>
@@ -122,7 +128,7 @@ class UserList extends Component {
                   <Fab 
                     size="small" 
 										className={classes.deactivateBtn}
-										onClick={()=> this.deactivateUser(item._id)}>
+										onClick={()=> this.updateUser(item._id, { active: false })}>
 										<Block/>
 									</Fab>
 								</TableCell>

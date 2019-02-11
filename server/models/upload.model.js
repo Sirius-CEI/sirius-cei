@@ -17,7 +17,8 @@ const uploadSchema = new Schema({
 		chart: { type: Schema.Types.ObjectId, ref: 'Chart' },
 		fileInfo: fileInfo
 },{
-    timestamps: true
+		timestamps: true,
+		strict: false
 })
 
 module.exports = mongoose.model('Upload', uploadSchema);

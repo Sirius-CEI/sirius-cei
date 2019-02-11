@@ -10,7 +10,7 @@ const chartSchema = new Schema({
 	citation: { type: String, trim: true },
 	indicator_id: { type: Schema.Types.ObjectId, ref: 'Indicator'}
 	},
-	{ timestamps: true }
+	{ timestamps: true, strict: false }
 );
 
 module.exports = mongoose.model('Chart', chartSchema);

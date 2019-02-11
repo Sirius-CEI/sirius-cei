@@ -9,6 +9,7 @@ const UserSchema = new Schema({
 },
 {
 	timepstamps: true,
+	strict: false
 });
 
 module.exports = mongoose.model('user', UserSchema);

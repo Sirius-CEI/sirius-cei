@@ -3,7 +3,7 @@ const router = express.Router();
 const Upload = require('../models/upload.model');
 const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
-//get csv data
+//get uploaded data
 router.get('/', (req, res) => {
 	Upload.find({}).sort({ '_id' : -1 })
 		.then((results) => {
@@ -15,8 +15,6 @@ router.get('/', (req, res) => {
 				res.sendStatus(500);
 		})
 });
-
-router.get('/data', )
 
 router.post('/', rejectUnauthenticated, (req, res) => {
 	const { payload, fileInfo } = req.body;
@@ -31,7 +29,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 // DELETE route to remove a CSV file
-router.delete('/:uuid', rejectUnauthenticated, (req, res) => {
+router.delete('/data/:uuid', rejectUnauthenticated, (req, res) => {
 	let uuid = req.params.uuid;
 	Upload.deleteMany({'fileInfo.uuid': uuid})
 	.then((results) => {

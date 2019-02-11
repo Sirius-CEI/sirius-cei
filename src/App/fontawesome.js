@@ -1,0 +1,3 @@
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers, faSmile, faFrown, faMeh } from '@fortawesome/free-solid-svg-icons'
+library.add(faAt, faChartArea, faChevronDown, faEdit, faFileCsv, faFileUpload, faHome, faInfo, faPhone, faPlus, faSignInAlt, faSignOutAlt, faThLarge, faTimes, faTrash, faUserCircle, faUserCog, faUsers, faSmile, faFrown, faMeh )

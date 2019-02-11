@@ -13,7 +13,7 @@ const indicatorSchema = new Schema({
 	order: { type: Number, default: 100 },
 	outcome_id: { type: Schema.Types.ObjectId, ref: 'OutcomeArea' }
 	},
-	{ timestamps: true }
+	{ timestamps: true, strict: false }
 );
 
 module.exports = mongoose.model('Indicator', indicatorSchema);

@@ -8,7 +8,7 @@ import outcomeAreaSaga from './outcomeAreaSaga';
 import chartSaga from './chartSaga';
 import indicatorSaga from './indicatorSaga';
 import csvSaga from './csvSaga';
-import dataSaga from './dataSaga';
+import dataSaga from './apiSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.

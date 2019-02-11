@@ -9,7 +9,7 @@ const cardSchema = new Schema({
 	url: { type: String, required: true},
 	outcome_id: { type: Schema.Types.ObjectId, ref: 'OutcomeArea' }
 	},
-	{ timestamps: true}
+	{ timestamps: true, strict: false }
 );
 
 module.exports = mongoose.model('Card', cardSchema);

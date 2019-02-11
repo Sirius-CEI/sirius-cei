@@ -22,6 +22,18 @@ router.get('/list', rejectUnauthenticated, (req, res) => {
   });
 });
 
+//PUT route
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  let reqId = req.params.id;
+  Person.findByIdAndUpdate( reqId, req.body, {})
+    .then( (updatedPerson) => {
+      res.sendStatus(200)
+    })
+    .catch( (error) => {
+      res.sendStatus(500)
+    })
+})
+
 //PUT route to reactivate user
 router.put('/reactivate/:id', rejectUnauthenticated, (req, res) => {
   let reqId = req.params.id;
