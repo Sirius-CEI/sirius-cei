@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
@@ -14,9 +14,6 @@ import { apiAction } from '../../../redux/actions'
 const styles = theme => ({
 	root: {
 		flexGrow: 1,
-	},
-	rightIcon: {
-		marginLeft: theme.spacing.unit
 	},
 	grow: {
 		flexGrow: 1,
@@ -84,11 +81,10 @@ class AddCard extends Component {
 		const { classes } = this.props;
 		const { newCard, open } = this.state;
 		return (
-			<div>
-				<Button variant="outlined" onClick={this.handleOpen}>
-					Card
-					<FontAwesomeIcon icon="plus" className={classes.rightIcon} />
-				</Button>
+			<Fragment>
+				<Fab color="secondary" aria-label="Add action card" onClick={this.handleOpen}>
+					<FontAwesomeIcon icon="plus" />
+				</Fab>
 				<DialogForm
 					open={open}
 					dialogTitle={'Add Action Card'}
@@ -103,7 +99,7 @@ class AddCard extends Component {
 					onSubmit={this.onSubmit}
 					handleClose={this.handleClose}
 				/>
-			</div>
+			</Fragment>
 		);
   }
 }

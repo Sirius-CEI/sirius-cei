@@ -114,9 +114,9 @@ class EditCard extends Component {
   }
 }
 
-// EditCard.propTypes = {
-// 	classes: PropTypes.object.isRequired,
-// };
+EditCard.propTypes = {
+	classes: PropTypes.object.isRequired,
+};
 
 export default compose(
 	connect(),

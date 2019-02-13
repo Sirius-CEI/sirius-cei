@@ -9,15 +9,15 @@ const crypto = require('crypto');
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
   // Send back user object from the session (previously queried from the database)
-  res.send(req.user);
+  req.isAuthenticated ? res.send(req.user) : res.send({ username: "", _id: "" })
 });
 
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
-router.post('/register', (req, res, next) => {
+router.post('/', rejectUnauthenticated, (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
 
@@ -44,7 +44,7 @@ router.post('/logout', (req, res) => {
 
 //GET route to get a token from user and check if
 // the users reset password time is valid
-router.get('/password-reset/:resetPasswordToken', (req, res) => {
+router.get('/password-reset/:resetPasswordToken', rejectUnauthenticated, (req, res) => {
   Person.findOne(
     { resetPasswordToken: req.params.resetPasswordToken },
     {},
@@ -116,7 +116,7 @@ router.post('/password-reset', (req, res, next) => {
 });
 
 // PUT route to update user password
-router.put('/new-password', (req, res) => {
+router.put('/new-password', rejectUnauthenticated, (req, res) => {
   const password = encryptLib.encryptPassword(req.body.password);
   Person.findOneAndUpdate(
     { username: req.body.username },

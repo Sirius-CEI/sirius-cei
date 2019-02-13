@@ -4,24 +4,18 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid';
 
+import OutcomeList from './OutcomeList';
 import AddCard from './Card.add';
-import CardList from './CardList';
 
 const styles = theme => ({
-	root: {
-		flexGrow: 1,
-	},
 	button: {
 		display: 'flex',
 		flexDirection: 'row',
 		justify: 'flex-end'
 	},
-	grow: {
-		flexGrow: 1,
-	}
 })
 
-const Cards = ({ outcomes, cards, classes }) => (
+const Cards = ({ outcomes, classes }) => (
 	<Fragment>
 		<Grid
 			container
@@ -30,15 +24,15 @@ const Cards = ({ outcomes, cards, classes }) => (
 			justify="center"
 			alignItems="stretch"
 		>
-			{cards.length > 0 && outcomes.map((outcome) => (
-				<Grid item xs={12} key={outcome._id}>
-					<CardList outcome={outcome} />
+		<Grid item xs={12}>
+			<div className={classes.grow} />
+			<AddCard />
+		</Grid>
+			{outcomes.length > 0 && outcomes.map((outcome, index) => (
+				<Grid item xs={12} key={index}>
+					<OutcomeList outcome={outcome} />
 				</Grid>
 			))}
-			<Grid item xs={12} className={classes.button}>
-				<div className={classes.grow} />
-				<AddCard />
-			</Grid>
 		</Grid>
 	</Fragment>
 )
@@ -47,9 +41,6 @@ Cards.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({ 
-	outcomes: state.outcomes,
-	cards: state.cards
-});
+const mapStateToProps = ({ outcomes }) => ({ outcomes });
 
 export default connect(mapStateToProps)(withStyles(styles)(Cards));
