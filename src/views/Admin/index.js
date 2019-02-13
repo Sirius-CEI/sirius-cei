@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -11,7 +13,7 @@ import adminPages from './data'
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+		flexGrow: 1,
 	},
 	appBar: {
 		...theme.mixins.toolbar,
@@ -30,7 +32,13 @@ class AdminHome extends Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
-  };
+	};
+	
+	componentDidMount() {
+		const { user } = this.props;
+		console.log(`admin page mount`, user);
+
+	}
 
   render() {
     const { classes } = this.props;
@@ -61,4 +69,9 @@ AdminHome.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AdminHome);
+const mapStateToProps = ({ user }) => ({ user })
+
+export default compose(
+	connect(mapStateToProps),
+	withStyles(styles)
+)(AdminHome);;

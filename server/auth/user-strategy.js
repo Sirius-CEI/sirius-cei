@@ -33,6 +33,7 @@ passport.use('local', new LocalStrategy({
   passReqToCallback: true,
   usernameField: 'username',
 }, ((req, username, password, done) => {
+	console.log(`in passport auth`);
 		Person.find({ username })
       .then((result) => {
         const user = result && result[0];

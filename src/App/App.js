@@ -3,13 +3,15 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchOutcomeAreas, fetchIndicators, getInitialData } from '../redux/actions';
+import { getInitialData } from '../redux/actions';
 import './fontawesome';
 
 import Nav from '../components/Nav';
 import Routes from './Routes';
 import Footer from '../components/Footer';
 import './App.css';
+// import '@ionic/core/css/core.css';
+// import '@ionic/core/css/ionic.bundle.css';
 
 class App extends Component {
 	componentDidMount() {

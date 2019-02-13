@@ -7,6 +7,9 @@ export const SET_CARDS = 'SET_CARDS';
 
 export const API = 'API';
 export const API_GET = 'API_GET'
+export const API_DELETE = 'API_DELETE';
+export const API_EDIT = 'API_EDIT';
+
 export const API_START = 'API_START';
 export const API_END = 'API_END';
 export const ACCESS_DENIED = 'ACCESS_DENIED';

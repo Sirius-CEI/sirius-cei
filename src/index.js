@@ -10,10 +10,9 @@ import { MuiThemeProvider} from '@material-ui/core/styles';
 import theme from './App/theme';
 import 'typeface-lato';
 import 'typeface-roboto';
-
+// import { registerIonic } from '@ionic/react';
 import rootReducer from './redux/reducers'; // imports ./redux/reducers/index.js
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
-
 import App from './App/App';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -36,12 +35,13 @@ const store = createStore(
 // tells the saga middleware to use the rootSaga
 // rootSaga contains all of our other sagas
 sagaMiddleware.run(rootSaga);
+// registerIonic();
 
 ReactDOM.render(
   <Provider store={store}>
-		<MuiThemeProvider theme={theme}>
-			<App />
-		</MuiThemeProvider>
+			<MuiThemeProvider theme={theme}>
+					<App />
+			</MuiThemeProvider>
   </Provider>,
   document.getElementById('react-root'),
 );

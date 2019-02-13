@@ -14,66 +14,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
-// Get all users
-// TODO: rejectUnauthenticated
-router.get('/list', rejectUnauthenticated, (req, res) => {
-  Person.find({}).sort({ username: 1 }).exec((err, data) => {
-		return err ? res.json({ success: false, error: err }) : res.send(data);
-  });
-});
-
-//PUT route
-router.put('/:id', rejectUnauthenticated, (req, res) => {
-  let reqId = req.params.id;
-  Person.findByIdAndUpdate( reqId, req.body, {})
-    .then( (updatedPerson) => {
-      res.sendStatus(200)
-    })
-    .catch( (error) => {
-      res.sendStatus(500)
-    })
-})
-
-//PUT route to reactivate user
-router.put('/reactivate/:id', rejectUnauthenticated, (req, res) => {
-  let reqId = req.params.id;
-  Person.findByIdAndUpdate({
-    _id: reqId}, {$set: {"active": true}})
-    .then( (updatedPerson) => {
-      res.sendStatus(200)
-    })
-    .catch( (error) => {
-      res.sendStatus(500)
-    })
-})
-
-//PUT route to deactivate user
-router.put('/deactivate/:id', rejectUnauthenticated, (req, res) => {
-  let reqId = req.params.id;
-  Person.findByIdAndUpdate({
-    _id: reqId}, {$set: {"active": false}})
-    .then( (updatedPerson) => {
-      res.sendStatus(200)
-    })
-    .catch( (error) => {
-      res.sendStatus(500)
-    })
-})
-
-// DELETE route to remove user
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  let reqId = req.params.id;
-  Person.findOneAndDelete({
-    _id: reqId
-  })
-    .then( (removedPerson) => {
-      res.sendStatus(200)
-    })
-    .catch( (error) => {
-      res.sendStatus(500)
-    })
-})
-
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
@@ -181,19 +121,6 @@ router.put('/new-password', (req, res) => {
   Person.findOneAndUpdate(
     { username: req.body.username },
     { $set: { password: password } },
-  ).then((results) => {
-  res.sendStatus(200);
-  })
-  .catch((error) => {
-      res.sendStatus(500);
-  })
-});
-
-// PUT route to update user password
-router.put('/new-username', (req, res) => {
-  Person.findOneAndUpdate(
-    { username: req.body.username },
-    { $set: { username: req.body.newUsername } },
   ).then((results) => {
   res.sendStatus(200);
   })

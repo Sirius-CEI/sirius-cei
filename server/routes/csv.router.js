@@ -5,28 +5,25 @@ const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 //get csv data
 router.get('/', (req, res) => {
-	Upload.find({}).sort({ '_id' : -1 })
+	Upload.find({}).sort({ _id : 1 })
+	.select('fileInfo.filename fileInfo.user_id fileInfo uuid fileInfo.uploadTs')
 		.then((results) => {
-			let uuidList = results.map((item) => item.fileInfo.uuid);
-			uuidList = [...new Set(uuidList)]
-			res.send(uuidList)
+			res.send(results)
 		})
 		.catch((error) => {
-				res.sendStatus(500);
+			res.json({ success: false, error: error })
 		})
 });
 
-router.get('/data', )
-
 router.post('/', rejectUnauthenticated, (req, res) => {
 	const { payload, fileInfo } = req.body;
-	const test = payload.map((item) => Object.assign({fileInfo: fileInfo}, item));
-	Upload.create(test)
+	const createDoc = payload.map((item) => Object.assign({fileInfo: fileInfo}, item));
+	Upload.create(createDoc)
 		.then( (results) => {
 			res.sendStatus(201);
 		})
 		.catch( (error) => {
-			res.sendStatus(500);
+			res.json({ success: false, error: error })
 		})
 });
 
@@ -38,7 +35,7 @@ router.delete('/:uuid', rejectUnauthenticated, (req, res) => {
 			res.sendStatus(200)
 		})
 		.catch( (error) => {
-			res.json({ success: false, error: error})
+			res.json({ success: false, error: error })
 		})
 })
 

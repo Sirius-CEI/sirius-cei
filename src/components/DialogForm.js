@@ -1,34 +1,55 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import {
+	Button,
+	Dialog,
+	DialogTitle,
+	DialogActions,
+	DialogContent,
+	DialogContentText
+} from '@material-ui/core';
 
-const DialogForm = ({ open, dialogTitle, formId, formFields, onSubmit, handleClose }) => (
-	<Dialog
-		open={open}
-		onClose={handleClose}
-		aria-labelledby="form-dialog-title"
-	>
-		<form id={formId} onSubmit={onSubmit}>
-			<DialogTitle id="form-dialog-title">{dialogTitle}</DialogTitle>
-				<DialogContent>
-					{formFields}
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={handleClose} color="primary">
-						Cancel
-					</Button>
-					<Button
-						type="submit"
-						color="primary"
-					>
-						Submit
-					</Button>
-				</DialogActions>
-			</form>
-		</Dialog>
-)
+const DialogForm = ({
+	open = false,
+	dialogTitle = 'Form',
+	dialogDescription = '',
+	formId = 'dialog-form',
+	formFields = <Fragment />,
+	onSubmit = () => {},
+	handleClose = () => {},
+	...otherProps
+}) => {
+	return (
+		<Dialog
+			open={open}
+			onClose={handleClose}
+			aria-labelledby="form-dialog-title"
+			aria-describedby="form-dialog-description"
+		>
+			<form id={formId} onSubmit={onSubmit}>
+				<DialogTitle id="form-dialog-title">{dialogTitle}</DialogTitle>
+					<DialogContent>
+						{!dialogDescription ? null :
+							<DialogContentText  id="form-dialog-description">
+								{dialogDescription}
+							</DialogContentText>
+						}
+						{formFields}
+					</DialogContent>
+					<DialogActions>
+						<Button onClick={handleClose} color="primary">
+							Cancel
+						</Button>
+						<Button
+							type="submit"
+							color="primary"
+						>
+							Submit
+						</Button>
+					</DialogActions>
+				</form>
+			</Dialog>
+	)
+}
 
 export default DialogForm;

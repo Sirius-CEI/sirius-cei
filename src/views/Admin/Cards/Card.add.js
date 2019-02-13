@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DialogForm from '../../../components/DialogForm';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 
 import CardFields from './Card.fields'
 

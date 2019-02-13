@@ -18,7 +18,7 @@ class Routes extends Component {
   render() {
     return (
 			<Switch>
-				<ProtectedRoute exact path="/admin" component={AdminHome} />
+				<Route exact path="/admin" component={AdminHome} />
 				<Route exact path="/reset/:token" component={PasswordReset} />						
 				<Route path="/:outcome" component={OutcomePage} />						
 				<Redirect exact from="/" to="/macro-indicators" />

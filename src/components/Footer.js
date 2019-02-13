@@ -4,35 +4,28 @@ import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+	Grid,
+	Typography,
+	AppBar,
+	Toolbar,
+	IconButton
+} from '@material-ui/core';
+
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const styles = theme => ({
-  root: {
-		flexGrow: 1,
-	},
-	grow: {
-		flexGrow: 1,
-	},
 	bottomNav: {
 		top: 'auto',
 		bottom: 0,
-		boxShadow: 'none',
+		padding: theme.spacing.unit,
 	},
 	bottomNavText: {
 		color: '#fff',
 		fontWeight: theme.typography.fontWeightLight,
 		textTransform: 'uppercase',
-	},
-	toolbar: {
-		margin: 0,
-		padding: theme.spacing.unit * 2,
 	},
 	leftIcon: {
 		marginRight: theme.spacing.unit,
@@ -43,9 +36,9 @@ class Footer extends Component {
 	render() {
 		const { classes, user } = this.props;
 		return (
-			<footer className={classes.root}>
-				<AppBar position="static" className={classes.bottomNav}>
-					<Toolbar className={classes.toolbar}>
+			<footer>
+				<AppBar position="static" color="primary" elevation={0} className={classes.bottomNav}>
+					<Toolbar disableGutters>
 						<Grid container spacing={16} justify="center" alignItems="center">
 							<Grid item>
 								<Typography variant="body1" align="center" className={classes.bottomNavText}>
@@ -57,8 +50,7 @@ class Footer extends Component {
 									<FontAwesomeIcon icon="at" className={classes.leftIcon} />info@CenterForEconomicInclusion.org
 								</Typography>
 							</Grid>
-							<Grid item xs={12}>
-								<Grid container spacing={8} direction="row" justify="flex-end" alignItems="center">
+								<Grid container direction="row" justify="flex-end" alignItems="center">
 									<Grid item>
 										{!user._id ? <LoginButton /> : <LogoutButton />}
 									</Grid>
@@ -71,7 +63,6 @@ class Footer extends Component {
 									}
 								</Grid>
 							</Grid>
-						</Grid>
 					</Toolbar>
 				</AppBar>
 			</footer>
@@ -84,7 +75,6 @@ Footer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-	outcomeAreas: state.outcomes,
 	user: state.user,
 })
 

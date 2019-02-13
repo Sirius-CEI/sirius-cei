@@ -49,14 +49,14 @@ class ViewLatestCsv extends Component {
 								/>
 								<Divider />
 								<CardContent>
-									<Typography variant="h6" gutterBottom>{csv}</Typography>
+									<Typography variant="h6" gutterBottom>{csv._id}</Typography>
 								</CardContent>
 								<Divider />
 								<CardActions className={classes.actions}>
 									<Button
 										variant="contained"
 										color="primary"
-										onClick={() => this.deleteCsv(csv)}
+										onClick={() => this.deleteCsv(csv._id)}
 									>
 										Delete
 									</Button>
