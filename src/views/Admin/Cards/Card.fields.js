@@ -26,6 +26,7 @@ const CardFields = ({ handleChange, newCard, outcomes }) => (
 				value={newCard.image} 
 				onChange={handleChange}
 				fullWidth
+				multiline
 				required
 		/>
 		<TextField 
@@ -37,6 +38,7 @@ const CardFields = ({ handleChange, newCard, outcomes }) => (
 				value={newCard.url} 
 				onChange={handleChange}
 				fullWidth
+				multiline
 				required
 		/>
 		<TextField

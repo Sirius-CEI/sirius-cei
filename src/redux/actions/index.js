@@ -8,12 +8,13 @@ export const apiAction = ({
 	headers = { 'Content-Type': 'application/json' },
 	withCredentials = true,
 }) => {
+	const constructUrl = !id ? baseUrl : `${baseUrl}/${id}`
   return {
 		type: 'API',
 		label,
 		baseUrl,
     config: {
-      url: `${baseUrl}/${id}`,
+      url: constructUrl,
       method,
       data,
 			headers,

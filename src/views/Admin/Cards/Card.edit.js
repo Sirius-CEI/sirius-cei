@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import DialogForm from '../../../components/DialogForm';
 import Button from '@material-ui/core/Button';
 
-import CardFields from './Card.fields'
+import DialogForm from '../../../components/DialogForm';
+import CardFields from './Card.fields';
+import { apiAction } from '../../../redux/actions';
 
 const styles = theme => ({
 	root: {
@@ -61,7 +62,16 @@ class EditCard extends Component {
 
 	onSubmit = event => {
 		event.preventDefault();
-		this.props.dispatch({ type: 'EDIT_CARD', payload: this.state.newCard })
+		const { newCard } = this.state;
+		const { dispatch } = this.props;
+		const args = {
+			baseUrl: "/api/cards",
+			method: "PUT",
+			id: newCard._id,
+			label: "CARDS",
+			data: newCard
+		}
+		dispatch(apiAction(args));
 		this.handleClose();	
 	}
 
@@ -79,35 +89,34 @@ class EditCard extends Component {
 	}
 
 		render() {
-		const { classes } = this.props;
 		const { newCard, open } = this.state;
 		return (
-			<div>
+			<Fragment>
 				<Button color="primary" onClick={this.handleOpen}>
 					Edit
 				</Button>
 				<DialogForm
 					open={open}
 					dialogTitle={'Edit Action Card'}
-					formId={'edit-action'}
+					formId={`edit-${newCard._id}`}
 					formFields={
 						<CardFields
 							handleChange={this.handleChange}
 							newCard={newCard}
-							editMode={false}
+							editMode={true}
 						/>
 					}
 					onSubmit={this.onSubmit}
 					handleClose={this.handleClose}
 				/>
-			</div>
+			</Fragment>
 		);
   }
 }
 
-EditCard.propTypes = {
-	classes: PropTypes.object.isRequired,
-};
+// EditCard.propTypes = {
+// 	classes: PropTypes.object.isRequired,
+// };
 
 export default compose(
 	connect(),

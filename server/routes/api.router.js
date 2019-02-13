@@ -34,13 +34,14 @@ router.get('/:id', (req, res) => {
 //POST route to add Card to database
 router.post('/', rejectUnauthenticated, (req, res) => {
 	try {
+		console.log(req);
 		const payload = req.body;
 		const myModel = modelList[req.originalUrl]
 		const newItem = new myModel();
 		Object.entries(payload).forEach(
 			([key, value]) => newItem[key] = value
 		);
-		newItem.save((err, data) => err ? res.json({ success: false, error: err })
+		newItem.save((err) => err ? res.json({ success: false, error: err })
 			: res.sendStatus(201)
 		);
 	} catch (error) {

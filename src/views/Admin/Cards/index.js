@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
@@ -22,7 +22,7 @@ const styles = theme => ({
 })
 
 const Cards = ({ outcomes, cards, classes }) => (
-	<div className={classes.root}>
+	<Fragment>
 		<Grid
 			container
 			spacing={16}
@@ -40,7 +40,7 @@ const Cards = ({ outcomes, cards, classes }) => (
 				<AddCard />
 			</Grid>
 		</Grid>
-	</div>
+	</Fragment>
 )
 
 Cards.propTypes = {

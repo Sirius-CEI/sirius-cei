@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -54,14 +53,17 @@ const styles = theme => ({
 	}
 });
 
-const deleteCard = id => ({ apiAction }) => (
-	apiAction({
-		params: { id },
-		url: `/api/cards`,
-	})
-)
+const deleteCard = (id, dispatch, apiAction) => {
+	const args = {
+		baseUrl: "/api/cards",
+		method: "DELETE",
+		id: id,
+		label: "CARDS",
+	}
+	dispatch(apiAction(args));
+}
 
-const CardList = ({ classes, cards, outcome }) => {
+const CardList = ({ classes, cards, outcome, dispatch }) => {
 	const outcomeCards = cards.filter(card => card.outcome_id === outcome._id);
 
 	return (
@@ -93,9 +95,9 @@ const CardList = ({ classes, cards, outcome }) => {
 									</Typography>
 								</CardContent>
 								<CardActions className={classes.actionButtons}>
-									<EditCard card={cardItem}/>
+									<EditCard card={cardItem} />
 									<Button
-										onClick={()=>deleteCard(cardItem._id)}
+										onClick={()=>deleteCard(cardItem._id, dispatch, apiAction)}
 										color="primary"
 									>
 										Delete
@@ -111,12 +113,8 @@ const CardList = ({ classes, cards, outcome }) => {
 	)
 }
 
-CardList.propTypes ={ 
-	deleteDataFn: PropTypes.func.isRequired,
-}
-
 const mapStateToProps = ({ cards }) => ({
 	cards: cards
 })
 
-export default connect(mapStateToProps,{apiAction})(withStyles(styles)(CardList));
+export default connect(mapStateToProps)(withStyles(styles)(CardList));

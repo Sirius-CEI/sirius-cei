@@ -8,7 +8,8 @@ import DialogForm from '../../../components/DialogForm';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 
-import CardFields from './Card.fields'
+import CardFields from './Card.fields';
+import { apiAction } from '../../../redux/actions'
 
 const styles = theme => ({
 	root: {
@@ -54,7 +55,16 @@ class AddCard extends Component {
 
 	onSubmit = event => {
 		event.preventDefault();
-		this.props.dispatch({ type: 'ADD_CARD', payload: this.state.newCard })
+		const { dispatch } = this.props;
+		const { newCard } = this.state;
+		console.log(newCard);
+		const args = {
+			baseUrl: "/api/cards",
+			method: "POST",
+			label: "CARDS",
+			data: newCard
+		}
+		dispatch(apiAction(args));
 		this.handleClose();	
 	}
 
@@ -82,7 +92,7 @@ class AddCard extends Component {
 				<DialogForm
 					open={open}
 					dialogTitle={'Add Action Card'}
-					formId={'add-action'}
+					formId={'add-action-card'}
 					formFields={
 						<CardFields
 							handleChange={this.handleChange}
@@ -101,6 +111,7 @@ class AddCard extends Component {
 AddCard.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
+
 
 export default compose(
 	connect(),
