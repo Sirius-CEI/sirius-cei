@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Card = require('../models/cards.model');
+const User = require('../models/user.model');
 const { rejectUnauthenticated } = require('../auth/authentication-middleware');
 
 const modelList = {
-	'/api/cards': Card
+	'/api/cards': Card,
+	'/api/users': User
 }
 
 //GET route to get Cards from database
@@ -52,11 +54,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 // PUT route to edit card
 router.put('/:id', rejectUnauthenticated, (req, res) => {
 	try {
-		const updates = req.body;
-		console.log(updates);
+		const data = req.body;
 		const { id } = req.params;
 		const myModel = modelList[req.baseUrl]
-		myModel.findByIdAndUpdate(id, updates, (err, doc) => {
+		myModel.findByIdAndUpdate(id, data, (err, doc) => {
 			console.log(doc);
 			return err ? res.json({ success: false, error: err }) : res.sendStatus(200)
 		})

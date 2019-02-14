@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+
+import {
+	ExpansionPanel,
+	ExpansionPanelDetails,
+	ExpansionPanelSummary,
+	Grid,
+	Typography
+} from '@material-ui/core'
+
 import manageUsers from './data';
 
 const styles = theme => ({
@@ -28,12 +32,12 @@ const styles = theme => ({
 
 class ManageUsers extends React.Component {
   state = {
-    expanded: null,
+    expanded: 0,
   };
 
-  handleChange = panel => (event, expanded) => {
+  handleChange = () => {
     this.setState({
-      expanded: expanded ? panel : false,
+      expanded: this.state.expanded === 0 ? 1 : 0
     });
   };
 
@@ -42,9 +46,9 @@ class ManageUsers extends React.Component {
     const { expanded } = this.state;
 
     return (
-      <div className={classes.root}>
+      <Fragment>
 				{manageUsers.map((item, index) => (
-					<ExpansionPanel key={index} expanded={expanded === index} onChange={this.handleChange(index)}>
+					<ExpansionPanel key={index} expanded={expanded === index} onChange={this.handleChange}>
 						<ExpansionPanelSummary expandIcon={<FontAwesomeIcon icon='chevron-down' size='xs' />}>
 							<Grid container spacing={8} direction="row" justify="flex-start" alignItems="center">
 								<Grid item>
@@ -65,7 +69,7 @@ class ManageUsers extends React.Component {
 						</ExpansionPanelDetails>
 					</ExpansionPanel>
 				))}
-      </div>
+      </Fragment>
     );
   }
 }

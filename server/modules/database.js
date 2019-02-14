@@ -28,12 +28,12 @@ mongoose.connection.on('error', (err) => {
 });
 
 const checkForUser = () => {
-	User.countDocuments({}, (err, count) => {
-		if (count === 0) {
-			const username = 'admin';
-			const password = encryptLib.encryptPassword('password');
+	const username = 'admin@cei.org';
+	const password = encryptLib.encryptPassword('password');
+	User.findOne({ username }, (err, doc) => {
+		if (doc === null) {
 			const newPerson = new User({ username, password });
-			newPerson.save()
-			}
-		})
+			newPerson.save();
+		}
+	})
 }

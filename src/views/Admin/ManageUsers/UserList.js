@@ -1,95 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import RegisterButton from './RegisterButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
-import Block from '@material-ui/icons/Block';
 import Swal from 'sweetalert2';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Fab from '@material-ui/core/Fab';
+
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableRow
+} from '@material-ui/core'
+
+import { apiAction, apiGet } from '../../../redux/actions';
+import UserItem from './UserItem';
 
 const styles = theme => ({
   root: {
-	width: '100%',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
-	},
-	reactivateBtn: {
-		margin: theme.spacing.unit,
-		backgroundColor:'#02c39a',
-			'&:hover': {
-				backgroundColor: '#009B78'
-			},
-		color: 'white',
-	},
-	deactivateBtn: {
-		margin: theme.spacing.unit,
-		backgroundColor:'#ffc100',
-			'&:hover': {
-				backgroundColor: '#C69500'
-			},
-		color: 'white',
-	},
-	delBtn: {
-		margin: theme.spacing.unit,
-		backgroundColor:'#d0021b',
-			'&:hover': {
-				backgroundColor: '#A90014'
-			},
-		color: 'white',
+		width: '100%',
 	},
 });
 
 class UserList extends Component {
-	componentDidMount() {
-		this.props.dispatch( { type: 'GET_DATA', main: 'FETCH_USER_LIST'} )
-	}
-
-	updateUser = (id, updates) => {
-		const { dispatch } = this.props;
-		dispatch({ type: 'UPDATE_USER', id: id, payload: updates })
-	}
-
-	//deactivate user
-	deactivateUser = (id) => {
-		this.props.dispatch( { type: 'DEACTIVATE_USER', payload: id } );
-	}
-
-	//reactivate user
-	reactivateUser = (id) => {
-		this.props.dispatch( { type: 'REACTIVATE_USER', payload: id } );
-	}
-
-	//delete user
-	deleteUser = (id) => {
-		Swal({
-			title: 'Are you sure?',
-			text: "You won't be able to revert this!",
-			type: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes'
-		}).then((result) => {
-			if (result.value) {
-				this.props.dispatch( { type: 'DELETE_USER', payload: id } );
-				Swal(
-					'Deleted!',
-					'User has been deleted.',
-					'success'
-				)
-			}
-		})
-	}
-
   render() {
     const { classes, users } = this.props;
 
@@ -100,49 +35,12 @@ class UserList extends Component {
 						<TableHead>
               <TableRow>
                 <TableCell>Email</TableCell>
-                <TableCell align="right">Status</TableCell>
-                <TableCell align="right">Reactivate</TableCell>
-                <TableCell align="right">Deactivate</TableCell>
-                <TableCell align="right">Delete</TableCell>
+                <TableCell align="center">Active</TableCell>
+                <TableCell align="center">Delete</TableCell>
               </TableRow>
 						</TableHead>
 						<TableBody>
-						{users.map((item, index) => {
-							return (
-							<TableRow key={index}>
-								<TableCell component="th" scope="row">
-								{item.username}
-								</TableCell>
-								<TableCell align="right">
-									{item.active.toString()}
-								</TableCell>
-								<TableCell align="right">
-                  <Fab
-                    size="small" 
-										className={classes.reactivateBtn}
-										onClick={()=> this.updateUser(item._id, { active: true })}>
-										<PowerSettingsNew/>
-									</Fab>
-								</TableCell>
-								<TableCell align="right">
-                  <Fab 
-                    size="small" 
-										className={classes.deactivateBtn}
-										onClick={()=> this.updateUser(item._id, { active: false })}>
-										<Block/>
-									</Fab>
-								</TableCell>
-								<TableCell align="right">
-                  <Fab  
-                    size="small" 
-										className={classes.delBtn}
-										onClick={()=> this.deleteUser(item._id)}>
-										<DeleteIcon className={classes.rightIcon}/>
-									</Fab>
-								</TableCell>
-							</TableRow>
-							);
-						})}
+							{users.length >0 && users.map((item, index) => (<UserItem item={item} key={index} />))}
 						</TableBody>
 					</Table>
 			</div>
@@ -151,7 +49,9 @@ class UserList extends Component {
 }
 
 UserList.propTypes = {
-  classes: PropTypes.object.isRequired,
+	classes: PropTypes.object.isRequired,
+	apiAction: PropTypes.func.isRequired,
+	apiGet: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -160,6 +60,6 @@ const mapStateToProps = state => ({
 })
 
 export default compose(
-	connect(mapStateToProps),
+	connect(mapStateToProps, { apiAction, apiGet }),
 	withStyles(styles)
 )(UserList);

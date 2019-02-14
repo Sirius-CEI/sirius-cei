@@ -45,3 +45,4 @@ export const apiGet = ({
 }
 
 export const getInitialData = () => ({ type: 'INITIAL_LOAD' })
+export const getAdminData = () => ({ type: 'ADMIN_LOAD'})

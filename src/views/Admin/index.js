@@ -10,6 +10,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 import adminPages from './data'
+import { getAdminData } from '../../redux/actions'
 
 const styles = theme => ({
   root: {
@@ -37,7 +38,7 @@ class AdminHome extends Component {
 	componentDidMount() {
 		const { user } = this.props;
 		console.log(`admin page mount`, user);
-
+		this.props.getAdminData();
 	}
 
   render() {
@@ -66,12 +67,13 @@ class AdminHome extends Component {
 }
 
 AdminHome.propTypes = {
-  classes: PropTypes.object.isRequired,
+	classes: PropTypes.object.isRequired,
+	getAdminData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ user }) => ({ user })
 
 export default compose(
-	connect(mapStateToProps),
+	connect(mapStateToProps, {getAdminData}),
 	withStyles(styles)
 )(AdminHome);;

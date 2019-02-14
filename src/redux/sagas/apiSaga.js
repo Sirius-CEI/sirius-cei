@@ -1,7 +1,6 @@
 import { put, call, all, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import { apiError, apiStart, apiEnd, clearErrors, setData } from "../actions/api";
-import { apiGet, apiAction } from '../actions';
 
 
 function* apiRequest({ label, config }) {
@@ -68,8 +67,22 @@ function* fetchAll(action) {
 		}
 }
 
+function* fetchAdmin(action) {
+	try {
+		yield all([
+			yield call(fetchData, { baseUrl: '/api/users', label: 'USERS' }),
+		])
+	} catch (error) {
+		yield put(apiError(error, `Admin Load`));
+	} finally {
+		yield put(apiEnd(`Admin Load`))
+		return;
+	}
+}
+
 function* dataSaga() {
 	yield takeEvery('INITIAL_LOAD', fetchAll);
+	yield takeEvery('ADMIN_LOAD', fetchAdmin);
 	yield takeEvery('API_GET', fetchData);
 	yield takeEvery('API', sequenceCalls)
 }

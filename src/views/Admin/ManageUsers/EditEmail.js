@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-import crypto from 'crypto';
 
 import {
 	Button,
@@ -10,9 +8,9 @@ import {
 } from '@material-ui/core'
 
 import DialogForm from '../../../components/DialogForm';
-import { apiAction, apiGet } from '../../../redux/actions';
+import { apiAction } from '../../../redux/actions';
 
-class RegisterButton extends Component {
+class EditEmail extends Component {
 	state = {
 		username: '',
 		open: false,
@@ -34,46 +32,24 @@ class RegisterButton extends Component {
 	onSubmit = event => {
 		event.preventDefault();
 		const { username } = this.state;
-		const { apiAction } = this.props;
-		const password = 	crypto.randomBytes(20).toString('hex');
+		const { apiAction, user } = this.props;
 
-		apiAction({
-			method: 'POST',
-			baseUrl: 'api/user',
-			data: {
-				username,
-				password
-			},
-		})
-		this.sendEmail(username);
-		this.getUsers();
-		this.handleClose();
-	}
-
-	sendEmail = (username) => {
-		const { apiAction} = this.props;
 		apiAction({
 			method: 'PUT',
-			baseUrl: 'api/user',
-			id: 'password-reset',
+			baseUrl: 'api/users',
 			data: {
 				username,
 			},
+			label: 'USERS',
+			id: user._id
 		})
-	}
-
-	getUsers = () => {
-		const { apiGet } = this.props;
-		apiGet({
-			baseUrl: 'api/users',
-			label: 'USERS'
-		})
+		this.handleClose();
 	}
 
 	handleClose = event => {
 		this.setState({
-			open: false,
-			username: ''
+			username: '',
+			open: false
 		})
 	}
 
@@ -83,7 +59,6 @@ class RegisterButton extends Component {
 			autoFocus
 			fullWidth
 			variant="outlined"
-			id="username"
 			label="User email"
 			name="username"
 			type="email"
@@ -97,11 +72,11 @@ class RegisterButton extends Component {
 		const { open } = this.state;
     return (
 			<Fragment>
-				<Button variant="outlined" onClick={this.handleOpen}>Register User</Button>
+				<Button variant="outlined" onClick={this.handleOpen}>Update Email</Button>
 				<DialogForm
-					formId='register-user'
+					formId='update-email'
 					open={open}
-					dialogTitle='Register User'
+					dialogTitle='Update Email Address'
 					formFields={<this.formFields />}
 					onSubmit={this.onSubmit}
 					handleClose={this.handleClose}
@@ -111,9 +86,10 @@ class RegisterButton extends Component {
   }
 }
 
-RegisterButton.propTypes = {
+EditEmail.propTypes = {
 	apiAction: PropTypes.func.isRequired,
-	apiGet: PropTypes.func.isRequired
 };
 
-export default connect(null, {apiAction, apiGet})(RegisterButton);
+const mapStateToProps = ({ user }) => ({ user })
+
+export default connect(mapStateToProps, {apiAction})(EditEmail);

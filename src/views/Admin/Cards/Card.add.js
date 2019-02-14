@@ -33,9 +33,14 @@ class AddCard extends Component {
 	}
 
 	handleOpen = event => {
+		const {outcomeId} = this.props || ''
 		this.setState({
 			...this.state,
 			open: true,
+			newCard: {
+				...this.state.newCard,
+				outcome_id: outcomeId
+			}
 		})
 	}
 
@@ -78,7 +83,7 @@ class AddCard extends Component {
 	}
 
 		render() {
-		const { classes } = this.props;
+		const { outcomeId } = this.props;
 		const { newCard, open } = this.state;
 		return (
 			<Fragment>
@@ -88,7 +93,7 @@ class AddCard extends Component {
 				<DialogForm
 					open={open}
 					dialogTitle={'Add Action Card'}
-					formId={'add-action-card'}
+					formId={`add-action-card-${outcomeId}`}
 					formFields={
 						<CardFields
 							handleChange={this.handleChange}

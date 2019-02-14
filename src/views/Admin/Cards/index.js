@@ -24,10 +24,6 @@ const Cards = ({ outcomes, classes }) => (
 			justify="center"
 			alignItems="stretch"
 		>
-		<Grid item xs={12}>
-			<div className={classes.grow} />
-			<AddCard />
-		</Grid>
 			{outcomes.length > 0 && outcomes.map((outcome, index) => (
 				<Grid item xs={12} key={index}>
 					<OutcomeList outcome={outcome} />

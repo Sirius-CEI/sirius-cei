@@ -74,6 +74,7 @@ class LoginButton extends Component {
 		this.setState({
 			open: false
 		})
+		this.props.history.push('/admin')
 	}
 
   render() {

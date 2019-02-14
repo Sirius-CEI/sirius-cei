@@ -21,6 +21,11 @@ const theme = createMuiTheme({
 		background: {
 			default: '#fff',
 		},
+		success: '#02c39a',
+		warning: {
+			main: '#ff784f',
+		},
+		danger: '#d0021b',
 	},
 	typography: {
 		fontFamily: `"Lato", "Roboto", "Helvetica", "Arial", sans-serif`,

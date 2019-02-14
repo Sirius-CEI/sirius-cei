@@ -21,17 +21,18 @@ const styles = theme => ({
 	},
 });
 
-const logout = ( apiAction ) => {
+const logout = ( apiAction, history ) => {
 	apiAction({
 		baseUrl: "api/user",
 		id: "logout",
 		method: "POST",
 		label: "USER"
 	})
+	history.push('/');
 }
 
-const LogoutButton = ({ classes, apiAction }) => (
-  <Button variant="outlined" onClick={()=>logout(apiAction)} >
+const LogoutButton = ({ classes, apiAction, history }) => (
+  <Button variant="outlined" onClick={()=>logout(apiAction, history)} >
     Log Out
 		<FontAwesomeIcon icon="sign-out-alt" className={classes.rightIcon} />
   </Button>
@@ -39,7 +40,7 @@ const LogoutButton = ({ classes, apiAction }) => (
 
 LogoutButton.propTypes = {
 	classes: PropTypes.object.isRequired,
-	apiAction: PropTypes.func.isRequired
+	apiAction: PropTypes.func.isRequired,
 };
 
 export default compose(

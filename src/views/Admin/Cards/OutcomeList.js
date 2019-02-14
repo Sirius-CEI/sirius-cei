@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 
 import OutcomeCards from './OutcomeCards';
+import AddCard from './Card.add';
 
 const styles = theme => ({
 	grow: {
@@ -27,6 +28,9 @@ const styles = theme => ({
 		alignContent: 'flex-start',
 		justifyContent:'center',
 	},
+	action: {
+		alignSelf: 'center',
+	}
 });
 
 const OutcomeList = ({ classes, cards, outcome }) => {
@@ -36,6 +40,10 @@ const OutcomeList = ({ classes, cards, outcome }) => {
 		<Card>
 			<CardHeader
 				title={outcome.title}
+				action={<AddCard outcomeId={outcome._id} />}
+				classes={{
+					action: classes.action
+				}}
 			/>
 			<Divider />
 			<CardContent className={classes.list}>

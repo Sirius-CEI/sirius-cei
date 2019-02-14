@@ -1,6 +1,6 @@
 const userListReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_USER_LIST':
+    case 'SET_USERS':
       return action.payload;
     default:
       return state;
