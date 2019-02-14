@@ -36,9 +36,9 @@ class AdminHome extends Component {
 	};
 	
 	componentDidMount() {
-		const { user } = this.props;
-		console.log(`admin page mount`, user);
-		this.props.getAdminData();
+		// const { user } = this.props;
+		// console.log(`admin page mount`, user);
+		// this.props.getAdminData();
 	}
 
   render() {

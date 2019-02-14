@@ -5,6 +5,7 @@ const Chart = require('./charts.model');
 const fileInfo = new Schema({
 	filename: String,
 	user_id: String,
+	username: String,
 	uuid: String,
 	uploadTs: Date,
 })

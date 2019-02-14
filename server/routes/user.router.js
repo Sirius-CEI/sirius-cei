@@ -10,14 +10,15 @@ const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', (req, res) => {
-  // Send back user object from the session (previously queried from the database)
+	// Send back user object from the session (previously queried from the database)
+	console.log(`user`, req.user);
   req.isAuthenticated ? res.send(req.user) : res.send({ username: "", _id: "" })
 });
 
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
-router.post('/', rejectUnauthenticated, (req, res) => {
+router.post('/', (req, res) => {
 	const { username } = req.body
   const password = encryptLib.encryptPassword(req.body.password);
 

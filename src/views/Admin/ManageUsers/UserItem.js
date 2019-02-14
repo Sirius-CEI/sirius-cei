@@ -44,6 +44,7 @@ const deleteUser = ({item, apiAction, classes}, e) => {
 		customContainerClass: classes.swal
 	})
 	.then(result => {
+		console.log(result);
 		if (result.value) {
 			apiAction({
 				baseUrl: '/api/users',

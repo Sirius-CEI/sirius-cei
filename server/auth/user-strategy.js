@@ -31,9 +31,7 @@ passport.deserializeUser((id, done) => {
 // Does actual work of logging in
 passport.use('local', new LocalStrategy({
   passReqToCallback: true,
-  usernameField: 'username',
 }, ((req, username, password, done) => {
-	console.log(`in passport auth`);
 		Person.find({ username })
       .then((result) => {
         const user = result && result[0];
@@ -45,10 +43,10 @@ passport.use('local', new LocalStrategy({
           done(null, false, { message: 'Incorrect credentials.' });
         } else {
           // not good! No user with that name
-          done(null, false);
+          done(null, false, { message: 'No user with that username.'});
         }
       }).catch((err) => {
-        done(null, {});
+        done(err);
       });
   })));
 

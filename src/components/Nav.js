@@ -5,20 +5,24 @@ import { Link } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
+
+import {
+	AppBar,
+	Button,
+	Divider,
+	Drawer,
+	Grid,
+	Hidden,
+	IconButton,
+	List,
+	ListItem,
+	ListItemText,
+	Toolbar,
+	withWidth
+} from '@material-ui/core';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Hidden from '@material-ui/core/Hidden';
-import withWidth from '@material-ui/core/withWidth';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid'
 
 const drawerWidth = 240;
 

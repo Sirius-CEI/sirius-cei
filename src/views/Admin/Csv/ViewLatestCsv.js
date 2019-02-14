@@ -21,7 +21,6 @@ const styles = theme => ({
 });
 
 class ViewLatestCsv extends Component {
-
 	deleteCsv = (uuid) => {
 		this.props.dispatch( { type: 'DELETE_CSV', payload: uuid } );
 	}
@@ -36,11 +35,11 @@ class ViewLatestCsv extends Component {
 			<div className={classes.root}>
 				<Typography variant="h4" gutterBottom>Loaded csv files</Typography>
 				<Grid container spacing={16}>
-					{csv.map( (csv, index) => (
+					{csv.map( (item, index) => (
 						<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
 							<Card className={classes.recentCsv} id="display">
 								<CardHeader
-									title="csv id:"
+									title={item.fileInfo.filename}
 									titleTypographyProps={{
 										variant: "h5",
 										color: "primary",
@@ -49,7 +48,7 @@ class ViewLatestCsv extends Component {
 								/>
 								<Divider />
 								<CardContent>
-									<Typography variant="h6" gutterBottom>{csv._id}</Typography>
+									<Typography variant="h6" gutterBottom>upload date: {item.fileInfo.uploadTs}</Typography>
 								</CardContent>
 								<Divider />
 								<CardActions className={classes.actions}>

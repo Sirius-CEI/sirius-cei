@@ -16,7 +16,7 @@ import AdminHome from '../views/Admin';
 const ProtectedRoute = props => {
 	const { user, ...otherProps } = props;
 	if(user._id) {
-		return <Route exact path="/admin" render={(props) => <AdminHome {...otherProps} open={!user._id} /> } />
+		return <Route exact path="/admin" render={(props) => <AdminHome {...otherProps} /> } />
 	} else {
 		return <Redirect exact from="/admin" to="/macro-indicators" />
 	}

@@ -44,6 +44,7 @@ class RegisterButton extends Component {
 				username,
 				password
 			},
+			label: 'USER'
 		})
 		this.sendEmail(username);
 		this.getUsers();

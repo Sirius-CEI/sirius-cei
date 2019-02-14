@@ -49,7 +49,7 @@ function* sequenceCalls(action) {
 	return;
 }
 
-function* fetchAll(action) {
+function* fetchPublic(action) {
     try {
 			yield all([
 				yield call(fetchData, { baseUrl: '/api/outcome-areas', label: 'OUTCOME_AREAS' }),
@@ -57,13 +57,12 @@ function* fetchAll(action) {
 				yield call(fetchData, { baseUrl: '/api/charts', label: 'CHARTS' }),
 				yield call(fetchData, { baseUrl: '/api/csv', label: 'CHART_DATA' }),
 				yield call(fetchData, { baseUrl: '/api/cards', label: 'CARDS' }),
-				yield call(fetchData, { baseUrl: '/api/user', label: 'USER'})
 			])
     } catch (error) {
-			yield put(apiError(error, `Initial Load`));
+			yield put(apiError(error, `Public Load`));
 		} finally {
-			yield put(apiEnd(`Initial Load`))
-			return;
+			yield put(apiEnd(`Public Load`))
+			return 'fetchPublic complete';
 		}
 }
 
@@ -77,6 +76,19 @@ function* fetchAdmin(action) {
 	} finally {
 		yield put(apiEnd(`Admin Load`))
 		return;
+	}
+}
+
+function* fetchAll(action) {
+	try {
+		const response = yield call(fetchPublic)
+		console.log(response);
+		yield put({type: 'ADMIN_LOAD'})
+	} catch (e) {
+		yield put(apiError(e, 'Initial Load'))
+	} finally {
+		yield put(apiEnd('Initial Load'))
+		return 'fetchAll complete';
 	}
 }
 

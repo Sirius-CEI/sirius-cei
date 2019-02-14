@@ -103,6 +103,6 @@ CsvConversion.propTypes = {
 const mapStateToProps = ({ user }) => ({ userId: user._id })
 
 export default compose(
-	connect(),
+	connect(mapStateToProps),
 	withStyles(styles)
 )(CsvConversion);
